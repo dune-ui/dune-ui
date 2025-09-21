@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
+  <Project Path="src/StellarUI/StellarUI.csproj" />
+  <Project Path="src\StellarUI.Generators\StellarUI.Generators.csproj" Type="Classic C#" />
+</Solution>
