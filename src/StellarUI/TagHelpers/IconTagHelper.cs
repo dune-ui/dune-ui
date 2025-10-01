@@ -7,10 +7,7 @@ namespace StellarUI.TagHelpers;
 [OutputElementHint("svg")]
 public class IconTagHelper : TagHelper
 {
-    private static readonly Dictionary<string, string> DefaultValues = new Dictionary<
-        string,
-        string
-    >
+    private static readonly Dictionary<string, string> DefaultValues = new()
     {
         ["xmlns"] = "http://www.w3.org/2000/svg",
         ["width"] = "24",
@@ -25,33 +22,30 @@ public class IconTagHelper : TagHelper
 
     public string? Name { get; set; }
 
+    public static string[] GetAllIconNames()
+    {
+        return LucideIcons.IconDefinitions.Keys.ToArray();
+    }
+
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         if (
             !LucideIcons.IconDefinitions.TryGetValue(Name ?? "circle-alert", out var iconDefinition)
         )
-        {
             iconDefinition = LucideIcons.IconDefinitions["circle-alert"];
-        }
 
         output.TagName = "svg";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         foreach (var (name, value) in DefaultValues)
-        {
             if (!output.Attributes.ContainsName(name))
-            {
                 output.Attributes.SetAttribute(name, value);
-            }
-        }
 
         foreach (var shape in iconDefinition)
         {
             var shapeBuilder = new TagBuilder(shape.Name);
             foreach (var (attributeName, attributeValue) in shape.Attributes)
-            {
                 shapeBuilder.Attributes.Add(attributeName, attributeValue);
-            }
 
             output.Content.AppendHtml(shapeBuilder);
         }

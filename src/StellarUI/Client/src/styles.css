@@ -1,7 +1,7 @@
 ﻿@import "tailwindcss";
 @import "tw-animate-css";
 
-@source "../../Areas/";
+@source "../../TagHelpers/";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -1,0 +1,18 @@
+﻿@page
+@using StellarUI.TagHelpers
+@model ComponentPlayground.Pages.Demo.Icon
+
+<h2>Icon</h2>
+
+<sui-icon name="align-horizontal-justify-center" />
+
+<sui-icon stroke-width="1" name="align-horizontal-justify-center" />
+
+<sui-icon stroke-width="4" name="align-horizontal-justify-center" />
+
+<sui-icon name="align-horizontal-justify-center" />
+
+@foreach (var iconName in IconTagHelper.GetAllIconNames())
+{
+    <sui-icon name="@iconName" stroke-width="1" />
+}
