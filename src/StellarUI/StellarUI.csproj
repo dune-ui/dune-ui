@@ -8,9 +8,9 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <Folder Include="wwwroot\" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <AdditionalFiles Include="icon-nodes.json" />
   </ItemGroup>

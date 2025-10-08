@@ -1,4 +1,6 @@
-﻿@import "tailwindcss";
+﻿@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @source "../../TagHelpers/";
@@ -115,9 +117,16 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+    --font-sans: "Geist", sans-serif;
+}
+
 @layer base {
     * {
         @apply border-border outline-ring/50;
+    }
+    html {
+        font-family: var(--font-sans);
     }
     body {
         @apply bg-background text-foreground;

@@ -1,0 +1,22 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Field
+
+<sui-field>
+    <sui-label>Wagwoord 1</sui-label>
+    <input type="text">
+    <sui-description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</sui-description>
+</sui-field>
+
+<sui-field>
+    <sui-label asp-for="Model.Password">Wagwoord 2</sui-label>
+    <sui-text-input asp-for="Model.Password" />
+    <sui-description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</sui-description>
+</sui-field>
+
+<sui-field>
+    <sui-label asp-for="Model.Password" />
+    <sui-text-input asp-for="Model.Password" />
+    <sui-description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</sui-description>
+</sui-field>
+
+<sui-text-input asp-for="Model.Password" />

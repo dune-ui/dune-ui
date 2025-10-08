@@ -9,7 +9,7 @@ public class StellarTagHelper : TagHelper
     private const string ParentTagHelperStackKey = "stellar-parent-tag-helper-stack";
 
     [HtmlAttributeNotBound]
-    protected StellarTagHelper? ParentTagHelper { get; private set; }
+    protected internal StellarTagHelper? ParentTagHelper { get; private set; }
 
     private Stack<StellarTagHelper> GetParentTagHelperStack(TagHelperContext context)
     {
@@ -25,6 +25,19 @@ public class StellarTagHelper : TagHelper
         context.Items[ParentTagHelperStackKey] = parentTagHelperStack;
 
         return parentTagHelperStack;
+    }
+
+    protected string? GetUserSpecifiedClass(TagHelperOutput output)
+    {
+        if (
+            output.Attributes.ContainsName("class")
+            && output.Attributes["class"].Value?.ToString() is { } userSpecifiedClass
+        )
+        {
+            return userSpecifiedClass;
+        }
+
+        return null;
     }
 
     public override void Init(TagHelperContext context)

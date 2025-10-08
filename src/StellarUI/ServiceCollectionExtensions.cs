@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using StellarUI.TagHelpers;
 using TailwindMerge;
 
 namespace StellarUI;
@@ -9,6 +10,7 @@ public static class ServiceCollectionExtensions
     {
         return services
             .AddSingleton<TwMerge>()
-            .AddSingleton<ICssClassMerger, DefaultCssClassMerger>();
+            .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()
+            .AddSingleton<IStellarHtmlGenerator, DefaultStellarHtmlGenerator>();
     }
 }
