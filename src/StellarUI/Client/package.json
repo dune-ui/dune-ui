@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "build:css": "webpack --mode=production --config-name css",
+    "build:css:watch": "webpack --mode=production --config-name css --watch",
     "build:icons": "webpack --mode=production --config-name icons"
   },
   "devDependencies": {

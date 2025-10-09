@@ -1,0 +1,31 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Avatar
+@{
+    var url = "https://github.com/shadcn.png";
+}
+
+<sui-avatar src="@url" />
+<p>&nbsp;</p>
+<sui-avatar name="Jeremia Josiah Pelser" />
+<sui-avatar name="Jerrie Pelser" />
+<sui-avatar name="Jerrie" />
+<sui-avatar name="J" />
+<sui-avatar />
+<p>&nbsp;</p>
+<sui-avatar src="@url" size="ExtraSmall" />
+<sui-avatar src="@url" size="Small" />
+<sui-avatar src="@url" size="Default" />
+<sui-avatar src="@url" size="Large" />
+<sui-avatar src="@url" size="ExtraLarge" />
+<p>&nbsp;</p>
+<sui-avatar name="Jerrie Pelser" size="ExtraSmall" />
+<sui-avatar name="Jerrie Pelser" size="Small" />
+<sui-avatar name="Jerrie Pelser" size="Default" />
+<sui-avatar name="Jerrie Pelser" size="Large" />
+<sui-avatar name="Jerrie Pelser" size="ExtraLarge" />
+<p>&nbsp;</p>
+<sui-avatar-group>
+<sui-avatar src="@url" />
+<sui-avatar src="@url" />
+<sui-avatar src="@url" />
+</sui-avatar-group>
