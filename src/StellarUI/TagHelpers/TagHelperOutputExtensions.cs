@@ -14,7 +14,7 @@ internal static class TagHelperOutputExtensions
         return writer.ToString();
     }
 
-    public static string? GetUserSpecifiedClass(this TagHelperOutput output)
+    public static string? GetUserSuppliedClass(this TagHelperOutput output)
     {
         if (
             output.Attributes.ContainsName("class")

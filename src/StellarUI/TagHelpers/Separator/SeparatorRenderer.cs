@@ -17,7 +17,7 @@ internal class SeparatorRenderer(ICssClassMerger classMerger)
             "class",
             classMerger.Merge(
                 "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-                output.GetUserSpecifiedClass()
+                output.GetUserSuppliedClass()
             )
         );
         output.Attributes.SetAttribute("data-role", isDecorative ? "none" : "separator");

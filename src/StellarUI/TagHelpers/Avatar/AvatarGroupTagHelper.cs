@@ -10,11 +10,11 @@ public class AvatarGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelpe
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.Add(
+        output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(
                 "*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2",
-                output.GetUserSpecifiedClass()
+                output.GetUserSuppliedClass()
             )
         );
 

@@ -1,14 +1,54 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - ComponentPlayground</title>
-    <link rel="stylesheet" href="/_content/StellarUI/styles.css" />
+    <link rel="stylesheet" href="/_content/StellarUI/styles.css"/>
 </head>
 <body>
-    @RenderBody()
-
-    @await RenderSectionAsync("Scripts", required: false)
+<sui-sidebar-wrapper>
+    <sui-sidebar variant="Inset">
+        @*<sui-sidebar-header>Header</sui-sidebar-header>*@
+        <sui-sidebar-content>
+            <sui-sidebar-group>
+                <sui-sidebar-group-label>Help</sui-sidebar-group-label>
+                <sui-sidebar-group-content>
+                    <sui-sidebar-menu>
+                        <sui-sidebar-menu-item>
+                            <sui-sidebar-menu-link asp-page="/Demo/Avatar">
+                                <sui-icon name="circle-user"/>
+                                Avatar
+                            </sui-sidebar-menu-link>
+                        </sui-sidebar-menu-item>
+                        <sui-sidebar-menu-item>
+                            <sui-sidebar-menu-link asp-page="/Demo/Field">
+                                <sui-icon name="text-cursor-input"/>
+                                Field
+                            </sui-sidebar-menu-link>
+                        </sui-sidebar-menu-item>
+                        <sui-sidebar-menu-item>
+                            <sui-sidebar-menu-link asp-page="/Demo/Icon">
+                                <sui-icon name="image"/>
+                                Icon
+                            </sui-sidebar-menu-link>
+                        </sui-sidebar-menu-item>
+                        <sui-sidebar-menu-item>
+                            <sui-sidebar-menu-link asp-page="/Demo/Item">
+                                <sui-icon name="rows-3"/>
+                                Item
+                            </sui-sidebar-menu-link>
+                        </sui-sidebar-menu-item>
+                    </sui-sidebar-menu>
+                </sui-sidebar-group-content>
+            </sui-sidebar-group>
+        </sui-sidebar-content>
+        @*<sui-sidebar-footer>Footer</sui-sidebar-footer>*@
+    </sui-sidebar>
+    <sui-sidebar-inset>
+        @RenderBody()
+    </sui-sidebar-inset>
+</sui-sidebar-wrapper>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -26,7 +26,7 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
             classMerger.Merge(
                 "relative flex shrink-0 overflow-hidden rounded-full",
                 $"size-{GetSizeNumber()}",
-                output.GetUserSpecifiedClass()
+                output.GetUserSuppliedClass()
             )
         );
 
