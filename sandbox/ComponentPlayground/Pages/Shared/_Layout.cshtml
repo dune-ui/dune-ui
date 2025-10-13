@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - ComponentPlayground</title>
+    <script src="https://cdn.jsdelivr.net/npm/@@tailwindcss/browser@@4"></script>
     <link rel="stylesheet" href="/_content/StellarUI/styles.css"/>
 </head>
 <body>
@@ -15,6 +16,12 @@
                 <sui-sidebar-group-label>Help</sui-sidebar-group-label>
                 <sui-sidebar-group-content>
                     <sui-sidebar-menu>
+                        <sui-sidebar-menu-item>
+                            <sui-sidebar-menu-link asp-page="/Demo/Alert">
+                                <sui-icon name="circle-alert"/>
+                                Alert
+                            </sui-sidebar-menu-link>
+                        </sui-sidebar-menu-item>
                         <sui-sidebar-menu-item>
                             <sui-sidebar-menu-link asp-page="/Demo/Avatar">
                                 <sui-icon name="circle-user"/>

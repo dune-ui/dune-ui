@@ -1,0 +1,26 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Alert
+
+<div>
+    <sui-alert>
+        <sui-icon name="circle-check"/>
+        <sui-alert-title>Success! Your changes have been saved</sui-alert-title>
+        <sui-alert-description>This is an alert with icon, title and description.</sui-alert-description>
+    </sui-alert>
+    <sui-alert>
+        <sui-icon name="popcorn"/>
+        <sui-alert-title>This Alert has a title and an icon. No description.</sui-alert-title>
+    </sui-alert>
+    <sui-alert variant="Destructive">
+        <sui-icon name="alert-circle"/>
+        <sui-alert-title>Unable to process your payment.</sui-alert-title>
+        <sui-alert-description>
+            <p>Please verify your billing information and try again.</p>
+            <ul class="list-inside list-disc text-sm">
+                <li>Check your card details</li>
+                <li>Ensure sufficient funds</li>
+                <li>Verify billing address</li>
+            </ul>
+        </sui-alert-description>
+    </sui-alert>
+</div>
