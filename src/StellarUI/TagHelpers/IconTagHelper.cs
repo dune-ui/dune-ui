@@ -7,6 +7,22 @@ namespace StellarUI.TagHelpers;
 [OutputElementHint("svg")]
 public class IconTagHelper : TagHelper
 {
+    public string? Name { get; set; }
+
+    public static string[] GetAllIconNames()
+    {
+        return LucideIcons.IconDefinitions.Keys.ToArray();
+    }
+
+    public override void Process(TagHelperContext context, TagHelperOutput output)
+    {
+        var iconRenderer = new IconRenderer();
+        iconRenderer.Render(output, Name);
+    }
+}
+
+internal class IconRenderer
+{
     private static readonly Dictionary<string, string> DefaultValues = new()
     {
         ["xmlns"] = "http://www.w3.org/2000/svg",
@@ -20,17 +36,13 @@ public class IconTagHelper : TagHelper
         ["stroke-linejoin"] = "round",
     };
 
-    public string? Name { get; set; }
-
-    public static string[] GetAllIconNames()
-    {
-        return LucideIcons.IconDefinitions.Keys.ToArray();
-    }
-
-    public override void Process(TagHelperContext context, TagHelperOutput output)
+    public void Render(TagHelperOutput output, string? iconName)
     {
         if (
-            !LucideIcons.IconDefinitions.TryGetValue(Name ?? "circle-alert", out var iconDefinition)
+            !LucideIcons.IconDefinitions.TryGetValue(
+                iconName ?? "circle-alert",
+                out var iconDefinition
+            )
         )
             iconDefinition = LucideIcons.IconDefinitions["circle-alert"];
 
@@ -49,17 +61,5 @@ public class IconTagHelper : TagHelper
 
             output.Content.AppendHtml(shapeBuilder);
         }
-
-        /*string iconClass = "some-calculated-class";
-
-        if (output.Attributes.ContainsName("class"))
-        {
-            var existingClasses = output.Attributes["class"].Value.ToString();
-            output.Attributes.SetAttribute("class", $"{existingClasses} {iconClass}");
-        }
-        else
-        {
-            output.Attributes.Add("class", iconClass);
-        }*/
     }
 }
