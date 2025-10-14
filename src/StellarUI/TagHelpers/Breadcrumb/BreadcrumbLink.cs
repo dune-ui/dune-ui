@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-breadcrumb-link")]
-public class BreadcrumbLink(ICssClassMerger classMerger) : StellarTagHelper
+public class BreadcrumbLink(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    : StellarAnchorTagHelperBase(htmlGenerator)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
+
+        ApplyAnchorAttributes(output);
 
         output.Attributes.SetAttribute("data-slot", "breadcrumb-link");
         output.Attributes.SetAttribute(

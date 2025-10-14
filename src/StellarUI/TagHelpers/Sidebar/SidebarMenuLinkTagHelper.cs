@@ -5,7 +5,7 @@ namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-sidebar-menu-link")]
 public class SidebarMenuLinkTagHelper(IHtmlGenerator generator, ICssClassMerger classMerger)
-    : StellarTagHelper
+    : StellarAnchorTagHelperBase(generator)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -15,6 +15,9 @@ public class SidebarMenuLinkTagHelper(IHtmlGenerator generator, ICssClassMerger 
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        var isActiveRoute = ApplyAnchorAttributes(output);
+
+        output.Attributes.SetAttribute("data-active", isActiveRoute ? "true" : "false");
         output.Attributes.SetAttribute("data-slot", "sidebar-menu-button");
         output.Attributes.SetAttribute("data-sidebar", "menu-button");
         output.Attributes.SetAttribute("data-size", size);
