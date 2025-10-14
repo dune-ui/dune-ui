@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-breadcrumb-ellipsis")]
-public class BreadcrumbEllipsis(ICssClassMerger classMerger) : StellarTagHelper
+public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {

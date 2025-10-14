@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-breadcrumb-link")]
-public class BreadcrumbLink(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+public class BreadcrumbLinkTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : StellarAnchorTagHelperBase(htmlGenerator)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
