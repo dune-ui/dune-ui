@@ -1,0 +1,108 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Card
+
+<div class="flex flex-col gap-y-4">
+    <sui-card class="w-full max-w-sm">
+        <sui-card-header>
+            <sui-card-title>Login to your account</sui-card-title>
+            <sui-card-description>
+                Enter your email below to login to your account
+            </sui-card-description>
+            <sui-card-action>
+                <sui-button variant="Link">Sign Up</sui-button>
+            </sui-card-action>
+        </sui-card-header>
+        <sui-card-content>
+            <p>Some content goes here...</p>
+        </sui-card-content>
+        <sui-card-footer class="flex-col gap-2">
+            <sui-button type="submit" class="w-full">
+                Login
+            </sui-button>
+            <sui-button variant="Outline" class="w-full">
+                Login with Google
+            </sui-button>
+        </sui-card-footer>
+    </sui-card>
+
+    <div class="w-full p-6 flex justify-center">
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 w-full max-w-6xl">
+            <sui-card>
+                <sui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <sui-card-title class="text-sm font-medium">Total Revenue</sui-card-title>
+                    <sui-icon name="dollar-sign" class="h-4 w-4 text-muted-foreground"/>
+                </sui-card-header>
+                <sui-card-content>
+                    <div class="text-2xl font-bold">$45,231.89</div>
+                    <p class="text-xs text-muted-foreground">
+                        +20.1% from last month
+                    </p>
+                </sui-card-content>
+            </sui-card>
+            <sui-card>
+                <sui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <sui-card-title class="text-sm font-medium">Subscriptions</sui-card-title>
+                    <sui-icon name="users" class="h-4 w-4 text-muted-foreground"/>
+                </sui-card-header>
+                <sui-card-content>
+                    <div class="text-2xl font-bold">+2,350</div>
+                    <p class="text-xs text-muted-foreground">
+                        +180.1% from last month
+                    </p>
+                </sui-card-content>
+            </sui-card>
+            <sui-card>
+                <sui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <sui-card-title class="text-sm font-medium">Sales</sui-card-title>
+                    <sui-icon name="trending-up" class="h-4 w-4 text-muted-foreground"/>
+                </sui-card-header>
+                <sui-card-content>
+                    <div class="text-2xl font-bold">+12,234</div>
+                    <p class="text-xs text-muted-foreground">
+                        +19% from last month
+                    </p>
+                </sui-card-content>
+            </sui-card>
+            <sui-card>
+                <sui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <sui-card-title class="text-sm font-medium">Active Now</sui-card-title>
+                    <sui-icon name="activity" class="h-4 w-4 text-muted-foreground"/>
+                </sui-card-header>
+                <sui-card-content>
+                    <div class="text-2xl font-bold">+573</div>
+                    <p class="text-xs text-muted-foreground">
+                        +201 since last hour
+                    </p>
+                </sui-card-content>
+            </sui-card>
+        </div>
+    </div>
+    
+    <sui-card class="w-48">
+        <sui-card-content class="p-3">
+            <div class="aspect-square rounded-md bg-gray-100 mb-2">
+                <div class="flex items-center justify-center h-full text-muted-foreground text-xs">
+                    Product Image
+                </div>
+            </div>
+            <sui-card-title class="text-sm mb-1">Wireless Headphones</sui-card-title>
+            <sui-card-description class="text-xs mb-2 line-clamp-2">
+                High-quality wireless headphones
+            </sui-card-description>
+            <div class="flex items-center space-x-1 mb-2">
+                <div class="flex">
+                    <sui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <sui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <sui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <sui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <sui-icon name="star" class="h-3 w-3 text-gray-300" />
+                </div>
+                <span class="text-xs text-muted-foreground">(4.0)</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-bold">$199</span>
+                <sui-button size="Small" class="text-xs px-2 py-1 h-7">Add</sui-button>
+            </div>
+        </sui-card-content>
+    </sui-card>
+</div>
