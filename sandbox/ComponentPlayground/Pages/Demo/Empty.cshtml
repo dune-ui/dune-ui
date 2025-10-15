@@ -1,0 +1,32 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Empty
+
+<div class="max-w-xl">
+    <sui-empty>
+        <sui-empty-header>
+            <sui-empty-media variant="Icon">
+                <sui-icon name="folder-code"/>
+            </sui-empty-media>
+            <sui-empty-title>No Projects Yet</sui-empty-title>
+            <sui-empty-description>
+                You haven&apos;t created any projects yet. Get started by creating
+                your first project.
+            </sui-empty-description>
+        </sui-empty-header>
+        <sui-empty-content>
+            <div class="flex gap-2">
+                <sui-button>Create Project</sui-button>
+                <sui-button variant="Outline">Import Project</sui-button>
+            </div>
+        </sui-empty-content>
+        <sui-linkbutton
+            variant="Link"
+            class="text-muted-foreground"
+            size="Small"
+            href="#"
+        >
+            Learn More
+            <sui-icon name="arrow-up-right"/>
+        </sui-linkbutton>
+    </sui-empty>
+</div>
