@@ -4,10 +4,10 @@ namespace StellarUI.TagHelpers;
 
 internal class SeparatorRenderer(ICssClassMerger classMerger)
 {
-    public async Task Render(
+    public void Render(
         TagHelperOutput output,
         SeparatorOrientation orientation,
-        bool isDecorative
+        bool isDecorative = true
     )
     {
         output.TagName = "div";

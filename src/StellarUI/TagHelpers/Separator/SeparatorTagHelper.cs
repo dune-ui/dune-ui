@@ -15,6 +15,6 @@ public class SeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
     {
         var separatorRenderer = new SeparatorRenderer(classMerger);
 
-        await separatorRenderer.Render(output, Orientation, IsDecorative);
+        separatorRenderer.Render(output, Orientation, IsDecorative);
     }
 }

@@ -1,0 +1,104 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.ButtonGroup
+
+<div class="flex flex-col gap-y-4">
+    <sui-button-group>
+        <sui-button variant="Outline" size="Small">
+            Small
+        </sui-button>
+        <sui-button variant="Outline" size="Small">
+            Button
+        </sui-button>
+        <sui-button variant="Outline" size="Small">
+            Group
+        </sui-button>
+        <sui-button variant="Outline" size="IconSmall">
+            <sui-icon name="plus"/>
+        </sui-button>
+    </sui-button-group>
+    <sui-button-group>
+        <sui-button variant="Outline" size="Default">
+            Default
+        </sui-button>
+        <sui-button variant="Outline" size="Default">
+            Button
+        </sui-button>
+        <sui-button variant="Outline" size="Default">
+            Group
+        </sui-button>
+        <sui-button variant="Outline" size="Icon">
+            <sui-icon name="plus"/>
+        </sui-button>
+    </sui-button-group>
+    <sui-button-group>
+        <sui-button variant="Outline" size="Large">
+            Large
+        </sui-button>
+        <sui-button variant="Outline" size="Large">
+            Button
+        </sui-button>
+        <sui-button variant="Outline" size="Large">
+            Group
+        </sui-button>
+        <sui-button variant="Outline" size="IconLarge">
+            <sui-icon name="plus"/>
+        </sui-button>
+    </sui-button-group>
+    <sui-button-group
+        orientation="Vertical"
+        aria-label="Media controls"
+        className="h-fit"
+    >
+        <sui-button variant="Outline" size="Icon">
+            <sui-icon name="plus" />
+        </sui-button>
+        <sui-button variant="Outline" size="Icon">
+            <sui-icon name="minus" />
+        </sui-button>
+    </sui-button-group>
+    <sui-button-group>
+        <sui-button-group>
+            <sui-button variant="Outline" size="Small">
+                1
+            </sui-button>
+            <sui-button variant="Outline" size="Small">
+                2
+            </sui-button>
+            <sui-button variant="Outline" size="Small">
+                3
+            </sui-button>
+            <sui-button variant="Outline" size="Small">
+                4
+            </sui-button>
+            <sui-button variant="Outline" size="Small">
+                5
+            </sui-button>
+        </sui-button-group>
+        <sui-button-group>
+            <sui-button variant="Outline" size="IconSmall" aria-label="Previous">
+                <sui-icon name="arrow-left" />
+            </sui-button>
+            <sui-button variant="Outline" size="IconSmall" aria-label="Next">
+                <sui-icon name="arrow-right" />
+            </sui-button>
+        </sui-button-group>
+    </sui-button-group>
+    <sui-button-group>
+        <sui-button variant="Secondary" size="Small">
+            Copy
+        </sui-button>
+        <sui-button-group-separator />
+        <sui-button variant="Secondary" size="Small">
+            Paste
+        </sui-button>
+    </sui-button-group>
+    <sui-button-group>
+        <sui-button variant="Secondary" size="Small">
+            Copy
+        </sui-button>
+        <sui-button-group-separator />
+        <sui-button variant="Secondary" size="IconSmall">
+            <sui-icon name="plus"/>
+        </sui-button>
+    </sui-button-group>
+</div>
