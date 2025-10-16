@@ -28,24 +28,20 @@ public class ProgressIndicatorTagHelper(ICssClassMerger classMerger) : StellarTa
 
     private int GetPercentageCompleted()
     {
-        (int minimum, int maximum, int value) = GetValue();
+        (int minimum, int maximum, int value) = GetValues();
 
         return (int)Math.Round(((double)(value - minimum) / (maximum - minimum)) * 100);
     }
 
-    private (int Minimum, int Maximum, int Value) GetValue()
+    private (int Minimum, int Maximum, int Value) GetValues()
     {
-        var currentParentTagHelper = ParentTagHelper;
-        while (currentParentTagHelper is not null)
-        {
-            if (currentParentTagHelper is ProgressTagHelper parentTagHelper)
-            {
-                return (parentTagHelper.Minimum, parentTagHelper.Maximum, parentTagHelper.Value);
-            }
-
-            currentParentTagHelper = currentParentTagHelper.ParentTagHelper;
-        }
-
-        return (0, 100, 0);
+        var parentProgressTagHelper = GetParentTagHelper<ProgressTagHelper>();
+        return parentProgressTagHelper == null
+            ? (0, 100, 0)
+            : (
+                parentProgressTagHelper.Minimum,
+                parentProgressTagHelper.Maximum,
+                parentProgressTagHelper.Value
+            );
     }
 }

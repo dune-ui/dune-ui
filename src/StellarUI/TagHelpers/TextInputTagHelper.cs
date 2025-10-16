@@ -72,17 +72,6 @@ public class TextInputTagHelper(IHtmlGenerator generator) : StellarTagHelper
 
     internal bool IsRenderedInsideField()
     {
-        var currentParentTagHelper = ParentTagHelper;
-        while (currentParentTagHelper is not null)
-        {
-            if (currentParentTagHelper is FieldTagHelper)
-            {
-                return true;
-            }
-
-            currentParentTagHelper = currentParentTagHelper.ParentTagHelper;
-        }
-
-        return false;
+        return GetParentTagHelper<FieldTagHelper>() != null;
     }
 }

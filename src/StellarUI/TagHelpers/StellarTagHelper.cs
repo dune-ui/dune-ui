@@ -27,6 +27,23 @@ public class StellarTagHelper : TagHelper
         return parentTagHelperStack;
     }
 
+    protected T? GetParentTagHelper<T>()
+        where T : StellarTagHelper
+    {
+        var currentParentTagHelper = ParentTagHelper;
+        while (currentParentTagHelper is not null)
+        {
+            if (currentParentTagHelper is T asT)
+            {
+                return asT;
+            }
+
+            currentParentTagHelper = currentParentTagHelper.ParentTagHelper;
+        }
+
+        return null;
+    }
+
     protected string? GetUserSpecifiedClass(TagHelperOutput output)
     {
         if (
