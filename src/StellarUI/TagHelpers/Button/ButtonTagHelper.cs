@@ -95,7 +95,10 @@ internal class ButtonRenderer(ICssClassMerger classMerger)
 
     public void Render(TagHelperOutput output, ButtonVariant variant, ButtonSize size)
     {
-        output.Attributes.SetAttribute("data-slot", "button");
+        if (!output.Attributes.ContainsName("data-slot"))
+        {
+            output.Attributes.SetAttribute("data-slot", "button");
+        }
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(

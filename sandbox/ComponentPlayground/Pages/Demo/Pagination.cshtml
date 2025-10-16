@@ -1,0 +1,35 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Pagination
+
+<div class="flex flex-col gap-y-4">
+    <sui-pagination>
+        <sui-pagination-content>
+            <sui-pagination-item>
+                <sui-pagination-first href="#" />
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-previous href="#" />
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#">1</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#" is-active="true">
+                    2
+                </sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#">3</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-ellipsis />
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-next href="#" />
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-last href="#" />
+            </sui-pagination-item>
+        </sui-pagination-content>
+    </sui-pagination>
+</div>
