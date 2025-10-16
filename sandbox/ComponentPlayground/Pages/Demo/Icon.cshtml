@@ -2,7 +2,7 @@
 @using StellarUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Icon
 
-<div>
+<div class="flex flex-col gap-y-4">
 <h2>Icon</h2>
 
 <sui-icon name="align-horizontal-justify-center" />
@@ -13,8 +13,10 @@
 
 <sui-icon name="align-horizontal-justify-center" />
 
+<div class="flex flex-wrap gap-x-2 gap-y-2">
 @foreach (var iconName in IconTagHelper.GetAllIconNames())
 {
     <sui-icon name="@iconName" stroke-width="1" />
 }
+</div>
 </div>
