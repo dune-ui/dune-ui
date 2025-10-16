@@ -10,8 +10,8 @@ public class BreadcrumbTagHelper : StellarTagHelper
         output.TagName = "nav";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.Add("aria-label", "breadcrumb");
-        output.Attributes.Add("data-slot", "breadcrumb");
+        output.Attributes.SetAttribute("aria-label", "breadcrumb");
+        output.Attributes.SetAttribute("data-slot", "breadcrumb");
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }

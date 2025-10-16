@@ -20,7 +20,7 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.Add("data-slot", "avatar");
+        output.Attributes.SetAttribute("data-slot", "avatar");
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(

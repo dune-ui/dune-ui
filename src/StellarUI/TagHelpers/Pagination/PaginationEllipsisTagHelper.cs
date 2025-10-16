@@ -11,9 +11,9 @@ public class PaginationEllipsisTagHelper(ICssClassMerger classMerger) : StellarT
         output.TagName = "span";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.Add("aria-hidden", "true");
-        output.Attributes.Add("data-slot", "pagination-ellipsis");
-        output.Attributes.Add(
+        output.Attributes.SetAttribute("aria-hidden", "true");
+        output.Attributes.SetAttribute("data-slot", "pagination-ellipsis");
+        output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(
                 "flex size-9 items-center justify-center",
