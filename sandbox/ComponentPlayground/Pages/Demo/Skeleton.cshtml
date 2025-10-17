@@ -1,0 +1,42 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Skeleton
+
+<div class="flex flex-col gap-y-4">
+    <div class="flex items-center space-x-4">
+        <sui-skeleton class="h-12 w-12 rounded-full" />
+        <div class="space-y-2">
+            <sui-skeleton class="h-4 w-[250px]" />
+            <sui-skeleton class="h-4 w-[200px]" />
+        </div>
+    </div>
+    <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mx-auto">
+            <!-- Product card skeleton -->
+            <div class="flex flex-col space-y-3">
+                <sui-skeleton class="h-[200px] w-full rounded-xl" />
+                <div class="space-y-2">
+                    <sui-skeleton class="h-4 w-3/4" />
+                    <sui-skeleton class="h-4 w-1/2" />
+                    <div class="flex items-center space-x-2 pt-2">
+                        <sui-skeleton class="h-6 w-16" />
+                        <sui-skeleton class="h-6 w-20" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article card skeleton -->
+            <div class="flex flex-col space-y-3">
+                <sui-skeleton class="h-[200px] w-full rounded-xl" />
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <sui-skeleton class="h-8 w-8 rounded-full" />
+                        <sui-skeleton class="h-4 w-24" />
+                    </div>
+                    <sui-skeleton class="h-5 w-full" />
+                    <sui-skeleton class="h-4 w-4/5" />
+                    <sui-skeleton class="h-4 w-3/5" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
