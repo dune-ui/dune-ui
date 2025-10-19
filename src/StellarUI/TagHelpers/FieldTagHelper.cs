@@ -2,6 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
+/*
 [HtmlTargetElement("sui-field")]
 public class FieldTagHelper(ICssClassMerger cssClassMerger) : StellarTagHelper
 {
@@ -24,3 +25,4 @@ public class FieldTagHelper(ICssClassMerger cssClassMerger) : StellarTagHelper
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }
+*/

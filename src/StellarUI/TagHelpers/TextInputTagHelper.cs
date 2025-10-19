@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
+/*
 [HtmlTargetElement("sui-text-input")]
 public class TextInputTagHelper(IHtmlGenerator generator) : StellarTagHelper
 {
@@ -75,3 +76,4 @@ public class TextInputTagHelper(IHtmlGenerator generator) : StellarTagHelper
         return GetParentTagHelper<FieldTagHelper>() != null;
     }
 }
+*/

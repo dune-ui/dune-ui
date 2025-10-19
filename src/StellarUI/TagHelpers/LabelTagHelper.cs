@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
+/*
 [HtmlTargetElement("sui-label")]
 public class LabelTagHelper(IHtmlGenerator generator) : StellarTagHelper
 {
@@ -74,3 +75,4 @@ internal class LabelRenderer(IHtmlGenerator generator)
         output.PostContent.SetHtmlContent(" <sup>*required</sup>");
     }
 }
+*/

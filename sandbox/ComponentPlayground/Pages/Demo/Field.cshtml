@@ -1,22 +1,163 @@
 ﻿@page
 @model ComponentPlayground.Pages.Demo.Field
 
-<sui-field>
-    <sui-label>Wagwoord 1</sui-label>
-    <input type="text">
-    <sui-description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</sui-description>
-</sui-field>
+<div class="flex flex-col gap-y-4 p-12">
+  <sui-card class="w-full max-w-md">
+    <sui-card-content>
+      <form>
+        <sui-field-group>
+          <sui-field-set>
+            <sui-field-legend>Payment Method</sui-field-legend>
+            <sui-field-description>
+              All transactions are secure and encrypted
+            </sui-field-description>
+            <sui-field-group>
+              <sui-field>
+                <sui-field-label for="checkout-7j9-card-name-43j">
+                  Name on Card
+                </sui-field-label>
+                <input
+                  id="checkout-7j9-card-name-43j"
+                  placeholder="Evil Rabbit"
+                  required/>
+              </sui-field>
+              <sui-field>
+                <sui-field-label for="checkout-7j9-card-number-uw1">
+                  Card Number
+                </sui-field-label>
+                <input
+                  id="checkout-7j9-card-number-uw1"
+                  placeholder="1234 5678 9012 3456"
+                  required/>
+                <sui-field-description>
+                  Enter your 16-digit card number
+                </sui-field-description>
+              </sui-field>
+              <div class="grid grid-cols-3 gap-4">
+                <sui-field>
+                  <sui-field-label for="checkout-exp-month-ts6">
+                    Month
+                  </sui-field-label>
+                  <select>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                </sui-field>
+                <sui-field>
+                  <sui-field-label for="checkout-7j9-exp-year-f59">
+                    Year
+                  </sui-field-label>
+                  <select defaultValue="">
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                  </select>
+                </sui-field>
+                <sui-field>
+                  <sui-field-label for="checkout-7j9-cvv">CVV</sui-field-label>
+                  <input id="checkout-7j9-cvv" placeholder="123" required/>
+                </sui-field>
+              </div>
+            </sui-field-group>
+          </sui-field-set>
+          <sui-field-separator/>
+          <sui-field-set>
+            <sui-field-legend>Billing Address</sui-field-legend>
+            <sui-field-description>
+              The billing address associated with your payment method
+            </sui-field-description>
+            <sui-field-group>
+              <sui-field orientation="Horizontal">
+                <input
+                  type="checkbox"
+                  id="checkout-7j9-same-as-shipping-wgm"/>
+                <sui-field-label
+                  htmlFor="checkout-7j9-same-as-shipping-wgm"
+                  class="font-normal">
+                  Same as shipping address
+                </sui-field-label>
+              </sui-field>
+            </sui-field-group>
+          </sui-field-set>
+          <sui-field-set>
+            <sui-field-group>
+              <sui-field>
+                <sui-field-label for="checkout-7j9-optional-comments">
+                  Comments
+                </sui-field-label>
+                <textarea
+                    id="checkout-7j9-optional-comments"
+                    placeholder="Add any additional comments"
+                    class="resize-none"></textarea>
+              </sui-field>
+            </sui-field-group>
+          </sui-field-set>
+          <sui-field orientation="Horizontal">
+            <sui-button type="submit">Submit</sui-button>
+            <sui-button variant="Outline" type="button">
+              Cancel
+            </sui-button>
+          </sui-field>
+        </sui-field-group>
+      </form>
+    </sui-card-content>
+  </sui-card>
 
-<sui-field>
-    <sui-label asp-for="Model.Password">Wagwoord 2</sui-label>
-    <sui-text-input asp-for="Model.Password" />
-    <sui-description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</sui-description>
-</sui-field>
-
-<sui-field>
-    <sui-label asp-for="Model.Password" />
-    <sui-text-input asp-for="Model.Password" />
-    <sui-description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</sui-description>
-</sui-field>
-
-<sui-text-input asp-for="Model.Password" />
+  <sui-card class="w-full max-w-4xl">
+    <sui-card-content>
+      <form>
+        <sui-field-set>
+          <sui-field-legend>Profile</sui-field-legend>
+          <sui-field-description>Fill in your profile information.</sui-field-description>
+          <sui-field-separator/>
+          <sui-field-group>
+            <sui-field orientation="Responsive">
+              <sui-field-content>
+                <sui-field-label for="name">Name</sui-field-label>
+                <sui-field-description>
+                  Provide your full name for identification
+                </sui-field-description>
+              </sui-field-content>
+              <input id="name" placeholder="Evil Rabbit" required/>
+            </sui-field>
+            <sui-field-separator/>
+            <sui-field orientation="Responsive">
+              <sui-field-content>
+                <sui-field-label form="lastName">Message</sui-field-label>
+                <sui-field-description>
+                  You can write your message here. Keep it short, preferably
+                  under 100 characters.
+                </sui-field-description>
+              </sui-field-content>
+              <textarea
+                  id="message"
+                  placeholder="Hello, world!"
+                  required
+                  class="min-h-[100px] resize-none sm:min-w-[300px]"></textarea>
+            </sui-field>
+            <sui-field-separator/>
+            <sui-field orientation="Responsive">
+              <sui-button type="submit">Submit</sui-button>
+              <sui-button type="button" variant="Outline">
+                Cancel
+              </sui-button>
+            </sui-field>
+          </sui-field-group>
+        </sui-field-set>
+      </form>
+    </sui-card-content>
+  </sui-card>
+</div>

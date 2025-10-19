@@ -3,13 +3,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace StellarUI.TagHelpers;
 
-public interface IStellarHtmlGenerator
+public interface IStellarHtmlGenerator : IHtmlGenerator
 {
-    TagBuilder GenerateLabel(
-        ViewContext viewContext,
-        ModelExplorer? modelExplorer,
-        string? expression,
-        string? labelText,
-        string? htmlAttributes
-    );
+    TagBuilder GenerateLabel(IDictionary<string, object?> htmlAttributes);
 }
