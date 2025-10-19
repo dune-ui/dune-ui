@@ -43,25 +43,15 @@ internal class LabelRenderer(IStellarHtmlGenerator htmlGenerator, ICssClassMerge
         output.TagName = "label";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        var htmlAttributes = new Dictionary<string, object?>
-        {
-            // ["data-slot"] = output.Attributes.TryGetAttribute("data-slot", out var slot)
-            //     ? slot.Value
-            //     : "label",
-            // ["class"] = classMerger.Merge(
-            //     "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-            //     output.GetUserSuppliedClass()
-            // ),
-        };
         var tagBuilder =
             modelExpression == null
-                ? htmlGenerator.GenerateLabel(htmlAttributes)
+                ? htmlGenerator.GenerateLabel()
                 : htmlGenerator.GenerateLabel(
                     viewContext,
                     modelExpression.ModelExplorer,
                     modelExpression.Name,
                     labelText: null,
-                    htmlAttributes: htmlAttributes
+                    htmlAttributes: null
                 );
 
         output.MergeAttributes(tagBuilder);

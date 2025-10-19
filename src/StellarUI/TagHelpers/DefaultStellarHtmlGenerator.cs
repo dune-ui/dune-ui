@@ -1,4 +1,5 @@
-﻿using System.Text.Encodings.Web;
+﻿using System.Globalization;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -27,11 +28,57 @@ public class DefaultStellarHtmlGenerator(
     ),
         IStellarHtmlGenerator
 {
-    public TagBuilder GenerateLabel(IDictionary<string, object?> htmlAttributes)
+    public TagBuilder GenerateLabel(IDictionary<string, object?>? htmlAttributes)
     {
-        var labelTagBuilder = new TagBuilder("label");
-        labelTagBuilder.MergeAttributes(htmlAttributes);
+        var tagBuilder = new TagBuilder("label");
+        if (htmlAttributes != null)
+        {
+            tagBuilder.MergeAttributes(htmlAttributes);
+        }
 
-        return labelTagBuilder;
+        return tagBuilder;
+    }
+
+    public TagBuilder GenerateTextArea(
+        int rows = 0,
+        int columns = 0,
+        IDictionary<string, object?>? htmlAttributes = null
+    )
+    {
+        if (rows < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(rows));
+        }
+
+        if (columns < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(columns));
+        }
+
+        var tagBuilder = new TagBuilder("textarea");
+        if (htmlAttributes != null)
+        {
+            tagBuilder.MergeAttributes(htmlAttributes, replaceExisting: true);
+        }
+
+        if (rows > 0)
+        {
+            tagBuilder.MergeAttribute(
+                "rows",
+                rows.ToString(CultureInfo.InvariantCulture),
+                replaceExisting: true
+            );
+        }
+
+        if (columns > 0)
+        {
+            tagBuilder.MergeAttribute(
+                "cols",
+                columns.ToString(CultureInfo.InvariantCulture),
+                replaceExisting: true
+            );
+        }
+
+        return tagBuilder;
     }
 }

@@ -1,0 +1,21 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Textarea
+
+<div class="flex flex-col gap-y-4 p-12">
+    <p>A simple text area</p>
+    <div>
+        <sui-textarea>This is a text area</sui-textarea>
+    </div>
+    <p>A text area with an assigned id and name</p>
+    <div>
+        <sui-textarea id="area1-id" name="area1-name">This is a text area</sui-textarea>
+    </div>
+    <p>A text area with rows and cols</p>
+    <div>
+        <sui-textarea rows="10" cols="50">This is a text area</sui-textarea>
+    </div>
+    <p>A text area bound to a model</p>
+    <div>
+        <sui-textarea asp-for="Model.Comments"></sui-textarea>
+    </div>
+</div>

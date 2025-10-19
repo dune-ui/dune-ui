@@ -338,6 +338,9 @@
   .table-row {
     display: table-row;
   }
+  .field-sizing-content {
+    field-sizing: content;
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -399,6 +402,9 @@
   }
   .min-h-4 {
     min-height: calc(var(--spacing) * 4);
+  }
+  .min-h-16 {
+    min-height: calc(var(--spacing) * 16);
   }
   .min-h-svh {
     min-height: 100svh;
