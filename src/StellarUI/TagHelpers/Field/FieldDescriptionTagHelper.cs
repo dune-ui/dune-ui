@@ -1,11 +1,42 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-field-description")]
 public class FieldDescriptionTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
+    private const string ForAttributeName = "asp-for";
+
+    /// <summary>
+    /// An expression to be evaluated against the current model.
+    /// </summary>
+    [HtmlAttributeName(ForAttributeName)]
+    public ModelExpression? For { get; set; }
+
+    /// <summary>
+    /// Gets the <see cref="ViewContext"/> of the executing view.
+    /// </summary>
+    [HtmlAttributeNotBound]
+    [ViewContext]
+    public ViewContext ViewContext { get; set; }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    {
+        var renderer = new FieldDescriptionRenderer(classMerger);
+
+        await renderer.Render(output, For, null);
+    }
+}
+
+internal class FieldDescriptionRenderer(ICssClassMerger classMerger)
+{
+    public async Task Render(
+        TagHelperOutput output,
+        ModelExpression? modelExpression,
+        string? description
+    )
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -21,6 +52,18 @@ public class FieldDescriptionTagHelper(ICssClassMerger classMerger) : StellarTag
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        var childContent = await output.GetChildContentAsync();
+        if (childContent.IsEmptyOrWhiteSpace)
+        {
+            var resolvedDescription = description ?? modelExpression?.Metadata.Description;
+            if (resolvedDescription != null)
+            {
+                output.Content.SetContent(resolvedDescription);
+            }
+        }
+        else
+        {
+            output.Content.AppendHtml(childContent);
+        }
     }
 }

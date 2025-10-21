@@ -2,6 +2,23 @@
 @model ComponentPlayground.Pages.Demo.Field
 
 <div class="flex flex-col gap-y-4 p-12">
+  <p>Field</p>
+  <sui-field>
+    <sui-field-label>
+      First Name
+    </sui-field-label>
+    <sui-input/>
+    <sui-field-description>
+      First name as displayed on card
+    </sui-field-description>
+  </sui-field>
+  <p>Field bound to model</p>
+  <sui-field>
+    <sui-field-label asp-for="Model.FirstName" />
+    <sui-input/>
+    <sui-field-description asp-for="Model.FirstName"/>
+  </sui-field>
+
   <sui-card class="w-full max-w-md">
     <sui-card-content>
       <form>
@@ -102,7 +119,8 @@
                   id="checkout-7j9-optional-comments"
                   name="checkout-7j9-optional-comments"
                   placeholder="Add any additional comments"
-                  class="resize-none">These are some comments...</sui-textarea>
+                  class="resize-none">These are some comments...
+                </sui-textarea>
               </sui-field>
             </sui-field-group>
           </sui-field-set>
