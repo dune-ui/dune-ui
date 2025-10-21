@@ -12,10 +12,14 @@
     </div>
     <p>A text area with rows and cols</p>
     <div>
-        <sui-textarea rows="10" cols="50">This is a text area</sui-textarea>
+        <sui-textarea label="Rows and cols" rows="10" cols="50">This is a text area</sui-textarea>
     </div>
     <p>A text area bound to a model</p>
     <div>
-        <sui-textarea asp-for="Model.Comments"></sui-textarea>
+        <sui-textarea asp-for="Model.Comments" rows="10" cols="50"></sui-textarea>
+    </div>
+    <p>A text area bound to a model and overriding name, label, etc</p>
+    <div>
+        <sui-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" rows="10" cols="50"></sui-textarea>
     </div>
 </div>

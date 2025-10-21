@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -28,9 +29,13 @@ public class DefaultStellarHtmlGenerator(
     ),
         IStellarHtmlGenerator
 {
-    public TagBuilder GenerateLabel(IDictionary<string, object?>? htmlAttributes)
+    public TagBuilder GenerateLabel(string? labelText, IDictionary<string, object?>? htmlAttributes)
     {
         var tagBuilder = new TagBuilder("label");
+        if (labelText != null)
+        {
+            tagBuilder.InnerHtml.SetContent(labelText);
+        }
         if (htmlAttributes != null)
         {
             tagBuilder.MergeAttributes(htmlAttributes);

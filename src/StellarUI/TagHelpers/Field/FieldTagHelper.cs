@@ -1,9 +1,27 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-field")]
 public class FieldTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+{
+    [HtmlAttributeName("orientation")]
+    public FieldOrientation Orientation { get; set; } = FieldOrientation.Vertical;
+
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    {
+        var fieldRenderer = new FieldRenderer(classMerger);
+        await fieldRenderer.Render(
+            output,
+            Orientation,
+            async () => await output.GetChildContentAsync()
+        );
+    }
+}
+
+internal class FieldRenderer(ICssClassMerger classMerger)
 {
     private static readonly Dictionary<FieldOrientation, string[]> OrientationClasses = new()
     {
@@ -22,31 +40,35 @@ public class FieldTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         ],
     };
 
-    [HtmlAttributeName("orientation")]
-    public FieldOrientation Orientation { get; set; } = FieldOrientation.Vertical;
-
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public async Task Render(
+        TagHelperOutput output,
+        FieldOrientation orientation,
+        Func<Task<IHtmlContent>> renderContent
+    )
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "field");
-        output.Attributes.SetAttribute("data-orientation", GetOrientationAttributeText());
+        output.Attributes.SetAttribute(
+            "data-orientation",
+            GetOrientationAttributeText(orientation)
+        );
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(
                 new[] { "group/field flex w-full gap-3 data-[invalid=true]:text-destructive" }
-                    .Concat(OrientationClasses[Orientation])
+                    .Concat(OrientationClasses[orientation])
                     .Append(output.GetUserSuppliedClass())
                     .ToArray()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        output.Content.AppendHtml(await renderContent());
     }
 
-    private string GetOrientationAttributeText() =>
-        Orientation switch
+    private string GetOrientationAttributeText(FieldOrientation orientation) =>
+        orientation switch
         {
             FieldOrientation.Vertical => "vertical",
             FieldOrientation.Horizontal => "horizontal",

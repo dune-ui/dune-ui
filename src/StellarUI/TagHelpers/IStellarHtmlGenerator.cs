@@ -5,7 +5,10 @@ namespace StellarUI.TagHelpers;
 
 public interface IStellarHtmlGenerator : IHtmlGenerator
 {
-    TagBuilder GenerateLabel(IDictionary<string, object?>? htmlAttributes = null);
+    TagBuilder GenerateLabel(
+        string? labelText = null,
+        IDictionary<string, object?>? htmlAttributes = null
+    );
 
     TagBuilder GenerateTextArea(
         int rows = 0,
