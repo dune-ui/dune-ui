@@ -29,11 +29,11 @@ public abstract class FieldInputBaseTagHelper(
     public string? Label { get; set; }
 
     /// <summary>
-    /// The name of the &lt;input&gt; element.
+    ///     The name of the &lt;input&gt; element.
     /// </summary>
     /// <remarks>
-    /// Passed through to the generated HTML in all cases. Also used to determine whether <see cref="For"/> is
-    /// valid with an empty <see cref="ModelExpression.Name"/>.
+    ///     Passed through to the generated HTML in all cases. Also used to determine whether <see cref="For" /> is
+    ///     valid with an empty <see cref="ModelExpression.Name" />.
     /// </remarks>
     public string? Name { get; set; }
 
@@ -59,6 +59,17 @@ public abstract class FieldInputBaseTagHelper(
         }
     }
 
+    internal virtual AutoFieldLayout GetAutoFieldLayout()
+    {
+        return AutoFieldLayout.Vertical;
+    }
+
+    protected abstract Task RenderInput(
+        TagHelperContext context,
+        TagHelperOutput output,
+        IDictionary<string, object?>? htmlAttributes
+    );
+
     private async Task InternalRenderInput(TagHelperContext context, TagHelperOutput output)
     {
         if (Name != null)
@@ -82,21 +93,101 @@ public abstract class FieldInputBaseTagHelper(
         await RenderInput(context, output, htmlAttributes);
     }
 
-    protected abstract Task RenderInput(
-        TagHelperContext context,
-        TagHelperOutput output,
-        IDictionary<string, object?>? htmlAttributes
-    );
+    private async Task RenderDescriptionControl(TagHelperOutput parentOutput)
+    {
+        if (For != null || Description != null)
+        {
+            var descriptionTagHelperOutput = new TagHelperOutput(
+                string.Empty,
+                [],
+                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+            );
+            var fieldDescriptionRenderer = new FieldDescriptionRenderer(classMerger);
+            await fieldDescriptionRenderer.Render(descriptionTagHelperOutput, For, Description);
+
+            parentOutput.Content.AppendHtml(descriptionTagHelperOutput);
+        }
+    }
 
     private async Task RenderFieldWrapper(TagHelperContext context, TagHelperOutput output)
     {
-        var fieldContentOutput = new TagHelperOutput(
+        var wrappedOutput = new TagHelperOutput(
             string.Empty,
             [],
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );
 
-        /* Render the label */
+        var autoFieldLayout = GetAutoFieldLayout();
+        if (
+            autoFieldLayout
+            is AutoFieldLayout.HorizontalInputFirst
+                or AutoFieldLayout.HorizontalInputLast
+        )
+        {
+            if (autoFieldLayout == AutoFieldLayout.HorizontalInputFirst)
+            {
+                await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
+            }
+
+            var fieldContentOutput = new TagHelperOutput(
+                string.Empty,
+                [],
+                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+            );
+
+            var fieldContentRenderer = new FieldContentRenderer(classMerger);
+            await fieldContentRenderer.Render(fieldContentOutput);
+
+            await RenderLabelControl(fieldContentOutput);
+            await RenderDescriptionControl(fieldContentOutput);
+
+            wrappedOutput.Content.AppendHtml(fieldContentOutput);
+
+            if (autoFieldLayout == AutoFieldLayout.HorizontalInputLast)
+            {
+                await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
+            }
+        }
+        else
+        {
+            await RenderLabelControl(wrappedOutput);
+            await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
+            await RenderDescriptionControl(wrappedOutput);
+        }
+
+        /* Render the field */
+        output.Attributes.Clear(); // We passed them to the input control
+
+        var fieldRenderer = new FieldRenderer(classMerger);
+        await fieldRenderer.Render(
+            output,
+            autoFieldLayout == AutoFieldLayout.Vertical
+                ? FieldOrientation.Vertical
+                : FieldOrientation.Horizontal,
+            () => Task.FromResult<IHtmlContent>(wrappedOutput)
+        );
+
+        output.Content.AppendHtml(wrappedOutput);
+    }
+
+    private async Task RenderInputControl(
+        TagHelperContext context,
+        TagHelperAttributeList attributes,
+        TagHelperOutput parentOutput
+    )
+    {
+        var inputTagHelperOutput = new TagHelperOutput(
+            string.Empty,
+            attributes,
+            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+        );
+        await InternalRenderInput(context, inputTagHelperOutput);
+
+        parentOutput.Content.AppendHtml(inputTagHelperOutput);
+    }
+
+    private async Task RenderLabelControl(TagHelperOutput parentOutput)
+    {
         if (For != null || Label != null)
         {
             var labelTagHelperOutput = new TagHelperOutput(
@@ -107,30 +198,8 @@ public abstract class FieldInputBaseTagHelper(
             var fieldLabelRenderer = new FieldLabelRenderer(htmlGenerator, classMerger);
             await fieldLabelRenderer.Render(labelTagHelperOutput, ViewContext, For, Label);
 
-            fieldContentOutput.Content.AppendHtml(labelTagHelperOutput);
+            parentOutput.Content.AppendHtml(labelTagHelperOutput);
         }
-
-        /* Render the input */
-        var inputTagHelperOutput = new TagHelperOutput(
-            string.Empty,
-            [.. output.Attributes],
-            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
-        );
-        await InternalRenderInput(context, inputTagHelperOutput);
-
-        fieldContentOutput.Content.AppendHtml(inputTagHelperOutput);
-
-        /* Render the field */
-        output.Attributes.Clear(); // We copied them to the input
-
-        var fieldRenderer = new FieldRenderer(classMerger);
-        await fieldRenderer.Render(
-            output,
-            FieldOrientation.Vertical,
-            () => Task.FromResult<IHtmlContent>(fieldContentOutput)
-        );
-
-        output.Content.AppendHtml(fieldContentOutput);
     }
 
     private bool ShouldRenderFieldWrapper()
