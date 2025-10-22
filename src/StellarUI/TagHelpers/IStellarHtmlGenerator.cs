@@ -15,4 +15,9 @@ public interface IStellarHtmlGenerator : IHtmlGenerator
         int columns = 0,
         IDictionary<string, object?>? htmlAttributes = null
     );
+
+    TagBuilder GenerateValidationMessage(
+        string? message = null,
+        IDictionary<string, object?>? htmlAttributes = null
+    );
 }

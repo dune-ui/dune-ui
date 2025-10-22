@@ -8,6 +8,7 @@
       First Name
     </sui-field-label>
     <sui-input/>
+    <sui-field-error>This is a super-dooper error</sui-field-error>
     <sui-field-description>
       First name as displayed on card
     </sui-field-description>
@@ -16,6 +17,7 @@
   <sui-field>
     <sui-field-label asp-for="Model.FirstName" />
     <sui-input/>
+    <sui-field-error asp-for="Model.FirstName" />
     <sui-field-description asp-for="Model.FirstName"/>
   </sui-field>
 

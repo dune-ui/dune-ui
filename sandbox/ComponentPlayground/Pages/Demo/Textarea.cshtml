@@ -13,7 +13,9 @@
     </div>
     <p>A text area with rows and cols</p>
     <div>
-        <sui-textarea label="Rows and cols" description="This one has rows and cols" rows="10" cols="50">This is a text area</sui-textarea>
+        <sui-textarea label="Rows and cols" description="This one has rows and cols" error="This is an error" rows="10"
+                      cols="50" class="input-validation-error">This is a text area
+        </sui-textarea>
     </div>
     <p>A text area bound to a model</p>
     <div>
@@ -21,6 +23,7 @@
     </div>
     <p>A text area bound to a model and overriding name, label, etc</p>
     <div>
-        <sui-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" description="Custom description" rows="10" cols="50"></sui-textarea>
+        <sui-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" description="Custom description"
+                      rows="10" cols="50"></sui-textarea>
     </div>
 </div>

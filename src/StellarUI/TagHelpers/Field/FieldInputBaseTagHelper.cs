@@ -140,6 +140,7 @@ public abstract class FieldInputBaseTagHelper(
 
             await RenderLabelControl(fieldContentOutput);
             await RenderDescriptionControl(fieldContentOutput);
+            await RenderErrorControl(wrappedOutput);
 
             wrappedOutput.Content.AppendHtml(fieldContentOutput);
 
@@ -152,6 +153,7 @@ public abstract class FieldInputBaseTagHelper(
         {
             await RenderLabelControl(wrappedOutput);
             await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
+            await RenderErrorControl(wrappedOutput);
             await RenderDescriptionControl(wrappedOutput);
         }
 
@@ -168,6 +170,22 @@ public abstract class FieldInputBaseTagHelper(
         );
 
         output.Content.AppendHtml(wrappedOutput);
+    }
+
+    private async Task RenderErrorControl(TagHelperOutput parentOutput)
+    {
+        if (For != null || Error != null)
+        {
+            var errorTagHelperOutput = new TagHelperOutput(
+                string.Empty,
+                [],
+                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+            );
+            var renderer = new FieldErrorRenderer(htmlGenerator, classMerger);
+            await renderer.Render(errorTagHelperOutput, ViewContext, For, Error);
+
+            parentOutput.Content.AppendHtml(errorTagHelperOutput);
+        }
     }
 
     private async Task RenderInputControl(

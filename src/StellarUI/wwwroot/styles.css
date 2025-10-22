@@ -1667,6 +1667,44 @@
       flex: none;
     }
   }
+  .\[\&\.field-validation-error\]\:block {
+    &.field-validation-error {
+      display: block;
+    }
+  }
+  .\[\&\.field-validation-invalid\]\:block {
+    &.field-validation-invalid {
+      display: block;
+    }
+  }
+  .\[\&\.field-validation-valid\]\:hidden {
+    &.field-validation-valid {
+      display: none;
+    }
+  }
+  .\[\&\.input-validation-error\]\:border-destructive {
+    &.input-validation-error {
+      border-color: var(--destructive);
+    }
+  }
+  .\[\&\.input-validation-error\]\:ring-destructive\/20 {
+    &.input-validation-error {
+      --tw-ring-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+      }
+    }
+  }
+  .dark\:\[\&\.input-validation-error\]\:ring-destructive\/40 {
+    &:is(.dark *) {
+      &.input-validation-error {
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+        }
+      }
+    }
+  }
   .\[\&\:has\(\[role\=checkbox\]\)\]\:pr-0 {
     &:has([role=checkbox]) {
       padding-right: calc(var(--spacing) * 0);
