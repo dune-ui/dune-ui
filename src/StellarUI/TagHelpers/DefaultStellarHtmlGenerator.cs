@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Globalization;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Html;
@@ -36,9 +37,36 @@ public class DefaultStellarHtmlGenerator(
         {
             tagBuilder.InnerHtml.SetContent(labelText);
         }
+
         if (htmlAttributes != null)
         {
             tagBuilder.MergeAttributes(htmlAttributes);
+        }
+
+        return tagBuilder;
+    }
+
+    public TagBuilder GenerateSelect(
+        string? optionLabel,
+        IEnumerable<SelectListItem>? selectList,
+        ICollection? currentValues,
+        bool? allowMultiple = null,
+        IDictionary<string, object?>? htmlAttributes = null
+    )
+    {
+        var listItemBuilder = GenerateGroupsAndOptions(optionLabel, selectList);
+
+        var tagBuilder = new TagBuilder("select");
+        tagBuilder.InnerHtml.SetHtmlContent(listItemBuilder);
+
+        if (htmlAttributes != null)
+        {
+            tagBuilder.MergeAttributes(htmlAttributes);
+        }
+
+        if (allowMultiple == true)
+        {
+            tagBuilder.MergeAttribute("multiple", "multiple");
         }
 
         return tagBuilder;
@@ -63,25 +91,17 @@ public class DefaultStellarHtmlGenerator(
         var tagBuilder = new TagBuilder("textarea");
         if (htmlAttributes != null)
         {
-            tagBuilder.MergeAttributes(htmlAttributes, replaceExisting: true);
+            tagBuilder.MergeAttributes(htmlAttributes, true);
         }
 
         if (rows > 0)
         {
-            tagBuilder.MergeAttribute(
-                "rows",
-                rows.ToString(CultureInfo.InvariantCulture),
-                replaceExisting: true
-            );
+            tagBuilder.MergeAttribute("rows", rows.ToString(CultureInfo.InvariantCulture), true);
         }
 
         if (columns > 0)
         {
-            tagBuilder.MergeAttribute(
-                "cols",
-                columns.ToString(CultureInfo.InvariantCulture),
-                replaceExisting: true
-            );
+            tagBuilder.MergeAttribute("cols", columns.ToString(CultureInfo.InvariantCulture), true);
         }
 
         return tagBuilder;
