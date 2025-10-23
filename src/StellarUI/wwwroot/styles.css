@@ -467,8 +467,14 @@
   .flex-wrap {
     flex-wrap: wrap;
   }
+  .items-baseline {
+    align-items: baseline;
+  }
   .items-center {
     align-items: center;
+  }
+  .items-end {
+    align-items: flex-end;
   }
   .items-start {
     align-items: flex-start;
@@ -476,11 +482,20 @@
   .items-stretch {
     align-items: stretch;
   }
+  .justify-around {
+    justify-content: space-around;
+  }
   .justify-between {
     justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .justify-start {
+    justify-content: flex-start;
   }
   .justify-items-start {
     justify-items: start;
@@ -509,6 +524,26 @@
   .gap-7 {
     gap: calc(var(--spacing) * 7);
   }
+  .gap-x-1 {
+    -moz-column-gap: calc(var(--spacing) * 1);
+         column-gap: calc(var(--spacing) * 1);
+  }
+  .gap-x-2 {
+    -moz-column-gap: calc(var(--spacing) * 2);
+         column-gap: calc(var(--spacing) * 2);
+  }
+  .gap-x-4 {
+    -moz-column-gap: calc(var(--spacing) * 4);
+         column-gap: calc(var(--spacing) * 4);
+  }
+  .gap-x-6 {
+    -moz-column-gap: calc(var(--spacing) * 6);
+         column-gap: calc(var(--spacing) * 6);
+  }
+  .gap-x-8 {
+    -moz-column-gap: calc(var(--spacing) * 8);
+         column-gap: calc(var(--spacing) * 8);
+  }
   .-space-x-2 {
     :where(& > :not(:last-child)) {
       --tw-space-x-reverse: 0;
@@ -518,6 +553,21 @@
   }
   .gap-y-0\.5 {
     row-gap: calc(var(--spacing) * 0.5);
+  }
+  .gap-y-1 {
+    row-gap: calc(var(--spacing) * 1);
+  }
+  .gap-y-2 {
+    row-gap: calc(var(--spacing) * 2);
+  }
+  .gap-y-4 {
+    row-gap: calc(var(--spacing) * 4);
+  }
+  .gap-y-6 {
+    row-gap: calc(var(--spacing) * 6);
+  }
+  .gap-y-8 {
+    row-gap: calc(var(--spacing) * 8);
   }
   .self-start {
     align-self: flex-start;
@@ -1453,6 +1503,11 @@
       gap: calc(var(--spacing) * 2.5);
     }
   }
+  .sm\:px-6 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 6);
+    }
+  }
   .md\:block {
     @media (width >= 48rem) {
       display: block;
@@ -1510,6 +1565,11 @@
           margin-left: calc(var(--spacing) * 2);
         }
       }
+    }
+  }
+  .lg\:px-8 {
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 8);
     }
   }
   .\@md\/field-group\:flex-row {
