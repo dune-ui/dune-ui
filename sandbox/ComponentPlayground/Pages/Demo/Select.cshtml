@@ -20,7 +20,7 @@
             </sui-select>
         </div>
         <div>
-            <select>
+            <select class="form-select">
                 <option value="ALL">All</option>
                 <option value="ELECT">Electronics</option>
                 <option value="CLOTH">Clothing</option>
@@ -51,7 +51,7 @@
             </sui-select>
         </div>
         <div>
-            <select asp-for="Model.SelectedCategory">
+            <select asp-for="Model.SelectedCategory" class="form-select">
                 <option value="ALL">All</option>
                 <option value="ELECT">Electronics</option>
                 <option value="CLOTH">Clothing</option>
@@ -72,7 +72,7 @@
             </sui-select>
         </div>
         <div>
-            <select asp-items="Model.Model.Categories">
+            <select asp-items="Model.Model.Categories" class="form-select">
                 <option value="">-- Select a value --</option>
             </select>
         </div>
@@ -83,7 +83,7 @@
             </sui-select>
         </div>
         <div>
-            <select asp-for="Model.SelectedCategory" asp-items="Model.Model.Categories">
+            <select asp-for="Model.SelectedCategory" asp-items="Model.Model.Categories" class="form-select">
                 <option value="">-- Select a value --</option>
             </select>
         </div>
@@ -93,7 +93,7 @@
             </sui-select>
         </div>
         <div>
-            <select asp-for="Model.SelectedEnumCategory" asp-items="@Html.GetEnumSelectList<ProductCategory>()" >
+            <select asp-for="Model.SelectedEnumCategory" asp-items="@Html.GetEnumSelectList<ProductCategory>()" class="form-select">
             </select>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Binding to an array</h2>
@@ -102,7 +102,7 @@
             </sui-select>
         </div>
         <div>
-            <select asp-for="Model.SelectedCategories" asp-items="Model.Model.Categories" >
+            <select asp-for="Model.SelectedCategories" asp-items="Model.Model.Categories" class="form-select">
             </select>
         </div>
     </div>
