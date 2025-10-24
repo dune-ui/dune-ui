@@ -98,8 +98,6 @@ public class SelectTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerge
                 output.GetUserSuppliedClass()
             )
         );
-        // Workaround for https://github.com/desmondinho/tailwind-merge-dotnet/issues/8 to ensure class is added
-        output.AddClass("bg-position-[center_right_0.75rem]", HtmlEncoder.Default);
 
         output.Content.SetHtmlContent(await output.GetChildContentAsync());
 
