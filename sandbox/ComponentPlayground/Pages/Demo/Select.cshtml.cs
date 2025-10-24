@@ -12,7 +12,11 @@ public class Select : PageModel
 
     public void OnGet()
     {
-        Model = new SelectModel { Category = "SPORT", CategoryEnum = ProductCategory.Jewelry };
+        Model = new SelectModel
+        {
+            SelectedCategory = "SPORT",
+            SelectedEnumCategory = ProductCategory.Jewelry,
+        };
     }
 }
 
@@ -34,11 +38,14 @@ public class SelectModel
             new SelectListItem { Text = "Health & Wellness", Value = "HEALT" },
         };
 
-    [Display(Name = "Category", Description = "Select a product category")]
-    public string Category { get; set; } = default!;
+    [Display(Name = "Categories", Description = "Select the product categories")]
+    public string[] SelectedCategories { get; set; } = ["ELECT", "BEAUT"];
 
     [Display(Name = "Category", Description = "Select a product category")]
-    public ProductCategory CategoryEnum { get; set; }
+    public string SelectedCategory { get; set; } = default!;
+
+    [Display(Name = "Category", Description = "Select a product category")]
+    public ProductCategory SelectedEnumCategory { get; set; }
 }
 
 public enum ProductCategory
