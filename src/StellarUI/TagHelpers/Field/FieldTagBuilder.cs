@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-internal class FieldRenderer(ICssClassMerger classMerger)
+internal class FieldTagBuilder : TagBuilder
 {
     private static readonly Dictionary<FieldOrientation, string[]> OrientationClasses = new()
     {
@@ -22,31 +23,24 @@ internal class FieldRenderer(ICssClassMerger classMerger)
         ],
     };
 
-    public async Task Render(
-        TagHelperOutput output,
+    public FieldTagBuilder(
+        ICssClassMerger classMerger,
         FieldOrientation orientation,
-        Func<Task<IHtmlContent>> renderContent
+        string? userSuppliedClass
     )
+        : base("div")
     {
-        output.TagName = "div";
-        output.TagMode = TagMode.StartTagAndEndTag;
-
-        output.Attributes.SetAttribute("data-slot", "field");
-        output.Attributes.SetAttribute(
-            "data-orientation",
-            GetOrientationAttributeText(orientation)
-        );
-        output.Attributes.SetAttribute(
+        Attributes.Add("data-slot", "field");
+        Attributes.Add("data-orientation", GetOrientationAttributeText(orientation));
+        Attributes.Add(
             "class",
             classMerger.Merge(
                 new[] { "group/field flex w-full gap-3 data-[invalid=true]:text-destructive" }
                     .Concat(OrientationClasses[orientation])
-                    .Append(output.GetUserSuppliedClass())
+                    .Append(userSuppliedClass)
                     .ToArray()
             )
         );
-
-        output.Content.AppendHtml(await renderContent());
     }
 
     private string GetOrientationAttributeText(FieldOrientation orientation) =>

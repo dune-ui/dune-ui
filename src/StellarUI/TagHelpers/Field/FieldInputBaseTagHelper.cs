@@ -93,7 +93,7 @@ public abstract class FieldInputBaseTagHelper(
         await RenderInput(context, output, htmlAttributes);
     }
 
-    private async Task RenderDescriptionControl(TagHelperOutput parentOutput)
+    private async Task RenderDescriptionControl(TagHelperContent targetContent)
     {
         if (For != null || Description != null)
         {
@@ -105,29 +105,38 @@ public abstract class FieldInputBaseTagHelper(
             var fieldDescriptionRenderer = new FieldDescriptionRenderer(classMerger);
             await fieldDescriptionRenderer.Render(descriptionTagHelperOutput, For, Description);
 
-            parentOutput.Content.AppendHtml(descriptionTagHelperOutput);
+            targetContent.AppendHtml(descriptionTagHelperOutput);
         }
     }
 
     private async Task RenderFieldWrapper(TagHelperContext context, TagHelperOutput output)
     {
-        var wrappedOutput = new TagHelperOutput(
-            string.Empty,
-            [],
-            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+        var autoFieldLayout = GetAutoFieldLayout();
+        var fieldTagBuilder = new FieldTagBuilder(
+            classMerger,
+            autoFieldLayout == AutoFieldLayout.Vertical
+                ? FieldOrientation.Vertical
+                : FieldOrientation.Horizontal,
+            null
         );
 
-        var autoFieldLayout = GetAutoFieldLayout();
+        // Render the opening tag of the Field wrapper
+        output.PreElement.AppendHtml(fieldTagBuilder.RenderStartTag());
+
         if (
             autoFieldLayout
             is AutoFieldLayout.HorizontalInputFirst
                 or AutoFieldLayout.HorizontalInputLast
         )
         {
-            if (autoFieldLayout == AutoFieldLayout.HorizontalInputFirst)
-            {
-                await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
-            }
+            // Render the input
+            await InternalRenderInput(context, output);
+
+            // Render the label and description inside a field content, and also render the error
+            TagHelperContent targetContent =
+                autoFieldLayout == AutoFieldLayout.HorizontalInputFirst
+                    ? output.PostElement
+                    : output.PreElement;
 
             var fieldContentOutput = new TagHelperOutput(
                 string.Empty,
@@ -138,41 +147,25 @@ public abstract class FieldInputBaseTagHelper(
             var fieldContentRenderer = new FieldContentRenderer(classMerger);
             await fieldContentRenderer.Render(fieldContentOutput);
 
-            await RenderLabelControl(fieldContentOutput);
-            await RenderDescriptionControl(fieldContentOutput);
-            await RenderErrorControl(wrappedOutput);
+            await RenderLabelControl(fieldContentOutput.Content);
+            await RenderDescriptionControl(fieldContentOutput.Content);
 
-            wrappedOutput.Content.AppendHtml(fieldContentOutput);
-
-            if (autoFieldLayout == AutoFieldLayout.HorizontalInputLast)
-            {
-                await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
-            }
+            targetContent.AppendHtml(fieldContentOutput);
+            await RenderErrorControl(targetContent);
         }
         else
         {
-            await RenderLabelControl(wrappedOutput);
-            await RenderInputControl(context, [.. output.Attributes], wrappedOutput);
-            await RenderErrorControl(wrappedOutput);
-            await RenderDescriptionControl(wrappedOutput);
+            await RenderLabelControl(output.PreElement);
+            await InternalRenderInput(context, output);
+            await RenderErrorControl(output.PostElement);
+            await RenderDescriptionControl(output.PostElement);
         }
 
-        /* Render the field */
-        output.Attributes.Clear(); // We passed them to the input control
-
-        var fieldRenderer = new FieldRenderer(classMerger);
-        await fieldRenderer.Render(
-            output,
-            autoFieldLayout == AutoFieldLayout.Vertical
-                ? FieldOrientation.Vertical
-                : FieldOrientation.Horizontal,
-            () => Task.FromResult<IHtmlContent>(wrappedOutput)
-        );
-
-        output.Content.AppendHtml(wrappedOutput);
+        // Render the closing tag of the field wrapper
+        output.PostElement.AppendHtml(fieldTagBuilder.RenderEndTag());
     }
 
-    private async Task RenderErrorControl(TagHelperOutput parentOutput)
+    private async Task RenderErrorControl(TagHelperContent targetContent)
     {
         if (For != null || Error != null)
         {
@@ -184,7 +177,7 @@ public abstract class FieldInputBaseTagHelper(
             var renderer = new FieldErrorRenderer(htmlGenerator, classMerger);
             await renderer.Render(errorTagHelperOutput, ViewContext, For, Error);
 
-            parentOutput.Content.AppendHtml(errorTagHelperOutput);
+            targetContent.AppendHtml(errorTagHelperOutput);
         }
     }
 
@@ -204,7 +197,7 @@ public abstract class FieldInputBaseTagHelper(
         parentOutput.Content.AppendHtml(inputTagHelperOutput);
     }
 
-    private async Task RenderLabelControl(TagHelperOutput parentOutput)
+    private async Task RenderLabelControl(TagHelperContent targetContent)
     {
         if (For != null || Label != null)
         {
@@ -216,7 +209,7 @@ public abstract class FieldInputBaseTagHelper(
             var fieldLabelRenderer = new FieldLabelRenderer(htmlGenerator, classMerger);
             await fieldLabelRenderer.Render(labelTagHelperOutput, ViewContext, For, Label);
 
-            parentOutput.Content.AppendHtml(labelTagHelperOutput);
+            targetContent.AppendHtml(labelTagHelperOutput);
         }
     }
 

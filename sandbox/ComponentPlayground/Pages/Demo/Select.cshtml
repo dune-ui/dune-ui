@@ -36,7 +36,7 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Data bound value</h2>
         <div>
-            <sui-select asp-for="Model.Category" render-field="false">
+            <sui-select asp-for="Model.Category">
                 <option value="ALL">All</option>
                 <option value="ELECT">Electronics</option>
                 <option value="CLOTH">Clothing</option>
@@ -78,7 +78,7 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Data bound value and items</h2>
         <div>
-            <sui-select asp-for="Model.Category" asp-items="Model.Model.Categories" render-field="false">
+            <sui-select asp-for="Model.Category" asp-items="Model.Model.Categories">
                 <option value="">-- Select a value --</option>
             </sui-select>
         </div>
