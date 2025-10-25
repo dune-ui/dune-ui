@@ -20,7 +20,7 @@ public class InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 
-    protected override Task RenderInput(
+    protected override Task<AutoFieldLayout> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
         IDictionary<string, object?>? htmlAttributes
@@ -89,6 +89,10 @@ public class InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger
             classMerger.Merge(classNames.Union([output.GetUserSuppliedClass()]).ToArray())
         );
 
-        return Task.CompletedTask;
+        return type switch
+        {
+            "checkbox" => Task.FromResult(AutoFieldLayout.HorizontalInputFirst),
+            _ => Task.FromResult(AutoFieldLayout.Vertical),
+        };
     }
 }

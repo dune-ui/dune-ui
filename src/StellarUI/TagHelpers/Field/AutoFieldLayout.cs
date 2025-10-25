@@ -1,6 +1,6 @@
 ﻿namespace StellarUI.TagHelpers;
 
-internal enum AutoFieldLayout
+public enum AutoFieldLayout
 {
     Vertical,
     HorizontalInputFirst,

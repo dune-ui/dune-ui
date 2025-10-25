@@ -9,7 +9,7 @@ namespace StellarUI.TagHelpers;
 public class TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : FieldInputBaseTagHelper(htmlGenerator, classMerger)
 {
-    protected override async Task RenderInput(
+    protected override async Task<AutoFieldLayout> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
         IDictionary<string, object?>? htmlAttributes
@@ -58,5 +58,7 @@ public class TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMer
         {
             output.Content.SetHtmlContent(childContent);
         }
+
+        return AutoFieldLayout.Vertical;
     }
 }

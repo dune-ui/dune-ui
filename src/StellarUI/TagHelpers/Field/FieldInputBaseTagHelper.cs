@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -49,28 +48,24 @@ public abstract class FieldInputBaseTagHelper(
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var autoFieldLayout = await InternalRenderInput(context, output);
+
         if (ShouldRenderFieldWrapper())
         {
-            await RenderFieldWrapper(context, output);
-        }
-        else
-        {
-            await InternalRenderInput(context, output);
+            await RenderFieldWrapper(context, output, autoFieldLayout);
         }
     }
 
-    internal virtual AutoFieldLayout GetAutoFieldLayout()
-    {
-        return AutoFieldLayout.Vertical;
-    }
-
-    protected abstract Task RenderInput(
+    protected abstract Task<AutoFieldLayout> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
         IDictionary<string, object?>? htmlAttributes
     );
 
-    private async Task InternalRenderInput(TagHelperContext context, TagHelperOutput output)
+    private async Task<AutoFieldLayout> InternalRenderInput(
+        TagHelperContext context,
+        TagHelperOutput output
+    )
     {
         if (Name != null)
         {
@@ -90,7 +85,7 @@ public abstract class FieldInputBaseTagHelper(
             };
         }
 
-        await RenderInput(context, output, htmlAttributes);
+        return await RenderInput(context, output, htmlAttributes);
     }
 
     private async Task RenderDescriptionControl(TagHelperContent targetContent)
@@ -109,9 +104,12 @@ public abstract class FieldInputBaseTagHelper(
         }
     }
 
-    private async Task RenderFieldWrapper(TagHelperContext context, TagHelperOutput output)
+    private async Task RenderFieldWrapper(
+        TagHelperContext context,
+        TagHelperOutput output,
+        AutoFieldLayout autoFieldLayout
+    )
     {
-        var autoFieldLayout = GetAutoFieldLayout();
         var fieldTagBuilder = new FieldTagBuilder(
             classMerger,
             autoFieldLayout == AutoFieldLayout.Vertical
@@ -129,9 +127,6 @@ public abstract class FieldInputBaseTagHelper(
                 or AutoFieldLayout.HorizontalInputLast
         )
         {
-            // Render the input
-            await InternalRenderInput(context, output);
-
             // Render the label and description inside a field content, and also render the error
             TagHelperContent targetContent =
                 autoFieldLayout == AutoFieldLayout.HorizontalInputFirst
@@ -149,14 +144,13 @@ public abstract class FieldInputBaseTagHelper(
 
             await RenderLabelControl(fieldContentOutput.Content);
             await RenderDescriptionControl(fieldContentOutput.Content);
+            await RenderErrorControl(fieldContentOutput.Content);
 
             targetContent.AppendHtml(fieldContentOutput);
-            await RenderErrorControl(targetContent);
         }
         else
         {
             await RenderLabelControl(output.PreElement);
-            await InternalRenderInput(context, output);
             await RenderErrorControl(output.PostElement);
             await RenderDescriptionControl(output.PostElement);
         }
@@ -179,22 +173,6 @@ public abstract class FieldInputBaseTagHelper(
 
             targetContent.AppendHtml(errorTagHelperOutput);
         }
-    }
-
-    private async Task RenderInputControl(
-        TagHelperContext context,
-        TagHelperAttributeList attributes,
-        TagHelperOutput parentOutput
-    )
-    {
-        var inputTagHelperOutput = new TagHelperOutput(
-            string.Empty,
-            attributes,
-            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
-        );
-        await InternalRenderInput(context, inputTagHelperOutput);
-
-        parentOutput.Content.AppendHtml(inputTagHelperOutput);
     }
 
     private async Task RenderLabelControl(TagHelperContent targetContent)

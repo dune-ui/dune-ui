@@ -38,7 +38,7 @@ public class SelectTagHelper : FieldInputBaseTagHelper
         }
     }
 
-    protected override async Task RenderInput(
+    protected override async Task<AutoFieldLayout> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
         IDictionary<string, object?>? htmlAttributes
@@ -76,5 +76,7 @@ public class SelectTagHelper : FieldInputBaseTagHelper
                 output.GetUserSuppliedClass()
             )
         );
+
+        return AutoFieldLayout.Vertical;
     }
 }
