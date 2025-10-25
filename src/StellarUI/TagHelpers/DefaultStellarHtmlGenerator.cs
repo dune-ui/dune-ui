@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Html;
@@ -41,32 +40,6 @@ public class DefaultStellarHtmlGenerator(
         if (htmlAttributes != null)
         {
             tagBuilder.MergeAttributes(htmlAttributes);
-        }
-
-        return tagBuilder;
-    }
-
-    public TagBuilder GenerateSelect(
-        string? optionLabel,
-        IEnumerable<SelectListItem>? selectList,
-        ICollection? currentValues,
-        bool? allowMultiple = null,
-        IDictionary<string, object?>? htmlAttributes = null
-    )
-    {
-        var listItemBuilder = GenerateGroupsAndOptions(optionLabel, selectList);
-
-        var tagBuilder = new TagBuilder("select");
-        tagBuilder.InnerHtml.SetHtmlContent(listItemBuilder);
-
-        if (htmlAttributes != null)
-        {
-            tagBuilder.MergeAttributes(htmlAttributes);
-        }
-
-        if (allowMultiple == true)
-        {
-            tagBuilder.MergeAttribute("multiple", "multiple");
         }
 
         return tagBuilder;
