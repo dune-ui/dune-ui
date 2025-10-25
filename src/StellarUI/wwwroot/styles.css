@@ -1512,6 +1512,19 @@
       background-color: var(--sidebar);
     }
   }
+  .has-\[\:checked\]\:border-primary {
+    &:has(*:is(:checked)) {
+      border-color: var(--primary);
+    }
+  }
+  .has-\[\:checked\]\:bg-primary\/5 {
+    &:has(*:is(:checked)) {
+      background-color: var(--primary);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--primary) 5%, transparent);
+      }
+    }
+  }
   .has-\[\>\[data-slot\=button-group\]\]\:gap-2 {
     &:has(>[data-slot=button-group]) {
       gap: calc(var(--spacing) * 2);
@@ -1879,6 +1892,16 @@
   .dark\:has-data-\[state\=checked\]\:bg-primary\/10 {
     &:is(.dark *) {
       &:has(*[data-state="checked"]) {
+        background-color: var(--primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--primary) 10%, transparent);
+        }
+      }
+    }
+  }
+  .dark\:has-\[\:checked\]\:bg-primary\/10 {
+    &:is(.dark *) {
+      &:has(*:is(:checked)) {
         background-color: var(--primary);
         @supports (color: color-mix(in lab, red, red)) {
           background-color: color-mix(in oklab, var(--primary) 10%, transparent);

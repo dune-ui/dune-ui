@@ -26,5 +26,75 @@
                 </sui-field-content>
             </sui-field>
         </div>
+        <h2 class="bg-gray-100 text-base font-bold">Radio group</h2>
+        <div>
+            <sui-field-group>
+                <sui-field-set>
+                    <sui-field-label for="compute-environment-p8w">
+                        Compute Environment
+                    </sui-field-label>
+                    <sui-field-description>
+                        Select the compute environment for your cluster.
+                    </sui-field-description>
+                    <sui-radio-group>
+                        <sui-field orientation="Horizontal">
+                            <sui-input asp-for="Model.ComputeEnvironment" type="radio" value="kubernetes" id="compute-environment-kubernetes"/>
+                            <sui-field-content>
+                                <sui-field-label for="compute-environment-kubernetes">Kubernetes</sui-field-label>
+                                <sui-field-description>
+                                    Run GPU workloads on a K8s configured cluster.
+                                </sui-field-description>
+                            </sui-field-content>
+                        </sui-field>
+                        <sui-field orientation="Horizontal">
+                            <sui-input asp-for="Model.ComputeEnvironment" type="radio" value="vm" id="compute-environment-vm"/>
+                            <sui-field-content>
+                                <sui-field-label for="compute-environment-vm">Virtual Machine</sui-field-label>
+                                <sui-field-description>
+                                    Access a VM configured cluster to run GPU workloads.
+                                </sui-field-description>
+                            </sui-field-content>
+                        </sui-field>
+                    </sui-radio-group>
+                </sui-field-set>
+            </sui-field-group>
+        </div>
+        <h2 class="bg-gray-100 text-base font-bold">Radio cards</h2>
+        <div>
+            <sui-field-group>
+                <sui-field-set>
+                    <sui-field-label for="compute-environment-p8w">
+                        Compute Environment
+                    </sui-field-label>
+                    <sui-field-description>
+                        Select the compute environment for your cluster.
+                    </sui-field-description>
+                    <sui-radio-group> 
+                        <sui-field-label>
+                            <sui-field orientation="Horizontal">
+                                <sui-field-content>
+                                    <sui-field-title>Kubernetes</sui-field-title>
+                                    <sui-field-description>
+                                        Run GPU workloads on a K8s configured cluster.
+                                    </sui-field-description>
+                                </sui-field-content>
+                                <sui-input asp-for="Model.ComputeEnvironment" type="radio" value="kubernetes"/>
+                            </sui-field>
+                        </sui-field-label>
+                        <sui-field-label>
+                            <sui-field orientation="Horizontal">
+                                <sui-field-content>
+                                    <sui-field-title>Virtual Machine</sui-field-title>
+                                    <sui-field-description>
+                                        Access a VM configured cluster to run GPU workloads.
+                                    </sui-field-description>
+                                </sui-field-content>
+                                <sui-input asp-for="Model.ComputeEnvironment" type="radio" value="vm"/>
+                            </sui-field>
+                        </sui-field-label>
+                    </sui-radio-group>
+                </sui-field-set>
+            </sui-field-group>
+        </div>
     </sui-stack>
 </sui-container>
