@@ -1,0 +1,30 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Radio
+
+<sui-container class="py-6 lg:py-8">
+    <sui-stack>
+        <h2 class="bg-gray-100 text-base font-bold">Unbound radio</h2>
+        <div>
+            <sui-input type="radio"/>
+        </div>
+        <h2 class="bg-gray-100 text-base font-bold">Unbound radio with label</h2>
+        <div>
+            <div class="flex gap-x-3">
+                <sui-input type="radio"/>
+                <sui-label>This is a label</sui-label>
+            </div>
+        </div>
+        <h2 class="bg-gray-100 text-base font-bold">Bound radio</h2>
+        <div>
+            <sui-input type="radio" asp-for="Model.Layout" value="default" label="Default"/>
+            <sui-input type="radio" asp-for="Model.Layout" value="comfortable" label="Comfortable"/>
+            <sui-field orientation="Horizontal">
+                <sui-input type="radio" asp-for="Model.Layout" value="compact" label="Compact"/>
+                <sui-field-content>
+                    <sui-field-label>Compactamente</sui-field-label>
+                    <sui-field-description>Compactamente ksjfhksjhdf jshdkfshf</sui-field-description>
+                </sui-field-content>
+            </sui-field>
+        </div>
+    </sui-stack>
+</sui-container>
