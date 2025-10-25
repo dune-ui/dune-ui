@@ -592,6 +592,9 @@
   .overflow-x-auto {
     overflow-x: auto;
   }
+  .rounded-\[4px\] {
+    border-radius: 4px;
+  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -676,6 +679,9 @@
   }
   .bg-transparent {
     background-color: transparent;
+  }
+  .bg-\[image\:var\(--check-icon\)\] {
+    background-image: var(--check-icon);
   }
   .bg-\[image\:var\(--chevron-down-icon-50\)\] {
     background-image: var(--chevron-down-icon-50);
@@ -898,6 +904,11 @@
   }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-shadow {
+    transition-property: box-shadow;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -1145,6 +1156,103 @@
   .last\:mt-0 {
     &:last-child {
       margin-top: calc(var(--spacing) * 0);
+    }
+  }
+  .checked\:border-primary {
+    &:checked {
+      border-color: var(--primary);
+    }
+  }
+  .checked\:bg-primary {
+    &:checked {
+      background-color: var(--primary);
+    }
+  }
+  .checked\:after\:block {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        display: block;
+      }
+    }
+  }
+  .checked\:after\:size-3\.5 {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        width: calc(var(--spacing) * 3.5);
+        height: calc(var(--spacing) * 3.5);
+      }
+    }
+  }
+  .checked\:after\:size-4 {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        width: calc(var(--spacing) * 4);
+        height: calc(var(--spacing) * 4);
+      }
+    }
+  }
+  .checked\:after\:bg-primary-foreground {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        background-color: var(--primary-foreground);
+      }
+    }
+  }
+  .checked\:after\:mask-\[image\:var\(--check-icon\)\] {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        -webkit-mask-image: var(--check-icon);
+                mask-image: var(--check-icon);
+      }
+    }
+  }
+  .checked\:after\:mask-size-\[0\.9rem\] {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        -webkit-mask-size: 0.9rem;
+                mask-size: 0.9rem;
+      }
+    }
+  }
+  .checked\:after\:mask-size-\[0\.875rem\] {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        -webkit-mask-size: 0.875rem;
+                mask-size: 0.875rem;
+      }
+    }
+  }
+  .checked\:after\:mask-center {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        -webkit-mask-position: center;
+                mask-position: center;
+      }
+    }
+  }
+  .checked\:after\:mask-no-repeat {
+    &:checked {
+      &::after {
+        content: var(--tw-content);
+        -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+      }
+    }
+  }
+  .checked\:after\:content-\[\'\'\] {
+    &:checked {
+      &::after {
+        --tw-content: '';
+        content: var(--tw-content);
+      }
     }
   }
   .hover\:bg-accent {
@@ -1630,6 +1738,13 @@
       background-color: var(--input);
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--input) 30%, transparent);
+      }
+    }
+  }
+  .dark\:checked\:bg-primary {
+    &:is(.dark *) {
+      &:checked {
+        background-color: var(--primary);
       }
     }
   }
@@ -2216,6 +2331,7 @@
   --sidebar-ring: oklch(0.708 0 0);
   --chevron-down-icon: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"oklch%280.556 0 0%29\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-down-icon lucide-chevron-down\"><path d=\"m6 9 6 6 6-6\"/></svg>");
   --chevron-down-icon-50: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"oklch%280.556 0 0 / 0.5%29\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-down-icon lucide-chevron-down\"><path d=\"m6 9 6 6 6-6\"/></svg>");
+  --check-icon: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"oklch%280.556 0 0%29\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-check-icon lucide-check\"><path d=\"M20 6 9 17l-5-5\"/></svg>");
 }
 .dark {
   --background: oklch(0.145 0 0);
@@ -2252,6 +2368,7 @@
   --sidebar-ring: oklch(0.439 0 0);
   --chevron-down-icon: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"oklch%280.708 0 0%29\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-down-icon lucide-chevron-down\"><path d=\"m6 9 6 6 6-6\"/></svg>");
   --chevron-down-icon-50: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"oklch%280.708 0 0 / 0.5%29\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-down-icon lucide-chevron-down\"><path d=\"m6 9 6 6 6-6\"/></svg>");
+  --check-icon: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"oklch%280.708 0 0%29\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-check-icon lucide-check\"><path d=\"M20 6 9 17l-5-5\"/></svg>");
 }
 @layer base {
   * {
@@ -2399,6 +2516,11 @@
   inherits: false;
   initial-value: 0;
 }
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -2441,6 +2563,7 @@
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
+      --tw-content: "";
       --tw-animation-delay: 0s;
       --tw-animation-direction: normal;
       --tw-animation-duration: initial;

@@ -1,0 +1,17 @@
+﻿@page
+@model ComponentPlayground.Pages.Demo.Checkbox
+
+<sui-container class="py-6 lg:py-8">
+    <h2 class="bg-gray-100 text-base font-bold">Unbound checkbox</h2>
+    <div>
+        <sui-input type="checkbox"/>
+    </div>
+    <h2 class="bg-gray-100 text-base font-bold">Bound checkbox</h2>
+    <div>
+        <sui-input asp-for="Model.BooleanValue"/>
+    </div>
+    <h2 class="bg-gray-100 text-base font-bold">Bound checkbox with error</h2>
+    <div>
+        <sui-input asp-for="Model.AcceptTerms"/>
+    </div>
+</sui-container>
