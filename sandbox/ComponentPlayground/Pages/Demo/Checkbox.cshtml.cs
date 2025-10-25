@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Eventing.Reader;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ComponentPlayground.Pages.Demo;
@@ -20,5 +21,9 @@ public class Checkbox : PageModel
 
         [Display(Name = "Accept terms")]
         public bool AcceptTerms { get; set; }
+
+        public bool EnableEmailNotifications { get; set; }
+
+        public bool EnablePushNotifications { get; set; }
     }
 }

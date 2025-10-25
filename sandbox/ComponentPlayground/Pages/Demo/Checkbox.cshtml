@@ -15,5 +15,65 @@
         <div>
             <sui-input asp-for="Model.AcceptTerms"/>
         </div>
+        <h2 class="bg-gray-100 text-base font-bold">Checkbox group</h2>
+        <div class="w-full max-w-md">
+            <sui-field-group>
+                <sui-field-set>
+                    <sui-field-label>Tasks</sui-field-label>
+                    <sui-field-description>
+                        Get notified when tasks you&apos;ve created have updates. <a href="#">Manage tasks</a>
+                    </sui-field-description>
+                    <sui-checkbox-group>
+                        <sui-field-label>
+                            <sui-field orientation="Horizontal">
+                                <sui-input asp-for="Model.EnablePushNotifications"/>
+                                <sui-field-content>
+                                    <sui-field-title>Push notifications</sui-field-title>
+                                    <sui-field-description>
+                                        Receive push notifications on your mobile device
+                                    </sui-field-description>
+                                </sui-field-content>
+                            </sui-field>
+                        </sui-field-label>
+                        <sui-field-label>
+                            <sui-field orientation="Horizontal">
+                                <sui-input asp-for="Model.EnableEmailNotifications"/>
+                                <sui-field-content>
+                                    <sui-field-title>Email notifications</sui-field-title>
+                                    <sui-field-description>
+                                        Receive notifications via your registered email address
+                                    </sui-field-description>
+                                </sui-field-content>
+                            </sui-field>
+                        </sui-field-label>
+                    </sui-checkbox-group>
+                </sui-field-set>
+            </sui-field-group>
+        </div>
+        <h2 class="bg-gray-100 text-base font-bold">Checkbox group (with cards)</h2>
+        <div class="w-full max-w-md">
+            <sui-field-group>
+                <sui-field-set>
+                    <sui-field-label>Tasks</sui-field-label>
+                    <sui-field-description>
+                        Get notified when tasks you&apos;ve created have updates. <a href="#">Manage tasks</a>
+                    </sui-field-description>
+                    <sui-checkbox-group>
+                        <sui-field orientation="Horizontal">
+                            <sui-input asp-for="Model.EnablePushNotifications" id="notifications-push"/>
+                            <sui-field-label for="notifications-push">
+                                Push notifications
+                            </sui-field-label>
+                        </sui-field>
+                        <sui-field orientation="Horizontal">
+                            <sui-input asp-for="Model.EnableEmailNotifications" id="notifications-email"/>
+                            <sui-field-label for="notifications-email">
+                                Email notifications
+                            </sui-field-label>
+                        </sui-field>
+                    </sui-checkbox-group>
+                </sui-field-set>
+            </sui-field-group>
+        </div>
     </sui-stack>
 </sui-container>
