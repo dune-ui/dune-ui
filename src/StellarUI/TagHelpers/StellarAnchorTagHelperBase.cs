@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace StellarUI.TagHelpers;
 
-public class StellarAnchorTagHelperBase(IHtmlGenerator htmlGenerator) : StellarTagHelper
+public class StellarAnchorTagHelperBase : StellarTagHelper
 {
     private const string ActionAttributeName = "asp-action";
     private const string ControllerAttributeName = "asp-controller";
@@ -22,10 +22,15 @@ public class StellarAnchorTagHelperBase(IHtmlGenerator htmlGenerator) : StellarT
     private const string Href = "href";
     private IDictionary<string, string?>? _routeValues;
 
+    public StellarAnchorTagHelperBase(IHtmlGenerator htmlGenerator)
+    {
+        Generator = htmlGenerator;
+    }
+
     /// <summary>
     /// Gets the <see cref="IHtmlGenerator"/> used to generate the <see cref="AnchorTagHelper"/>'s output.
     /// </summary>
-    protected IHtmlGenerator Generator { get; } = htmlGenerator;
+    protected IHtmlGenerator Generator { get; }
 
     /// <summary>
     /// The name of the action method.

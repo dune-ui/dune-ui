@@ -17,6 +17,10 @@ internal class PaginationLinkRenderer(ICssClassMerger classMerger)
         output.Attributes.SetAttribute("data-active", isActive.ToString().ToLower());
 
         var buttonRenderer = new ButtonRenderer(classMerger);
-        buttonRenderer.Render(output, isActive ? ButtonVariant.Outline : ButtonVariant.Ghost, size);
+        buttonRenderer.RenderAttributes(
+            output,
+            isActive ? ButtonVariant.Outline : ButtonVariant.Ghost,
+            size
+        );
     }
 }

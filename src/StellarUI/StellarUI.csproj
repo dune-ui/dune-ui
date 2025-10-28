@@ -5,12 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CA2264</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-  <!--<ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>-->
   <ItemGroup>
     <AdditionalFiles Include="icon-nodes.json" />
   </ItemGroup>
