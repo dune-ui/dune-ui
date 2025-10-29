@@ -14,7 +14,6 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
     private ButtonVariant _variant = ButtonVariant.Default;
 
     public LinkButtonTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-        : base(htmlGenerator)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));

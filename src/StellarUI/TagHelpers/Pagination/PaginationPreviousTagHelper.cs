@@ -10,9 +10,9 @@ public class PaginationPreviousLinkTagHelper(
     ICssClassMerger classMerger
 ) : PaginationLinkTagHelper(htmlGenerator, classMerger)
 {
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        RenderLink(output);
+        await RenderLink(context, output);
 
         // // Render the icon
         var iconOutput = new TagHelperOutput(
@@ -29,7 +29,5 @@ public class PaginationPreviousLinkTagHelper(
         textBlockTagBuilder.AddCssClass("hidden sm:block");
         textBlockTagBuilder.InnerHtml.AppendHtml("Previous");
         output.Content.AppendHtml(textBlockTagBuilder);
-
-        return Task.CompletedTask;
     }
 }

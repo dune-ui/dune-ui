@@ -8,9 +8,9 @@ namespace StellarUI.TagHelpers;
 public class PaginationFirstTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : PaginationLinkTagHelper(htmlGenerator, classMerger)
 {
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        RenderLink(output);
+        await RenderLink(context, output);
 
         // // Render the icon
         var iconOutput = new TagHelperOutput(
@@ -27,7 +27,5 @@ public class PaginationFirstTagHelper(IHtmlGenerator htmlGenerator, ICssClassMer
         textBlockTagBuilder.AddCssClass("hidden sm:block");
         textBlockTagBuilder.InnerHtml.AppendHtml("First");
         output.Content.AppendHtml(textBlockTagBuilder);
-
-        return Task.CompletedTask;
     }
 }

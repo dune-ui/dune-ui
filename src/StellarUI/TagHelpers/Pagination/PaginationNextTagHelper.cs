@@ -8,9 +8,9 @@ namespace StellarUI.TagHelpers;
 public class PaginationNextTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : PaginationLinkTagHelper(htmlGenerator, classMerger)
 {
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        RenderLink(output);
+        await RenderLink(context, output);
 
         // Render the text
         var textBlockTagBuilder = new TagBuilder("span");
@@ -27,7 +27,5 @@ public class PaginationNextTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerg
         var iconRenderer = new IconRenderer();
         iconRenderer.Render(iconOutput, "chevron-right");
         output.Content.AppendHtml(iconOutput);
-
-        return Task.CompletedTask;
     }
 }
