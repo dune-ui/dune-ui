@@ -5,12 +5,25 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-alert")]
 public class AlertTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
+    private const string DescriptionAttributeName = "description";
+    private const string IconAttributeName = "icon";
+    private const string TitleAttributeName = "title";
+
     private static readonly Dictionary<AlertVariant, string> AlertVariantClasses = new()
     {
         [AlertVariant.Default] = "bg-card text-card-foreground",
         [AlertVariant.Destructive] =
             "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
     };
+
+    [HtmlAttributeName(DescriptionAttributeName)]
+    public string? Description { get; set; }
+
+    [HtmlAttributeName(IconAttributeName)]
+    public string? Icon { get; set; }
+
+    [HtmlAttributeName(TitleAttributeName)]
+    public string? Title { get; set; }
 
     [HtmlAttributeName("variant")]
     public AlertVariant Variant { get; set; } = AlertVariant.Default;
@@ -31,6 +44,70 @@ public class AlertTagHelper(ICssClassMerger classMerger) : StellarTagHelper
             )
         );
 
-        output.Content.SetHtmlContent(await output.GetChildContentAsync());
+        var childContent = await output.GetChildContentAsync();
+
+        if (
+            !string.IsNullOrEmpty(Title)
+            || !string.IsNullOrEmpty(Description)
+            || !string.IsNullOrEmpty(Icon)
+        )
+        {
+            if (!childContent.IsEmptyOrWhiteSpace)
+            {
+                throw new Exception(
+                    $"Cannot add child content to <sui-alert> when specifying '{TitleAttributeName}', '{DescriptionAttributeName}', or '{IconAttributeName}' attribute."
+                );
+            }
+
+            if (!string.IsNullOrEmpty(Icon))
+            {
+                var iconTagHelperOutput = new TagHelperOutput(
+                    string.Empty,
+                    [],
+                    (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                );
+                var iconTagHelper = new IconTagHelper { Name = Icon };
+                await iconTagHelper.ProcessAsync(context, iconTagHelperOutput);
+
+                output.Content.AppendHtml(iconTagHelperOutput);
+            }
+
+            if (!string.IsNullOrEmpty(Title))
+            {
+                var titleContent = new DefaultTagHelperContent();
+                titleContent.Append(Title);
+
+                var titleTagHelperOutput = new TagHelperOutput(
+                    string.Empty,
+                    [],
+                    (_, _) => Task.FromResult<TagHelperContent>(titleContent)
+                );
+                var titleTagHelper = new AlertTitleTagHelper(classMerger);
+                await titleTagHelper.ProcessAsync(context, titleTagHelperOutput);
+
+                output.Content.AppendHtml(titleTagHelperOutput);
+            }
+
+            if (!string.IsNullOrEmpty(Description))
+            {
+                var descriptionContent = new DefaultTagHelperContent();
+                descriptionContent.Append(Description);
+
+                var descriptionTagHelperOutput = new TagHelperOutput(
+                    string.Empty,
+                    [],
+                    (_, _) => Task.FromResult<TagHelperContent>(descriptionContent)
+                );
+
+                var descriptionTagHelper = new AlertDescriptionTagHelper(classMerger);
+                await descriptionTagHelper.ProcessAsync(context, descriptionTagHelperOutput);
+
+                output.Content.AppendHtml(descriptionTagHelperOutput);
+            }
+        }
+        else
+        {
+            output.Content.SetHtmlContent(childContent);
+        }
     }
 }

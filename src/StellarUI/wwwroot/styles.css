@@ -248,9 +248,6 @@
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
-  .left-1\/2 {
-    left: calc(1/2 * 100%);
-  }
   .z-10 {
     z-index: 10;
   }
@@ -347,10 +344,6 @@
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
-  .size-2 {
-    width: calc(var(--spacing) * 2);
-    height: calc(var(--spacing) * 2);
-  }
   .size-4 {
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
@@ -446,14 +439,6 @@
   }
   .caption-bottom {
     caption-side: bottom;
-  }
-  .-translate-x-1\/2 {
-    --tw-translate-x: calc(calc(1/2 * 100%) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
-  .-translate-y-1\/2 {
-    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -644,6 +629,21 @@
   .border-border {
     border-color: var(--border);
   }
+  .border-destructive {
+    border-color: var(--destructive);
+  }
+  .border-destructive\/50 {
+    border-color: var(--destructive);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
+    }
+  }
+  .border-destructive\/90 {
+    border-color: var(--destructive);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+    }
+  }
   .border-input {
     border-color: var(--input);
   }
@@ -664,6 +664,18 @@
   }
   .bg-destructive {
     background-color: var(--destructive);
+  }
+  .bg-destructive\/10 {
+    background-color: var(--destructive);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+    }
+  }
+  .bg-destructive\/25 {
+    background-color: var(--destructive);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--destructive) 25%, transparent);
+    }
   }
   .bg-input {
     background-color: var(--input);
@@ -694,9 +706,6 @@
   }
   .bg-transparent {
     background-color: transparent;
-  }
-  .bg-\[image\:var\(--check-icon\)\] {
-    background-image: var(--check-icon);
   }
   .bg-\[image\:var\(--chevron-down-icon-50\)\] {
     background-image: var(--chevron-down-icon-50);
@@ -938,10 +947,6 @@
   .ease-linear {
     --tw-ease: linear;
     transition-timing-function: linear;
-  }
-  .content-\[\'\'\] {
-    --tw-content: '';
-    content: var(--tw-content);
   }
   .outline-none {
     --tw-outline-style: none;
@@ -1279,15 +1284,6 @@
       }
     }
   }
-  .checked\:after\:size-4 {
-    &:checked {
-      &::after {
-        content: var(--tw-content);
-        width: calc(var(--spacing) * 4);
-        height: calc(var(--spacing) * 4);
-      }
-    }
-  }
   .checked\:after\:bg-primary-foreground {
     &:checked {
       &::after {
@@ -1311,15 +1307,6 @@
         content: var(--tw-content);
         -webkit-mask-size: 0.9rem;
                 mask-size: 0.9rem;
-      }
-    }
-  }
-  .checked\:after\:mask-size-\[0\.875rem\] {
-    &:checked {
-      &::after {
-        content: var(--tw-content);
-        -webkit-mask-size: 0.875rem;
-                mask-size: 0.875rem;
       }
     }
   }
@@ -1492,19 +1479,6 @@
   .has-data-\[slot\=card-action\]\:grid-cols-\[1fr_auto\] {
     &:has(*[data-slot="card-action"]) {
       grid-template-columns: 1fr auto;
-    }
-  }
-  .has-data-\[state\=checked\]\:border-primary {
-    &:has(*[data-state="checked"]) {
-      border-color: var(--primary);
-    }
-  }
-  .has-data-\[state\=checked\]\:bg-primary\/5 {
-    &:has(*[data-state="checked"]) {
-      background-color: var(--primary);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--primary) 5%, transparent);
-      }
     }
   }
   .has-data-\[variant\=inset\]\:bg-sidebar {
@@ -1885,16 +1859,6 @@
         --tw-ring-color: var(--destructive);
         @supports (color: color-mix(in lab, red, red)) {
           --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
-        }
-      }
-    }
-  }
-  .dark\:has-data-\[state\=checked\]\:bg-primary\/10 {
-    &:is(.dark *) {
-      &:has(*[data-state="checked"]) {
-        background-color: var(--primary);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--primary) 10%, transparent);
         }
       }
     }
@@ -2503,21 +2467,6 @@
     color: var(--foreground);
   }
 }
-@property --tw-translate-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-translate-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-translate-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;
@@ -2633,10 +2582,25 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-content {
+@property --tw-translate-x {
   syntax: "*";
   inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-content {
+  syntax: "*";
   initial-value: "";
+  inherits: false;
 }
 @keyframes spin {
   to {
@@ -2651,9 +2615,6 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-translate-x: 0;
-      --tw-translate-y: 0;
-      --tw-translate-z: 0;
       --tw-rotate-x: initial;
       --tw-rotate-y: initial;
       --tw-rotate-z: initial;
@@ -2680,6 +2641,9 @@
       --tw-ring-offset-shadow: 0 0 #0000;
       --tw-duration: initial;
       --tw-ease: initial;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
       --tw-content: "";
       --tw-animation-delay: 0s;
       --tw-animation-direction: normal;
