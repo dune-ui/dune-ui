@@ -1,4 +1,5 @@
 ﻿@page
+@using StellarUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Alert
 
 <sui-container class="py-6 lg:py-8">
@@ -9,12 +10,21 @@
                 <sui-alert-title>All purchases restored</sui-alert-title>
                 <sui-alert-description>We have found and restored 9 of your purchases</sui-alert-description>
             </sui-alert>
-            <sui-alert icon="circle-check" title="All purchases restored" description="We have found and restored 9 of your purchases"/>
+            <sui-alert icon="circle-check" title="All purchases restored"
+                       description="We have found and restored 9 of your purchases"/>
+            <sui-alert variant="AlertVariant.Success" icon="circle-check" title="All purchases restored"
+                       description="We have found and restored 9 of your purchases"/>
+            <sui-alert variant="AlertVariant.Information" icon="info" title="All purchases restored"
+                       description="We have found and restored 9 of your purchases"/>
+            <sui-alert variant="AlertVariant.Warning" icon="triangle-alert" title="No purchases found"
+                       description="We were unable to find any previous purchases"/>
+            <sui-alert variant="AlertVariant.Destructive" icon="circle-alert" title="Unable to restore purchases"
+                       description="We have found 9 purchases but were unable to restore them. Please contact support."/>
             <sui-alert>
                 <sui-icon name="popcorn"/>
                 <sui-alert-title>This Alert has a title and an icon. No description.</sui-alert-title>
             </sui-alert>
-            <sui-alert variant="Destructive">
+            <sui-alert variant="AlertVariant.Destructive">
                 <sui-icon name="alert-circle"/>
                 <sui-alert-title>Unable to process your payment.</sui-alert-title>
                 <sui-alert-description>

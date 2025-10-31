@@ -3,5 +3,8 @@
 public enum AlertVariant
 {
     Default,
+    Information,
+    Warning,
+    Success,
     Destructive,
 }

@@ -629,21 +629,6 @@
   .border-border {
     border-color: var(--border);
   }
-  .border-destructive {
-    border-color: var(--destructive);
-  }
-  .border-destructive\/50 {
-    border-color: var(--destructive);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
-    }
-  }
-  .border-destructive\/90 {
-    border-color: var(--destructive);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--destructive) 90%, transparent);
-    }
-  }
   .border-input {
     border-color: var(--input);
   }
@@ -664,18 +649,6 @@
   }
   .bg-destructive {
     background-color: var(--destructive);
-  }
-  .bg-destructive\/10 {
-    background-color: var(--destructive);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
-    }
-  }
-  .bg-destructive\/25 {
-    background-color: var(--destructive);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--destructive) 25%, transparent);
-    }
   }
   .bg-input {
     background-color: var(--input);
@@ -850,6 +823,9 @@
   .text-foreground {
     color: var(--foreground);
   }
+  .text-information {
+    color: var(--information);
+  }
   .text-muted-foreground {
     color: var(--muted-foreground);
   }
@@ -870,6 +846,12 @@
     @supports (color: color-mix(in lab, red, red)) {
       color: color-mix(in oklab, var(--sidebar-foreground) 70%, transparent);
     }
+  }
+  .text-success {
+    color: var(--success);
+  }
+  .text-warning {
+    color: var(--warning);
   }
   .text-white {
     color: var(--color-white);
@@ -1645,6 +1627,36 @@
       }
     }
   }
+  .\*\:data-\[slot\=alert-description\]\:text-information\/90 {
+    :is(& > *) {
+      &[data-slot="alert-description"] {
+        color: var(--information);
+        @supports (color: color-mix(in lab, red, red)) {
+          color: color-mix(in oklab, var(--information) 90%, transparent);
+        }
+      }
+    }
+  }
+  .\*\:data-\[slot\=alert-description\]\:text-success\/90 {
+    :is(& > *) {
+      &[data-slot="alert-description"] {
+        color: var(--success);
+        @supports (color: color-mix(in lab, red, red)) {
+          color: color-mix(in oklab, var(--success) 90%, transparent);
+        }
+      }
+    }
+  }
+  .\*\:data-\[slot\=alert-description\]\:text-warning\/90 {
+    :is(& > *) {
+      &[data-slot="alert-description"] {
+        color: var(--warning);
+        @supports (color: color-mix(in lab, red, red)) {
+          color: color-mix(in oklab, var(--warning) 90%, transparent);
+        }
+      }
+    }
+  }
   .\*\:data-\[slot\=avatar\]\:ring-2 {
     :is(& > *) {
       &[data-slot="avatar"] {
@@ -2393,6 +2405,12 @@
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
+  --information: oklch(0.577 0.245 250);
+  --information-foreground: oklch(0.577 0.245 250);
+  --warning: oklch(0.577 0.245 95);
+  --warning-foreground: oklch(0.577 0.245 95);
+  --success: oklch(0.577 0.245 145);
+  --success-foreground: oklch(0.577 0.245 145);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
@@ -2431,6 +2449,12 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
+  --information: oklch(0.396 0.141 250);
+  --information-foreground: oklch(0.637 0.237 250);
+  --warning: oklch(0.396 0.141 95);
+  --warning-foreground: oklch(0.637 0.237 95);
+  --success: oklch(0.396 0.141 145);
+  --success-foreground: oklch(0.637 0.237 145);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
