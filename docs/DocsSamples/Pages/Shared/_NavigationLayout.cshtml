@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<sui-sidebar-wrapper>
+    <sui-sidebar variant="Inset">
+        <sui-sidebar-content>
+            @{
+                List<DemoGroup> demoGroups =
+                [
+                    new DemoGroup("Alert",
+                    [
+                        new DemoItem("Intro", "/Alert/Intro"),
+                        new DemoItem("Variants", "/Alert/Variants"),
+                        new DemoItem("Icon", "/Alert/Icon"),
+                        new DemoItem("Custom CSS", "/Alert/CustomCss"),
+                        new DemoItem("Actions", "/Alert/Actions"),
+                    ])
+                ];
+            }
+            @foreach (var demoGroup in demoGroups)
+            {
+                <sui-sidebar-group>
+                    <sui-sidebar-group-label>@demoGroup.Title</sui-sidebar-group-label>
+                    <sui-sidebar-group-content>
+                        <sui-sidebar-menu>
+                            @foreach (var demoItem in demoGroup.Items)
+                            {
+                                <sui-sidebar-menu-item>
+                                    <sui-sidebar-menu-link asp-page="@demoItem.Page">
+                                        @demoItem.Title
+                                    </sui-sidebar-menu-link>
+                                </sui-sidebar-menu-item>
+                            }
+                        </sui-sidebar-menu>
+                    </sui-sidebar-group-content>
+                </sui-sidebar-group>
+            }
+        </sui-sidebar-content>
+        @*<sui-sidebar-footer>Footer</sui-sidebar-footer>*@
+    </sui-sidebar>
+    <sui-sidebar-inset>
+        <sui-container class="py-8">
+            @RenderBody()
+        </sui-container>
+    </sui-sidebar-inset>
+</sui-sidebar-wrapper>

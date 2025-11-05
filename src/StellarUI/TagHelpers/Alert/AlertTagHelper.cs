@@ -18,7 +18,7 @@ public class AlertTagHelper(ICssClassMerger classMerger) : StellarTagHelper
             "text-warning bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-warning/90",
         [AlertVariant.Success] =
             "text-success bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-success/90",
-        [AlertVariant.Destructive] =
+        [AlertVariant.Error] =
             "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
     };
 

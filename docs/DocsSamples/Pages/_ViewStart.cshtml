@@ -1,0 +1,10 @@
+﻿@{
+    if (Context.Request.Query.ContainsKey("clean"))
+    {
+        Layout = "_CleanLayout";
+    }
+    else
+    {
+        Layout = "_NavigationLayout";
+    }
+}

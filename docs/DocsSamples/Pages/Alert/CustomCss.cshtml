@@ -1,0 +1,19 @@
+﻿@page
+@model CustomCss
+
+<sui-stack>
+    <!-- code begin -->
+    <sui-alert
+        class="bg-red-700 text-white *:data-[slot=alert-description]:text-white/90"
+        variant="AlertVariant.Error"
+        icon="triangle-alert"
+        title="No purchases found"
+        description="We were unable to find any previous purchases"/>
+    
+    <sui-alert>
+        <sui-spinner />
+        <sui-alert-title>Restoring purchases</sui-alert-title>
+        <sui-alert-description class="animate-pulse">We have found 9 purchases and are busy restoring them</sui-alert-description>
+    </sui-alert>
+    <!-- code end -->
+</sui-stack>

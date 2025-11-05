@@ -6,5 +6,5 @@ public enum AlertVariant
     Information,
     Warning,
     Success,
-    Destructive,
+    Error,
 }

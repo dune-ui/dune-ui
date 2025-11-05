@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\StellarUI\StellarUI.csproj" />
+  </ItemGroup>
+  <Target Name="Tailwind" BeforeTargets="Build">
+    <Exec
+      WorkingDirectory="Client"
+      Command="npm install"
+      Condition=" !Exists('Client/node_modules') "
+    />
+    <Exec
+      Command="npx @tailwindcss/cli -i ./css/site.css -o ../wwwroot/css/site.css"
+      WorkingDirectory="Client"
+    />
+  </Target>
+</Project>
