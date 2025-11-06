@@ -1,4 +1,5 @@
-﻿using DocsSamples;
+﻿using System.Text.RegularExpressions;
+using DocsSamples;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace DocsSamplesGenerator;
@@ -6,19 +7,151 @@ namespace DocsSamplesGenerator;
 public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
     : IClassFixture<WebApplicationFactory<Program>>
 {
-    private static string OutputFolder = @"C:\development\stellar-admin\stellar-ui";
+    private static readonly string PageSourceCodeFolder =
+        @"C:\development\stellar-admin\stellar-ui\docs\DocsSamples\Pages";
 
-    // [Fact(Skip = "This test is intended for manual execution only.")]
-    [Fact]
-    public async Task Generate()
+    private static readonly string DocsProjectRootFolder = @"C:\development\stellar-admin\website";
+
+    private static readonly string RenderedPagesOutputFolder =
+        DocsProjectRootFolder + @"\public\demo\tag-helpers";
+
+    private static readonly string PagesSourceCodeOutputFolder =
+        DocsProjectRootFolder + @"\content\docs\stellarui\components\_include";
+
+    private static readonly string DownloadedAssetsOutputFolder =
+        DocsProjectRootFolder + @"\public\demo\tag-helpers\assets";
+
+    [Theory]
+    [InlineData("/css/site.css")]
+    [InlineData("/_content/StellarUI/styles.css")]
+    public async Task DownloadDemoPageAssets(string url)
     {
         var client = factory.CreateClient();
 
-        var response = await client.GetAsync("/Alert/Intro?clean");
+        // Get the rendered page content
+        var response = await client.GetAsync(url);
 
-        File.WriteAllText(
-            Path.Combine(OutputFolder, $"{Guid.NewGuid()}.html"),
+        // Save file
+        if (!Directory.Exists(DownloadedAssetsOutputFolder))
+        {
+            Directory.CreateDirectory(DownloadedAssetsOutputFolder);
+        }
+
+        await File.WriteAllTextAsync(
+            Path.Combine(DownloadedAssetsOutputFolder, Path.GetFileName(url)),
             await response.Content.ReadAsStringAsync()
         );
+    }
+
+    [Theory]
+    [MemberData(nameof(ListDemoPages))]
+    public async Task GenerateDemoPageSourceFiles(string page)
+    {
+        var sourceFile = PageSourceCodeFolder + page.Replace("/", @"\") + ".cshtml";
+
+        var readSourceLines = await File.ReadAllLinesAsync(sourceFile);
+
+        var cleanedLines = new List<string>();
+        var processedDirectives = false;
+        var charactersToDelete = 0;
+        foreach (var sourceLine in readSourceLines)
+        {
+            // Read past the directives
+            if (
+                !processedDirectives
+                && (sourceLine.StartsWith("@") || string.IsNullOrEmpty(sourceLine))
+            )
+            {
+                continue;
+            }
+
+            processedDirectives = true;
+
+            if (sourceLine.IndexOf("<!-- code end -->", StringComparison.Ordinal) >= 0)
+            {
+                break;
+            }
+
+            if (
+                sourceLine.IndexOf("<!-- code begin -->", StringComparison.Ordinal)
+                is var index
+                    and >= 0
+            )
+            {
+                charactersToDelete = index;
+                cleanedLines.Clear();
+                continue;
+            }
+
+            var x =
+                charactersToDelete > 0
+                    ? sourceLine.Length > charactersToDelete
+                        ? sourceLine.Remove(0, charactersToDelete)
+                        : string.Empty
+                    : sourceLine;
+            cleanedLines.Add(x);
+        }
+
+        cleanedLines.Insert(0, "```razor");
+        cleanedLines.Add("```");
+
+        var filename = PagesSourceCodeOutputFolder + @"\" + GenerateFilename(page) + ".mdx";
+        await File.WriteAllLinesAsync(filename, cleanedLines);
+    }
+
+    public static TheoryData<string> ListDemoPages()
+    {
+        return
+        [
+            "/Alert/Intro",
+            "/Alert/Variants",
+            "/Alert/Icon",
+            "/Alert/CustomCss",
+            "/Alert/Actions",
+        ];
+    }
+
+    [Theory]
+    [MemberData(nameof(ListDemoPages))]
+    public async Task RenderDemoPageOutput(string page)
+    {
+        var client = factory.CreateClient();
+
+        // Get the rendered page content
+        var response = await client.GetAsync($"{page}?clean");
+
+        // Fix up the content
+        var content = FixDemoContent(await response.Content.ReadAsStringAsync());
+
+        // Write the content to the file
+        if (!Directory.Exists(RenderedPagesOutputFolder))
+        {
+            Directory.CreateDirectory(RenderedPagesOutputFolder);
+        }
+
+        await File.WriteAllTextAsync(
+            Path.Combine(RenderedPagesOutputFolder, $"{GenerateFilename(page)}.html"),
+            content
+        );
+    }
+
+    private static string FixDemoContent(string input)
+    {
+        // Fix the stylesheet references
+        return input
+            .Replace("href=\"/css/site.css\"", "href=\"/demo/tag-helpers/assets/site.css\"")
+            .Replace(
+                "href=\"/_content/StellarUI/styles.css\"",
+                "href=\"/demo/tag-helpers/assets/styles.css\""
+            );
+    }
+
+    private static string GenerateFilename(string input)
+    {
+        // Simple kekab-case converter
+        return Regex
+            .Replace(input.Replace("/", ""), "(?!^)([A-Z])", "-$1", RegexOptions.Compiled)
+            .Trim()
+            .ToLower();
     }
 }

@@ -3,13 +3,15 @@
 
 <sui-stack>
     <!-- code begin -->
+    <!-- Using shorthand syntax -->
     <sui-alert
         class="bg-red-700 text-white *:data-[slot=alert-description]:text-white/90"
         variant="AlertVariant.Error"
         icon="triangle-alert"
         title="No purchases found"
         description="We were unable to find any previous purchases"/>
-    
+
+    <!-- Using composition syntax -->
     <sui-alert>
         <sui-spinner />
         <sui-alert-title>Restoring purchases</sui-alert-title>
