@@ -1,0 +1,17 @@
+﻿@page
+@model DocsSamples.Pages.Button.AdditionalAttributes
+
+<sui-group gap="Small">
+    <!-- code begin -->
+    <sui-button variant="Outline" onclick="alert('Hello')">
+        Display Alert
+    </sui-button>
+    <sui-button variant="Outline" 
+                class="bg-linear-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-orange-500 border-red-500 border-2 text-white/90 hover:text-white"
+                onclick="confirm('Are you sure?')"
+                >
+        <sui-icon name="trash" />
+        Delete
+    </sui-button>
+    <!-- code end -->
+</sui-group>

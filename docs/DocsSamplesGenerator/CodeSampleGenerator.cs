@@ -103,11 +103,17 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
     {
         return
         [
+            "/Alert/Actions",
+            "/Alert/CustomCss",
+            "/Alert/Icon",
             "/Alert/Intro",
             "/Alert/Variants",
-            "/Alert/Icon",
-            "/Alert/CustomCss",
-            "/Alert/Actions",
+            "/Button/AdditionalAttributes",
+            "/Button/Icon",
+            "/Button/Intro",
+            "/Button/Sizes",
+            "/Button/Spinner",
+            "/Button/Variants",
         ];
     }
 
