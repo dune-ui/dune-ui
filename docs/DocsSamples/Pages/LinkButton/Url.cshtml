@@ -1,0 +1,19 @@
+﻿@page
+@model DocsSamples.Pages.LinkButton.AspNetAnchor
+
+<sui-group gap="Small">
+    <!-- code begin -->
+    <!-- Specify the URL via the href attribute -->
+    <sui-linkbutton variant="Outline" href="https://dotnet.microsoft.com/" target="_blank">
+        .NET Home Page
+    </sui-linkbutton>
+    <!-- Specify the Razor Page to navigate to -->
+    <sui-linkbutton variant="Outline" asp-page="/Booking/Confirmation" asp-route-id="123">
+        Booking Confirmation
+    </sui-linkbutton>
+    <!-- Specify the MVC Controller Action to navigate to -->
+    <sui-linkbutton variant="Outline" asp-controller="Booking" asp-action="Confirmation" asp-route-id="123">
+        Booking Confirmation
+    </sui-linkbutton>
+    <!-- code end -->
+</sui-group>

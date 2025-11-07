@@ -114,6 +114,12 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Button/Sizes",
             "/Button/Spinner",
             "/Button/Variants",
+            "/LinkButton/AdditionalAttributes",
+            "/LinkButton/Icon",
+            "/LinkButton/Intro",
+            "/LinkButton/Sizes",
+            "/LinkButton/Url",
+            "/LinkButton/Variants",
         ];
     }
 
