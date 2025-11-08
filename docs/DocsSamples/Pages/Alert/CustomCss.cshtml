@@ -5,18 +5,20 @@
     <!-- code begin -->
     <!-- Using shorthand syntax -->
     <sui-alert
-        class="bg-red-700 text-white *:data-[slot=alert-description]:text-white/90"
-        variant="AlertVariant.Error"
-        icon="triangle-alert"
-        title="No purchases found"
-        description="We were unable to find any previous purchases"/>
+        class="border-emerald-400 bg-emerald-50 text-emerald-800 [&>svg]:text-emerald-600"
+        icon="circle-check"
+        title="Passport Verified"
+        description="Your passport photo and details have been successfully verified. You are all set for your international journey."/>
 
     <!-- Using composition syntax -->
-    <sui-alert>
-        <sui-spinner />
-        <sui-alert-title>Restoring purchases</sui-alert-title>
-        <sui-alert-description class="animate-pulse">
-            We have found 9 purchases and are busy restoring them
+    <sui-alert class="border-orange-500 text-orange-700 bg-transparent [&>svg]:text-orange-500">
+        <sui-icon name="triangle-alert"/>
+        <sui-alert-title class="font-bold">Baggage Size Restriction</sui-alert-title>
+        <sui-alert-description class="text-orange-600">
+            <p>Checked baggage dimensions for this carrier are stricter than average. Please
+                <a href="#" class="underline underline-offset-2">review the maximum size</a> before heading to the
+                airport.
+            </p>
         </sui-alert-description>
     </sui-alert>
     <!-- code end -->

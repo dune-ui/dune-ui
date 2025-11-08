@@ -12,13 +12,7 @@ public class AlertTagHelper(ICssClassMerger classMerger) : StellarTagHelper
     private static readonly Dictionary<AlertVariant, string> AlertVariantClasses = new()
     {
         [AlertVariant.Default] = "bg-card text-card-foreground",
-        [AlertVariant.Information] =
-            "text-information bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-information/90",
-        [AlertVariant.Warning] =
-            "text-warning bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-warning/90",
-        [AlertVariant.Success] =
-            "text-success bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-success/90",
-        [AlertVariant.Error] =
+        [AlertVariant.Destructive] =
             "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
     };
 

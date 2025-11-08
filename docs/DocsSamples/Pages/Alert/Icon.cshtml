@@ -4,14 +4,17 @@
 <sui-stack>
     <!-- code begin -->
     <!-- Using shorthand syntax -->
-    <sui-alert icon="circle-check" title="All purchases restored"
-               description="We have found and restored 9 of your purchases"/>
-    
+    <sui-alert icon="circle-check"
+               title="Booking Confirmed"
+               description="Your trip to Paris has been successfully booked. Check your email for your e-tickets and itinerary."/>
+
     <!-- Using composition syntax -->
-    <sui-alert variant="AlertVariant.Error">
-        <sui-icon name="triangle-alert"/>
-        <sui-alert-title>No purchases found</sui-alert-title>
-        <sui-alert-description>We were unable to find any previous purchases</sui-alert-description>
+    <sui-alert>
+        <sui-icon name="circle-check"/>
+        <sui-alert-title>Booking Confirmed</sui-alert-title>
+        <sui-alert-description>
+            <p>Your trip to Paris has been successfully booked. Check your email for your e-tickets and itinerary.</p>
+        </sui-alert-description>
     </sui-alert>
     <!-- code end -->
 </sui-stack>

@@ -2,9 +2,15 @@
 @model DocsSamples.Pages.Alert.Intro
 
 <sui-alert>
-    <sui-icon name="circle-check" />
-    <sui-alert-title>All purchases restored</sui-alert-title>
+    <sui-icon name="circle-check"/>
+    <sui-alert-title>Booking Confirmed</sui-alert-title>
     <sui-alert-description>
-        We have found and restored 9 of your purchases
+        <p>Your trip to Paris has been successfully booked. Check your email for your e-tickets and itinerary.</p>
+        <div class="mt-2">
+            <sui-button size="Small" variant="Outline">
+                <sui-icon name="tickets-plane"/>
+                View Tickets
+            </sui-button>
+        </div>
     </sui-alert-description>
 </sui-alert>
