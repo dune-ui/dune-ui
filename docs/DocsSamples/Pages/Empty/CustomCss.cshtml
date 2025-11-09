@@ -1,0 +1,22 @@
+﻿@page
+@model DocsSamples.Pages.Empty.CustomCss
+
+<div class="mx-auto max-w-xl p-2">
+    <!-- code begin -->
+    <sui-empty class="border-solid border-1 border-gray-200">
+        <sui-empty-header>
+            <sui-empty-media variant="Icon" class="bg-transparent border border-gray-200 shadow-lg">
+                <sui-icon name="search"/>
+            </sui-empty-media>
+            <sui-empty-title>No Destinations Match Your Search</sui-empty-title>
+            <sui-empty-description>
+                We couldn't find any flights, hotels, or packages matching your filters. Try adjusting your dates,
+                increasing your search radius, or selecting a different airport.
+            </sui-empty-description>
+        </sui-empty-header>
+        <sui-empty-content>
+            <sui-button variant="Outline">Reset Search Filters</sui-button>
+        </sui-empty-content>
+    </sui-empty>
+    <!-- code end -->
+</div>
