@@ -2,6 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
+/*
 [HtmlTargetElement("sui-checkbox-group")]
 public class CheckboxGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
@@ -20,3 +21,4 @@ public class CheckboxGroupTagHelper(ICssClassMerger classMerger) : StellarTagHel
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }
+*/

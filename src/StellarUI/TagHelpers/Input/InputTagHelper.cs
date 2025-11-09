@@ -102,10 +102,10 @@ public class InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger
                 break;
             case "radio":
                 output.Attributes.SetAttribute("role", "radio");
-                if (GetParentTagHelper<RadioGroupTagHelper>() != null)
+                /*if (GetParentTagHelper<RadioGroupTagHelper>() != null)
                 {
                     output.Attributes.SetAttribute("data-slot", "radio-group-item");
-                }
+                }*/
                 break;
             default:
                 break;

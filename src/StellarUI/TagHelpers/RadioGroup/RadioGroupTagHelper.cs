@@ -2,6 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
+/*
 [HtmlTargetElement("sui-radio-group")]
 public class RadioGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
@@ -20,3 +21,4 @@ public class RadioGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }
+*/
