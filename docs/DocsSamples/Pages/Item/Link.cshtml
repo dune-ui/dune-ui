@@ -1,0 +1,31 @@
+﻿@page
+@model DocsSamples.Pages.Item.Link
+
+<div class="max-w-xl mx-auto">
+    <sui-stack>
+        <!-- code begin -->
+        <sui-link-item asp-controller="Booking" asp-action="Manage" asp-route-id="123">
+            <sui-item-content>
+                <sui-item-title>Manage My Booking</sui-item-title>
+                <sui-item-description>
+                    View, change, or cancel your existing reservations.
+                </sui-item-description>
+            </sui-item-content>
+            <sui-item-actions>
+                <sui-icon name="chevron-right" class="size-4"/>
+            </sui-item-actions>
+        </sui-link-item>
+        <sui-link-item variant="Outline" href="#" target="_blank" rel="noopener noreferrer">
+            <sui-item-content>
+                <sui-item-title>View Current Visa Requirements</sui-item-title>
+                <sui-item-description>
+                    Opens the official government travel site in a new tab.
+                </sui-item-description>
+            </sui-item-content>
+            <sui-item-actions>
+                <sui-icon name="external-link" class="size-4"/>
+            </sui-item-actions>
+        </sui-link-item>
+        <!-- code end -->
+    </sui-stack>
+</div>

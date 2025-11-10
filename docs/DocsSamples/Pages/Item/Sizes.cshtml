@@ -1,0 +1,33 @@
+﻿@page
+@model DocsSamples.Pages.Item.Sizes
+
+<div class="max-w-lg mx-auto">
+    <sui-stack>
+        <!-- code begin -->
+        <sui-item variant="Outline">
+            <sui-item-content>
+                <sui-item-title>Flight to Paris</sui-item-title>
+                <sui-item-description>
+                    Departs 10:15, Gate A4
+                </sui-item-description>
+            </sui-item-content>
+            <sui-item-actions>
+                <sui-button variant="Outline" size="Small">
+                    View Details
+                </sui-button>
+            </sui-item-actions>
+        </sui-item>
+        <sui-link-item variant="Outline" size="Small" href="#">
+            <sui-item-media>
+                <sui-icon name="luggage" class="size-5"/>
+            </sui-item-media>
+            <sui-item-content>
+                <sui-item-title>Baggage policy updated.</sui-item-title>
+            </sui-item-content>
+            <sui-item-actions>
+                <sui-icon name="chevron-right" class="size-4"/>
+            </sui-item-actions>
+        </sui-link-item>
+        <!-- code end -->
+    </sui-stack>
+</div>

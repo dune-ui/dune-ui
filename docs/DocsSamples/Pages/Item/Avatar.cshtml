@@ -1,0 +1,45 @@
+﻿@page
+@model DocsSamples.Pages.Item.Avatar
+
+<sui-stack class="max-w-lg mx-auto">
+    <!-- code begin -->
+    <sui-item variant="Outline">
+        <sui-item-media>
+            <sui-avatar class="size-10" src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Adrian" />
+        </sui-item-media>
+        <sui-item-content>
+            <sui-item-title>The Grand Hotel</sui-item-title>
+            <sui-item-description class="italic">"Amazing service and great pool!"</sui-item-description>
+        </sui-item-content>
+        <sui-item-actions>
+            <sui-button
+                size="IconSmall"
+                variant="Outline"
+                class="rounded-full"
+            >
+                <sui-icon name="bookmark" />
+            </sui-button>
+        </sui-item-actions>
+    </sui-item>
+    <sui-item variant="Outline">
+        <sui-item-media>
+            <sui-avatar-group>
+                <sui-avatar src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Vivian"/>
+                <sui-avatar src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Riley" />
+                <sui-avatar name="+3" />
+            </sui-avatar-group>
+        </sui-item-media>
+        <sui-item-content>
+            <sui-item-title>Family Trip to Florida</sui-item-title>
+            <sui-item-description>
+                2 adults, 3 children. Seats pre-selected.
+            </sui-item-description>
+        </sui-item-content>
+        <sui-item-actions>
+            <sui-button size="Small" variant="Outline">
+                Manage
+            </sui-button>
+        </sui-item-actions>
+    </sui-item>
+    <!-- code end -->
+</sui-stack>
