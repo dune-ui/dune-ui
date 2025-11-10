@@ -404,6 +404,9 @@
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
   }
+  .pr-2 {
+    padding-right: calc(var(--spacing) * 2);
+  }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
   }
