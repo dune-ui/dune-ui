@@ -160,12 +160,15 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/LinkButton/Sizes",
             "/LinkButton/Url",
             "/LinkButton/Variants",
-            "/Stack/Align",
-            "/Stack/Gap",
-            "/Stack/Justify",
             "/Pagination/CustomContent",
             "/Pagination/Intro",
             "/Pagination/Url",
+            "/Progress/CustomCss",
+            "/Progress/Intro",
+            "/Progress/MinMax",
+            "/Stack/Align",
+            "/Stack/Gap",
+            "/Stack/Justify",
         ];
     }
 
