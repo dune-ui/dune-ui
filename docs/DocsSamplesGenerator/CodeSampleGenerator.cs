@@ -166,6 +166,8 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Progress/CustomCss",
             "/Progress/Intro",
             "/Progress/MinMax",
+            "/Separator/Intro",
+            "/Separator/Orientation",
             "/Stack/Align",
             "/Stack/Gap",
             "/Stack/Justify",
