@@ -252,6 +252,9 @@
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
+  .h-\[125px\] {
+    height: 125px;
+  }
   .h-\[300px\] {
     height: 300px;
   }
@@ -260,6 +263,12 @@
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
+  }
+  .w-\[200px\] {
+    width: 200px;
+  }
+  .w-\[250px\] {
+    width: 250px;
   }
   .w-\[300px\] {
     width: 300px;
@@ -337,6 +346,9 @@
   }
   .rounded-sm {
     border-radius: var(--radius-sm);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
   }
   .rounded-b-xl {
     border-bottom-right-radius: var(--radius-xl);

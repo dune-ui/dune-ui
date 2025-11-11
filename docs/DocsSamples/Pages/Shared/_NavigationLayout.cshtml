@@ -114,10 +114,15 @@
                         new DemoItem("Min and Max", "/Progress/MinMax"),
                     ]),
                     new DemoGroup("Separator",
-                        [
-                            new DemoItem("Intro", "/Separator/Intro"),
-                            new DemoItem("Orientation", "/Separator/Orientation"),
-                        ]),
+                    [
+                        new DemoItem("Intro", "/Separator/Intro"),
+                        new DemoItem("Orientation", "/Separator/Orientation"),
+                    ]),
+                    new DemoGroup("Skeleton",
+                    [
+                        new DemoItem("Intro", "/Skeleton/Intro"),
+                        new DemoItem("Card", "/Skeleton/Card"),
+                    ]),
                     new DemoGroup("Stack",
                     [
                         new DemoItem("Gap", "/Stack/Gap"),
@@ -148,7 +153,7 @@
         @*<sui-sidebar-footer>Footer</sui-sidebar-footer>*@
     </sui-sidebar>
     <sui-sidebar-inset>
-        <sui-container class="py-8">
+        <sui-container class="py-8 flex w-full justify-center">
             @RenderBody()
         </sui-container>
     </sui-sidebar-inset>

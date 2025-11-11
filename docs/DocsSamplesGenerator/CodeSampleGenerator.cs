@@ -168,6 +168,8 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Progress/MinMax",
             "/Separator/Intro",
             "/Separator/Orientation",
+            "/Skeleton/Intro",
+            "/Skeleton/Card",
             "/Stack/Align",
             "/Stack/Gap",
             "/Stack/Justify",
