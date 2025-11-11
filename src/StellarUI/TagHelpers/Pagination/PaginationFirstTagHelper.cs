@@ -12,20 +12,29 @@ public class PaginationFirstTagHelper(IHtmlGenerator htmlGenerator, ICssClassMer
     {
         await RenderLink(context, output);
 
-        // // Render the icon
-        var iconOutput = new TagHelperOutput(
-            "svg",
-            [],
-            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
-        );
-        var iconRenderer = new IconRenderer();
-        iconRenderer.Render(iconOutput, "chevron-first");
-        output.Content.AppendHtml(iconOutput);
+        var content = await output.GetChildContentAsync();
 
-        // Render the text
-        var textBlockTagBuilder = new TagBuilder("span");
-        textBlockTagBuilder.AddCssClass("hidden sm:block");
-        textBlockTagBuilder.InnerHtml.AppendHtml("First");
-        output.Content.AppendHtml(textBlockTagBuilder);
+        if (!content.IsEmptyOrWhiteSpace)
+        {
+            output.Content.AppendHtml(content);
+        }
+        else
+        {
+            // Render the icon
+            var iconOutput = new TagHelperOutput(
+                "svg",
+                [],
+                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+            );
+            var iconRenderer = new IconRenderer();
+            iconRenderer.Render(iconOutput, "chevron-first");
+            output.Content.AppendHtml(iconOutput);
+
+            // Render the text
+            var textBlockTagBuilder = new TagBuilder("span");
+            textBlockTagBuilder.AddCssClass("hidden sm:block");
+            textBlockTagBuilder.InnerHtml.AppendHtml("First");
+            output.Content.AppendHtml(textBlockTagBuilder);
+        }
     }
 }

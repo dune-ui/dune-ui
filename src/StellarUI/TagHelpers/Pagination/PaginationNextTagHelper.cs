@@ -12,20 +12,29 @@ public class PaginationNextTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerg
     {
         await RenderLink(context, output);
 
-        // Render the text
-        var textBlockTagBuilder = new TagBuilder("span");
-        textBlockTagBuilder.AddCssClass("hidden sm:block");
-        textBlockTagBuilder.InnerHtml.AppendHtml("Next");
-        output.Content.AppendHtml(textBlockTagBuilder);
+        var content = await output.GetChildContentAsync();
 
-        // Render the icon
-        var iconOutput = new TagHelperOutput(
-            "svg",
-            [],
-            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
-        );
-        var iconRenderer = new IconRenderer();
-        iconRenderer.Render(iconOutput, "chevron-right");
-        output.Content.AppendHtml(iconOutput);
+        if (!content.IsEmptyOrWhiteSpace)
+        {
+            output.Content.AppendHtml(content);
+        }
+        else
+        {
+            // Render the text
+            var textBlockTagBuilder = new TagBuilder("span");
+            textBlockTagBuilder.AddCssClass("hidden sm:block");
+            textBlockTagBuilder.InnerHtml.AppendHtml("Next");
+            output.Content.AppendHtml(textBlockTagBuilder);
+
+            // Render the icon
+            var iconOutput = new TagHelperOutput(
+                "svg",
+                [],
+                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+            );
+            var iconRenderer = new IconRenderer();
+            iconRenderer.Render(iconOutput, "chevron-right");
+            output.Content.AppendHtml(iconOutput);
+        }
     }
 }

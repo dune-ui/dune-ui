@@ -1,0 +1,39 @@
+﻿@page
+@model DocsSamples.Pages.Pagination.Intro
+
+<div class="mx-auto">
+    <sui-pagination>
+        <sui-pagination-content>
+            <sui-pagination-item>
+                <sui-pagination-first href="#"/>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-previous href="#"/>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#">1</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#" is-active="true">2</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#">3</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-ellipsis/>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#">10</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-link href="#">11</sui-pagination-link>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-next href="#"/>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-last href="#"/>
+            </sui-pagination-item>
+        </sui-pagination-content>
+    </sui-pagination>
+</div>

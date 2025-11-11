@@ -1,0 +1,38 @@
+﻿@page
+@model DocsSamples.Pages.Pagination.CustomText
+
+<div class="mx-auto">
+    <sui-pagination>
+        <sui-pagination-content>
+            <sui-pagination-item>
+                <sui-pagination-first href="#">
+                    <sui-icon name="arrow-left-to-line"/>
+                    Eerste
+                </sui-pagination-first>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-previous href="#">
+                    <sui-icon name="arrow-left"/>
+                    Vorige
+                </sui-pagination-previous>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-ellipsis>
+                    <sui-icon name="rectangle-ellipsis" stroke-width="1"/>
+                </sui-pagination-ellipsis>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-next href="#">
+                    Volgende
+                    <sui-icon name="arrow-right"/>
+                </sui-pagination-next>
+            </sui-pagination-item>
+            <sui-pagination-item>
+                <sui-pagination-last href="#">
+                    Laaste
+                    <sui-icon name="arrow-right-to-line"/>
+                </sui-pagination-last>
+            </sui-pagination-item>
+        </sui-pagination-content>
+    </sui-pagination>
+</div>

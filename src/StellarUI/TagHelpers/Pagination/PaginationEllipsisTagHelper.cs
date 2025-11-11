@@ -6,7 +6,7 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-pagination-ellipsis")]
 public class PaginationEllipsisTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -21,22 +21,29 @@ public class PaginationEllipsisTagHelper(ICssClassMerger classMerger) : StellarT
             )
         );
 
-        // Render the icon
-        var iconOutput = new TagHelperOutput(
-            "svg",
-            [new TagHelperAttribute("class", "size-4")],
-            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
-        );
-        var iconRenderer = new IconRenderer();
-        iconRenderer.Render(iconOutput, "ellipsis");
-        output.Content.AppendHtml(iconOutput);
+        var content = await output.GetChildContentAsync();
 
-        // Render the text
-        var textBlockTagBuilder = new TagBuilder("span");
-        textBlockTagBuilder.AddCssClass("sr-only");
-        textBlockTagBuilder.InnerHtml.AppendHtml("More pages");
-        output.Content.AppendHtml(textBlockTagBuilder);
+        if (!content.IsEmptyOrWhiteSpace)
+        {
+            output.Content.AppendHtml(content);
+        }
+        else
+        {
+            // Render the icon
+            var iconOutput = new TagHelperOutput(
+                "svg",
+                [new TagHelperAttribute("class", "size-4")],
+                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+            );
+            var iconRenderer = new IconRenderer();
+            iconRenderer.Render(iconOutput, "ellipsis");
+            output.Content.AppendHtml(iconOutput);
 
-        return Task.CompletedTask;
+            // Render the text
+            var textBlockTagBuilder = new TagBuilder("span");
+            textBlockTagBuilder.AddCssClass("sr-only");
+            textBlockTagBuilder.InnerHtml.AppendHtml("More pages");
+            output.Content.AppendHtml(textBlockTagBuilder);
+        }
     }
 }
