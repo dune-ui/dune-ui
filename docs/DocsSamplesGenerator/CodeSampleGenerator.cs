@@ -135,6 +135,9 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Empty/Intro",
             "/Empty/Avatar",
             "/Empty/CustomCss",
+            "/Group/Align",
+            "/Group/Gap",
+            "/Group/Justify",
             "/Icon/Color",
             "/Icon/Intro",
             "/Icon/Size",
@@ -157,6 +160,9 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/LinkButton/Sizes",
             "/LinkButton/Url",
             "/LinkButton/Variants",
+            "/Stack/Align",
+            "/Stack/Gap",
+            "/Stack/Justify",
         ];
     }
 
