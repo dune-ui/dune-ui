@@ -277,6 +277,9 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
+  .w-\[100px\] {
+    width: 100px;
+  }
   .w-\[200px\] {
     width: 200px;
   }
@@ -517,6 +520,9 @@
   }
   .pb-12 {
     padding-bottom: calc(var(--spacing) * 12);
+  }
+  .text-right {
+    text-align: right;
   }
   .font-mono {
     font-family: var(--font-mono);

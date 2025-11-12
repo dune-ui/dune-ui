@@ -176,6 +176,8 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Stack/Align",
             "/Stack/Gap",
             "/Stack/Justify",
+            "/Table/Border",
+            "/Table/Intro",
         ];
     }
 
