@@ -1,0 +1,117 @@
+﻿@page
+@model DocsSamples.Pages.Field.Intro
+
+<div class="w-full max-w-md">
+  <!-- code begin -->
+  <sui-field-group>
+    <sui-field-set>
+      <sui-field-legend>Payment Method</sui-field-legend>
+      <sui-field-description>
+        All transactions are secure and encrypted
+      </sui-field-description>
+      <sui-field-group>
+        <sui-field>
+          <sui-field-label for="card-name">
+            Name on Card
+          </sui-field-label>
+          <sui-input
+            id="card-name"
+            placeholder="Ibn Battuta"
+          />
+        </sui-field>
+        <sui-field>
+          <sui-field-label for="card-number">
+            Card Number
+          </sui-field-label>
+          <sui-input
+            id="card-number"
+            placeholder="1234 5678 9012 3456"
+          />
+          <sui-field-description>
+            Enter your 16-digit card number
+          </sui-field-description>
+        </sui-field>
+        <div class="grid grid-cols-3 gap-4">
+          <sui-field>
+            <sui-field-label for="exp-month">
+              Month
+            </sui-field-label>
+            <sui-select id="exp-month">
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </sui-select>
+          </sui-field>
+          <sui-field>
+            <sui-field-label for="exp-year">
+              Year
+            </sui-field-label>
+            <sui-select id="exp-year">
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+            </sui-select>
+          </sui-field>
+          <sui-field>
+            <sui-field-label for="cvv">CVV</sui-field-label>
+            <sui-input id="cvv" placeholder="123"/>
+          </sui-field>
+        </div>
+      </sui-field-group>
+    </sui-field-set>
+    <sui-field-separator/>
+    <sui-field-set>
+      <sui-field-legend>Billing Address</sui-field-legend>
+      <sui-field-description>
+        The billing address associated with your payment method
+      </sui-field-description>
+      <sui-field-group>
+        <sui-field orientation="Horizontal">
+          <sui-input
+            type="checkbox"
+            id="same-as-shipping"
+          />
+          <sui-field-label
+            for="same-as-shipping"
+            class="font-normal"
+          >
+            Same as shipping address
+          </sui-field-label>
+        </sui-field>
+      </sui-field-group>
+    </sui-field-set>
+    <sui-field-set>
+      <sui-field-group>
+        <sui-field>
+          <sui-field-label for="optional-comments">
+            Comments
+          </sui-field-label>
+          <sui-textarea
+            id="optional-comments"
+            placeholder="Add any additional comments"
+            class="resize-none"
+          />
+        </sui-field>
+      </sui-field-group>
+    </sui-field-set>
+    <sui-field orientation="Horizontal">
+      <sui-button type="button">Submit</sui-button>
+      <sui-button variant="Outline" type="button">
+        Cancel
+      </sui-button>
+    </sui-field>
+  </sui-field-group>
+  <!-- code end -->
+</div>

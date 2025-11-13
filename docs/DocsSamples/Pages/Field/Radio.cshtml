@@ -1,0 +1,33 @@
+﻿@page
+@model DocsSamples.Pages.Field.Radio
+
+<div class="w-full max-w-md">
+    <!-- code begin -->
+    <sui-field-set>
+        <sui-field-legend variant="Label">Subscription Plan</sui-field-legend>
+        <sui-field-description>
+            Yearly and lifetime plans offer significant savings.
+        </sui-field-description>
+        <sui-field-group data-slot="radio-group">
+            <sui-field orientation="Horizontal">
+                <sui-input type="radio" value="monthly" id="plan-monthly" checked/>
+                <sui-field-label for="plan-monthly" class="font-normal">
+                    Monthly ($9.99/month)
+                </sui-field-label>
+            </sui-field>
+            <sui-field orientation="Horizontal">
+                <sui-input type="radio" value="yearly" id="plan-yearly"/>
+                <sui-field-label for="plan-yearly" class="font-normal">
+                    Yearly ($99.99/year)
+                </sui-field-label>
+            </sui-field>
+            <sui-field orientation="Horizontal">
+                <sui-input type="radio" value="lifetime" id="plan-lifetime"/>
+                <sui-field-label for="plan-lifetime" class="font-normal">
+                    Lifetime ($299.99)
+                </sui-field-label>
+            </sui-field>
+        </sui-field-group>
+    </sui-field-set>
+    <!-- code end -->
+</div>

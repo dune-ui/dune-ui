@@ -1,0 +1,12 @@
+﻿@page
+@model DocsSamples.Pages.Input.InputTypeDataBinding
+
+<div  class="w-full max-w-md flex flex-col gap-y-4">
+    <!-- code begin -->
+    <sui-input asp-for="Model.Text"/>
+    <sui-input asp-for="Model.Password"/>
+    <sui-input asp-for="Model.Date"/>
+    <sui-input asp-for="Model.Checkbox"/>
+    <sui-input asp-for="Model.Radio" type="radio" value="one"/>
+    <!-- code end -->
+</div>

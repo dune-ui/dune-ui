@@ -1,0 +1,25 @@
+﻿@page
+@model DocsSamples.Pages.Field.CheckboxImplicit
+
+<div class="w-full max-w-md">
+  <!-- code begin -->
+  <sui-field-group>
+    <sui-field-set>
+      <sui-field-legend variant="Label">
+        Show these items on the desktop
+      </sui-field-legend>
+      <sui-field-description>
+        Select the items you want to show on the desktop.
+      </sui-field-description>
+      <sui-field-group class="gap-3">
+        <sui-input asp-for="Model.MustDisplayHardDisks"/>
+        <sui-input asp-for="Model.MustDisplayExternalDisks"/>
+        <sui-input asp-for="Model.MustDisplayCdDvd"/>
+        <sui-input asp-for="Model.MustDisplayConnectedServers"/>
+      </sui-field-group>
+    </sui-field-set>
+    <sui-field-separator/>
+    <sui-input asp-for="Model.MustSyncDesktopFolders"/>
+  </sui-field-group>
+  <!-- code end -->
+</div>

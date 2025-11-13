@@ -1,0 +1,23 @@
+﻿@page
+@model DocsSamples.Pages.Field.Input
+
+<div class="w-full max-w-md">
+    <!-- code begin -->
+    <sui-field-set>
+        <sui-field-group>
+            <sui-field>
+                <sui-field-label for="email">Email</sui-field-label>
+                <sui-input id="email" type="text" placeholder="e.g. ibn.battuta@rihlah.travel"/>
+                <sui-field-description>Your email address</sui-field-description>
+            </sui-field>
+            <sui-field>
+                <sui-field-label for="password">Password</sui-field-label>
+                <sui-input id="password" type="password" placeholder="••••••••"/>
+                <sui-field-description>
+                    Must be at least 8 characters long.
+                </sui-field-description>
+            </sui-field>
+        </sui-field-group>
+    </sui-field-set>
+    <!-- code end -->
+</div>

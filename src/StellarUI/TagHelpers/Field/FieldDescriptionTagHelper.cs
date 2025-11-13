@@ -60,6 +60,14 @@ internal class FieldDescriptionRenderer(ICssClassMerger classMerger)
             {
                 output.Content.SetContent(resolvedDescription);
             }
+            else
+            {
+                // If we are trying to resolve the description via the metadata (i.e. when using asp-for)
+                // but there is not description, we suppress output to prevent this control from rendering.
+                // If we don't do this, it generates an empty div with a gap around it which takes up
+                // unnecessary space.
+                output.SuppressOutput();
+            }
         }
         else
         {

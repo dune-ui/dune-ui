@@ -10,11 +10,15 @@ public class FieldGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.SetAttribute("data-slot", "field-group");
+        if (!output.Attributes.ContainsName("data-slot"))
+        {
+            output.Attributes.SetAttribute("data-slot", "field-group");
+        }
+
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(
-                "group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4",
+                "group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 data-[slot=radio-group]:gap-3 [&>[data-slot=field-group]]:gap-4",
                 output.GetUserSuppliedClass()
             )
         );

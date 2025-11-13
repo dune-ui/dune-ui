@@ -61,6 +61,25 @@
                         new DemoItem("Avatar", "/Empty/Avatar"),
                         new DemoItem("Custom CSS", "/Empty/CustomCss"),
                     ]),
+                    new DemoGroup("Field",
+                    [
+                        new DemoItem("Intro", "/Field/Intro"),
+                        new DemoItem("Implicit", "/Field/Implicit"),
+                        new DemoItem("Input", "/Field/Input"),
+                        new DemoItem("Input Implicit", "/Field/InputImplicit"),
+                        new DemoItem("Textarea", "/Field/Textarea"),
+                        new DemoItem("Textarea Implicit", "/Field/TextareaImplicit"),
+                        new DemoItem("Select", "/Field/Select"),
+                        new DemoItem("Select Implicit", "/Field/SelectImplicit"),
+                        new DemoItem("Checkbox", "/Field/Checkbox"),
+                        new DemoItem("Checkbox Implicit", "/Field/CheckboxImplicit"),
+                        new DemoItem("Radio", "/Field/Radio"),
+                        new DemoItem("Radio Implicit", "/Field/RadioImplicit"),
+                        new DemoItem("Fieldset", "/Field/Fieldset"),
+                        new DemoItem("Fieldset Implicit", "/Field/FieldsetImplicit"),
+                        new DemoItem("Field Group", "/Field/FieldGroup"),
+                        new DemoItem("Field Group Implicit", "/Field/FieldGroupImplicit"),
+                    ]),
                     new DemoGroup("Group",
                     [
                         new DemoItem("Gap", "/Group/Gap"),
@@ -73,6 +92,15 @@
                         new DemoItem("Size", "/Icon/Size"),
                         new DemoItem("Color", "/Icon/Color"),
                         new DemoItem("Stroke width", "/Icon/StrokeWidth"),
+                    ]),
+                    new DemoGroup("Input",
+                    [
+                        new DemoItem("Intro", "/Input/Intro"),
+                        new DemoItem("With Field", "/Input/WithField"),
+                        new DemoItem("Implicit Field", "/Input/ImplicitField"),
+                        new DemoItem("Data Binding", "/Input/DataBinding"),
+                        new DemoItem("Input Types", "/Input/InputTypes"),
+                        new DemoItem("Input Types (Data Binding)", "/Input/InputTypeDataBinding"),
                     ]),
                     new DemoGroup("Item",
                     [
@@ -164,8 +192,8 @@
         @*<sui-sidebar-footer>Footer</sui-sidebar-footer>*@
     </sui-sidebar>
     <sui-sidebar-inset>
-        <sui-container class="py-8 flex w-full justify-center">
+        <div class="py-8 flex w-full justify-center">
             @RenderBody()
-        </sui-container>
+        </div>
     </sui-sidebar-inset>
 </sui-sidebar-wrapper>

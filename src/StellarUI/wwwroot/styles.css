@@ -1642,6 +1642,11 @@
       gap: calc(var(--spacing) * 3);
     }
   }
+  .data-\[slot\=radio-group\]\:gap-3 {
+    &[data-slot="radio-group"] {
+      gap: calc(var(--spacing) * 3);
+    }
+  }
   .data-\[state\=open\]\:hover\:bg-sidebar-accent {
     &[data-state="open"] {
       &:hover {

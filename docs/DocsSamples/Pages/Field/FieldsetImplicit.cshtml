@@ -1,0 +1,20 @@
+﻿@page
+@model DocsSamples.Pages.Field.FieldsetImplicit
+
+<div class="w-full max-w-md space-y-6">
+    <!-- code begin -->
+    <sui-field-set>
+        <sui-field-legend>Address Information</sui-field-legend>
+        <sui-field-description>
+            We need your address to deliver your order.
+        </sui-field-description>
+        <sui-field-group>
+            <sui-input asp-for="Model.Street"/>
+            <div class="grid grid-cols-2 gap-4">
+                <sui-input asp-for="Model.City"/>
+                <sui-input asp-for="Model.PostalCode"/>
+            </div>
+        </sui-field-group>
+    </sui-field-set>
+    <!-- code end -->
+</div>
