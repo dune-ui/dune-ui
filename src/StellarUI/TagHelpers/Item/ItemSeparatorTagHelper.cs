@@ -16,7 +16,11 @@ public class ItemSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHel
         );
         output.Attributes.SetAttribute("data-slot", "item-separator");
 
-        var separatorRenderer = new SeparatorRenderer(classMerger);
-        separatorRenderer.Render(output, SeparatorOrientation.Horizontal, IsDecorative);
+        var separatorTagHelper = new SeparatorTagHelper(classMerger)
+        {
+            Orientation = SeparatorOrientation.Horizontal,
+            IsDecorative = IsDecorative,
+        };
+        await separatorTagHelper.ProcessAsync(context, output);
     }
 }

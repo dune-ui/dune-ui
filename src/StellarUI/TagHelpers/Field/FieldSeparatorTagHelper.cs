@@ -32,8 +32,11 @@ public class FieldSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHe
             [new TagHelperAttribute("class", "absolute inset-0 top-1/2")],
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );
-        var separatorRenderer = new SeparatorRenderer(classMerger);
-        separatorRenderer.Render(separatorOutput, SeparatorOrientation.Horizontal);
+        var separatorTagHelper = new SeparatorTagHelper(classMerger)
+        {
+            Orientation = SeparatorOrientation.Horizontal,
+        };
+        await separatorTagHelper.ProcessAsync(context, separatorOutput);
         output.Content.AppendHtml(separatorOutput);
 
         /* Add the child content, if any */

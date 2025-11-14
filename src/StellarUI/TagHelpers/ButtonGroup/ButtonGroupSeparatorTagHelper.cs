@@ -19,7 +19,7 @@ public class ButtonGroupSeparatorTagHelper(ICssClassMerger classMerger) : Stella
             )
         );
 
-        var separatorRenderer = new SeparatorRenderer(classMerger);
-        separatorRenderer.Render(output, Orientation);
+        var separatorTagHelper = new SeparatorTagHelper(classMerger) { Orientation = Orientation };
+        await separatorTagHelper.ProcessAsync(context, output);
     }
 }
