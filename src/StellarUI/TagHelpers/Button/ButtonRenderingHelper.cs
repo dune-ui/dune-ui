@@ -2,9 +2,12 @@
 
 namespace StellarUI.TagHelpers;
 
-internal class ButtonRenderer(ICssClassMerger classMerger)
+internal static class ButtonRenderingHelper
 {
-    private static readonly Dictionary<ButtonVariant, string> ButtonVariantClasses = new()
+    private static readonly Dictionary<ButtonVariant, string> ButtonVariantClasses = new Dictionary<
+        ButtonVariant,
+        string
+    >
     {
         [ButtonVariant.Default] = "bg-primary text-primary-foreground hover:bg-primary/90",
         [ButtonVariant.Destructive] =
@@ -17,7 +20,10 @@ internal class ButtonRenderer(ICssClassMerger classMerger)
         [ButtonVariant.Link] = "text-primary underline-offset-4 hover:underline",
     };
 
-    private static readonly Dictionary<ButtonSize, string> ButtonSizeClasses = new()
+    private static readonly Dictionary<ButtonSize, string> ButtonSizeClasses = new Dictionary<
+        ButtonSize,
+        string
+    >
     {
         [ButtonSize.Default] = "h-9 px-4 py-2 has-[>svg]:px-3",
         [ButtonSize.Small] = "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
@@ -27,12 +33,18 @@ internal class ButtonRenderer(ICssClassMerger classMerger)
         [ButtonSize.IconLarge] = "size-10",
     };
 
-    public void RenderAttributes(TagHelperOutput output, ButtonVariant variant, ButtonSize size)
+    public static void RenderAttributes(
+        TagHelperOutput output,
+        ICssClassMerger classMerger,
+        ButtonVariant variant,
+        ButtonSize size
+    )
     {
         if (!output.Attributes.ContainsName("data-slot"))
         {
             output.Attributes.SetAttribute("data-slot", "button");
         }
+
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(

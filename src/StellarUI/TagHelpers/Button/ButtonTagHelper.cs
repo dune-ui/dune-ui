@@ -35,8 +35,7 @@ public class ButtonTagHelper : StellarTagHelper
         output.TagName = "button";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        var buttonRenderer = new ButtonRenderer(_classMerger);
-        buttonRenderer.RenderAttributes(output, Variant, Size);
+        ButtonRenderingHelper.RenderAttributes(output, _classMerger, Variant, Size);
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }

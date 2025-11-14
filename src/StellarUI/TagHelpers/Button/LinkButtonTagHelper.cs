@@ -74,8 +74,7 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
         };
         await anchorTagHelper.ProcessAsync(context, output);
 
-        var buttonRenderer = new ButtonRenderer(_classMerger);
-        buttonRenderer.RenderAttributes(output, Variant, Size);
+        ButtonRenderingHelper.RenderAttributes(output, _classMerger, Variant, Size);
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }

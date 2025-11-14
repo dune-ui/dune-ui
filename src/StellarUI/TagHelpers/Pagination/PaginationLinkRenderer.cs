@@ -16,9 +16,9 @@ internal class PaginationLinkRenderer(ICssClassMerger classMerger)
         output.Attributes.SetAttribute("data-slot", "pagination-link");
         output.Attributes.SetAttribute("data-active", isActive.ToString().ToLower());
 
-        var buttonRenderer = new ButtonRenderer(classMerger);
-        buttonRenderer.RenderAttributes(
+        ButtonRenderingHelper.RenderAttributes(
             output,
+            classMerger,
             isActive ? ButtonVariant.Outline : ButtonVariant.Ghost,
             size
         );
