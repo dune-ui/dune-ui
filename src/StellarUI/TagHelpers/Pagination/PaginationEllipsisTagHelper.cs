@@ -35,8 +35,8 @@ public class PaginationEllipsisTagHelper(ICssClassMerger classMerger) : StellarT
                 [new TagHelperAttribute("class", "size-4")],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconRenderer = new IconRenderer();
-            iconRenderer.Render(iconOutput, "ellipsis");
+            var iconTagHelper = new IconTagHelper { Name = "ellipsis" };
+            await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 
             // Render the text

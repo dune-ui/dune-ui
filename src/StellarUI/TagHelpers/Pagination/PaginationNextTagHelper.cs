@@ -32,8 +32,8 @@ public class PaginationNextTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerg
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconRenderer = new IconRenderer();
-            iconRenderer.Render(iconOutput, "chevron-right");
+            var iconTagHelper = new IconTagHelper { Name = "chevron-right" };
+            await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }
     }

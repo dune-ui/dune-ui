@@ -6,7 +6,7 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-breadcrumb-ellipsis")]
 public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -28,8 +28,8 @@ public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger) : StellarT
             [new TagHelperAttribute("class", "size-4")],
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );
-        var iconRenderer = new IconRenderer();
-        iconRenderer.Render(iconOutput, "ellipsis");
+        var iconTagHelper = new IconTagHelper { Name = "ellipsis" };
+        await iconTagHelper.ProcessAsync(context, iconOutput);
         output.Content.AppendHtml(iconOutput);
 
         /* Render the screen reader text */
@@ -37,7 +37,5 @@ public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger) : StellarT
         srTagBuilder.Attributes.Add("class", "sr-only");
         srTagBuilder.InnerHtml.AppendHtml("More");
         output.Content.AppendHtml(srTagBuilder);
-
-        return Task.CompletedTask;
     }
 }

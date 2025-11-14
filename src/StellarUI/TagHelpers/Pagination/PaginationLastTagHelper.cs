@@ -32,8 +32,8 @@ public class PaginationLastTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerg
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconRenderer = new IconRenderer();
-            iconRenderer.Render(iconOutput, "chevron-last");
+            var iconTagHelper = new IconTagHelper { Name = "chevron-last" };
+            await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }
     }

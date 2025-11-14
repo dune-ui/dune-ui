@@ -28,8 +28,8 @@ public class PaginationPreviousLinkTagHelper(
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconRenderer = new IconRenderer();
-            iconRenderer.Render(iconOutput, "chevron-left");
+            var iconTagHelper = new IconTagHelper { Name = "chevron-left" };
+            await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 
             // Render the text

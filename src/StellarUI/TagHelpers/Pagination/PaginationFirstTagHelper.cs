@@ -26,8 +26,8 @@ public class PaginationFirstTagHelper(IHtmlGenerator htmlGenerator, ICssClassMer
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconRenderer = new IconRenderer();
-            iconRenderer.Render(iconOutput, "chevron-first");
+            var iconTagHelper = new IconTagHelper { Name = "chevron-first" };
+            await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 
             // Render the text

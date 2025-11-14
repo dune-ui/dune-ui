@@ -31,8 +31,8 @@ public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger) : Stellar
                 [new TagHelperAttribute("class", "size-4")],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconRenderer = new IconRenderer();
-            iconRenderer.Render(iconOutput, "chevron-right");
+            var iconTagHelper = new IconTagHelper { Name = "chevron-right" };
+            await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }
     }

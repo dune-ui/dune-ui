@@ -5,16 +5,14 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-spinner")]
 public class SpinnerTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var iconRenderer = new IconRenderer();
-        iconRenderer.Render(output, "loader-circle");
+        var iconTagHelper = new IconTagHelper { Name = "loader-circle" };
+        await iconTagHelper.ProcessAsync(context, output);
 
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge("animate-spin", output.GetUserSuppliedClass())
         );
-
-        return Task.CompletedTask;
     }
 }
