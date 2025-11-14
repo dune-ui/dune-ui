@@ -31,6 +31,9 @@ public class PaginationLinkTagHelper : StellarAnchorTagHelperBase
 
     protected async Task RenderLink(TagHelperContext context, TagHelperOutput output)
     {
+        output.TagName = "a";
+        output.TagMode = TagMode.StartTagAndEndTag;
+
         var anchorTagHelper = new FrameworkAnchorTagHelper(_htmlGenerator)
         {
             ViewContext = ViewContext,
@@ -47,7 +50,18 @@ public class PaginationLinkTagHelper : StellarAnchorTagHelperBase
         };
         await anchorTagHelper.ProcessAsync(context, output);
 
-        var paginationLinkRenderer = new PaginationLinkRenderer(_classMerger);
-        paginationLinkRenderer.Render(output, Size, IsActive);
+        if (IsActive)
+        {
+            output.Attributes.SetAttribute("aria-current", "page");
+        }
+        output.Attributes.SetAttribute("data-slot", "pagination-link");
+        output.Attributes.SetAttribute("data-active", IsActive.ToString().ToLower());
+
+        ButtonRenderingHelper.RenderAttributes(
+            output,
+            _classMerger,
+            IsActive ? ButtonVariant.Outline : ButtonVariant.Ghost,
+            Size
+        );
     }
 }
