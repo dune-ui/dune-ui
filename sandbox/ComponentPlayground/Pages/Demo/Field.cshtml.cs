@@ -6,11 +6,14 @@ namespace ComponentPlayground.Pages.Demo;
 
 public class Field : PageModel
 {
-    public InputModel Model { get; set; } = default!;
+    public InputModel Model { get; set; } = new InputModel();
 
     public void OnGet()
     {
-        Model = new InputModel();
+        ModelState.AddModelError(
+            $"Model.{nameof(InputModel.FirstName)}",
+            "This is a super-dooper error"
+        );
     }
 
     public class InputModel

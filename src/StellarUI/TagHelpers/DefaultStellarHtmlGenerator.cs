@@ -29,22 +29,6 @@ public class DefaultStellarHtmlGenerator(
     ),
         IStellarHtmlGenerator
 {
-    public TagBuilder GenerateLabel(string? labelText, IDictionary<string, object?>? htmlAttributes)
-    {
-        var tagBuilder = new TagBuilder("label");
-        if (labelText != null)
-        {
-            tagBuilder.InnerHtml.SetContent(labelText);
-        }
-
-        if (htmlAttributes != null)
-        {
-            tagBuilder.MergeAttributes(htmlAttributes);
-        }
-
-        return tagBuilder;
-    }
-
     public TagBuilder GenerateTextArea(
         int rows = 0,
         int columns = 0,

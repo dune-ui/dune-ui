@@ -142,7 +142,7 @@ public abstract class FieldInputBaseTagHelper(
             var fieldContentRenderer = new FieldContentRenderer(classMerger);
             await fieldContentRenderer.Render(fieldContentOutput);
 
-            await RenderLabelControl(fieldContentOutput.Content);
+            await RenderLabelControl(context, fieldContentOutput.Content);
             await RenderDescriptionControl(fieldContentOutput.Content);
             await RenderErrorControl(fieldContentOutput.Content);
 
@@ -150,7 +150,7 @@ public abstract class FieldInputBaseTagHelper(
         }
         else
         {
-            await RenderLabelControl(output.PreElement);
+            await RenderLabelControl(context, output.PreElement);
             await RenderErrorControl(output.PostElement);
             await RenderDescriptionControl(output.PostElement);
         }
@@ -175,17 +175,24 @@ public abstract class FieldInputBaseTagHelper(
         }
     }
 
-    private async Task RenderLabelControl(TagHelperContent targetContent)
+    private async Task RenderLabelControl(TagHelperContext context, TagHelperContent targetContent)
     {
         if (For != null || Label != null)
         {
             var labelTagHelperOutput = new TagHelperOutput(
                 string.Empty,
                 [],
-                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                (_, _) =>
+                    Label == null
+                        ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                        : Task.FromResult(new DefaultTagHelperContent().Append(Label))
             );
-            var fieldLabelRenderer = new FieldLabelRenderer(htmlGenerator, classMerger);
-            await fieldLabelRenderer.Render(labelTagHelperOutput, ViewContext, For, Label);
+            var fieldLabelTagHelper = new FieldLabelTagHelper(htmlGenerator, classMerger)
+            {
+                For = For,
+                ViewContext = ViewContext,
+            };
+            await fieldLabelTagHelper.ProcessAsync(context, labelTagHelperOutput);
 
             targetContent.AppendHtml(labelTagHelperOutput);
         }

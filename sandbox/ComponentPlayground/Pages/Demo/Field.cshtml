@@ -13,14 +13,22 @@
       First name as displayed on card
     </sui-field-description>
   </sui-field>
-  <p>Field bound to model</p>
+  <sui-separator />
+  <p>Field using shorthand</p>
+  <sui-input label="First Name" description="First name as displayed on card" error="This is a super-dooper error"/>
+  <sui-separator />
+  <p>Explicit field bound to model</p>
   <sui-field>
-    <sui-field-label asp-for="Model.FirstName" />
-    <sui-input/>
-    <sui-field-error asp-for="Model.FirstName" />
+    <sui-field-label asp-for="Model.FirstName"/>
+    <sui-input asp-for="Model.FirstName"/>
+    <sui-field-error asp-for="Model.FirstName"/>
     <sui-field-description asp-for="Model.FirstName"/>
   </sui-field>
-
+  <sui-separator />
+  <p>Implicit field bound to model</p>
+  <sui-input asp-for="Model.FirstName"/>
+  <sui-separator />
+  <p>Card</p>
   <sui-card class="w-full max-w-md">
     <sui-card-content>
       <form>
