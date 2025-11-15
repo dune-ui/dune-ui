@@ -149,8 +149,8 @@ public abstract class FieldInputBaseTagHelper(
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
 
-            var fieldContentRenderer = new FieldContentRenderer(classMerger);
-            await fieldContentRenderer.Render(fieldContentOutput);
+            var fieldContentTagHelper = new FieldContentTagHelper(classMerger);
+            await fieldContentTagHelper.ProcessAsync(context, fieldContentOutput);
 
             await RenderLabelControl(context, fieldContentOutput.Content);
             await RenderDescriptionControl(context, fieldContentOutput.Content);
