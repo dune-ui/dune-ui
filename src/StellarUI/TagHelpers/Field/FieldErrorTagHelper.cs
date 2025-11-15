@@ -26,34 +26,14 @@ public class FieldErrorTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassM
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var renderer = new FieldErrorRenderer(htmlGenerator, classMerger);
-        await renderer.Render(output, ViewContext, For, null);
-    }
-}
-
-internal class FieldErrorRenderer(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-{
-    public async Task Render(
-        TagHelperOutput output,
-        ViewContext viewContext,
-        ModelExpression? modelExpression,
-        string? message
-    )
-    {
-        var childContent = await output.GetChildContentAsync();
-        if (!childContent.IsEmptyOrWhiteSpace)
-        {
-            message = childContent.GetContent();
-        }
-
         var tagBuilder =
-            modelExpression == null
-                ? htmlGenerator.GenerateValidationMessage(message, null)
+            For == null
+                ? htmlGenerator.GenerateValidationMessage()
                 : htmlGenerator.GenerateValidationMessage(
-                    viewContext,
-                    modelExpression.ModelExplorer,
-                    modelExpression.Name,
-                    message,
+                    ViewContext,
+                    For.ModelExplorer,
+                    For.Name,
+                    null,
                     "div",
                     null
                 );
@@ -74,9 +54,17 @@ internal class FieldErrorRenderer(IStellarHtmlGenerator htmlGenerator, ICssClass
             )
         );
 
-        if (tagBuilder.HasInnerHtml)
+        var childContent = await output.GetChildContentAsync();
+        if (childContent.IsEmptyOrWhiteSpace)
         {
-            output.Content.SetHtmlContent(tagBuilder.InnerHtml);
+            if (tagBuilder.HasInnerHtml)
+            {
+                output.Content.SetHtmlContent(tagBuilder.InnerHtml);
+            }
+        }
+        else
+        {
+            output.Content.SetHtmlContent(childContent);
         }
     }
 }

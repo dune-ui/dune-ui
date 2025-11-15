@@ -144,14 +144,14 @@ public abstract class FieldInputBaseTagHelper(
 
             await RenderLabelControl(context, fieldContentOutput.Content);
             await RenderDescriptionControl(fieldContentOutput.Content);
-            await RenderErrorControl(fieldContentOutput.Content);
+            await RenderErrorControl(context, fieldContentOutput.Content);
 
             targetContent.AppendHtml(fieldContentOutput);
         }
         else
         {
             await RenderLabelControl(context, output.PreElement);
-            await RenderErrorControl(output.PostElement);
+            await RenderErrorControl(context, output.PostElement);
             await RenderDescriptionControl(output.PostElement);
         }
 
@@ -159,17 +159,24 @@ public abstract class FieldInputBaseTagHelper(
         output.PostElement.AppendHtml(fieldTagBuilder.RenderEndTag());
     }
 
-    private async Task RenderErrorControl(TagHelperContent targetContent)
+    private async Task RenderErrorControl(TagHelperContext context, TagHelperContent targetContent)
     {
         if (For != null || Error != null)
         {
             var errorTagHelperOutput = new TagHelperOutput(
                 string.Empty,
                 [],
-                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                (_, _) =>
+                    Error == null
+                        ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                        : Task.FromResult(new DefaultTagHelperContent().Append(Error))
             );
-            var renderer = new FieldErrorRenderer(htmlGenerator, classMerger);
-            await renderer.Render(errorTagHelperOutput, ViewContext, For, Error);
+            var fieldErrorTagHelper = new FieldErrorTagHelper(htmlGenerator, classMerger)
+            {
+                For = For,
+                ViewContext = ViewContext,
+            };
+            await fieldErrorTagHelper.ProcessAsync(context, errorTagHelperOutput);
 
             targetContent.AppendHtml(errorTagHelperOutput);
         }

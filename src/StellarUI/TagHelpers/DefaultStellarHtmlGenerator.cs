@@ -64,10 +64,7 @@ public class DefaultStellarHtmlGenerator(
         return tagBuilder;
     }
 
-    public TagBuilder GenerateValidationMessage(
-        string? message = null,
-        IDictionary<string, object?>? htmlAttributes = null
-    )
+    public TagBuilder GenerateValidationMessage(IDictionary<string, object?>? htmlAttributes = null)
     {
         var tagBuilder = new TagBuilder("div");
         tagBuilder.AddCssClass(HtmlHelper.ValidationMessageCssClassName);
@@ -75,11 +72,6 @@ public class DefaultStellarHtmlGenerator(
         if (htmlAttributes != null)
         {
             tagBuilder.MergeAttributes(htmlAttributes);
-        }
-
-        if (message != null)
-        {
-            tagBuilder.InnerHtml.SetContent(message);
         }
 
         return tagBuilder;
