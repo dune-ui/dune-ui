@@ -88,17 +88,27 @@ public abstract class FieldInputBaseTagHelper(
         return await RenderInput(context, output, htmlAttributes);
     }
 
-    private async Task RenderDescriptionControl(TagHelperContent targetContent)
+    private async Task RenderDescriptionControl(
+        TagHelperContext context,
+        TagHelperContent targetContent
+    )
     {
         if (For != null || Description != null)
         {
             var descriptionTagHelperOutput = new TagHelperOutput(
                 string.Empty,
                 [],
-                (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                (_, _) =>
+                    Description == null
+                        ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+                        : Task.FromResult(new DefaultTagHelperContent().Append(Description))
             );
-            var fieldDescriptionRenderer = new FieldDescriptionRenderer(classMerger);
-            await fieldDescriptionRenderer.Render(descriptionTagHelperOutput, For, Description);
+            var fieldDescriptionTagHelper = new FieldDescriptionTagHelper(classMerger)
+            {
+                For = For,
+                ViewContext = ViewContext,
+            };
+            await fieldDescriptionTagHelper.ProcessAsync(context, descriptionTagHelperOutput);
 
             targetContent.AppendHtml(descriptionTagHelperOutput);
         }
@@ -143,7 +153,7 @@ public abstract class FieldInputBaseTagHelper(
             await fieldContentRenderer.Render(fieldContentOutput);
 
             await RenderLabelControl(context, fieldContentOutput.Content);
-            await RenderDescriptionControl(fieldContentOutput.Content);
+            await RenderDescriptionControl(context, fieldContentOutput.Content);
             await RenderErrorControl(context, fieldContentOutput.Content);
 
             targetContent.AppendHtml(fieldContentOutput);
@@ -152,7 +162,7 @@ public abstract class FieldInputBaseTagHelper(
         {
             await RenderLabelControl(context, output.PreElement);
             await RenderErrorControl(context, output.PostElement);
-            await RenderDescriptionControl(output.PostElement);
+            await RenderDescriptionControl(context, output.PostElement);
         }
 
         // Render the closing tag of the field wrapper

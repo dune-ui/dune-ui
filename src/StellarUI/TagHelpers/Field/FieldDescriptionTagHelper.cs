@@ -24,20 +24,6 @@ public class FieldDescriptionTagHelper(ICssClassMerger classMerger) : StellarTag
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var renderer = new FieldDescriptionRenderer(classMerger);
-
-        await renderer.Render(output, For, null);
-    }
-}
-
-internal class FieldDescriptionRenderer(ICssClassMerger classMerger)
-{
-    public async Task Render(
-        TagHelperOutput output,
-        ModelExpression? modelExpression,
-        string? description
-    )
-    {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -55,10 +41,9 @@ internal class FieldDescriptionRenderer(ICssClassMerger classMerger)
         var childContent = await output.GetChildContentAsync();
         if (childContent.IsEmptyOrWhiteSpace)
         {
-            var resolvedDescription = description ?? modelExpression?.Metadata.Description;
-            if (resolvedDescription != null)
+            if (For?.Metadata.Description is { Length: > 0 } description)
             {
-                output.Content.SetContent(resolvedDescription);
+                output.Content.SetContent(description);
             }
             else
             {
