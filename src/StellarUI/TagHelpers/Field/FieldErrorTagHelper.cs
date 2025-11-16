@@ -22,7 +22,7 @@ public class FieldErrorTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassM
     /// </summary>
     [HtmlAttributeNotBound]
     [ViewContext]
-    public ViewContext ViewContext { get; set; }
+    public required ViewContext ViewContext { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {

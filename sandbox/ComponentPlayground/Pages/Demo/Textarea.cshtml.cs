@@ -18,6 +18,6 @@ public class Textarea : PageModel
         [Display(Name = "Some comments", Description = "Enter up to 250 characters of comments")]
         [Required]
         [MaxLength(250)]
-        public string Comments { get; set; }
+        public string? Comments { get; set; }
     }
 }

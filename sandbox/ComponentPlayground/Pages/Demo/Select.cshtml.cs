@@ -8,16 +8,14 @@ namespace ComponentPlayground.Pages.Demo;
 public class Select : PageModel
 {
     [BindProperty]
-    public SelectModel Model { get; set; }
-
-    public void OnGet()
-    {
-        Model = new SelectModel
+    public SelectModel Model { get; set; } =
+        new SelectModel
         {
             SelectedCategory = "SPORT",
             SelectedEnumCategory = ProductCategory.Jewelry,
         };
-    }
+
+    public void OnGet() { }
 }
 
 public class SelectModel

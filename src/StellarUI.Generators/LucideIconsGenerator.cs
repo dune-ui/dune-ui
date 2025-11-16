@@ -34,8 +34,8 @@ namespace StellarUI.Generators
                     {
                         // Deserialize the JSON content
                         var data = JsonSerializer.Deserialize<Dictionary<string, List<SvgShape>>>(
-                            jsonContent
-                        );
+                            jsonContent!
+                        )!;
 
                         // Build the C# source file based on the data
                         var generatedSource = new StringBuilder();
@@ -77,7 +77,7 @@ namespace StellarUI.Generators
                             generatedSource.AppendLine();
                         }
 
-                        // Generate the static static dictionary for icon definition lookup
+                        // Generate the static dictionary for icon definition lookup
                         generatedSource.AppendLine(
                             "    public static FrozenDictionary<string, List<SvgShape>> IconDefinitions = new Dictionary<"
                         );
@@ -136,11 +136,11 @@ namespace StellarUI.Generators
         }
 
         [JsonConverter(typeof(SvgShapeJsonConverter))]
-        private class SvgShape
+        private class SvgShape(string name, Dictionary<string, string> attributes)
         {
-            public string Name { get; set; }
+            public string Name { get; } = name;
 
-            public Dictionary<string, string> Attributes { get; set; }
+            public Dictionary<string, string> Attributes { get; } = attributes;
         };
 
         private class SvgShapeJsonConverter : JsonConverter<SvgShape>
@@ -163,6 +163,10 @@ namespace StellarUI.Generators
                 }
 
                 var shapeName = reader.GetString();
+                if (shapeName == null)
+                {
+                    throw new JsonException("Expected a string as the first element.");
+                }
 
                 reader.Read();
                 if (reader.TokenType != JsonTokenType.StartObject)
@@ -175,6 +179,10 @@ namespace StellarUI.Generators
                     ref reader,
                     options
                 );
+                if (shapeAttributes == null)
+                {
+                    throw new JsonException("Expected a dictionary of shape attributes.");
+                }
 
                 // Move past the end of the array
                 reader.Read();
@@ -183,7 +191,7 @@ namespace StellarUI.Generators
                     throw new JsonException("Expected end of a JSON array.");
                 }
 
-                return new SvgShape { Name = shapeName, Attributes = shapeAttributes };
+                return new SvgShape(shapeName, shapeAttributes);
             }
 
             public override void Write(

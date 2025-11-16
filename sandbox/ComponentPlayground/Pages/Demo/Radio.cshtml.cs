@@ -4,16 +4,14 @@ namespace ComponentPlayground.Pages.Demo;
 
 public class Radio : PageModel
 {
-    public RadioModel Model { get; set; }
+    public RadioModel Model { get; set; } =
+        new RadioModel { Layout = "comfortable", ComputeEnvironment = "vm" };
 
-    public void OnGet()
-    {
-        Model = new RadioModel { Layout = "comfortable", ComputeEnvironment = "vm" };
-    }
+    public void OnGet() { }
 
     public class RadioModel
     {
-        public string ComputeEnvironment { get; set; }
-        public string Layout { get; set; }
+        public string? ComputeEnvironment { get; set; }
+        public string? Layout { get; set; }
     }
 }

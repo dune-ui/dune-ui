@@ -6,12 +6,12 @@ namespace ComponentPlayground.Pages.Demo;
 
 public class Checkbox : PageModel
 {
-    public CheckboxModel Model { get; set; }
+    public CheckboxModel Model { get; set; } =
+        new CheckboxModel { BooleanValue = true, AcceptTerms = false };
 
     public void OnGet()
     {
         ModelState.AddModelError("Model.AcceptTerms", "You must accept the terms and conditions");
-        Model = new CheckboxModel { BooleanValue = true, AcceptTerms = false };
     }
 
     public class CheckboxModel
