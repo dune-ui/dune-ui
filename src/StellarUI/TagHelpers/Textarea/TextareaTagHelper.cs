@@ -1,14 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-textarea")]
-public class TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-    : FieldInputBaseTagHelper(htmlGenerator, classMerger)
+public class TextareaTagHelper : FieldInputBaseTagHelper
 {
+    private readonly IStellarHtmlGenerator _htmlGenerator;
+    private readonly ICssClassMerger _classMerger;
+
+    public TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+        : base(htmlGenerator, classMerger)
+    {
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     protected override async Task<AutoFieldLayout> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
@@ -20,12 +27,12 @@ public class TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMer
 
         var tagBuilder =
             For == null
-                ? htmlGenerator.GenerateTextArea(
+                ? _htmlGenerator.GenerateTextArea(
                     rows: 0,
                     columns: 0,
                     htmlAttributes: htmlAttributes
                 )
-                : htmlGenerator.GenerateTextArea(
+                : _htmlGenerator.GenerateTextArea(
                     ViewContext,
                     For.ModelExplorer,
                     For.Name,
@@ -39,7 +46,7 @@ public class TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMer
         output.Attributes.SetAttribute("data-slot", "textarea");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
                 "[&.input-validation-error]:ring-destructive/20 dark:[&.input-validation-error]:ring-destructive/40 [&.input-validation-error]:border-destructive",
                 output.GetUserSuppliedClass()

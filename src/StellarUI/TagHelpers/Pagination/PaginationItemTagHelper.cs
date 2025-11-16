@@ -3,7 +3,7 @@
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-pagination-item")]
-public class PaginationItemTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class PaginationItemTagHelper : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {

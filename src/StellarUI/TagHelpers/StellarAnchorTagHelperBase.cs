@@ -115,5 +115,5 @@ public class StellarAnchorTagHelperBase : StellarTagHelper
     /// </summary>
     [HtmlAttributeNotBound]
     [ViewContext]
-    public ViewContext ViewContext { get; set; }
+    public required ViewContext ViewContext { get; set; }
 }

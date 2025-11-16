@@ -14,8 +14,8 @@ public class SelectTagHelper : FieldInputBaseTagHelper
     public SelectTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
         : base(htmlGenerator, classMerger)
     {
-        _htmlGenerator = htmlGenerator;
-        _classMerger = classMerger;
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     [HtmlAttributeName("asp-items")]

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Eventing.Reader;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ComponentPlayground.Pages.Demo;

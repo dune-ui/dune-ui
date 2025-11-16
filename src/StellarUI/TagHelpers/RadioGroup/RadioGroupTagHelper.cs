@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-
-namespace StellarUI.TagHelpers;
+﻿namespace StellarUI.TagHelpers;
 
 /*
 [HtmlTargetElement("sui-radio-group")]

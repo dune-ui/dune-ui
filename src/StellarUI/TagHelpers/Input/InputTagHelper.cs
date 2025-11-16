@@ -5,9 +5,18 @@ using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelp
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-input", TagStructure = TagStructure.WithoutEndTag)]
-public class InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-    : FieldInputBaseTagHelper(htmlGenerator, classMerger)
+public class InputTagHelper : FieldInputBaseTagHelper
 {
+    private readonly IStellarHtmlGenerator _htmlGenerator;
+    private readonly ICssClassMerger _classMerger;
+
+    public InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+        : base(htmlGenerator, classMerger)
+    {
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 
@@ -45,7 +54,7 @@ public class InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger
         }
         else
         {
-            var inputTagHelper = new FrameworkInputTagHelper(htmlGenerator)
+            var inputTagHelper = new FrameworkInputTagHelper(_htmlGenerator)
             {
                 For = For,
                 Format = Format,
@@ -91,7 +100,7 @@ public class InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger
         output.Attributes.SetAttribute("data-slot", "input");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(classNames.Union([output.GetUserSuppliedClass()]).ToArray())
+            _classMerger.Merge(classNames.Union([output.GetUserSuppliedClass()]).ToArray())
         );
 
         // Add input-specific attributes
