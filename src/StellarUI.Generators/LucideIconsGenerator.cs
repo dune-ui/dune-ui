@@ -68,11 +68,13 @@ namespace StellarUI.Generators
                                         $"                [\"{attribute.Key}\"] = \"{attribute.Value}\","
                                     );
                                 }
+
                                 generatedSource.AppendLine("            }.ToImmutableDictionary()");
                                 generatedSource.AppendLine("        ),");
                             }
 
                             generatedSource.AppendLine("    ];");
+                            generatedSource.AppendLine();
                         }
 
                         // Generate the static static dictionary for icon definition lookup
@@ -89,39 +91,8 @@ namespace StellarUI.Generators
                                 $"        [\"{iconKvp.Key}\"] = {IconNameToPascalCase(iconKvp.Key)},"
                             );
                         }
+
                         generatedSource.AppendLine("    }.ToFrozenDictionary();");
-
-                        // generatedSource.AppendLine(
-                        //     "    public static FrozenDictionary<string, string> IconDefinitions ="
-                        // );
-                        // generatedSource.AppendLine("        new Dictionary<string, string>");
-                        // generatedSource.AppendLine("        {");
-
-                        /*foreach (var icons in data)
-                        {
-                            generatedSource.AppendLine($"            [\"{icons.Key}\"] = \"111\",");
-                            // generatedSource.AppendLine("            [");
-                            foreach (var iconData in icons.Value)
-                            {
-                                generatedSource.AppendLine("            new LucideIcons.SvgShape(");
-                                generatedSource.AppendLine(
-                                    $"                    \"{iconData.Name}\","
-                                );
-                                generatedSource.AppendLine(
-                                    "                    new Dictionary<string, string>"
-                                );
-                                generatedSource.AppendLine("                    {");
-                                generatedSource.AppendLine("");
-                                generatedSource.AppendLine(
-                                    "                    }.ToImmutableDictionary()"
-                                );
-                            }
-                            // generatedSource.AppendLine("            ],");
-                            // generatedSource.AppendLine(keyValuePair.Key);
-                        }*/
-                        // generatedSource.Append(jsonContent);
-                        // generatedSource.AppendLine($"    public const string DataValue = \"{data.SomeProperty}\";");
-                        // generatedSource.AppendLine("        }.ToFrozenDictionary();");
                         generatedSource.AppendLine("}");
 
                         // Add the generated source to the compilation
@@ -190,6 +161,7 @@ namespace StellarUI.Generators
                 {
                     throw new JsonException("Expected a string as the first element.");
                 }
+
                 var shapeName = reader.GetString();
 
                 reader.Read();
