@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/docs/">
-    <Project Path="docs\DocsSamplesGenerator\DocsSamplesGenerator.csproj" Type="Classic C#" />
-    <Project Path="docs\DocsSamples\DocsSamples.csproj" Type="Classic C#" />
+    <Project Path="docs\DocsSamplesGenerator\DocsSamplesGenerator.csproj" Type="C#" />
+    <Project Path="docs\DocsSamples\DocsSamples.csproj" Type="C#" />
   </Folder>
   <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
-  <Project Path="src/StellarUI/StellarUI.csproj" />
-  <Project Path="src\StellarUI.Generators\StellarUI.Generators.csproj" Type="Classic C#" />
+  <Project Path="src/StellarUI.TagHelpers/StellarUI.TagHelpers.csproj" />
+  <Project Path="src\StellarUI.Generators\StellarUI.Generators.csproj" Type="C#" />
 </Solution>
