@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <RootNamespace>StellarUI</RootNamespace>
+    <StaticWebAssetFingerprintingEnabled>false</StaticWebAssetFingerprintingEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <NoWarn>1701;1702</NoWarn>
@@ -16,9 +17,6 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="icon-nodes.json" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\StellarUI.Core\StellarUI.Core.csproj" />
     <ProjectReference
       Include="..\StellarUI.Generators\StellarUI.Generators.csproj"
@@ -26,4 +24,21 @@
       OutputItemType="Analyzer"
     />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="../client/dist/lucide-static/icon-nodes.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <Target Name="CopyFiles" BeforeTargets="Build">
+    <ItemGroup>
+      <ClientDistFiles Include="..\client\dist\*.css" />
+      <ClientDistFiles Include="..\client\dist\*.js" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(ClientDistFiles)"
+      DestinationFolder="wwwroot\%(RecursiveDir)"
+      SkipUnchangedFiles="true"
+    />
+  </Target>
 </Project>
