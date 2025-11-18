@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-field-label")]
-public class FieldLabelTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+public class FieldLabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : StellarTagHelper
 {
     private const string ForAttributeName = "asp-for";

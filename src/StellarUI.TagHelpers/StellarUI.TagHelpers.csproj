@@ -19,9 +19,11 @@
     <AdditionalFiles Include="icon-nodes.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StellarUI.Generators\StellarUI.Generators.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="TailwindMerge.NET" />
+    <ProjectReference Include="..\StellarUI.Core\StellarUI.Core.csproj" />
+    <ProjectReference
+      Include="..\StellarUI.Generators\StellarUI.Generators.csproj"
+      ReferenceOutputAssembly="false"
+      OutputItemType="Analyzer"
+    />
   </ItemGroup>
 </Project>

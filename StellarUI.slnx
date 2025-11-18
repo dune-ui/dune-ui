@@ -4,6 +4,7 @@
     <Project Path="docs\DocsSamples\DocsSamples.csproj" Type="C#" />
   </Folder>
   <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
+  <Project Path="src/StellarUI.Core/StellarUI.Core.csproj" />
   <Project Path="src/StellarUI.TagHelpers/StellarUI.TagHelpers.csproj" />
   <Project Path="src\StellarUI.Generators\StellarUI.Generators.csproj" Type="C#" />
 </Solution>

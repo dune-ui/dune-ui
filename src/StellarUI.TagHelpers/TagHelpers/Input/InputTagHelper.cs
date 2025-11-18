@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper;
 
@@ -7,10 +8,10 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-input", TagStructure = TagStructure.WithoutEndTag)]
 public class InputTagHelper : FieldInputBaseTagHelper
 {
-    private readonly IStellarHtmlGenerator _htmlGenerator;
+    private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
 
-    public InputTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public InputTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
         : base(htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));

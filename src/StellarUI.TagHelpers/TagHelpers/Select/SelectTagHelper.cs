@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using FrameworkSelectTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper;
 
@@ -7,11 +8,11 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-select")]
 public class SelectTagHelper : FieldInputBaseTagHelper
 {
-    private readonly IStellarHtmlGenerator _htmlGenerator;
+    private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
     private FrameworkSelectTagHelper? _frameworkTagHelper;
 
-    public SelectTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public SelectTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
         : base(htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));

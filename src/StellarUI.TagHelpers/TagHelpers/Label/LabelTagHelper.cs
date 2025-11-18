@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-label")]
-public class LabelTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+public class LabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : StellarTagHelper
 {
     private const string ForAttributeName = "asp-for";

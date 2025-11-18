@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-field-error")]
-public class FieldErrorTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+public class FieldErrorTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : StellarTagHelper
 {
     private const string ForAttributeName = "asp-for";
@@ -28,7 +28,7 @@ public class FieldErrorTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassM
     {
         var tagBuilder =
             For == null
-                ? htmlGenerator.GenerateValidationMessage()
+                ? GenerateValidationMessageTagBuilder()
                 : htmlGenerator.GenerateValidationMessage(
                     ViewContext,
                     For.ModelExplorer,
@@ -66,5 +66,20 @@ public class FieldErrorTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassM
         {
             output.Content.SetHtmlContent(childContent);
         }
+    }
+
+    private TagBuilder GenerateValidationMessageTagBuilder(
+        IDictionary<string, object?>? htmlAttributes = null
+    )
+    {
+        var tagBuilder = new TagBuilder("div");
+        tagBuilder.AddCssClass(HtmlHelper.ValidationMessageCssClassName);
+
+        if (htmlAttributes != null)
+        {
+            tagBuilder.MergeAttributes(htmlAttributes);
+        }
+
+        return tagBuilder;
     }
 }

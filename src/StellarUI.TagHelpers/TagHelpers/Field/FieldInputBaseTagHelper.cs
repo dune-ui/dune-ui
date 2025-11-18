@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace StellarUI.TagHelpers;
 
 public abstract class FieldInputBaseTagHelper(
-    IStellarHtmlGenerator htmlGenerator,
+    IHtmlGenerator htmlGenerator,
     ICssClassMerger classMerger
 ) : StellarTagHelper
 {

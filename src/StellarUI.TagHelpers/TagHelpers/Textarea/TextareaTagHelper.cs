@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
@@ -6,10 +9,10 @@ namespace StellarUI.TagHelpers;
 [HtmlTargetElement("sui-textarea")]
 public class TextareaTagHelper : FieldInputBaseTagHelper
 {
-    private readonly IStellarHtmlGenerator _htmlGenerator;
+    private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
 
-    public TextareaTagHelper(IStellarHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public TextareaTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
         : base(htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
@@ -27,11 +30,7 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
 
         var tagBuilder =
             For == null
-                ? _htmlGenerator.GenerateTextArea(
-                    rows: 0,
-                    columns: 0,
-                    htmlAttributes: htmlAttributes
-                )
+                ? GenerateTextAreaTagBuilder(rows: 0, columns: 0, htmlAttributes: htmlAttributes)
                 : _htmlGenerator.GenerateTextArea(
                     ViewContext,
                     For.ModelExplorer,
@@ -67,5 +66,40 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
         }
 
         return AutoFieldLayout.Vertical;
+    }
+
+    private TagBuilder GenerateTextAreaTagBuilder(
+        int rows = 0,
+        int columns = 0,
+        IDictionary<string, object?>? htmlAttributes = null
+    )
+    {
+        if (rows < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(rows));
+        }
+
+        if (columns < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(columns));
+        }
+
+        var tagBuilder = new TagBuilder("textarea");
+        if (htmlAttributes != null)
+        {
+            tagBuilder.MergeAttributes(htmlAttributes, true);
+        }
+
+        if (rows > 0)
+        {
+            tagBuilder.MergeAttribute("rows", rows.ToString(CultureInfo.InvariantCulture), true);
+        }
+
+        if (columns > 0)
+        {
+            tagBuilder.MergeAttribute("cols", columns.ToString(CultureInfo.InvariantCulture), true);
+        }
+
+        return tagBuilder;
     }
 }
