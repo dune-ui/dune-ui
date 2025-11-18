@@ -1,10 +1,14 @@
 <Solution>
   <Folder Name="/docs/">
-    <Project Path="docs\DocsSamplesGenerator\DocsSamplesGenerator.csproj" Type="C#" />
-    <Project Path="docs\DocsSamples\DocsSamples.csproj" Type="C#" />
+    <Project Path="docs\DocsSamplesGenerator\DocsSamplesGenerator.csproj" />
+    <Project Path="docs\DocsSamples\DocsSamples.csproj" />
   </Folder>
-  <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
+  <Folder Name="/gen/">
+    <Project Path="gen\StellarUI.Generators\StellarUI.Generators.csproj" />
+  </Folder>
+  <Folder Name="/sandbox/">
+    <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
+  </Folder>
   <Project Path="src/StellarUI.Core/StellarUI.Core.csproj" />
   <Project Path="src/StellarUI.TagHelpers/StellarUI.TagHelpers.csproj" />
-  <Project Path="src\StellarUI.Generators\StellarUI.Generators.csproj" Type="C#" />
 </Solution>

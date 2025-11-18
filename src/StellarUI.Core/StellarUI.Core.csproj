@@ -13,7 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference
-      Include="..\StellarUI.Generators\StellarUI.Generators.csproj"
+      Include="..\..\gen\StellarUI.Generators\StellarUI.Generators.csproj"
       ReferenceOutputAssembly="false"
       OutputItemType="Analyzer"
     />
