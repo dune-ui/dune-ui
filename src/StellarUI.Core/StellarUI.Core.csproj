@@ -8,4 +8,14 @@
   <ItemGroup>
     <PackageReference Include="TailwindMerge.NET" />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="../client/dist/lucide-static/icon-nodes.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference
+      Include="..\StellarUI.Generators\StellarUI.Generators.csproj"
+      ReferenceOutputAssembly="false"
+      OutputItemType="Analyzer"
+    />
+  </ItemGroup>
 </Project>

@@ -18,14 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StellarUI.Core\StellarUI.Core.csproj" />
-    <ProjectReference
-      Include="..\StellarUI.Generators\StellarUI.Generators.csproj"
-      ReferenceOutputAssembly="false"
-      OutputItemType="Analyzer"
-    />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="../client/dist/lucide-static/icon-nodes.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />

@@ -44,7 +44,7 @@ namespace StellarUI.Generators
                         generatedSource.AppendLine();
                         generatedSource.AppendLine("namespace StellarUI;");
                         generatedSource.AppendLine();
-                        generatedSource.AppendLine("internal static partial class LucideIcons");
+                        generatedSource.AppendLine("public static partial class LucideIcons");
                         generatedSource.AppendLine("{");
 
                         // Generate the static classes for the individual icons
