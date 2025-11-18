@@ -9,6 +9,9 @@
   <Folder Name="/sandbox/">
     <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
   </Folder>
+  <Folder Name="/workflows/">
+    <File Path=".github/workflows/ci.yml" />
+  </Folder>
   <Project Path="src/StellarUI.Core/StellarUI.Core.csproj" />
   <Project Path="src/StellarUI.TagHelpers/StellarUI.TagHelpers.csproj" />
 </Solution>
