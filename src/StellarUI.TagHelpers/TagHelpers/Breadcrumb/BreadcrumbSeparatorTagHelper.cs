@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-breadcrumb-separator")]
-public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
+    : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -31,7 +33,7 @@ public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger) : Stellar
                 [new TagHelperAttribute("class", "size-4")],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper { Name = "chevron-right" };
+            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-right" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }

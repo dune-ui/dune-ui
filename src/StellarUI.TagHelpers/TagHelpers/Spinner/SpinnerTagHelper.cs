@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-spinner")]
-public class SpinnerTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class SpinnerTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
+    : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var iconTagHelper = new IconTagHelper { Name = "loader-circle" };
+        var iconTagHelper = new IconTagHelper(iconManager) { Name = "loader-circle" };
         await iconTagHelper.ProcessAsync(context, output);
 
         output.Attributes.SetAttribute(

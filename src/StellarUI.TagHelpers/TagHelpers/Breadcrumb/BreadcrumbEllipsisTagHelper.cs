@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-breadcrumb-ellipsis")]
-public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
+    : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -28,7 +30,7 @@ public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger) : StellarT
             [new TagHelperAttribute("class", "size-4")],
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );
-        var iconTagHelper = new IconTagHelper { Name = "ellipsis" };
+        var iconTagHelper = new IconTagHelper(iconManager) { Name = "ellipsis" };
         await iconTagHelper.ProcessAsync(context, iconOutput);
         output.Content.AppendHtml(iconOutput);
 

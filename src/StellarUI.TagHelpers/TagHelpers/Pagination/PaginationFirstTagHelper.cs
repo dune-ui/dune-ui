@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-pagination-first")]
-public class PaginationFirstTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-    : PaginationLinkTagHelper(htmlGenerator, classMerger)
+public class PaginationFirstTagHelper(
+    IHtmlGenerator htmlGenerator,
+    ICssClassMerger classMerger,
+    IIconManager iconManager
+) : PaginationLinkTagHelper(htmlGenerator, classMerger)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -26,7 +30,7 @@ public class PaginationFirstTagHelper(IHtmlGenerator htmlGenerator, ICssClassMer
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper { Name = "chevron-first" };
+            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-first" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 

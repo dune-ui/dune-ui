@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-alert")]
-public class AlertTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
+    : StellarTagHelper
 {
     private const string DescriptionAttributeName = "description";
     private const string IconAttributeName = "icon";
@@ -78,7 +80,7 @@ public class AlertTagHelper(ICssClassMerger classMerger) : StellarTagHelper
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper { Name = Icon };
+            var iconTagHelper = new IconTagHelper(iconManager) { Name = Icon };
             await iconTagHelper.ProcessAsync(context, iconTagHelperOutput);
 
             output.Content.AppendHtml(iconTagHelperOutput);

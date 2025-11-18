@@ -1,22 +1,27 @@
 ﻿@page
-@using StellarUI.TagHelpers
+@using StellarUI.Icons
+@inject IIconManager IconManager
 @model ComponentPlayground.Pages.Demo.Icon
 
 <div class="flex flex-col gap-y-4">
-<h2>Icon</h2>
+    <h2>Icon</h2>
 
-<sui-icon name="align-horizontal-justify-center" />
+    <sui-icon name="huh!?"/>
+    
+    <sui-icon name="ampersand-square"/>
 
-<sui-icon stroke-width="1" name="align-horizontal-justify-center" />
+    <sui-icon name="align-horizontal-justify-center"/>
 
-<sui-icon stroke-width="4" name="align-horizontal-justify-center" />
+    <sui-icon stroke-width="1" name="align-horizontal-justify-center"/>
 
-<sui-icon name="align-horizontal-justify-center" />
+    <sui-icon stroke-width="4" name="align-horizontal-justify-center"/>
 
-<div class="flex flex-wrap gap-x-2 gap-y-2">
-@foreach (var iconName in IconTagHelper.GetAllIconNames())
-{
-    <sui-icon name="@iconName" stroke-width="1" />
-}
-</div>
+    <sui-icon name="align-horizontal-justify-center"/>
+
+    <div class="flex flex-wrap gap-x-2 gap-y-2">
+        @foreach (var iconName in IconManager.GetIconNames())
+        {
+            <sui-icon name="@iconName" stroke-width="1"/>
+        }
+    </div>
 </div>

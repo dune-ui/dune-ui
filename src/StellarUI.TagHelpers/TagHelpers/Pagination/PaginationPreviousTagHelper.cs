@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
 [HtmlTargetElement("sui-pagination-previous")]
 public class PaginationPreviousLinkTagHelper(
     IHtmlGenerator htmlGenerator,
-    ICssClassMerger classMerger
+    ICssClassMerger classMerger,
+    IIconManager iconManager
 ) : PaginationLinkTagHelper(htmlGenerator, classMerger)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -28,7 +30,7 @@ public class PaginationPreviousLinkTagHelper(
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper { Name = "chevron-left" };
+            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-left" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 
