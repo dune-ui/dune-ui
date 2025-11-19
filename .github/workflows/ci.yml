@@ -39,32 +39,27 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
-#    - name: Test
-#      run: dotnet test --no-build --configuration Release --verbosity normal
-  
-  publish-nuget:
-    name: Publish NuGet package
-    needs: build-and-test
-    if: github.event_name == 'release' && github.event.action == 'published'
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v4
+    - name: Pack NuGet package
+      if: github.event_name == 'release' && github.event.action == 'published'
+      run: |
+        dotnet pack --configuration Release --no-build -o ./artifacts \
+          -p:Version=${{ github.event.release.tag_name }} \
+          -p:PackageVersion=${{ github.event.release.tag_name }} \
+          -p:IncludeSymbols=true \
+          -p:SymbolPackageFormat=snupkg
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+    - name: Push to NuGet.org
+      if: github.event_name == 'release' && github.event.action == 'published'
+      run: |
+        dotnet nuget push ./artifacts/*.nupkg \
+          --source https://api.nuget.org/v3/index.json \
+          --api-key ${{ secrets.NUGET_API_KEY }} \
+          --skip-duplicate
 
-      - name: Pack NuGet package
-        run: |
-          dotnet pack --configuration Release --no-build -o ./artifacts \
-            -p:Version=${{ github.event.release.tag_name }} \
-            -p:PackageVersion=${{ github.event.release.tag_name }} \
-            -p:IncludeSymbols=true \
-            -p:SymbolPackageFormat=snupkg
-
-      - name: Push to NuGet.org
-        run: |
-          dotnet nuget push ./artifacts/*.nupkg \
-            --source https://api.nuget.org/v3/index.json \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
-            --skip-duplicate
+    - name: Push symbols to NuGet.org
+      if: github.event_name == 'release' && github.event.action == 'published'
+      run: |
+        dotnet nuget push "./artifacts/*.snupkg" \
+          --source https://api.nuget.org/v3/index.json \
+          --api-key ${{ secrets.NUGET_API_KEY }} \
+          --skip-duplicate
