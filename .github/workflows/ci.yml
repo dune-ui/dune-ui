@@ -11,6 +11,12 @@ on:
   release:
     types: [ "published" ]
     
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  IS_RELEASE: ${{ github.event_name == 'release' && github.event.action == 'published' }}
+  TAG_VERSION: ${{ github.event.release.tag_name }}
+  
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -40,29 +46,29 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Pack NuGet package
-      if: github.event_name == 'release' && github.event.action == 'published'
+      if: env.IS_RELEASE == 'true'
       run: |
         dotnet pack --configuration Release --no-build -o ./artifacts \
-          -p:Version=${{ github.event.release.tag_name }} \
-          -p:PackageVersion=${{ github.event.release.tag_name }} \
+          -p:Version=${{ env.TAG_VERSION }} \
+          -p:PackageVersion=${{ env.TAG_VERSION }} \
           -p:IncludeSymbols=true \
           -p:PackOnlyWhenPackable=true \
           -p:SymbolPackageFormat=snupkg
 
     - name: Upload packages to GitHub Release
-      if: github.event_name == 'release' && github.event.action == 'published'
+      if: env.IS_RELEASE == 'true'
       run: |
         for file in ./artifacts/*.nupkg ./artifacts/*.snupkg; do
           [ -f "$file" ] || continue
           filename=$(basename "$file")
           echo "Uploading $filename to release assets..."
-          gh release upload "${{ github.event.release.tag_name }}" "$file" --clobber
+          gh release upload "${{ env.TAG_VERSION }}" "$file" --clobber
         done
       env:
         GH_TOKEN: ${{ github.token }}
       
     - name: Push to NuGet.org
-      if: github.event_name == 'release' && github.event.action == 'published'
+      if: env.IS_RELEASE == 'true'
       run: |
         dotnet nuget push ./artifacts/*.nupkg \
           --source https://api.nuget.org/v3/index.json \
@@ -70,7 +76,7 @@ jobs:
           --skip-duplicate
 
     - name: Push symbols to NuGet.org
-      if: github.event_name == 'release' && github.event.action == 'published'
+      if: env.IS_RELEASE == 'true'
       run: |
         dotnet nuget push "./artifacts/*.snupkg" \
           --source https://api.nuget.org/v3/index.json \
