@@ -48,6 +48,18 @@ jobs:
           -p:IncludeSymbols=true \
           -p:SymbolPackageFormat=snupkg
 
+    - name: Upload packages to GitHub Release
+      if: github.event_name == 'release' && github.event.action == 'published'
+      run: |
+        for file in ./artifacts/*.nupkg ./artifacts/*.snupkg; do
+          [ -f "$file" ] || continue
+          filename=$(basename "$file")
+          echo "Uploading $filename to release assets..."
+          gh release upload "${{ github.event.release.tag_name }}" "$file" --clobber
+        done
+      env:
+        GH_TOKEN: ${{ github.token }}
+      
     - name: Push to NuGet.org
       if: github.event_name == 'release' && github.event.action == 'published'
       run: |
