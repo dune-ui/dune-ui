@@ -16,7 +16,7 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
         DocsProjectRootFolder + @"\public\demo\tag-helpers";
 
     private static readonly string PagesSourceCodeOutputFolder =
-        DocsProjectRootFolder + @"\content\docs\stellarui\components\_include";
+        DocsProjectRootFolder + @"\content\docs\tag-helpers\components\_include";
 
     private static readonly string DownloadedAssetsOutputFolder =
         DocsProjectRootFolder + @"\public\demo\tag-helpers\assets";
