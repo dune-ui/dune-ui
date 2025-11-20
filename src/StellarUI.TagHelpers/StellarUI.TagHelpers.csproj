@@ -5,7 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <RootNamespace>StellarUI</RootNamespace>
-    <StaticWebAssetFingerprintingEnabled>false</StaticWebAssetFingerprintingEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <NoWarn>1701;1702</NoWarn>
@@ -18,9 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StellarUI.Core\StellarUI.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
   <Target Name="CopyFiles" BeforeTargets="Build">
     <ItemGroup>
