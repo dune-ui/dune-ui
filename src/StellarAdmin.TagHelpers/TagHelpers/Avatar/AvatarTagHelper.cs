@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers.Avatar;
 
-[HtmlTargetElement("sui-avatar")]
+[HtmlTargetElement("sa-avatar")]
 public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("name")]

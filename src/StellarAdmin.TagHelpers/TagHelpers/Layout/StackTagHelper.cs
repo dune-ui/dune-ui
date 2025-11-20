@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-stack")]
+[HtmlTargetElement("sa-stack")]
 public class StackTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("align")]

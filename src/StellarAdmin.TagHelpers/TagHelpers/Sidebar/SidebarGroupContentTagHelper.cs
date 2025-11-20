@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-sidebar-group-content")]
+[HtmlTargetElement("sa-sidebar-group-content")]
 public class SidebarGroupContentTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

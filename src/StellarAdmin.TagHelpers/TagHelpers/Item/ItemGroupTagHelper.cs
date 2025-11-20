@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-item-group")]
+[HtmlTargetElement("sa-item-group")]
 public class ItemGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

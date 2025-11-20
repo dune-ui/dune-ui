@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-card-title")]
+[HtmlTargetElement("sa-card-title")]
 public class CardTitleTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

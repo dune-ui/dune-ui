@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-table-body")]
+[HtmlTargetElement("sa-table-body")]
 public class TableBodyTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

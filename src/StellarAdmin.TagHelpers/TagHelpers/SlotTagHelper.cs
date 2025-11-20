@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-slot", TagStructure = TagStructure.NormalOrSelfClosing)]
+[HtmlTargetElement("sa-slot", TagStructure = TagStructure.NormalOrSelfClosing)]
 public class SlotTagHelper : StellarTagHelper
 {
     [HtmlAttributeName("name")]

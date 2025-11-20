@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-breadcrumb")]
+[HtmlTargetElement("sa-breadcrumb")]
 public class BreadcrumbTagHelper : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

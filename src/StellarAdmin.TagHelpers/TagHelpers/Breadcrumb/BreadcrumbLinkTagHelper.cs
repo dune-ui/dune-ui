@@ -4,7 +4,7 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-breadcrumb-link")]
+[HtmlTargetElement("sa-breadcrumb-link")]
 public class BreadcrumbLinkTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;

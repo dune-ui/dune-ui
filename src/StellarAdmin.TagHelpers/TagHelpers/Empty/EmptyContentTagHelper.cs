@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-empty-content")]
+[HtmlTargetElement("sa-empty-content")]
 public class EmptyContentTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

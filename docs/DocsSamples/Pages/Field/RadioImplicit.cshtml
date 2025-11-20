@@ -3,16 +3,16 @@
 
 <div class="w-full max-w-md">
     <!-- code begin -->
-    <sui-field-set>
-        <sui-field-legend variant="Label">Subscription Plan</sui-field-legend>
-        <sui-field-description>
+    <sa-field-set>
+        <sa-field-legend variant="Label">Subscription Plan</sa-field-legend>
+        <sa-field-description>
             Yearly and lifetime plans offer significant savings.
-        </sui-field-description>
-        <sui-field-group data-slot="radio-group">
-            <sui-input asp-for="Model.SubscriptionType" label="Monthly ($9.99/month)" type="radio" value="monthly"/>
-            <sui-input asp-for="Model.SubscriptionType" label="Yearly ($99.99/year)" type="radio" value="yearly"/>
-            <sui-input asp-for="Model.SubscriptionType" label="Lifetime ($299.99)" type="radio" value="lifetime"/>
-        </sui-field-group>
-    </sui-field-set>
+        </sa-field-description>
+        <sa-field-group data-slot="radio-group">
+            <sa-input asp-for="Model.SubscriptionType" label="Monthly ($9.99/month)" type="radio" value="monthly"/>
+            <sa-input asp-for="Model.SubscriptionType" label="Yearly ($99.99/year)" type="radio" value="yearly"/>
+            <sa-input asp-for="Model.SubscriptionType" label="Lifetime ($299.99)" type="radio" value="lifetime"/>
+        </sa-field-group>
+    </sa-field-set>
     <!-- code end -->
 </div>

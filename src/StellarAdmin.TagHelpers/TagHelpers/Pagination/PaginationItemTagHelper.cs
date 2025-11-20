@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-pagination-item")]
+[HtmlTargetElement("sa-pagination-item")]
 public class PaginationItemTagHelper : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

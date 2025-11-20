@@ -3,69 +3,69 @@
 
 <div class="flex flex-col gap-y-4 p-12">
   <p>Field</p>
-  <sui-field>
-    <sui-field-label>
+  <sa-field>
+    <sa-field-label>
       First Name
-    </sui-field-label>
-    <sui-input/>
-    <sui-field-error>This is a super-dooper error</sui-field-error>
-    <sui-field-description>
+    </sa-field-label>
+    <sa-input/>
+    <sa-field-error>This is a super-dooper error</sa-field-error>
+    <sa-field-description>
       First name as displayed on card
-    </sui-field-description>
-  </sui-field>
-  <sui-separator />
+    </sa-field-description>
+  </sa-field>
+  <sa-separator />
   <p>Field using shorthand</p>
-  <sui-input label="First Name" description="First name as displayed on card" error="This is a super-dooper error"/>
-  <sui-separator />
+  <sa-input label="First Name" description="First name as displayed on card" error="This is a super-dooper error"/>
+  <sa-separator />
   <p>Explicit field bound to model</p>
-  <sui-field>
-    <sui-field-label asp-for="Model.FirstName"/>
-    <sui-input asp-for="Model.FirstName"/>
-    <sui-field-error asp-for="Model.FirstName"/>
-    <sui-field-description asp-for="Model.FirstName"/>
-  </sui-field>
-  <sui-separator />
+  <sa-field>
+    <sa-field-label asp-for="Model.FirstName"/>
+    <sa-input asp-for="Model.FirstName"/>
+    <sa-field-error asp-for="Model.FirstName"/>
+    <sa-field-description asp-for="Model.FirstName"/>
+  </sa-field>
+  <sa-separator />
   <p>Implicit field bound to model</p>
-  <sui-input asp-for="Model.FirstName"/>
-  <sui-separator />
+  <sa-input asp-for="Model.FirstName"/>
+  <sa-separator />
   <p>Card</p>
-  <sui-card class="w-full max-w-md">
-    <sui-card-content>
+  <sa-card class="w-full max-w-md">
+    <sa-card-content>
       <form>
-        <sui-field-group>
-          <sui-field-set>
-            <sui-field-legend>Payment Method</sui-field-legend>
-            <sui-field-description>
+        <sa-field-group>
+          <sa-field-set>
+            <sa-field-legend>Payment Method</sa-field-legend>
+            <sa-field-description>
               All transactions are secure and encrypted
-            </sui-field-description>
-            <sui-field-group>
-              <sui-field>
-                <sui-field-label for="checkout-7j9-card-name-43j">
+            </sa-field-description>
+            <sa-field-group>
+              <sa-field>
+                <sa-field-label for="checkout-7j9-card-name-43j">
                   Name on Card
-                </sui-field-label>
-                <sui-input
+                </sa-field-label>
+                <sa-input
                   id="checkout-7j9-card-name-43j"
                   placeholder="Evil Rabbit"
                   required/>
-              </sui-field>
-              <sui-field>
-                <sui-field-label for="checkout-7j9-card-number-uw1">
+              </sa-field>
+              <sa-field>
+                <sa-field-label for="checkout-7j9-card-number-uw1">
                   Card Number
-                </sui-field-label>
-                <sui-input
+                </sa-field-label>
+                <sa-input
                   id="checkout-7j9-card-number-uw1"
                   placeholder="1234 5678 9012 3456"
                   required/>
-                <sui-field-description>
+                <sa-field-description>
                   Enter your 16-digit card number
-                </sui-field-description>
-              </sui-field>
+                </sa-field-description>
+              </sa-field>
               <div class="grid grid-cols-3 gap-4">
-                <sui-field>
-                  <sui-field-label for="checkout-exp-month-ts6">
+                <sa-field>
+                  <sa-field-label for="checkout-exp-month-ts6">
                     Month
-                  </sui-field-label>
-                  <sui-select>
+                  </sa-field-label>
+                  <sa-select>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -78,115 +78,115 @@
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
-                  </sui-select>
-                </sui-field>
-                <sui-field>
-                  <sui-field-label for="checkout-7j9-exp-year-f59">
+                  </sa-select>
+                </sa-field>
+                <sa-field>
+                  <sa-field-label for="checkout-7j9-exp-year-f59">
                     Year
-                  </sui-field-label>
-                  <sui-select defaultValue="">
+                  </sa-field-label>
+                  <sa-select defaultValue="">
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
                     <option value="2026">2026</option>
                     <option value="2027">2027</option>
                     <option value="2028">2028</option>
                     <option value="2029">2029</option>
-                  </sui-select>
-                </sui-field>
-                <sui-field>
-                  <sui-field-label for="checkout-7j9-cvv">CVV</sui-field-label>
-                  <sui-input id="checkout-7j9-cvv" placeholder="123" required/>
-                </sui-field>
+                  </sa-select>
+                </sa-field>
+                <sa-field>
+                  <sa-field-label for="checkout-7j9-cvv">CVV</sa-field-label>
+                  <sa-input id="checkout-7j9-cvv" placeholder="123" required/>
+                </sa-field>
               </div>
-            </sui-field-group>
-          </sui-field-set>
-          <sui-field-separator/>
-          <sui-field-set>
-            <sui-field-legend>Billing Address</sui-field-legend>
-            <sui-field-description>
+            </sa-field-group>
+          </sa-field-set>
+          <sa-field-separator/>
+          <sa-field-set>
+            <sa-field-legend>Billing Address</sa-field-legend>
+            <sa-field-description>
               The billing address associated with your payment method
-            </sui-field-description>
-            <sui-field-group>
-              <sui-field orientation="Horizontal">
-                <sui-input
+            </sa-field-description>
+            <sa-field-group>
+              <sa-field orientation="Horizontal">
+                <sa-input
                   type="checkbox"
                   id="checkout-7j9-same-as-shipping-wgm"/>
-                <sui-field-label
+                <sa-field-label
                   htmlFor="checkout-7j9-same-as-shipping-wgm"
                   class="font-normal">
                   Same as shipping address
-                </sui-field-label>
-              </sui-field>
-            </sui-field-group>
-          </sui-field-set>
-          <sui-field-set>
-            <sui-field-group>
-              <sui-field>
-                <sui-field-label for="checkout-7j9-optional-comments">
+                </sa-field-label>
+              </sa-field>
+            </sa-field-group>
+          </sa-field-set>
+          <sa-field-set>
+            <sa-field-group>
+              <sa-field>
+                <sa-field-label for="checkout-7j9-optional-comments">
                   Comments
-                </sui-field-label>
-                <sui-textarea
+                </sa-field-label>
+                <sa-textarea
                   id="checkout-7j9-optional-comments"
                   name="checkout-7j9-optional-comments"
                   placeholder="Add any additional comments"
                   class="resize-none">These are some comments...
-                </sui-textarea>
-              </sui-field>
-            </sui-field-group>
-          </sui-field-set>
-          <sui-field orientation="Horizontal">
-            <sui-button type="submit">Submit</sui-button>
-            <sui-button variant="Outline" type="button">
+                </sa-textarea>
+              </sa-field>
+            </sa-field-group>
+          </sa-field-set>
+          <sa-field orientation="Horizontal">
+            <sa-button type="submit">Submit</sa-button>
+            <sa-button variant="Outline" type="button">
               Cancel
-            </sui-button>
-          </sui-field>
-        </sui-field-group>
+            </sa-button>
+          </sa-field>
+        </sa-field-group>
       </form>
-    </sui-card-content>
-  </sui-card>
+    </sa-card-content>
+  </sa-card>
 
-  <sui-card class="w-full max-w-4xl">
-    <sui-card-content>
+  <sa-card class="w-full max-w-4xl">
+    <sa-card-content>
       <form>
-        <sui-field-set>
-          <sui-field-legend>Profile</sui-field-legend>
-          <sui-field-description>Fill in your profile information.</sui-field-description>
-          <sui-field-separator/>
-          <sui-field-group>
-            <sui-field orientation="Responsive">
-              <sui-field-content>
-                <sui-field-label for="name">Name</sui-field-label>
-                <sui-field-description>
+        <sa-field-set>
+          <sa-field-legend>Profile</sa-field-legend>
+          <sa-field-description>Fill in your profile information.</sa-field-description>
+          <sa-field-separator/>
+          <sa-field-group>
+            <sa-field orientation="Responsive">
+              <sa-field-content>
+                <sa-field-label for="name">Name</sa-field-label>
+                <sa-field-description>
                   Provide your full name for identification
-                </sui-field-description>
-              </sui-field-content>
-              <sui-input id="name" placeholder="Evil Rabbit" required/>
-            </sui-field>
-            <sui-field-separator/>
-            <sui-field orientation="Responsive">
-              <sui-field-content>
-                <sui-field-label form="lastName">Message</sui-field-label>
-                <sui-field-description>
+                </sa-field-description>
+              </sa-field-content>
+              <sa-input id="name" placeholder="Evil Rabbit" required/>
+            </sa-field>
+            <sa-field-separator/>
+            <sa-field orientation="Responsive">
+              <sa-field-content>
+                <sa-field-label form="lastName">Message</sa-field-label>
+                <sa-field-description>
                   You can write your message here. Keep it short, preferably
                   under 100 characters.
-                </sui-field-description>
-              </sui-field-content>
-              <sui-textarea
+                </sa-field-description>
+              </sa-field-content>
+              <sa-textarea
                 id="message"
                 placeholder="Hello, world!"
                 required
-                class="min-h-[100px] resize-none sm:min-w-[300px]"></sui-textarea>
-            </sui-field>
-            <sui-field-separator/>
-            <sui-field orientation="Responsive">
-              <sui-button type="submit">Submit</sui-button>
-              <sui-button type="button" variant="Outline">
+                class="min-h-[100px] resize-none sm:min-w-[300px]"></sa-textarea>
+            </sa-field>
+            <sa-field-separator/>
+            <sa-field orientation="Responsive">
+              <sa-button type="submit">Submit</sa-button>
+              <sa-button type="button" variant="Outline">
                 Cancel
-              </sui-button>
-            </sui-field>
-          </sui-field-group>
-        </sui-field-set>
+              </sa-button>
+            </sa-field>
+          </sa-field-group>
+        </sa-field-set>
       </form>
-    </sui-card-content>
-  </sui-card>
+    </sa-card-content>
+  </sa-card>
 </div>

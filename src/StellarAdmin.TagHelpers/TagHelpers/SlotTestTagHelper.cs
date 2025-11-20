@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-slot-test", TagStructure = TagStructure.NormalOrSelfClosing)]
+[HtmlTargetElement("sa-slot-test", TagStructure = TagStructure.NormalOrSelfClosing)]
 [OutputElementHint("div")]
 public class SlotTestTagHelper : StellarTagHelper
 {

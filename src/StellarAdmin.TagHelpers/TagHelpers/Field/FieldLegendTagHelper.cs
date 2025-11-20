@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-field-legend")]
+[HtmlTargetElement("sa-field-legend")]
 public class FieldLegendTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("variant")]

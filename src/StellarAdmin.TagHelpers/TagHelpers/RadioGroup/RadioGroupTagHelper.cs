@@ -1,7 +1,7 @@
 ﻿namespace StellarUI.TagHelpers;
 
 /*
-[HtmlTargetElement("sui-radio-group")]
+[HtmlTargetElement("sa-radio-group")]
 public class RadioGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

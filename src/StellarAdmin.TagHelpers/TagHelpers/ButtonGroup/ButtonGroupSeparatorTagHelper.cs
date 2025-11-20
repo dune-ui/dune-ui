@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-button-group-separator")]
+[HtmlTargetElement("sa-button-group-separator")]
 public class ButtonGroupSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("orientation")]

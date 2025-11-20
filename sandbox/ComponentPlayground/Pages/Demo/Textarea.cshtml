@@ -4,25 +4,25 @@
 <div class="flex flex-col gap-y-4 p-12">
     <p>A simple text area</p>
     <div>
-        <sui-textarea>This is a text area</sui-textarea>
+        <sa-textarea>This is a text area</sa-textarea>
     </div>
     <p>A text area with an assigned id and name</p>
     <div>
-        <sui-textarea id="area1-id" name="area1-name">This is a text area</sui-textarea>
+        <sa-textarea id="area1-id" name="area1-name">This is a text area</sa-textarea>
     </div>
     <p>A text area with rows and cols and explicit field properties</p>
     <div>
-        <sui-textarea label="Rows and cols" description="This one has rows and cols" error="This is an error" rows="10"
+        <sa-textarea label="Rows and cols" description="This one has rows and cols" error="This is an error" rows="10"
                       cols="50" class="input-validation-error">This is a text area
-        </sui-textarea>
+        </sa-textarea>
     </div>
     <p>A text area bound to a model</p>
     <div>
-        <sui-textarea asp-for="Model.Comments" rows="10" cols="50"></sui-textarea>
+        <sa-textarea asp-for="Model.Comments" rows="10" cols="50"></sa-textarea>
     </div>
     <p>A text area bound to a model and overriding name, label, etc</p>
     <div>
-        <sui-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" description="Custom description"
-                      rows="10" cols="50"></sui-textarea>
+        <sa-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" description="Custom description"
+                      rows="10" cols="50"></sa-textarea>
     </div>
 </div>

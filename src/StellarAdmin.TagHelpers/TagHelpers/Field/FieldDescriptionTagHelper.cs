@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-field-description")]
+[HtmlTargetElement("sa-field-description")]
 public class FieldDescriptionTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     private const string ForAttributeName = "asp-for";

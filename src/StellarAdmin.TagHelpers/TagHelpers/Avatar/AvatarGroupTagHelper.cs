@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers.Avatar;
 
-[HtmlTargetElement("sui-avatar-group")]
+[HtmlTargetElement("sa-avatar-group")]
 public class AvatarGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

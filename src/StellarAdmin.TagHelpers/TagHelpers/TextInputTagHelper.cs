@@ -1,7 +1,7 @@
 ﻿namespace StellarUI.TagHelpers;
 
 /*
-[HtmlTargetElement("sui-text-input")]
+[HtmlTargetElement("sa-text-input")]
 public class TextInputTagHelper(IHtmlGenerator generator) : StellarTagHelper
 {
     private const string ForAttributeName = "asp-for";

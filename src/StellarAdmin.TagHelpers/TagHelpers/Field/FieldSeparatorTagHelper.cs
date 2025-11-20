@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-field-separator")]
+[HtmlTargetElement("sa-field-separator")]
 public class FieldSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

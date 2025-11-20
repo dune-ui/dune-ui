@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-field-error")]
+[HtmlTargetElement("sa-field-error")]
 public class FieldErrorTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : StellarTagHelper
 {

@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-button-group")]
+[HtmlTargetElement("sa-button-group")]
 public class ButtonGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     private static readonly Dictionary<ButtonGroupOrientation, string> OrientationClasses = new()

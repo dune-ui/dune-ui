@@ -3,7 +3,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-breadcrumb-separator")]
+[HtmlTargetElement("sa-breadcrumb-separator")]
 public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
     : StellarTagHelper
 {

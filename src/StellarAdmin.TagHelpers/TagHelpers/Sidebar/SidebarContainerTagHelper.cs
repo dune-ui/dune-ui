@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-sidebar-wrapper")]
+[HtmlTargetElement("sa-sidebar-wrapper")]
 public class SidebarContainerTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     private const string SidebarWidth = "16rem";

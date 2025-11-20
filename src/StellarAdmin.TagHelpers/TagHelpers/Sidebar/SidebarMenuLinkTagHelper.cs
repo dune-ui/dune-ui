@@ -4,7 +4,7 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-sidebar-menu-link")]
+[HtmlTargetElement("sa-sidebar-menu-link")]
 public class SidebarMenuLinkTagHelper : StellarAnchorTagHelperBase
 {
     private static readonly Dictionary<SidebarMenuLinkSize, string> SizeClasses = new()

@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-group")]
+[HtmlTargetElement("sa-group")]
 public class GroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("align")]

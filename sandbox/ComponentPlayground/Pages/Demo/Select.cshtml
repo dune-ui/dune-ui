@@ -1,11 +1,11 @@
 ﻿@page
 @model ComponentPlayground.Pages.Demo.Select
 
-<sui-container class="py-6 lg:py-8">
+<sa-container class="py-6 lg:py-8">
     <div class="grid grid-cols-2 gap-4">
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Basic select</h2>
         <div>
-            <sui-select>
+            <sa-select>
                 <option value="ALL">All</option>
                 <option value="ELECT">Electronics</option>
                 <option value="CLOTH">Clothing</option>
@@ -17,7 +17,7 @@
                 <option value="AUTOS">Automotive</option>
                 <option value="JEWEL">Jewelry</option>
                 <option value="HEALT">Health & Wellness</option>
-            </sui-select>
+            </sa-select>
         </div>
         <div>
             <select class="form-select">
@@ -36,7 +36,7 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Data bound value</h2>
         <div>
-            <sui-select asp-for="Model.SelectedCategory">
+            <sa-select asp-for="Model.SelectedCategory">
                 <option value="ALL">All</option>
                 <option value="ELECT">Electronics</option>
                 <option value="CLOTH">Clothing</option>
@@ -48,7 +48,7 @@
                 <option value="AUTOS">Automotive</option>
                 <option value="JEWEL">Jewelry</option>
                 <option value="HEALT">Health & Wellness</option>
-            </sui-select>
+            </sa-select>
         </div>
         <div>
             <select asp-for="Model.SelectedCategory" class="form-select">
@@ -67,9 +67,9 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Data bound items and an additional explicit option</h2>
         <div>
-            <sui-select asp-items="Model.Model.Categories">
+            <sa-select asp-items="Model.Model.Categories">
                 <option value="">-- Select a value --</option>
-            </sui-select>
+            </sa-select>
         </div>
         <div>
             <select asp-items="Model.Model.Categories" class="form-select">
@@ -78,9 +78,9 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Data bound value and items</h2>
         <div>
-            <sui-select asp-for="Model.SelectedCategory" asp-items="Model.Model.Categories">
+            <sa-select asp-for="Model.SelectedCategory" asp-items="Model.Model.Categories">
                 <option value="">-- Select a value --</option>
-            </sui-select>
+            </sa-select>
         </div>
         <div>
             <select asp-for="Model.SelectedCategory" asp-items="Model.Model.Categories" class="form-select">
@@ -89,8 +89,8 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Data bound enum</h2>
         <div>
-            <sui-select asp-for="Model.SelectedEnumCategory" asp-items="@Html.GetEnumSelectList<ProductCategory>()" >
-            </sui-select>
+            <sa-select asp-for="Model.SelectedEnumCategory" asp-items="@Html.GetEnumSelectList<ProductCategory>()" >
+            </sa-select>
         </div>
         <div>
             <select asp-for="Model.SelectedEnumCategory" asp-items="@Html.GetEnumSelectList<ProductCategory>()" class="form-select">
@@ -98,12 +98,12 @@
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Binding to an array</h2>
         <div>
-            <sui-select asp-for="Model.SelectedCategories" asp-items="Model.Model.Categories" >
-            </sui-select>
+            <sa-select asp-for="Model.SelectedCategories" asp-items="Model.Model.Categories" >
+            </sa-select>
         </div>
         <div>
             <select asp-for="Model.SelectedCategories" asp-items="Model.Model.Categories" class="form-select">
             </select>
         </div>
     </div>
-</sui-container>
+</sa-container>

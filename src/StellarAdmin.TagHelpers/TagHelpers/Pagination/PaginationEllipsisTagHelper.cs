@@ -4,7 +4,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-pagination-ellipsis")]
+[HtmlTargetElement("sa-pagination-ellipsis")]
 public class PaginationEllipsisTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
     : StellarTagHelper
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-field")]
+[HtmlTargetElement("sa-field")]
 public class FieldTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("orientation")]

@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-empty-media")]
+[HtmlTargetElement("sa-empty-media")]
 public class EmptyMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     private static readonly Dictionary<EmptyMediaVariant, string> VariantClasses = new Dictionary<

@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-skeleton")]
+[HtmlTargetElement("sa-skeleton")]
 public class SkeletonTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

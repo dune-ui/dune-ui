@@ -1,57 +1,57 @@
 ﻿@page
 @model DocsSamples.Pages.Pagination.Url
 
-<sui-pagination>
-    <sui-pagination-content>
-        <sui-pagination-item>
-            <sui-pagination-previous
+<sa-pagination>
+    <sa-pagination-content>
+        <sa-pagination-item>
+            <sa-pagination-previous
                 asp-controller="Booking"
                 asp-action="List"
                 asp-route-page="1"/>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-link asp-controller="Booking"
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-link asp-controller="Booking"
                                  asp-action="List"
                                  asp-route-page="1">
                 1
-            </sui-pagination-link>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-link asp-controller="Booking"
+            </sa-pagination-link>
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-link asp-controller="Booking"
                                  asp-action="List"
                                  asp-route-page="2"
                                  is-active="true">
                 2
-            </sui-pagination-link>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-link asp-controller="Booking"
+            </sa-pagination-link>
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-link asp-controller="Booking"
                                  asp-action="List"
                                  asp-route-page="3">
                 3
-            </sui-pagination-link>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-ellipsis/>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-link asp-controller="Booking"
+            </sa-pagination-link>
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-ellipsis/>
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-link asp-controller="Booking"
                                  asp-action="List"
                                  asp-route-page="10">
                 10
-            </sui-pagination-link>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-link asp-controller="Booking"
+            </sa-pagination-link>
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-link asp-controller="Booking"
                                  asp-action="List"
                                  asp-route-page="11">
                 11
-            </sui-pagination-link>
-        </sui-pagination-item>
-        <sui-pagination-item>
-            <sui-pagination-next asp-controller="Booking"
+            </sa-pagination-link>
+        </sa-pagination-item>
+        <sa-pagination-item>
+            <sa-pagination-next asp-controller="Booking"
                                  asp-action="List"
                                  asp-route-page="3"/>
-        </sui-pagination-item>
-    </sui-pagination-content>
-</sui-pagination>
+        </sa-pagination-item>
+    </sa-pagination-content>
+</sa-pagination>

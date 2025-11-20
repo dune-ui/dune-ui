@@ -5,7 +5,7 @@ using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelp
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-input", TagStructure = TagStructure.WithoutEndTag)]
+[HtmlTargetElement("sa-input", TagStructure = TagStructure.WithoutEndTag)]
 public class InputTagHelper : FieldInputBaseTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;

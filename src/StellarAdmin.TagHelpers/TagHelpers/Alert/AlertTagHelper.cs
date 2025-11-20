@@ -3,7 +3,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-alert")]
+[HtmlTargetElement("sa-alert")]
 public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
     : StellarTagHelper
 {
@@ -59,7 +59,7 @@ public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManage
             if (!childContent.IsEmptyOrWhiteSpace)
             {
                 throw new Exception(
-                    $"Cannot add child content to <sui-alert> when specifying '{TitleAttributeName}', '{DescriptionAttributeName}', or '{IconAttributeName}' attribute."
+                    $"Cannot add child content to <sa-alert> when specifying '{TitleAttributeName}', '{DescriptionAttributeName}', or '{IconAttributeName}' attribute."
                 );
             }
 

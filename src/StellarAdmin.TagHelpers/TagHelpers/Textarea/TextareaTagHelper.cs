@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-textarea")]
+[HtmlTargetElement("sa-textarea")]
 public class TextareaTagHelper : FieldInputBaseTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;

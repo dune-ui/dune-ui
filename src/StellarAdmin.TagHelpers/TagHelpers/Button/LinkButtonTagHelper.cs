@@ -4,7 +4,7 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-linkbutton")]
+[HtmlTargetElement("sa-linkbutton")]
 public class LinkButtonTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;

@@ -1,7 +1,7 @@
 ﻿namespace StellarUI.TagHelpers;
 
 /*
-[HtmlTargetElement("sui-label")]
+[HtmlTargetElement("sa-label")]
 public class LabelTagHelper(IHtmlGenerator generator) : StellarTagHelper
 {
     private const string ForAttributeName = "asp-for";

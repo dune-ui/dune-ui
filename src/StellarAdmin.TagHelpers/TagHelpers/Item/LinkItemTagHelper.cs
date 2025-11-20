@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-link-item")]
+[HtmlTargetElement("sa-link-item")]
 public class LinkItemTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;

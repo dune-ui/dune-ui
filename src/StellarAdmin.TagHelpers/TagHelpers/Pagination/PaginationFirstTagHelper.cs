@@ -5,7 +5,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-pagination-first")]
+[HtmlTargetElement("sa-pagination-first")]
 public class PaginationFirstTagHelper(
     IHtmlGenerator htmlGenerator,
     ICssClassMerger classMerger,

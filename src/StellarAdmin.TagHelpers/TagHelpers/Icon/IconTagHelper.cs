@@ -5,7 +5,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-icon", TagStructure = TagStructure.WithoutEndTag)]
+[HtmlTargetElement("sa-icon", TagStructure = TagStructure.WithoutEndTag)]
 [OutputElementHint("svg")]
 public class IconTagHelper : TagHelper
 {

@@ -1,25 +1,25 @@
 ﻿@page
 @model CustomCss
 
-<sui-stack>
+<sa-stack>
     <!-- code begin -->
     <!-- Using shorthand syntax -->
-    <sui-alert
+    <sa-alert
         class="border-emerald-400 bg-emerald-50 text-emerald-800 [&>svg]:text-emerald-600"
         icon="circle-check"
         title="Passport Verified"
         description="Your passport photo and details have been successfully verified. You are all set for your international journey."/>
 
     <!-- Using composition syntax -->
-    <sui-alert class="border-orange-500 text-orange-700 bg-transparent [&>svg]:text-orange-500">
-        <sui-icon name="triangle-alert"/>
-        <sui-alert-title class="font-bold">Baggage Size Restriction</sui-alert-title>
-        <sui-alert-description class="text-orange-600">
+    <sa-alert class="border-orange-500 text-orange-700 bg-transparent [&>svg]:text-orange-500">
+        <sa-icon name="triangle-alert"/>
+        <sa-alert-title class="font-bold">Baggage Size Restriction</sa-alert-title>
+        <sa-alert-description class="text-orange-600">
             <p>Checked baggage dimensions for this carrier are stricter than average. Please
                 <a href="#" class="underline underline-offset-2">review the maximum size</a> before heading to the
                 airport.
             </p>
-        </sui-alert-description>
-    </sui-alert>
+        </sa-alert-description>
+    </sa-alert>
     <!-- code end -->
-</sui-stack>
+</sa-stack>

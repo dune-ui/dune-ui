@@ -1,7 +1,7 @@
 ﻿namespace StellarUI.TagHelpers;
 
 /*
-[HtmlTargetElement("sui-checkbox-group")]
+[HtmlTargetElement("sa-checkbox-group")]
 public class CheckboxGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

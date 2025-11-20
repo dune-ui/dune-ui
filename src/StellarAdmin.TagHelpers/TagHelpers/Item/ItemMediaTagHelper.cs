@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-item-media")]
+[HtmlTargetElement("sa-item-media")]
 public class ItemMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     private const string BaseClasses =

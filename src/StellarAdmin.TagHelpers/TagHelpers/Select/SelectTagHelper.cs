@@ -5,7 +5,7 @@ using FrameworkSelectTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHe
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-select")]
+[HtmlTargetElement("sa-select")]
 public class SelectTagHelper : FieldInputBaseTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;

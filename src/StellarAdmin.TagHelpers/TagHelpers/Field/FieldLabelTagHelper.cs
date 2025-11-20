@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-field-label")]
+[HtmlTargetElement("sa-field-label")]
 public class FieldLabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     : StellarTagHelper
 {

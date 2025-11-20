@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-badge")]
+[HtmlTargetElement("sa-badge")]
 public class BadgeTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     private static readonly Dictionary<BadgeVariant, string> BadgeVariantClasses = new()

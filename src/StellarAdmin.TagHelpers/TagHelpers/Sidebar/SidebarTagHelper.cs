@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-sidebar")]
+[HtmlTargetElement("sa-sidebar")]
 public class SidebarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("variant")]

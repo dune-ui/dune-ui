@@ -5,7 +5,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-pagination-previous")]
+[HtmlTargetElement("sa-pagination-previous")]
 public class PaginationPreviousLinkTagHelper(
     IHtmlGenerator htmlGenerator,
     ICssClassMerger classMerger,

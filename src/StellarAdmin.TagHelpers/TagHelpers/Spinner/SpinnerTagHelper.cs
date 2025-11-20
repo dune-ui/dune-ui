@@ -3,7 +3,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-spinner")]
+[HtmlTargetElement("sa-spinner")]
 public class SpinnerTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
     : StellarTagHelper
 {

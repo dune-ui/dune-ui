@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-progress")]
+[HtmlTargetElement("sa-progress")]
 public class ProgressTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("maximum")]

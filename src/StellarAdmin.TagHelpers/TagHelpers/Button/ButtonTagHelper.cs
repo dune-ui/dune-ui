@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-button")]
+[HtmlTargetElement("sa-button")]
 public class ButtonTagHelper : StellarTagHelper
 {
     private readonly ICssClassMerger _classMerger;

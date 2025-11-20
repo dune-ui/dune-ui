@@ -8,43 +8,43 @@
     var years = Enumerable.Range(2024, 2029).Select(i => new SelectListItem(i.ToString(), i.ToString()));
   }
   
-  <sui-field-group>
-    <sui-field-set>
-      <sui-field-legend>Payment Method</sui-field-legend>
-      <sui-field-description>
+  <sa-field-group>
+    <sa-field-set>
+      <sa-field-legend>Payment Method</sa-field-legend>
+      <sa-field-description>
         All transactions are secure and encrypted
-      </sui-field-description>
-      <sui-field-group>
-        <sui-input asp-for="Model.Name"/>
-        <sui-input asp-for="Model.CardNumber"/>
+      </sa-field-description>
+      <sa-field-group>
+        <sa-input asp-for="Model.Name"/>
+        <sa-input asp-for="Model.CardNumber"/>
         <div class="grid grid-cols-3 gap-4">
-          <sui-select asp-for="Model.Month" asp-items="@months" />
-          <sui-select asp-for="Model.Year" asp-items="@years" />
-          <sui-input asp-for="Model.Cvv"/>
+          <sa-select asp-for="Model.Month" asp-items="@months" />
+          <sa-select asp-for="Model.Year" asp-items="@years" />
+          <sa-input asp-for="Model.Cvv"/>
         </div>
-      </sui-field-group>
-    </sui-field-set>
-    <sui-field-separator/>
-    <sui-field-set>
-      <sui-field-legend>Billing Address</sui-field-legend>
-      <sui-field-description>
+      </sa-field-group>
+    </sa-field-set>
+    <sa-field-separator/>
+    <sa-field-set>
+      <sa-field-legend>Billing Address</sa-field-legend>
+      <sa-field-description>
         The billing address associated with your payment method
-      </sui-field-description>
-      <sui-field-group>
-        <sui-input asp-for="Model.IsBillingAddressSame" />
-      </sui-field-group>
-    </sui-field-set>
-    <sui-field-set>
-      <sui-field-group>
-        <sui-textarea asp-for="Model.Comments"/>
-      </sui-field-group>
-    </sui-field-set>
-    <sui-field orientation="Horizontal">
-      <sui-button type="button">Submit</sui-button>
-      <sui-button variant="Outline" type="button">
+      </sa-field-description>
+      <sa-field-group>
+        <sa-input asp-for="Model.IsBillingAddressSame" />
+      </sa-field-group>
+    </sa-field-set>
+    <sa-field-set>
+      <sa-field-group>
+        <sa-textarea asp-for="Model.Comments"/>
+      </sa-field-group>
+    </sa-field-set>
+    <sa-field orientation="Horizontal">
+      <sa-button type="button">Submit</sa-button>
+      <sa-button variant="Outline" type="button">
         Cancel
-      </sui-button>
-    </sui-field>
-  </sui-field-group>
+      </sa-button>
+    </sa-field>
+  </sa-field-group>
   <!-- code end -->
 </div>

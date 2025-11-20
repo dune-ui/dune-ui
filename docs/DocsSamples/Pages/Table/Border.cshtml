@@ -2,38 +2,38 @@
 @model DocsSamples.Pages.Table.Border
 
 <div class="w-full rounded-md border">
-    <sui-table>
-        <sui-table-header>
-            <sui-table-row>
-                <sui-table-head class="w-[100px]">Booking #</sui-table-head>
-                <sui-table-head>Status</sui-table-head>
-                <sui-table-head>Destination</sui-table-head>
-                <sui-table-head class="text-right">Amount</sui-table-head>
-            </sui-table-row>
-        </sui-table-header>
-        <sui-table-body>
+    <sa-table>
+        <sa-table-header>
+            <sa-table-row>
+                <sa-table-head class="w-[100px]">Booking #</sa-table-head>
+                <sa-table-head>Status</sa-table-head>
+                <sa-table-head>Destination</sa-table-head>
+                <sa-table-head class="text-right">Amount</sa-table-head>
+            </sa-table-row>
+        </sa-table-header>
+        <sa-table-body>
             @foreach (var booking in StaticData.Bookings)
             {
-                <sui-table-row>
-                    <sui-table-cell class="font-medium">@booking.Id</sui-table-cell>
-                    <sui-table-cell>
-                        <sui-badge variant="@GetBadgeVariant(booking.Status)">
+                <sa-table-row>
+                    <sa-table-cell class="font-medium">@booking.Id</sa-table-cell>
+                    <sa-table-cell>
+                        <sa-badge variant="@GetBadgeVariant(booking.Status)">
                             @booking.Status.ToString()
-                        </sui-badge>
-                    </sui-table-cell>
-                    <sui-table-cell>@booking.Destination</sui-table-cell>
-                    <sui-table-cell class="text-right">
+                        </sa-badge>
+                    </sa-table-cell>
+                    <sa-table-cell>@booking.Destination</sa-table-cell>
+                    <sa-table-cell class="text-right">
                         @booking.Amount.ToString("N")
-                    </sui-table-cell>
-                </sui-table-row>
+                    </sa-table-cell>
+                </sa-table-row>
             }
-        </sui-table-body>
-        <sui-table-footer>
-            <sui-table-row>
-                <sui-table-cell colspan="3">
+        </sa-table-body>
+        <sa-table-footer>
+            <sa-table-row>
+                <sa-table-cell colspan="3">
                     Total Active Value
-                </sui-table-cell>
-                <sui-table-cell class="text-right">
+                </sa-table-cell>
+                <sa-table-cell class="text-right">
                     @{
                         var activeValue = StaticData.Bookings
                             .Where(b => b.Status != BookingStatus.Cancelled)
@@ -41,10 +41,10 @@
                             .Sum();
                     }
                     @activeValue.ToString("N")
-                </sui-table-cell>
-            </sui-table-row>
-        </sui-table-footer>
-    </sui-table>
+                </sa-table-cell>
+            </sa-table-row>
+        </sa-table-footer>
+    </sa-table>
 </div>
 
 @functions

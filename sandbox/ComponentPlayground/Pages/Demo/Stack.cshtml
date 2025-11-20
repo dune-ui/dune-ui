@@ -1,94 +1,94 @@
 ﻿@page
 @model ComponentPlayground.Pages.Demo.Stack
 
-<sui-container class="py-6 lg:py-8">
-    <sui-stack>
+<sa-container class="py-6 lg:py-8">
+    <sa-stack>
         <h2 class="text-lg">Gap sizes</h2>
         <p>Extra small</p>
-        <sui-stack gap="ExtraSmall" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack gap="ExtraSmall" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Small</p>
-        <sui-stack gap="Small" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack gap="Small" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Default</p>
-        <sui-stack class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Large</p>
-        <sui-stack gap="Large" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack gap="Large" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Extra large</p>
-        <sui-stack gap="ExtraLarge" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack gap="ExtraLarge" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <h2 class="text-lg">Align</h2>
         <p>Stretch</p>
-        <sui-stack align="Stretch" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack align="Stretch" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Start</p>
-        <sui-stack align="Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack align="Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>End</p>
-        <sui-stack align="End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack align="End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Center</p>
-        <sui-stack align="Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <sa-stack align="Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sui-stack>
+        </sa-stack>
         <h2 class="text-lg">Justify</h2>
         <p>Center</p>
-        <sui-stack justify="Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <sa-stack justify="Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Start</p>
-        <sui-stack justify="Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <sa-stack justify="Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>End</p>
-        <sui-stack justify="End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <sa-stack justify="End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Space between</p>
-        <sui-stack justify="SpaceBetween" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <sa-stack justify="SpaceBetween" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
+        </sa-stack>
         <p>Space around</p>
-        <sui-stack justify="SpaceAround" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <sa-stack justify="SpaceAround" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sui-stack>
-    </sui-stack>
-</sui-container>
+        </sa-stack>
+    </sa-stack>
+</sa-container>

@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-separator")]
+[HtmlTargetElement("sa-separator")]
 public class SeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("is-decorative")]

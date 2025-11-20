@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-item")]
+[HtmlTargetElement("sa-item")]
 public class ItemTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     [HtmlAttributeName("size")]

@@ -2,7 +2,7 @@
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-progress-indicator")]
+[HtmlTargetElement("sa-progress-indicator")]
 public class ProgressIndicatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

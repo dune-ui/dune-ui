@@ -1,7 +1,7 @@
 ﻿namespace StellarUI.TagHelpers;
 
 /*
-[HtmlTargetElement("sui-field")]
+[HtmlTargetElement("sa-field")]
 public class FieldTagHelper(ICssClassMerger cssClassMerger) : StellarTagHelper
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

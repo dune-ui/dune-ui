@@ -4,7 +4,7 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-pagination-link")]
+[HtmlTargetElement("sa-pagination-link")]
 public class PaginationLinkTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;

@@ -4,7 +4,7 @@ using StellarUI.Icons;
 
 namespace StellarUI.TagHelpers;
 
-[HtmlTargetElement("sui-breadcrumb-ellipsis")]
+[HtmlTargetElement("sa-breadcrumb-ellipsis")]
 public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
     : StellarTagHelper
 {

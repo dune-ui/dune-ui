@@ -3,28 +3,28 @@
 
 <div class="w-full max-w-md">
     <!-- code begin -->
-    <sui-field-group>
-        <sui-field-set>
-            <sui-field-label>Responses</sui-field-label>
-            <sui-field-description>
+    <sa-field-group>
+        <sa-field-set>
+            <sa-field-label>Responses</sa-field-label>
+            <sa-field-description>
                 Get notified when ChatGPT responds to requests that take time, like
                 research or image generation.
-            </sui-field-description>
-            <sui-field-group data-slot="checkbox-group">
-                <sui-input asp-for="Model.EnableResponsePushNotifications" disabled/>
-            </sui-field-group>
-        </sui-field-set>
-        <sui-field-separator/>
-        <sui-field-set>
-            <sui-field-label>Tasks</sui-field-label>
-            <sui-field-description>
+            </sa-field-description>
+            <sa-field-group data-slot="checkbox-group">
+                <sa-input asp-for="Model.EnableResponsePushNotifications" disabled/>
+            </sa-field-group>
+        </sa-field-set>
+        <sa-field-separator/>
+        <sa-field-set>
+            <sa-field-label>Tasks</sa-field-label>
+            <sa-field-description>
                 Get notified when tasks you&apos;ve created have updates. <a href="#">Manage tasks</a>
-            </sui-field-description>
-            <sui-field-group data-slot="checkbox-group">
-                <sui-input asp-for="Model.EnableTaskPushNotifications"/>
-                <sui-input asp-for="Model.EnableTaskEmailNotifications"/>
-            </sui-field-group>
-        </sui-field-set>
-    </sui-field-group>
+            </sa-field-description>
+            <sa-field-group data-slot="checkbox-group">
+                <sa-input asp-for="Model.EnableTaskPushNotifications"/>
+                <sa-input asp-for="Model.EnableTaskEmailNotifications"/>
+            </sa-field-group>
+        </sa-field-set>
+    </sa-field-group>
     <!-- code end -->
 </div>
