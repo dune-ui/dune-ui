@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\StellarUI.TagHelpers\StellarUI.TagHelpers.csproj" />
+    <ProjectReference Include="..\..\src\StellarAdmin.TagHelpers\StellarAdmin.TagHelpers.csproj" />
   </ItemGroup>
   <Target Name="Tailwind" BeforeTargets="Build">
     <Exec

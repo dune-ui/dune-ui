@@ -16,7 +16,7 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StellarUI.Core\StellarUI.Core.csproj" />
+    <ProjectReference Include="..\StellarAdmin.Core\StellarAdmin.Core.csproj" />
   </ItemGroup>
   <Target Name="CopyFiles" BeforeTargets="Build">
     <ItemGroup>

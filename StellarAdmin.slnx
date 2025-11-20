@@ -4,7 +4,7 @@
     <Project Path="docs\DocsSamples\DocsSamples.csproj" />
   </Folder>
   <Folder Name="/gen/">
-    <Project Path="gen\StellarUI.Generators\StellarUI.Generators.csproj" />
+    <Project Path="gen/StellarAdmin.Generators/StellarAdmin.Generators.csproj" />
   </Folder>
   <Folder Name="/sandbox/">
     <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
@@ -12,6 +12,6 @@
   <Folder Name="/workflows/">
     <File Path=".github/workflows/ci.yml" />
   </Folder>
-  <Project Path="src/StellarUI.Core/StellarUI.Core.csproj" />
-  <Project Path="src/StellarUI.TagHelpers/StellarUI.TagHelpers.csproj" />
+  <Project Path="src/StellarAdmin.Core/StellarAdmin.Core.csproj" />
+  <Project Path="src/StellarAdmin.TagHelpers/StellarAdmin.TagHelpers.csproj" />
 </Solution>
