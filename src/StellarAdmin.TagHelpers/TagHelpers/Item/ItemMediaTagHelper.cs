@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-item-media")]
 public class ItemMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper

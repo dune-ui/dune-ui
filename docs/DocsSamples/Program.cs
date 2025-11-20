@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
-using StellarUI;
+using StellarAdmin;
 
 namespace DocsSamples;
 

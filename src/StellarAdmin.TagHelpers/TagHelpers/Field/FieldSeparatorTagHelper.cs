@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field-separator")]
 public class FieldSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper

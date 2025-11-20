@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using StellarUI.Builders;
-using StellarUI.Icons;
-using StellarUI.Icons.Lucide;
+using StellarAdmin.Builders;
+using StellarAdmin.Icons;
 using TailwindMerge;
 
-namespace StellarUI;
+namespace StellarAdmin;
 
 /// <summary>
 ///     Extensions for registering and configuring the StellarUI services.

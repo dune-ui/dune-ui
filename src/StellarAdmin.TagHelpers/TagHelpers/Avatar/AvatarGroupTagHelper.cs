@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers.Avatar;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-avatar-group")]
 public class AvatarGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper

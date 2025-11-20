@@ -42,7 +42,7 @@ namespace StellarUI.Generators
                         generatedSource.AppendLine("using System.Collections.Frozen;");
                         generatedSource.AppendLine("using System.Collections.Immutable;");
                         generatedSource.AppendLine();
-                        generatedSource.AppendLine("namespace StellarUI.Icons.Lucide;");
+                        generatedSource.AppendLine("namespace StellarAdmin.Icons.Lucide;");
                         generatedSource.AppendLine();
                         generatedSource.AppendLine("internal static partial class LucideIcons");
                         generatedSource.AppendLine("{");

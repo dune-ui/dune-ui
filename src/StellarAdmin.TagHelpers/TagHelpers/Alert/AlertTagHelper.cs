@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-using StellarUI.Icons;
+using StellarAdmin.Icons;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-alert")]
 public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManager)

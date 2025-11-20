@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-using StellarUI.Icons;
+using StellarAdmin.Icons;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-breadcrumb-separator")]
 public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger, IIconManager iconManager)

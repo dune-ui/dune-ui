@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-button-group-text")]
 public class ButtonGroupTextTagHelper(ICssClassMerger classMerger) : StellarTagHelper

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field-error")]
 public class FieldErrorTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)

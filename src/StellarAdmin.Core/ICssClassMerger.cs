@@ -1,4 +1,4 @@
-﻿namespace StellarUI;
+﻿namespace StellarAdmin;
 
 public interface ICssClassMerger
 {

@@ -1,7 +1,7 @@
 ﻿using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 internal static class TagHelperOutputExtensions
 {

@@ -1,4 +1,6 @@
-﻿namespace StellarUI.Icons.Lucide;
+﻿using StellarAdmin.Icons.Lucide;
+
+namespace StellarAdmin.Icons;
 
 public class LucideIconPack : IIconPack
 {

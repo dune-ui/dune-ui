@@ -3,7 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>StellarUI</RootNamespace>
+    <RootNamespace>StellarAdmin</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TailwindMerge.NET" />

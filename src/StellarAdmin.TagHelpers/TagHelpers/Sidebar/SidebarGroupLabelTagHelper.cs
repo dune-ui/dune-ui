@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-sidebar-group-label")]
 public class SidebarGroupLabelTagHelper(ICssClassMerger classMerger) : StellarTagHelper

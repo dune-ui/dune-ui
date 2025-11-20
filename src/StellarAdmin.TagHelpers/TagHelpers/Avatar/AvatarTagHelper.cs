@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers.Avatar;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-avatar")]
 public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper

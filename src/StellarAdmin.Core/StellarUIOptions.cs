@@ -1,3 +1,3 @@
-﻿namespace StellarUI;
+﻿namespace StellarAdmin;
 
 internal class StellarUIOptions { }

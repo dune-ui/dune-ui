@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using StellarUI.Icons;
+using StellarAdmin.Icons;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-breadcrumb-ellipsis")]
 public class BreadcrumbEllipsisTagHelper(ICssClassMerger classMerger, IIconManager iconManager)

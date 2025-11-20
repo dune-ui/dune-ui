@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace StellarUI.Icons;
+﻿namespace StellarAdmin.Icons;
 
 internal sealed class DefaultIconManager : IIconManager
 {

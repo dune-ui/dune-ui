@@ -1,4 +1,4 @@
-﻿namespace StellarUI.Icons;
+﻿namespace StellarAdmin.Icons;
 
 public interface IIconPack
 {

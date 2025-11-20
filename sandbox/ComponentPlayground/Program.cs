@@ -1,6 +1,6 @@
 using System.Collections.Immutable;
-using StellarUI;
-using StellarUI.Icons;
+using StellarAdmin;
+using StellarAdmin.Icons;
 
 var builder = WebApplication.CreateBuilder(args);
 

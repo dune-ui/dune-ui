@@ -1,4 +1,4 @@
-﻿namespace StellarUI.TagHelpers;
+﻿namespace StellarAdmin.TagHelpers;
 
 public enum ItemMediaVariant
 {

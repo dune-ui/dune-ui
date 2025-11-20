@@ -1,6 +1,6 @@
 ﻿using TailwindMerge;
 
-namespace StellarUI;
+namespace StellarAdmin;
 
 internal class DefaultCssClassMerger(TwMerge twMerge) : ICssClassMerger
 {

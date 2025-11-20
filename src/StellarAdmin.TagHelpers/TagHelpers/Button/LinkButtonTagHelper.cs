@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-linkbutton")]
 public class LinkButtonTagHelper : StellarAnchorTagHelperBase

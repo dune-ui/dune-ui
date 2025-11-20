@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination-content")]
 public class PaginationContentTagHelper(ICssClassMerger classMerger) : StellarTagHelper

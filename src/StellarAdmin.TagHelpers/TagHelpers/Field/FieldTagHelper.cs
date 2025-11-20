@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace StellarUI.TagHelpers;
+namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field")]
 public class FieldTagHelper(ICssClassMerger classMerger) : StellarTagHelper

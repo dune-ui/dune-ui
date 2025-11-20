@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
-using StellarUI.Icons;
+using StellarAdmin.Icons;
 
-namespace StellarUI.Builders;
+namespace StellarAdmin.Builders;
 
 /// <summary>
 ///     Provides a shared entry point to configure the StellarUI services.
