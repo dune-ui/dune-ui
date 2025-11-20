@@ -8,7 +8,7 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
     : IClassFixture<WebApplicationFactory<Program>>
 {
     private static readonly string PageSourceCodeFolder =
-        @"C:\development\stellar-admin\stellar-ui\docs\DocsSamples\Pages";
+        @"C:\development\stellar-admin\stellar-admin\docs\DocsSamples\Pages";
 
     private static readonly string DocsProjectRootFolder = @"C:\development\stellar-admin\website";
 
@@ -23,7 +23,7 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
 
     [Theory]
     [InlineData("/css/site.css")]
-    [InlineData("/_content/StellarUI/styles.css")]
+    [InlineData("/_content/StellarAdmin.TagHelpers/stellar-admin.css")]
     public async Task DownloadDemoPageAssets(string url)
     {
         var client = factory.CreateClient();
@@ -233,8 +233,8 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
         return input
             .Replace("href=\"/css/site.css\"", "href=\"/demo/tag-helpers/assets/site.css\"")
             .Replace(
-                "href=\"/_content/StellarUI/styles.css\"",
-                "href=\"/demo/tag-helpers/assets/styles.css\""
+                "href=\"/_content/StellarAdmin.TagHelpers/stellar-admin.css\"",
+                "href=\"/demo/tag-helpers/assets/stellar-admin.css\""
             );
     }
 
