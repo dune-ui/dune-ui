@@ -18,6 +18,9 @@
   <ItemGroup>
     <ProjectReference Include="..\StellarAdmin.Core\StellarAdmin.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
   <Target Name="CopyFiles" BeforeTargets="Build">
     <ItemGroup>
       <ClientDistFiles Include="..\client\dist\*.css" />

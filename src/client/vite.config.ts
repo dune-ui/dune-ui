@@ -18,11 +18,11 @@ export default defineConfig({
     outDir: "dist",
     rollupOptions: {
       input: {
-        main: "./src/stellar-ui.ts",
-        "stellar-ui": "./src/stellar-ui.css",
+        main: "./src/stellar-admin.ts",
+        "stellar-admin": "./src/stellar-admin.css",
       },
       output: {
-        entryFileNames: "stellar-ui.js",
+        entryFileNames: "stellar-admin.js",
         assetFileNames: (assetInfo) => {
           return "[name].[ext]";
         },
