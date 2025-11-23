@@ -42,7 +42,11 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
 
         output.MergeAttributes(tagBuilder);
 
-        output.Attributes.SetAttribute("data-slot", "textarea");
+        if (!output.Attributes.ContainsName("data-slot"))
+        {
+            output.Attributes.SetAttribute("data-slot", "textarea");
+        }
+
         output.Attributes.SetAttribute(
             "class",
             _classMerger.Merge(

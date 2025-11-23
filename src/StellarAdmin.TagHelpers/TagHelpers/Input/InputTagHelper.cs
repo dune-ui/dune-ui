@@ -98,7 +98,10 @@ public class InputTagHelper : FieldInputBaseTagHelper
         output.TagName = "input";
         output.TagMode = TagMode.SelfClosing;
 
-        output.Attributes.SetAttribute("data-slot", "input");
+        if (!output.Attributes.ContainsName("data-slot"))
+        {
+            output.Attributes.SetAttribute("data-slot", "input");
+        }
         output.Attributes.SetAttribute(
             "class",
             _classMerger.Merge(classNames.Union([output.GetUserSuppliedClass()]).ToArray())
