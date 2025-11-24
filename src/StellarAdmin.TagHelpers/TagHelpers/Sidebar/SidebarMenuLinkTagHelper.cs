@@ -76,27 +76,4 @@ public class SidebarMenuLinkTagHelper : StellarAnchorTagHelperBase
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }
-
-    private bool IsActiveRoute()
-    {
-        var isRouteLink = Route != null;
-        var isActionLink = Controller != null || Action != null;
-        var isPageLink = Page != null || PageHandler != null;
-
-        if (isPageLink)
-        {
-            return ViewContext.RouteData.Values["area"]?.ToString() == Area
-                && ViewContext.RouteData.Values["page"]?.ToString() == Page
-                && ViewContext.RouteData.Values["handler"]?.ToString() == PageHandler;
-        }
-
-        if (isActionLink)
-        {
-            return ViewContext.RouteData.Values["area"]?.ToString() == Area
-                && ViewContext.RouteData.Values["controller"]?.ToString() == Controller
-                && ViewContext.RouteData.Values["action"]?.ToString() == Action;
-        }
-
-        return false;
-    }
 }

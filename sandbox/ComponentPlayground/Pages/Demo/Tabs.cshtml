@@ -1,0 +1,58 @@
+﻿@page
+@using StellarAdmin.TagHelpers
+@model ComponentPlayground.Pages.Demo.Tabs
+
+<div class="w-full max-w-md">
+    <sa-container>
+        <sa-stack class="py-6 lg:py-8">
+            <h2>Default</h2>
+            <sa-tab-list>
+                <sa-tab-link asp-page="/Demo/Icon">Icons</sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Tabs">Tabs</sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Textarea">Textarea</sa-tab-link>
+            </sa-tab-list>
+            <h2>Vertical</h2>
+            <sa-tab-list orientation="TabListOrientation.Vertical" class="w-fit">
+                <sa-tab-link asp-page="/Demo/Icon">Icons</sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Tabs">Tabs</sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Textarea">Textarea</sa-tab-link>
+            </sa-tab-list>
+            <h2>With Icons</h2>
+            <sa-tab-list>
+                <sa-tab-link asp-page="/Demo/Icon">
+                    <sa-icon name="image"/>
+                    Icons
+                </sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Tabs">
+                    <sa-icon name="notebook-tabs"/>
+                    Tabs
+                </sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Textarea">
+                    <sa-icon name="text-cursor-input"/>
+                    Textarea
+                </sa-tab-link>
+            </sa-tab-list>
+            <h2>Vertical w/ icons</h2>
+            <sa-tab-list orientation="TabListOrientation.Vertical" class="w-fit">
+                <sa-tab-link asp-page="/Demo/Icon">
+                    <sa-icon name="image"/>
+                    Icons
+                </sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Tabs">
+                    <sa-icon name="notebook-tabs"/>
+                    Tabs
+                </sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Textarea">
+                    <sa-icon name="text-cursor-input"/>
+                    Textarea
+                </sa-tab-link>
+            </sa-tab-list>
+            <h2>Vertical with bigger gap</h2>
+            <sa-tab-list orientation="TabListOrientation.Vertical" class="w-fit gap-1">
+                <sa-tab-link asp-page="/Demo/Icon">Icons</sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Tabs">Tabs</sa-tab-link>
+                <sa-tab-link asp-page="/Demo/Textarea">Textarea</sa-tab-link>
+            </sa-tab-list>
+        </sa-stack>
+    </sa-container>
+</div>

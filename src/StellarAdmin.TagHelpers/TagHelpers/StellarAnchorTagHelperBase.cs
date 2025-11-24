@@ -17,8 +17,6 @@ public class StellarAnchorTagHelperBase : StellarTagHelper
     private const string RouteAttributeName = "asp-route";
     private const string RouteValuesDictionaryName = "asp-all-route-data";
     private const string RouteValuesPrefix = "asp-route-";
-    private const string Href = "href";
-    private IDictionary<string, string?>? _routeValues;
 
     /// <summary>
     ///     The name of the action method.
@@ -103,11 +101,11 @@ public class StellarAnchorTagHelperBase : StellarTagHelper
     {
         get
         {
-            _routeValues ??= new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
+            field ??= new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
 
-            return _routeValues;
+            return field;
         }
-        set => _routeValues = value;
+        set;
     }
 
     /// <summary>
@@ -116,4 +114,27 @@ public class StellarAnchorTagHelperBase : StellarTagHelper
     [HtmlAttributeNotBound]
     [ViewContext]
     public required ViewContext ViewContext { get; set; }
+
+    protected bool IsActiveRoute()
+    {
+        var isRouteLink = Route != null;
+        var isActionLink = Controller != null || Action != null;
+        var isPageLink = Page != null || PageHandler != null;
+
+        if (isPageLink)
+        {
+            return ViewContext.RouteData.Values["area"]?.ToString() == Area
+                && ViewContext.RouteData.Values["page"]?.ToString() == Page
+                && ViewContext.RouteData.Values["handler"]?.ToString() == PageHandler;
+        }
+
+        if (isActionLink)
+        {
+            return ViewContext.RouteData.Values["area"]?.ToString() == Area
+                && ViewContext.RouteData.Values["controller"]?.ToString() == Controller
+                && ViewContext.RouteData.Values["action"]?.ToString() == Action;
+        }
+
+        return false;
+    }
 }
