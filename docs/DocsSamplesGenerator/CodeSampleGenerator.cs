@@ -51,21 +51,43 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
 
         var readSourceLines = await File.ReadAllLinesAsync(sourceFile);
 
+        var stringsToRemove = new List<string>();
         var cleanedLines = new List<string>();
-        var processedDirectives = false;
+        var hasProcessedDirectives = false;
+        var isProcessingStripSection = false;
         var charactersToDelete = 0;
         foreach (var sourceLine in readSourceLines)
         {
             // Read past the directives
             if (
-                !processedDirectives
+                !hasProcessedDirectives
                 && (sourceLine.StartsWith("@") || string.IsNullOrEmpty(sourceLine))
             )
             {
                 continue;
             }
 
-            processedDirectives = true;
+            if (isProcessingStripSection)
+            {
+                if (sourceLine.StartsWith("-->", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    isProcessingStripSection = false;
+                }
+                else
+                {
+                    stringsToRemove.Add(sourceLine);
+                }
+
+                continue;
+            }
+
+            if (sourceLine.StartsWith("<!--strip", StringComparison.CurrentCultureIgnoreCase))
+            {
+                isProcessingStripSection = true;
+                continue;
+            }
+
+            hasProcessedDirectives = true;
 
             if (sourceLine.IndexOf("<!-- code end -->", StringComparison.Ordinal) >= 0)
             {
@@ -89,6 +111,11 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
                         ? sourceLine.Remove(0, charactersToDelete)
                         : string.Empty
                     : sourceLine;
+
+            foreach (var stringToRemove in stringsToRemove)
+            {
+                x = x.Replace(stringToRemove, string.Empty, StringComparison.OrdinalIgnoreCase);
+            }
             cleanedLines.Add(x);
         }
 
@@ -203,6 +230,11 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Stack/Justify",
             "/Table/Border",
             "/Table/Intro",
+            "/Tabs/Active",
+            "/Tabs/Icons",
+            "/Tabs/Intro",
+            "/Tabs/Orientation",
+            "/Tabs/Url",
         ];
     }
 

@@ -10,6 +10,9 @@ public class TabLinkTagHelper : StellarAnchorTagHelperBase
     private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
 
+    [HtmlAttributeName("is-active")]
+    public bool? IsActive { get; set; }
+
     public TabLinkTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
@@ -38,7 +41,10 @@ public class TabLinkTagHelper : StellarAnchorTagHelperBase
         await anchorTagHelper.ProcessAsync(context, output);
 
         output.Attributes.SetAttribute("data-slot", "tabs-trigger");
-        output.Attributes.SetAttribute("data-active", IsActiveRoute() ? "true" : "false");
+        output.Attributes.SetAttribute(
+            "data-active",
+            IsActive ?? IsActiveRoute() ? "true" : "false"
+        );
 
         output.Attributes.SetAttribute(
             "class",

@@ -64,6 +64,11 @@ internal class DemoUrlHelper(IUrlHelper wrappedUrlHelper) : IUrlHelper
             return "#";
         }
 
+        if (actionContext.Controller == "Search")
+        {
+            return "#";
+        }
+
         return wrappedUrlHelper.Action(actionContext);
     }
 
