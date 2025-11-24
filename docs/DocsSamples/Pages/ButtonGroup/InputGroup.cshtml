@@ -1,0 +1,20 @@
+﻿@page
+@model DocsSamples.Pages.ButtonGroup.InputGroup
+
+<sa-button-group class="[--radius:9999rem]">
+    <sa-button-group>
+        <sa-button variant="Outline" size="Icon">
+            <sa-icon name="plus"/>
+        </sa-button>
+    </sa-button-group>
+    <sa-button-group>
+        <sa-input-group>
+            <sa-input-group-input placeholder="Send a message..." />
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-button size="InputGroupButtonSize.IconExtraSmall">
+                    <sa-icon name="audio-lines" />
+                </sa-input-group-button>
+            </sa-input-group-addon>
+        </sa-input-group>
+    </sa-button-group>
+</sa-button-group>

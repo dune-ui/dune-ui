@@ -662,6 +662,9 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .\[--radius\:9999rem\] {
+    --radius: 9999rem;
+  }
   .hover\:bg-linear-to-r {
     &:hover {
       @media (hover: hover) {
