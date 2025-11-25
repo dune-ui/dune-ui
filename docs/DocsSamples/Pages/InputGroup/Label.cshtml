@@ -1,0 +1,31 @@
+﻿@page
+@model DocsSamples.Pages.InputGroup.Label
+
+<div class="w-full max-w-md">
+    <sa-stack>
+        <!-- code begin -->
+        <sa-input-group>
+            <sa-input-group-input id="email" placeholder="stellaradmin" />
+            <sa-input-group-addon>
+                <sa-label for="email">@@</sa-label>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input id="email-2" placeholder="ibn.battuta@rihlah.travel" />
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.BlockStart">
+                <sa-label for="email-2" class="text-foreground">
+                    Email
+                </sa-label>
+                <sa-input-group-button
+                    variant="ButtonVariant.Ghost"
+                    aria-label="Help"
+                    class="ml-auto rounded-full"
+                    size="InputGroupButtonSize.IconExtraSmall"
+                >
+                    <sa-icon name="info" />
+                </sa-input-group-button>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <!-- code end -->
+    </sa-stack>
+</div>

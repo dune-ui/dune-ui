@@ -50,6 +50,7 @@
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
+    --animate-spin: spin 1s linear infinite;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -205,11 +206,25 @@
   }
 }
 @layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+  }
   .static {
     position: static;
   }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
+  }
+  .ml-auto {
+    margin-left: auto;
   }
   .line-clamp-1 {
     overflow: hidden;
@@ -254,6 +269,9 @@
     width: calc(var(--spacing) * 12);
     height: calc(var(--spacing) * 12);
   }
+  .\!h-4 {
+    height: calc(var(--spacing) * 4) !important;
+  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
@@ -271,6 +289,9 @@
   }
   .h-\[300px\] {
     height: 300px;
+  }
+  .min-h-\[200px\] {
+    min-height: 200px;
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
@@ -316,6 +337,9 @@
   }
   .flex-none {
     flex: none;
+  }
+  .animate-spin {
+    animation: var(--animate-spin);
   }
   .resize-none {
     resize: none;
@@ -413,6 +437,14 @@
   .border-2 {
     border-style: var(--tw-border-style);
     border-width: 2px;
+  }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
   }
   .border-solid {
     --tw-border-style: solid;
@@ -550,6 +582,15 @@
   .pb-12 {
     padding-bottom: calc(var(--spacing) * 12);
   }
+  .\!pl-1 {
+    padding-left: calc(var(--spacing) * 1) !important;
+  }
+  .pl-0\.5 {
+    padding-left: calc(var(--spacing) * 0.5);
+  }
+  .pl-1\.5 {
+    padding-left: calc(var(--spacing) * 1.5);
+  }
   .text-right {
     text-align: right;
   }
@@ -664,6 +705,9 @@
     transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .\[--radius\:9999px\] {
+    --radius: 9999px;
   }
   .\[--radius\:9999rem\] {
     --radius: 9999rem;
@@ -938,6 +982,11 @@
 @property --tw-drop-shadow-size {
   syntax: "*";
   inherits: false;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {

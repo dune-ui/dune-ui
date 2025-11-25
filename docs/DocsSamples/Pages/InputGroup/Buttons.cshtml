@@ -1,0 +1,40 @@
+﻿@page
+@model DocsSamples.Pages.InputGroup.Buttons
+
+<div class="w-full max-w-md">
+    <sa-stack>
+        <!-- code begin -->
+        <sa-input-group>
+            <sa-input-group-input placeholder="https://x.com/shadcn" readonly/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-button
+                    aria-label="Copy"
+                    title="Copy"
+                    size="InputGroupButtonSize.IconExtraSmall"
+                >
+                    <sa-icon name="copy"/>
+                </sa-input-group-button>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group class="[--radius:9999px]">
+            <sa-input-group-addon class="text-muted-foreground pl-1.5">
+                https://
+            </sa-input-group-addon>
+            <sa-input-group-input id="input-secure-19"/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-button
+                    size="InputGroupButtonSize.IconExtraSmall"
+                >
+                    <sa-icon name="star"/>
+                </sa-input-group-button>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input placeholder="Type to search..."/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-button variant="ButtonVariant.Secondary">Search</sa-input-group-button>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <!-- code end -->
+    </sa-stack>
+</div>

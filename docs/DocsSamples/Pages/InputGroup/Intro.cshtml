@@ -1,0 +1,57 @@
+﻿@page
+@model DocsSamples.Pages.InputGroup.Intro
+
+<div class="w-full max-w-md">
+  <sa-stack>
+    <!-- code begin -->
+    <sa-input-group>
+      <sa-input-group-input placeholder="Search..."/>
+      <sa-input-group-addon>
+        <sa-icon name="search"/>
+      </sa-input-group-addon>
+      <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">12 results</sa-input-group-addon>
+    </sa-input-group>
+    <sa-input-group>
+      <sa-input-group-input placeholder="example.com" class="!pl-1"/>
+      <sa-input-group-addon>
+        <sa-input-group-text>https://</sa-input-group-text>
+      </sa-input-group-addon>
+      <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+        <sa-input-group-button class="rounded-full" size="InputGroupButtonSize.IconExtraSmall">
+          <sa-icon name="info"/>
+        </sa-input-group-button>
+      </sa-input-group-addon>
+    </sa-input-group>
+    <sa-input-group>
+      <sa-input-group-textarea placeholder="Ask, Search or Chat..."/>
+      <sa-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd">
+        <sa-input-group-button
+          variant="ButtonVariant.Outline"
+          class="rounded-full"
+          size="InputGroupButtonSize.IconExtraSmall"
+        >
+          <sa-icon name="plus"/>
+        </sa-input-group-button>
+        <sa-input-group-text class="ml-auto">52% used</sa-input-group-text>
+        <sa-separator orientation="Vertical" class="!h-4"/>
+        <sa-input-group-button
+          variant="ButtonVariant.Default"
+          class="rounded-full"
+          size="InputGroupButtonSize.IconExtraSmall"
+        >
+          <sa-icon name="arrow-up"/>
+          <span class="sr-only">Send</span>
+        </sa-input-group-button>
+      </sa-input-group-addon>
+    </sa-input-group>
+    <sa-input-group>
+      <sa-input-group-input placeholder="@@stellaradmin"/>
+      <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+        <div class="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full">
+          <sa-icon name="check" class="size-3"/>
+        </div>
+      </sa-input-group-addon>
+    </sa-input-group>
+    <!-- code end -->
+  </sa-stack>
+</div>

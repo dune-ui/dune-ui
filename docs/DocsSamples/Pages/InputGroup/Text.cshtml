@@ -1,0 +1,41 @@
+﻿@page
+@model DocsSamples.Pages.InputGroup.Text
+
+<div class="w-full max-w-md">
+    <sa-stack>
+        <!-- code begin -->
+        <sa-input-group>
+            <sa-input-group-addon>
+                <sa-input-group-text>$</sa-input-group-text>
+            </sa-input-group-addon>
+            <sa-input-group-input placeholder="0.00"/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-text>USD</sa-input-group-text>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-addon>
+                <sa-input-group-text>https://</sa-input-group-text>
+            </sa-input-group-addon>
+            <sa-input-group-input placeholder="example.com" class="pl-0.5"/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-text>.com</sa-input-group-text>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input placeholder="Enter your username"/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-input-group-text>@@company.com</sa-input-group-text>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input placeholder="Enter your message"/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd">
+                <sa-input-group-text class="text-muted-foreground text-xs">
+                    120 characters left
+                </sa-input-group-text>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <!-- code end -->
+    </sa-stack>
+</div>

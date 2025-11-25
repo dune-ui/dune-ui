@@ -1,0 +1,37 @@
+﻿@page
+@model DocsSamples.Pages.InputGroup.Icons
+
+<div class="w-full max-w-md">
+    <sa-stack>
+        <!-- code begin -->
+        <sa-input-group>
+            <sa-input-group-input placeholder="Search..."/>
+            <sa-input-group-addon>
+                <sa-icon name="search"/>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input type="email" placeholder="Enter your email"/>
+            <sa-input-group-addon>
+                <sa-icon name="mail"/>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input placeholder="Card number"/>
+            <sa-input-group-addon>
+                <sa-icon name="credit-card"/>
+            </sa-input-group-addon>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-icon name="check"/>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <sa-input-group>
+            <sa-input-group-input placeholder="Card number"/>
+            <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <sa-icon name="star"/>
+                <sa-icon name="info"/>
+            </sa-input-group-addon>
+        </sa-input-group>
+        <!-- code end -->
+    </sa-stack>
+</div>
