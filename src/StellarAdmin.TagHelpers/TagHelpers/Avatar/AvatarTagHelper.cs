@@ -6,17 +6,23 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-avatar")]
 public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 {
+    [HtmlAttributeName("initials")]
+    public string? Initials { get; set; }
+
     [HtmlAttributeName("name")]
     public string? Name { get; set; }
 
     [HtmlAttributeName("size")]
-    public AvatarSize Size { get; set; } = AvatarSize.Default;
+    public AvatarSize? Size { get; set; }
 
     [HtmlAttributeName("src")]
     public string? Source { get; set; }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveAvatarSize = Size ?? AvatarSize.Default;
+        var isRenderingText = Source == null;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -25,7 +31,9 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
             "class",
             classMerger.Merge(
                 "relative flex shrink-0 overflow-hidden rounded-full",
-                $"size-{GetSizeNumber()}",
+                isRenderingText ? "bg-muted flex size-full items-center justify-center" : null,
+                isRenderingText ? GetFontSizeClass(effectiveAvatarSize) : null,
+                GetSizeClass(effectiveAvatarSize),
                 output.GetUserSuppliedClass()
             )
         );
@@ -43,15 +51,7 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         else
         {
             var textToRender = GetInitials() ?? "&nbsp";
-            var fallbackTagBuilder = new TagBuilder("div");
-            fallbackTagBuilder.Attributes.Add("data-slot", "avatar-fallback");
-            fallbackTagBuilder.Attributes.Add(
-                "class",
-                classMerger.Merge(
-                    "bg-muted flex size-full items-center justify-center rounded-full",
-                    GetFontSize()
-                )
-            );
+            var fallbackTagBuilder = new TagBuilder("span");
             fallbackTagBuilder.InnerHtml.AppendHtml(textToRender);
 
             output.Content.AppendHtml(fallbackTagBuilder);
@@ -60,9 +60,9 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         return Task.CompletedTask;
     }
 
-    private string? GetFontSize()
+    private string? GetFontSizeClass(AvatarSize avatarSize)
     {
-        return Size switch
+        return avatarSize switch
         {
             AvatarSize.ExtraSmall => "text-xs",
             AvatarSize.Small => "text-sm",
@@ -72,41 +72,46 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         };
     }
 
-    private int GetSizeNumber()
-    {
-        return Size switch
-        {
-            AvatarSize.ExtraSmall => 6,
-            AvatarSize.Small => 8,
-            AvatarSize.Default => 10,
-            AvatarSize.Large => 12,
-            AvatarSize.ExtraLarge => 16,
-            _ => 10,
-        };
-    }
-
     private string? GetInitials()
     {
-        if (Name == null)
+        return (Initials, Name) switch
         {
-            return null;
-        }
+            ({ } initials, _) => initials,
+            (_, { } name) => DetermineInitialsFromName(name),
+            _ => null,
+        };
 
-        var splitName = Name.Split(
-            ' ',
-            StringSplitOptions.TrimEntries | StringSplitOptions.TrimEntries
-        );
-
-        return splitName switch
+        string? DetermineInitialsFromName(string name)
         {
-            [{ Length: > 0 } first, .., { Length: > 0 } last] =>
-                $"{char.ToUpper(first.AsSpan(0, 1)[0])}{char.ToUpper(last.AsSpan(0, 1)[0])}",
-            _ => Name switch
+            var splitName = name.Split(
+                ' ',
+                StringSplitOptions.TrimEntries | StringSplitOptions.TrimEntries
+            );
+
+            return splitName switch
             {
-                [var first, var second, ..] => $"{char.ToUpper(first)}{char.ToLower(second)}",
-                [var first] => $"{char.ToUpper(first)}",
-                _ => null,
-            },
+                [{ Length: > 0 } first, .., { Length: > 0 } last] =>
+                    $"{char.ToUpper(first.AsSpan(0, 1)[0])}{char.ToUpper(last.AsSpan(0, 1)[0])}",
+                _ => name switch
+                {
+                    [var first, var second, ..] => $"{char.ToUpper(first)}{char.ToLower(second)}",
+                    [var first] => $"{char.ToUpper(first)}",
+                    _ => null,
+                },
+            };
+        }
+    }
+
+    private string GetSizeClass(AvatarSize size)
+    {
+        return size switch
+        {
+            AvatarSize.ExtraSmall => "size-6",
+            AvatarSize.Small => "size-8",
+            AvatarSize.Default => "size-10",
+            AvatarSize.Large => "size-12",
+            AvatarSize.ExtraLarge => "size-16",
+            _ => "size-10",
         };
     }
 }

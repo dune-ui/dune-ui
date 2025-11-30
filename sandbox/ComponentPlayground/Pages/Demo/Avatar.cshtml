@@ -1,4 +1,5 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.Avatar
 @{
     var url = "https://github.com/shadcn.png";
@@ -12,17 +13,17 @@
 <sa-avatar name="J" />
 <sa-avatar />
 <p>&nbsp;</p>
-<sa-avatar src="@url" size="ExtraSmall" />
-<sa-avatar src="@url" size="Small" />
-<sa-avatar src="@url" size="Default" />
-<sa-avatar src="@url" size="Large" />
-<sa-avatar src="@url" size="ExtraLarge" />
+<sa-avatar src="@url" size="AvatarSize.ExtraSmall" />
+<sa-avatar src="@url" size="AvatarSize.Small" />
+<sa-avatar src="@url" size="AvatarSize.Default" />
+<sa-avatar src="@url" size="AvatarSize.Large" />
+<sa-avatar src="@url" size="AvatarSize.ExtraLarge" />
 <p>&nbsp;</p>
-<sa-avatar name="Jerrie Pelser" size="ExtraSmall" />
-<sa-avatar name="Jerrie Pelser" size="Small" />
-<sa-avatar name="Jerrie Pelser" size="Default" />
-<sa-avatar name="Jerrie Pelser" size="Large" />
-<sa-avatar name="Jerrie Pelser" size="ExtraLarge" />
+<sa-avatar name="Jerrie Pelser" size="AvatarSize.ExtraSmall" />
+<sa-avatar name="Jerrie Pelser" size="AvatarSize.Small" />
+<sa-avatar name="Jerrie Pelser" size="AvatarSize.Default" />
+<sa-avatar name="Jerrie Pelser" size="AvatarSize.Large" />
+<sa-avatar name="Jerrie Pelser" size="AvatarSize.ExtraLarge" />
 <p>&nbsp;</p>
 <sa-avatar-group>
 <sa-avatar src="@url" />
