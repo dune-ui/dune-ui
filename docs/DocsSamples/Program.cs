@@ -59,12 +59,12 @@ internal class DemoUrlHelper(IUrlHelper wrappedUrlHelper) : IUrlHelper
 {
     public string? Action(UrlActionContext actionContext)
     {
-        if (actionContext.Controller == "Booking")
-        {
-            return "#";
-        }
-
-        if (actionContext.Controller == "Search")
+        if (
+            new[] { "Booking", "Search", "User" }.Contains(
+                actionContext.Controller,
+                StringComparer.OrdinalIgnoreCase
+            )
+        )
         {
             return "#";
         }

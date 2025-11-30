@@ -139,6 +139,7 @@ public class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "/Avatar/CustomCss",
             "/Avatar/Initials",
             "/Avatar/Intro",
+            "/Avatar/Url",
             "/Badge/CustomCss",
             "/Badge/Intro",
             "/Badge/Variants",

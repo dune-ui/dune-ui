@@ -13,7 +13,7 @@ public class AvatarGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelpe
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(
-                "*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2",
+                "[&_[data-slot=avatar]]:ring-background flex -space-x-2 [&_[data-slot=avatar]]:ring-2",
                 output.GetUserSuppliedClass()
             )
         );
