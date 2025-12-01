@@ -16,7 +16,7 @@ public class Program
             _ => new DemoUrlHelperFactory(new UrlHelperFactory())
         );
         builder.Services.AddRazorPages();
-        builder.Services.AddStellarUI();
+        builder.Services.AddStellarAdmin();
 
         var app = builder.Build();
 

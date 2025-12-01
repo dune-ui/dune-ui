@@ -14,8 +14,8 @@ public static class ServiceCollectionExtensions
     ///     Provides the common entry point for registering the StellarUI services.
     /// </summary>
     /// <param name="services">The services collection.</param>
-    /// <returns>The <see cref="StellarUIBuilder" /> instances that allows you to register and configure StellarUI services.</returns>
-    public static StellarUIBuilder AddStellarUI(this IServiceCollection services)
+    /// <returns>The <see cref="StellarAdminBuilder" /> instances that allows you to register and configure StellarUI services.</returns>
+    public static StellarAdminBuilder AddStellarAdmin(this IServiceCollection services)
     {
         DefaultIconManager.Instance.AddIconPack<LucideIconPack>();
 
@@ -24,6 +24,6 @@ public static class ServiceCollectionExtensions
             .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()
             .AddSingleton<IIconManager>(_ => DefaultIconManager.Instance);
 
-        return new StellarUIBuilder(services);
+        return new StellarAdminBuilder(services);
     }
 }

@@ -7,7 +7,7 @@ namespace StellarAdmin.Builders;
 /// <summary>
 ///     Provides a shared entry point to configure the StellarUI services.
 /// </summary>
-public class StellarUIBuilder
+public class StellarAdminBuilder
 {
     /// <summary>
     ///     Gets the services collection.
@@ -16,11 +16,11 @@ public class StellarUIBuilder
     public IServiceCollection Services { get; }
 
     /// <summary>
-    ///     Creates a new instance of <see cref="StellarUIBuilder" />.
+    ///     Creates a new instance of <see cref="StellarAdminBuilder" />.
     /// </summary>
     /// <param name="services">The services collection.</param>
     /// <exception cref="ArgumentNullException"></exception>
-    public StellarUIBuilder(IServiceCollection services)
+    public StellarAdminBuilder(IServiceCollection services)
     {
         Services = services ?? throw new ArgumentNullException(nameof(services));
     }
@@ -30,8 +30,8 @@ public class StellarUIBuilder
     /// </summary>
     /// <param name="name">The name of the icon.</param>
     /// <param name="shapes">The shapes that represent the icon.</param>
-    /// <returns>The <see cref="StellarUIBuilder" /> instance.</returns>
-    public StellarUIBuilder AddIcon(string name, List<SvgShape> shapes)
+    /// <returns>The <see cref="StellarAdminBuilder" /> instance.</returns>
+    public StellarAdminBuilder AddIcon(string name, List<SvgShape> shapes)
     {
         DefaultIconManager.Instance.AddIcon(name, shapes);
 
@@ -42,8 +42,8 @@ public class StellarUIBuilder
     ///     Registers a new icon pack.
     /// </summary>
     /// <typeparam name="TIconPack">The icon pack to register.</typeparam>
-    /// <returns>The <see cref="StellarUIBuilder" /> instance.</returns>
-    public StellarUIBuilder AddIconPack<TIconPack>()
+    /// <returns>The <see cref="StellarAdminBuilder" /> instance.</returns>
+    public StellarAdminBuilder AddIconPack<TIconPack>()
         where TIconPack : IIconPack, new()
     {
         DefaultIconManager.Instance.AddIconPack<TIconPack>();
