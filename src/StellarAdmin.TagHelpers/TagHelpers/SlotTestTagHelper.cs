@@ -2,6 +2,7 @@
 
 namespace StellarAdmin.TagHelpers;
 
+/*
 [HtmlTargetElement("sa-slot-test", TagStructure = TagStructure.NormalOrSelfClosing)]
 [OutputElementHint("div")]
 public class SlotTestTagHelper : StellarTagHelper
@@ -21,3 +22,4 @@ public class SlotTestTagHelper : StellarTagHelper
         output.Content.AppendHtml(childContent);
     }
 }
+*/

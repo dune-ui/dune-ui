@@ -1,19 +1,9 @@
-﻿using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace StellarAdmin.TagHelpers;
 
 internal static class TagHelperOutputExtensions
 {
-    public static string GetContent(this TagHelperOutput output)
-    {
-        using var writer = new StringWriter();
-
-        output.WriteTo(writer, HtmlEncoder.Default);
-
-        return writer.ToString();
-    }
-
     public static string? GetUserSuppliedClass(this TagHelperOutput output)
     {
         if (
