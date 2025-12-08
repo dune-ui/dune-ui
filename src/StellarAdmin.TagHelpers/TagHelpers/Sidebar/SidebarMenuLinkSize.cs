@@ -16,8 +16,8 @@ public static class SidebarMenuLinkSizeExtensions
             return size switch
             {
                 SidebarMenuLinkSize.Default => "default",
-                SidebarMenuLinkSize.Small => "small",
-                SidebarMenuLinkSize.Large => "large",
+                SidebarMenuLinkSize.Small => "sm",
+                SidebarMenuLinkSize.Large => "lg",
                 _ => String.Empty,
             };
         }

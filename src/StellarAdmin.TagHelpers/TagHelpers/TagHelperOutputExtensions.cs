@@ -2,7 +2,7 @@
 
 namespace StellarAdmin.TagHelpers;
 
-internal static class TagHelperOutputExtensions
+public static class TagHelperOutputExtensions
 {
     public static string? GetUserSuppliedClass(this TagHelperOutput output)
     {
