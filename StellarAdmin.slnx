@@ -1,8 +1,4 @@
 <Solution>
-  <Folder Name="/docs/">
-    <Project Path="docs\DocsSamplesGenerator\DocsSamplesGenerator.csproj" />
-    <Project Path="docs\DocsSamples\DocsSamples.csproj" />
-  </Folder>
   <Folder Name="/gen/">
     <Project Path="gen/StellarAdmin.Generators/StellarAdmin.Generators.csproj" />
   </Folder>
