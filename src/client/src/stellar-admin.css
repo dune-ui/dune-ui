@@ -6,6 +6,8 @@
 @source "../../StellarAdmin.TagHelpers/TagHelpers/";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant details-disabled ( details[disabled] & );
+@custom-variant details-disabled-closed-content ( details[disabled]:not([open]) > summary + & );
 
 :root {
   --radius: 0.625rem;
