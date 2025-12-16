@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
@@ -12,8 +13,12 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
     private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
 
-    public TextareaTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-        : base(htmlGenerator, classMerger)
+    public TextareaTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager, htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));

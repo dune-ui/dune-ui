@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-empty-media")]
-public class EmptyMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class EmptyMediaTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public EmptyMediaTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private static readonly Dictionary<EmptyMediaVariant, string> VariantClasses = new Dictionary<
         EmptyMediaVariant,
         string
@@ -27,7 +36,7 @@ public class EmptyMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-variant", GetVariantAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0",
                 VariantClasses[Variant],
                 output.GetUserSuppliedClass()

@@ -2,14 +2,26 @@
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
-public abstract class FieldInputBaseTagHelper(
-    IHtmlGenerator htmlGenerator,
-    ICssClassMerger classMerger
-) : StellarTagHelper
+public abstract class FieldInputBaseTagHelper : StellarTagHelper
 {
+    private readonly IHtmlGenerator _htmlGenerator;
+    private readonly ICssClassMerger _classMerger;
+
+    protected FieldInputBaseTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
+    {
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private const string ForAttributeName = "asp-for";
 
     [HtmlAttributeName("description")]
@@ -103,7 +115,10 @@ public abstract class FieldInputBaseTagHelper(
                         ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
                         : Task.FromResult(new DefaultTagHelperContent().Append(Description))
             );
-            var fieldDescriptionTagHelper = new FieldDescriptionTagHelper(classMerger)
+            var fieldDescriptionTagHelper = new FieldDescriptionTagHelper(
+                ThemeManager,
+                _classMerger
+            )
             {
                 For = For,
                 ViewContext = ViewContext,
@@ -121,7 +136,7 @@ public abstract class FieldInputBaseTagHelper(
     )
     {
         var fieldTagBuilder = new FieldTagBuilder(
-            classMerger,
+            _classMerger,
             autoFieldLayout == AutoFieldLayout.Vertical
                 ? FieldOrientation.Vertical
                 : FieldOrientation.Horizontal,
@@ -149,7 +164,7 @@ public abstract class FieldInputBaseTagHelper(
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
 
-            var fieldContentTagHelper = new FieldContentTagHelper(classMerger);
+            var fieldContentTagHelper = new FieldContentTagHelper(ThemeManager, _classMerger);
             await fieldContentTagHelper.ProcessAsync(context, fieldContentOutput);
 
             await RenderLabelControl(context, fieldContentOutput.Content);
@@ -181,7 +196,11 @@ public abstract class FieldInputBaseTagHelper(
                         ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
                         : Task.FromResult(new DefaultTagHelperContent().Append(Error))
             );
-            var fieldErrorTagHelper = new FieldErrorTagHelper(htmlGenerator, classMerger)
+            var fieldErrorTagHelper = new FieldErrorTagHelper(
+                ThemeManager,
+                _htmlGenerator,
+                _classMerger
+            )
             {
                 For = For,
                 ViewContext = ViewContext,
@@ -204,7 +223,11 @@ public abstract class FieldInputBaseTagHelper(
                         ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
                         : Task.FromResult(new DefaultTagHelperContent().Append(Label))
             );
-            var fieldLabelTagHelper = new FieldLabelTagHelper(htmlGenerator, classMerger)
+            var fieldLabelTagHelper = new FieldLabelTagHelper(
+                ThemeManager,
+                _htmlGenerator,
+                _classMerger
+            )
             {
                 For = For,
                 ViewContext = ViewContext,

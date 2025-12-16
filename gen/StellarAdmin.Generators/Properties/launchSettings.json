@@ -3,7 +3,7 @@
   "profiles": {
     "Generators": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "../StellarUI/StellarUI.csproj"
+      "targetProject": "../../src/StellarAdmin.Core/StellarAdmin.Core.csproj"
     }
   }
 }

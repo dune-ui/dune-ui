@@ -1,21 +1,32 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-alert")]
-public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
-    : StellarTagHelper
+public class AlertTagHelper : StellarTagHelper
 {
+    private readonly IIconManager _iconManager;
+
+    public AlertTagHelper(
+        ThemeManager themeManager,
+        ICssClassMerger classMerger,
+        IIconManager iconManager
+    )
+        : base(themeManager, classMerger)
+    {
+        _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
+    }
+
     private const string DescriptionAttributeName = "description";
     private const string IconAttributeName = "icon";
     private const string TitleAttributeName = "title";
 
-    private static readonly Dictionary<AlertVariant, string> AlertVariantClasses = new()
+    private static readonly Dictionary<AlertVariant, ComponentName> AlertVariantClasses = new()
     {
-        [AlertVariant.Default] = "bg-card text-card-foreground",
-        [AlertVariant.Destructive] =
-            "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+        [AlertVariant.Default] = new ComponentName("dui-alert-variant-default"),
+        [AlertVariant.Destructive] = new ComponentName("dui-alert-variant-destructive"),
     };
 
     [HtmlAttributeName(DescriptionAttributeName)]
@@ -32,17 +43,18 @@ public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManage
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveVariant = Variant ?? AlertVariant.Default;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
-
-        var effectiveVariant = Variant ?? AlertVariant.Default;
 
         output.Attributes.SetAttribute("data-slot", "alert");
         output.Attributes.SetAttribute("role", "alert");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
-                "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+            BuildClassString(
+                new ComponentName("dui-alert"),
+                "w-full relative group/alert",
                 AlertVariantClasses[effectiveVariant],
                 output.GetUserSuppliedClass()
             )
@@ -80,7 +92,7 @@ public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManage
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(iconManager) { Name = Icon };
+            var iconTagHelper = new IconTagHelper(_iconManager) { Name = Icon };
             await iconTagHelper.ProcessAsync(context, iconTagHelperOutput);
 
             output.Content.AppendHtml(iconTagHelperOutput);
@@ -96,7 +108,7 @@ public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManage
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(titleContent)
             );
-            var titleTagHelper = new AlertTitleTagHelper(classMerger);
+            var titleTagHelper = new AlertTitleTagHelper(ThemeManager, ClassMerger);
             await titleTagHelper.ProcessAsync(context, titleTagHelperOutput);
 
             output.Content.AppendHtml(titleTagHelperOutput);
@@ -113,7 +125,7 @@ public class AlertTagHelper(ICssClassMerger classMerger, IIconManager iconManage
                 (_, _) => Task.FromResult<TagHelperContent>(descriptionContent)
             );
 
-            var descriptionTagHelper = new AlertDescriptionTagHelper(classMerger);
+            var descriptionTagHelper = new AlertDescriptionTagHelper(ThemeManager, ClassMerger);
             await descriptionTagHelper.ProcessAsync(context, descriptionTagHelperOutput);
 
             output.Content.AppendHtml(descriptionTagHelperOutput);

@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-sidebar-wrapper")]
-public class SidebarContainerTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class SidebarContainerTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public SidebarContainerTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private const string SidebarWidth = "16rem";
     private const string SidebarWidthIcon = "3rem";
 
@@ -20,7 +29,7 @@ public class SidebarContainerTagHelper(ICssClassMerger classMerger) : StellarTag
         );
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
                 output.GetUserSuppliedClass()
             )

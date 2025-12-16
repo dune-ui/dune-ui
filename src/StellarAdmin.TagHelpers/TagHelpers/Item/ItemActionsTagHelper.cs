@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-item-actions")]
-public class ItemActionsTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class ItemActionsTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public ItemActionsTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -12,7 +21,7 @@ public class ItemActionsTagHelper(ICssClassMerger classMerger) : StellarTagHelpe
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge("flex items-center gap-2", GetUserSpecifiedClass(output))
+            _classMerger.Merge("flex items-center gap-2", GetUserSpecifiedClass(output))
         );
         output.Attributes.SetAttribute("data-slot", "item-actions");
 

@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-empty")]
-public class EmptyTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class EmptyTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public EmptyTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -13,7 +22,7 @@ public class EmptyTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "empty");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12",
                 output.GetUserSuppliedClass()
             )

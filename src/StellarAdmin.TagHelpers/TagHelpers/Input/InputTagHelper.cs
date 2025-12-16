@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper;
 
 namespace StellarAdmin.TagHelpers;
@@ -11,8 +12,12 @@ public class InputTagHelper : FieldInputBaseTagHelper
     private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
 
-    public InputTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-        : base(htmlGenerator, classMerger)
+    public InputTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager, htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));

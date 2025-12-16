@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field-legend")]
-public class FieldLegendTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class FieldLegendTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public FieldLegendTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("variant")]
     public FieldLegendVariant Variant { get; set; } = FieldLegendVariant.Legend;
 
@@ -17,7 +26,7 @@ public class FieldLegendTagHelper(ICssClassMerger classMerger) : StellarTagHelpe
         output.Attributes.SetAttribute("data-variant", GetVariantAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "mb-3 font-medium",
                 "data-[variant=legend]:text-base",
                 "data-[variant=label]:text-sm",

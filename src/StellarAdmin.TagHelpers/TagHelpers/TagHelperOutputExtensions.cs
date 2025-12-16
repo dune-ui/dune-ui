@@ -4,7 +4,7 @@ namespace StellarAdmin.TagHelpers;
 
 public static class TagHelperOutputExtensions
 {
-    public static string? GetUserSuppliedClass(this TagHelperOutput output)
+    public static string GetUserSuppliedClass(this TagHelperOutput output)
     {
         if (
             output.Attributes.ContainsName("class")
@@ -14,6 +14,6 @@ public static class TagHelperOutputExtensions
             return userSpecifiedClass;
         }
 
-        return null;
+        return string.Empty;
     }
 }

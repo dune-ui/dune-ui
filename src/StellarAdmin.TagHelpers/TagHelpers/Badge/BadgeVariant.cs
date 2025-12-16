@@ -6,4 +6,6 @@ public enum BadgeVariant
     Secondary,
     Destructive,
     Outline,
+    Ghost,
+    Link,
 }

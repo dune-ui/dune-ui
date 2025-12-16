@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-group")]
-public class GroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class GroupTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public GroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("align")]
     public GroupAlign Align { get; set; } = GroupAlign.Start;
 
@@ -21,7 +30,7 @@ public class GroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "flex flex-row",
                 Align switch
                 {

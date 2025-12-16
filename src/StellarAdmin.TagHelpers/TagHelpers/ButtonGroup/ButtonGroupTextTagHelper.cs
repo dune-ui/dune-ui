@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-button-group-text")]
-public class ButtonGroupTextTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class ButtonGroupTextTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public ButtonGroupTextTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -12,7 +21,7 @@ public class ButtonGroupTextTagHelper(ICssClassMerger classMerger) : StellarTagH
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
                 output.GetUserSuppliedClass()
             )

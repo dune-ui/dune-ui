@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-separator")]
-public class SeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class SeparatorTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public SeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("is-decorative")]
     public bool IsDecorative { get; set; } = true;
 
@@ -18,7 +27,7 @@ public class SeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
                 output.GetUserSuppliedClass()
             )

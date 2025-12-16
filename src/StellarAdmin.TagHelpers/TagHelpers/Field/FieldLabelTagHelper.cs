@@ -1,13 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field-label")]
-public class FieldLabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-    : StellarTagHelper
+public class FieldLabelTagHelper : StellarTagHelper
 {
+    private readonly IHtmlGenerator _htmlGenerator;
+    private readonly ICssClassMerger _classMerger;
+
+    public FieldLabelTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
+    {
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private const string ForAttributeName = "asp-for";
 
     /// <summary>
@@ -28,7 +42,7 @@ public class FieldLabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger c
         output.Attributes.SetAttribute("data-slot", "field-label");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50",
                 "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4",
                 "has-[:checked]:bg-primary/5 has-[:checked]:border-primary dark:has-[:checked]:bg-primary/10",
@@ -36,7 +50,7 @@ public class FieldLabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger c
             )
         );
 
-        var labelTagHelper = new LabelTagHelper(htmlGenerator, classMerger)
+        var labelTagHelper = new LabelTagHelper(ThemeManager, _htmlGenerator, _classMerger)
         {
             For = For,
             ViewContext = ViewContext,

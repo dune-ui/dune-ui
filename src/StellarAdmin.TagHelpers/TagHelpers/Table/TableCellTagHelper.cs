@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-table-cell")]
-public class TableCellTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class TableCellTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public TableCellTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "td";
@@ -13,7 +22,7 @@ public class TableCellTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "table-cell");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
                 output.GetUserSuppliedClass()
             )

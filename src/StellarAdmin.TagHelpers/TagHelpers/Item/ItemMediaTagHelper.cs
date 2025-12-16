@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-item-media")]
-public class ItemMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class ItemMediaTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public ItemMediaTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private const string BaseClasses =
         "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5";
     private static readonly Dictionary<ItemMediaVariant, string> ItemVariantClasses = new()
@@ -26,7 +35,7 @@ public class ItemMediaTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 BaseClasses,
                 ItemVariantClasses[Variant],
                 GetUserSpecifiedClass(output)

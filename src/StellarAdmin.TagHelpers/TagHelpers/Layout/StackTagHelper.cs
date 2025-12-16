@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-stack")]
-public class StackTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class StackTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public StackTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("align")]
     public StackAlign Align { get; set; } = StackAlign.Stretch;
 
@@ -21,7 +30,7 @@ public class StackTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "flex flex-col",
                 Align switch
                 {

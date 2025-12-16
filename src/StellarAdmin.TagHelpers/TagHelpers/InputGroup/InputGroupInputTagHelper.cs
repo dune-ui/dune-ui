@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
@@ -35,7 +36,12 @@ public class InputGroupInputTagHelper : StellarTagHelper
     [HtmlAttributeName("asp-format")]
     public string? Format { get; set; }
 
-    public InputGroupInputTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public InputGroupInputTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
@@ -52,7 +58,7 @@ public class InputGroupInputTagHelper : StellarTagHelper
             )
         );
 
-        var inputTagHelper = new InputTagHelper(_htmlGenerator, _classMerger)
+        var inputTagHelper = new InputTagHelper(ThemeManager, _htmlGenerator, _classMerger)
         {
             ViewContext = ViewContext,
             For = For,

@@ -2,16 +2,26 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination-last")]
-public class PaginationLastTagHelper(
-    IHtmlGenerator htmlGenerator,
-    ICssClassMerger classMerger,
-    IIconManager iconManager
-) : PaginationLinkTagHelper(htmlGenerator, classMerger)
+public class PaginationLastTagHelper : PaginationLinkTagHelper
 {
+    private readonly IIconManager _iconManager;
+
+    public PaginationLastTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger,
+        IIconManager iconManager
+    )
+        : base(themeManager, htmlGenerator, classMerger)
+    {
+        _iconManager = iconManager;
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         await RenderLink(context, output);
@@ -36,7 +46,7 @@ public class PaginationLastTagHelper(
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-last" };
+            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-last" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }

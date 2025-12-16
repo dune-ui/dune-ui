@@ -2,16 +2,26 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination-first")]
-public class PaginationFirstTagHelper(
-    IHtmlGenerator htmlGenerator,
-    ICssClassMerger classMerger,
-    IIconManager iconManager
-) : PaginationLinkTagHelper(htmlGenerator, classMerger)
+public class PaginationFirstTagHelper : PaginationLinkTagHelper
 {
+    private readonly IIconManager _iconManager;
+
+    public PaginationFirstTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger,
+        IIconManager iconManager
+    )
+        : base(themeManager, htmlGenerator, classMerger)
+    {
+        _iconManager = iconManager;
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         await RenderLink(context, output);
@@ -30,7 +40,7 @@ public class PaginationFirstTagHelper(
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-first" };
+            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-first" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 

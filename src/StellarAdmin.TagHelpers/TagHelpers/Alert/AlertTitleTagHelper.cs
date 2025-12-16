@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-alert-title")]
-public class AlertTitleTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class AlertTitleTagHelper : StellarTagHelper
 {
+    public AlertTitleTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -13,8 +17,9 @@ public class AlertTitleTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "alert-title");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
-                "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
+            BuildClassString(
+                new ComponentName("dui-alert-title"),
+                "[&_a]:hover:text-foreground [&_a]:underline [&_a]:underline-offset-3",
                 output.GetUserSuppliedClass()
             )
         );

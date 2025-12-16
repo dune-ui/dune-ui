@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination")]
-public class PaginationTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class PaginationTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public PaginationTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "nav";
@@ -15,7 +24,7 @@ public class PaginationTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "pagination");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge("mx-auto flex w-full justify-center", output.GetUserSuppliedClass())
+            _classMerger.Merge("mx-auto flex w-full justify-center", output.GetUserSuppliedClass())
         );
 
         output.Content.AppendHtml(await output.GetChildContentAsync());

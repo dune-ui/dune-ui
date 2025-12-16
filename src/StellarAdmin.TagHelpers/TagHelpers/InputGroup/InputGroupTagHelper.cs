@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-input-group")]
-public class InputGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class InputGroupTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public InputGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -15,7 +24,7 @@ public class InputGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "group/input-group border-input dark:bg-input/30 relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none",
                 "h-9 min-w-0 has-[>textarea]:h-auto",
                 // Variants based on alignment.

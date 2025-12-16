@@ -2,16 +2,26 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination-previous")]
-public class PaginationPreviousLinkTagHelper(
-    IHtmlGenerator htmlGenerator,
-    ICssClassMerger classMerger,
-    IIconManager iconManager
-) : PaginationLinkTagHelper(htmlGenerator, classMerger)
+public class PaginationPreviousLinkTagHelper : PaginationLinkTagHelper
 {
+    private readonly IIconManager _iconManager;
+
+    public PaginationPreviousLinkTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger,
+        IIconManager iconManager
+    )
+        : base(themeManager, htmlGenerator, classMerger)
+    {
+        _iconManager = iconManager;
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         await RenderLink(context, output);
@@ -30,7 +40,7 @@ public class PaginationPreviousLinkTagHelper(
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-left" };
+            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-left" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 

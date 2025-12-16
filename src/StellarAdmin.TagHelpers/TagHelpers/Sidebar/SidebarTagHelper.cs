@@ -1,11 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-sidebar")]
-public class SidebarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class SidebarTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public SidebarTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("variant")]
     public SidebarVariant Variant { get; set; } = SidebarVariant.Sidebar;
 
@@ -35,7 +44,7 @@ public class SidebarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         gapTagBuilder.Attributes.Add("data-slot", "sidebar-gap");
         gapTagBuilder.Attributes.Add(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
                 "group-data-[collapsible=offcanvas]:w-0",
                 "group-data-[side=right]:rotate-180",
@@ -51,7 +60,7 @@ public class SidebarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         sidebarContainerTagBuilder.Attributes.Add("data-slot", "sidebar-container");
         sidebarContainerTagBuilder.Attributes.Add(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
                 side == "left"
                     ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"

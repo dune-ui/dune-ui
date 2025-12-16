@@ -1,36 +1,41 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-badge")]
-public class BadgeTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class BadgeTagHelper : StellarTagHelper
 {
-    private static readonly Dictionary<BadgeVariant, string> BadgeVariantClasses = new()
+    public BadgeTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
+    private static readonly Dictionary<BadgeVariant, ComponentName> BadgeVariantClasses = new()
     {
-        [BadgeVariant.Default] =
-            "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
-        [BadgeVariant.Secondary] =
-            "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
-        [BadgeVariant.Destructive] =
-            "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        [BadgeVariant.Outline] =
-            "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+        [BadgeVariant.Default] = new ComponentName("dui-badge-variant-default"),
+        [BadgeVariant.Secondary] = new ComponentName("dui-badge-variant-secondary"),
+        [BadgeVariant.Destructive] = new ComponentName("dui-badge-variant-destructive"),
+        [BadgeVariant.Outline] = new ComponentName("dui-badge-variant-outline"),
+        [BadgeVariant.Ghost] = new ComponentName("dui-badge-variant-ghost"),
+        [BadgeVariant.Link] = new ComponentName("dui-badge-variant-link"),
     };
 
     [HtmlAttributeName("variant")]
-    public BadgeVariant Variant { get; set; } = BadgeVariant.Default;
+    public BadgeVariant? Variant { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveVariant = Variant ?? BadgeVariant.Default;
+
         output.TagName = "span";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "badge");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
-                "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
-                BadgeVariantClasses[Variant],
+            BuildClassString(
+                new ComponentName("dui-badge"),
+                "inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-colors overflow-hidden group/badge",
+                BadgeVariantClasses[effectiveVariant],
                 output.GetUserSuppliedClass()
             )
         );

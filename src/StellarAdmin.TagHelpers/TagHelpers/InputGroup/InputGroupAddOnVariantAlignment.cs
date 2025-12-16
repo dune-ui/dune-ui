@@ -8,7 +8,7 @@ public enum InputGroupAddOnVariantAlignment
     BlockEnd,
 }
 
-public static class InputGroupAddOnVariantAlignmentExtensions
+internal static class InputGroupAddOnVariantAlignmentExtensions
 {
     extension(InputGroupAddOnVariantAlignment alignment)
     {

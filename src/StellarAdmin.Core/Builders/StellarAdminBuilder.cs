@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.Builders;
 
@@ -47,6 +48,19 @@ public class StellarAdminBuilder
         where TIconPack : IIconPack, new()
     {
         DefaultIconManager.Instance.AddIconPack<TIconPack>();
+
+        return this;
+    }
+
+    /// <summary>
+    ///     Configures the style pack used by the application.
+    /// </summary>
+    /// <typeparam name="TThemePack">The theme pack to use.</typeparam>
+    /// <returns>The <see cref="StellarAdminBuilder" /> instance.</returns>
+    public StellarAdminBuilder UseTheme<TThemePack>()
+        where TThemePack : IThemePack, new()
+    {
+        ThemeManager.Instance.UseTheme<TThemePack>();
 
         return this;
     }

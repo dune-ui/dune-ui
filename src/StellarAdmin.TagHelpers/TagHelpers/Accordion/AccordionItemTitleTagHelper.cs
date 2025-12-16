@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-accordion-item-title")]
-public class AccordionItemTitleTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class AccordionItemTitleTagHelper : StellarTagHelper
 {
+    public AccordionItemTitleTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "summary";
@@ -14,11 +18,11 @@ public class AccordionItemTitleTagHelper(ICssClassMerger classMerger) : StellarT
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
-                "flex",
+            BuildClassString(
+                new ComponentName("dui-accordion-trigger"),
+                "group/accordion-trigger relative flex flex-1 items-start justify-between border border-transparent transition-all outline-none disabled:pointer-events-none disabled:opacity-50",
                 "cursor-default",
                 "details-disabled:pointer-events-none details-disabled:opacity-50",
-                "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px]",
                 output.GetUserSuppliedClass()
             )
         );

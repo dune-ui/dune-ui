@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 public class StellarAnchorTagHelperBase : StellarTagHelper
 {
+    public StellarAnchorTagHelperBase(ThemeManager themeManager)
+        : base(themeManager) { }
+
     private const string ActionAttributeName = "asp-action";
     private const string ControllerAttributeName = "asp-controller";
     private const string AreaAttributeName = "asp-area";

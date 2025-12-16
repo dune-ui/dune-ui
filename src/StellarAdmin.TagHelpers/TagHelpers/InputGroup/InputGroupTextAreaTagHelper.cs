@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
@@ -23,10 +24,15 @@ public class InputGroupTextAreaTagHelper : StellarTagHelper
     [ViewContext]
     public required ViewContext ViewContext { get; set; }
 
-    public InputGroupTextAreaTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public InputGroupTextAreaTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
     {
-        _htmlGenerator = htmlGenerator;
-        _classMerger = classMerger;
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -40,7 +46,7 @@ public class InputGroupTextAreaTagHelper : StellarTagHelper
             )
         );
 
-        var textareaTagHelper = new TextareaTagHelper(_htmlGenerator, _classMerger)
+        var textareaTagHelper = new TextareaTagHelper(ThemeManager, _htmlGenerator, _classMerger)
         {
             ViewContext = ViewContext,
             For = For,

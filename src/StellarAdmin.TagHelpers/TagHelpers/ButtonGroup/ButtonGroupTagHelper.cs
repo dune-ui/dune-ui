@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-button-group")]
-public class ButtonGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class ButtonGroupTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public ButtonGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private static readonly Dictionary<ButtonGroupOrientation, string> OrientationClasses = new()
     {
         [ButtonGroupOrientation.Horizontal] =
@@ -26,7 +35,7 @@ public class ButtonGroupTagHelper(ICssClassMerger classMerger) : StellarTagHelpe
         output.Attributes.SetAttribute("data-orientation", GetOrientationAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
                 OrientationClasses[Orientation],
                 output.GetUserSuppliedClass()

@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-progress-indicator")]
-public class ProgressIndicatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class ProgressIndicatorTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public ProgressIndicatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -13,7 +22,7 @@ public class ProgressIndicatorTagHelper(ICssClassMerger classMerger) : StellarTa
         output.Attributes.SetAttribute("data-slot", "progress-indicator");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "bg-primary h-full w-full flex-1 transition-all",
                 output.GetUserSuppliedClass()
             )

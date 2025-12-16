@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-breadcrumb-list")]
-public class BreadcrumbListTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class BreadcrumbListTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public BreadcrumbListTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "ol";
@@ -13,7 +22,7 @@ public class BreadcrumbListTagHelper(ICssClassMerger classMerger) : StellarTagHe
         output.Attributes.SetAttribute("data-slot", "breadcrumb-list");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
                 output.GetUserSuppliedClass()
             )

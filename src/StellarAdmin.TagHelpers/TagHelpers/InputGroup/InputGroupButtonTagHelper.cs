@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-input-group-button")]
-public class InputGroupButtonTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class InputGroupButtonTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public InputGroupButtonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private static readonly Dictionary<InputGroupButtonSize, string> SizeClasses = new Dictionary<
         InputGroupButtonSize,
         string
@@ -34,7 +43,7 @@ public class InputGroupButtonTagHelper(ICssClassMerger classMerger) : StellarTag
         output.Attributes.SetAttribute("data-size", effectiveSize.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "text-sm shadow-none flex gap-2 items-center",
                 SizeClasses[effectiveSize],
                 output.GetUserSuppliedClass()
@@ -43,7 +52,7 @@ public class InputGroupButtonTagHelper(ICssClassMerger classMerger) : StellarTag
 
         ButtonRenderingHelper.RenderAttributes(
             output,
-            classMerger,
+            _classMerger,
             Variant ?? ButtonVariant.Ghost,
             ButtonSize.Default
         );

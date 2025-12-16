@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-input-group-addon")]
-public class InputGroupAddOnTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class InputGroupAddOnTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public InputGroupAddOnTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private static readonly Dictionary<InputGroupAddOnVariantAlignment, string> AlignmentClasses =
         new Dictionary<InputGroupAddOnVariantAlignment, string>
         {
@@ -46,7 +55,7 @@ public class InputGroupAddOnTagHelper(ICssClassMerger classMerger) : StellarTagH
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "text-muted-foreground flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium select-none [&>svg:not([class*='size-'])]:size-4 [&>kbd]:rounded-[calc(var(--radius)-5px)] group-data-[disabled=true]/input-group:opacity-50",
                 AlignmentClasses[effectiveAlignment],
                 output.GetUserSuppliedClass()

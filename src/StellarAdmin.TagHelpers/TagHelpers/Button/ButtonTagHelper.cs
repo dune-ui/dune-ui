@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
@@ -7,7 +8,8 @@ public class ButtonTagHelper : StellarTagHelper
 {
     private readonly ICssClassMerger _classMerger;
 
-    public ButtonTagHelper(ICssClassMerger classMerger)
+    public ButtonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
     {
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }

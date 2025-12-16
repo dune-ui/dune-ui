@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-table-row")]
-public class TableRowTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class TableRowTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public TableRowTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "tr";
@@ -13,7 +22,7 @@ public class TableRowTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "table-row");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
                 output.GetUserSuppliedClass()
             )

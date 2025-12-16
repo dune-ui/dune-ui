@@ -15,9 +15,14 @@
       OutputItemType="Analyzer"
     />
   </ItemGroup>
+  <!-- Icon packs -->
   <ItemGroup>
     <AdditionalFiles Include="..\client\dist\lucide-static\icon-nodes.json">
       <Link>Icons\Lucide\icon-nodes.json</Link>
     </AdditionalFiles>
+  </ItemGroup>
+  <!-- Theme packs -->
+  <ItemGroup>
+    <AdditionalFiles Include="Theming\ThemePacks\*.themepack" />
   </ItemGroup>
 </Project>

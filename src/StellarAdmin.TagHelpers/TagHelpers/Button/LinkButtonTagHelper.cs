@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper;
 
 namespace StellarAdmin.TagHelpers;
@@ -10,10 +11,12 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
     private readonly IHtmlGenerator _htmlGenerator;
     private readonly ICssClassMerger _classMerger;
 
-    private ButtonSize _size = ButtonSize.Default;
-    private ButtonVariant _variant = ButtonVariant.Default;
-
-    public LinkButtonTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public LinkButtonTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
@@ -28,13 +31,13 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
     [HtmlAttributeName("size")]
     public ButtonSize Size
     {
-        get => _size;
+        get;
         set
         {
             ArgumentNullException.ThrowIfNull(value, nameof(Size));
-            _size = value;
+            field = value;
         }
-    }
+    } = ButtonSize.Default;
 
     /// <summary>
     ///     The button variant.
@@ -45,13 +48,13 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
     [HtmlAttributeName("variant")]
     public ButtonVariant Variant
     {
-        get => _variant;
+        get;
         set
         {
             ArgumentNullException.ThrowIfNull(value, nameof(Variant));
-            _variant = value;
+            field = value;
         }
-    }
+    } = ButtonVariant.Default;
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {

@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-progress")]
-public class ProgressTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class ProgressTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public ProgressTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("maximum")]
     public int Maximum { get; set; } = 100;
 
@@ -43,7 +52,7 @@ public class ProgressTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "progress");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "bg-primary/20 relative h-2 w-full overflow-hidden rounded-full",
                 output.GetUserSuppliedClass()
             )

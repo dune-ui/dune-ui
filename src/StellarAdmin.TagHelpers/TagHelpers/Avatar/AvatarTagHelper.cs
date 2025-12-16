@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-avatar")]
-public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class AvatarTagHelper : StellarTagHelper
 {
+    public AvatarTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
     [HtmlAttributeName("initials")]
     public string? Initials { get; set; }
 
@@ -18,22 +22,20 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
     [HtmlAttributeName("src")]
     public string? Source { get; set; }
 
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         var effectiveAvatarSize = Size ?? AvatarSize.Default;
-        var isRenderingText = Source == null;
 
-        output.TagName = "div";
+        output.TagName = "span";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "avatar");
+        output.Attributes.SetAttribute("data-size", effectiveAvatarSize.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
-                "relative flex shrink-0 overflow-hidden rounded-full",
-                isRenderingText ? "bg-muted flex size-full items-center justify-center" : null,
-                isRenderingText ? GetFontSizeClass(effectiveAvatarSize) : null,
-                GetSizeClass(effectiveAvatarSize),
+            BuildClassString(
+                new ComponentName("dui-avatar"),
+                "after:border-border group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten",
                 output.GetUserSuppliedClass()
             )
         );
@@ -44,30 +46,40 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
             imageTagBuilder.Attributes.Add("data-slot", "avatar-image");
             imageTagBuilder.Attributes.Add("src", Source);
             imageTagBuilder.Attributes.Add("alt", Name);
-            imageTagBuilder.Attributes.Add("class", "aspect-square size-full");
-
+            imageTagBuilder.Attributes.Add(
+                "class",
+                BuildClassString(
+                    new ComponentName("dui-avatar-image"),
+                    "aspect-square size-full object-cover"
+                )
+            );
             output.Content.AppendHtml(imageTagBuilder);
         }
         else
         {
             var textToRender = GetInitials() ?? "&nbsp";
             var fallbackTagBuilder = new TagBuilder("span");
+            fallbackTagBuilder.Attributes.Add("data-slot", "avatar-fallback");
+            fallbackTagBuilder.Attributes.Add(
+                "class",
+                BuildClassString(
+                    new ComponentName("dui-avatar-fallback"),
+                    "flex size-full items-center justify-center text-sm group-data-[size=sm]/avatar:text-xs"
+                )
+            );
             fallbackTagBuilder.InnerHtml.AppendHtml(textToRender);
-
             output.Content.AppendHtml(fallbackTagBuilder);
         }
 
-        return Task.CompletedTask;
+        output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 
     private string? GetFontSizeClass(AvatarSize avatarSize)
     {
         return avatarSize switch
         {
-            AvatarSize.ExtraSmall => "text-xs",
             AvatarSize.Small => "text-sm",
             AvatarSize.Large => "text-xl",
-            AvatarSize.ExtraLarge => "text-2xl",
             _ => null,
         };
     }
@@ -100,18 +112,5 @@ public class AvatarTagHelper(ICssClassMerger classMerger) : StellarTagHelper
                 },
             };
         }
-    }
-
-    private string GetSizeClass(AvatarSize size)
-    {
-        return size switch
-        {
-            AvatarSize.ExtraSmall => "size-6",
-            AvatarSize.Small => "size-8",
-            AvatarSize.Default => "size-10",
-            AvatarSize.Large => "size-12",
-            AvatarSize.ExtraLarge => "size-16",
-            _ => "size-10",
-        };
     }
 }

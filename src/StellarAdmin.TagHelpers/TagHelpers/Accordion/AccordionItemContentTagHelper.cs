@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-accordion-item-content")]
-public class AccordionItemContentTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class AccordionItemContentTagHelper : StellarTagHelper
 {
+    public AccordionItemContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -13,8 +17,9 @@ public class AccordionItemContentTagHelper(ICssClassMerger classMerger) : Stella
         output.Attributes.SetAttribute("data-slot", "accordion-content");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
-                "overflow-hidden text-sm pt-0 pb-4",
+            BuildClassString(
+                new ComponentName("dui-accordion-content"),
+                "overflow-hidden",
                 "details-disabled-closed-content:hidden",
                 output.GetUserSuppliedClass()
             )

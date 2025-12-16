@@ -1,11 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field-separator")]
-public class FieldSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class FieldSeparatorTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public FieldSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -20,7 +29,7 @@ public class FieldSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHe
         );
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
                 output.GetUserSuppliedClass()
             )
@@ -32,7 +41,7 @@ public class FieldSeparatorTagHelper(ICssClassMerger classMerger) : StellarTagHe
             [new TagHelperAttribute("class", "absolute inset-0 top-1/2")],
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );
-        var separatorTagHelper = new SeparatorTagHelper(classMerger)
+        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, _classMerger)
         {
             Orientation = SeparatorOrientation.Horizontal,
         };

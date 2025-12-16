@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using StellarAdmin.Builders;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 using TailwindMerge;
 
 namespace StellarAdmin;
@@ -17,13 +18,16 @@ public static class ServiceCollectionExtensions
     /// <returns>The <see cref="StellarAdminBuilder" /> instances that allows you to register and configure StellarUI services.</returns>
     public static StellarAdminBuilder AddStellarAdmin(this IServiceCollection services)
     {
-        DefaultIconManager.Instance.AddIconPack<LucideIconPack>();
-
         services
             .AddSingleton<TwMerge>()
             .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()
-            .AddSingleton<IIconManager>(_ => DefaultIconManager.Instance);
+            .AddSingleton<IIconManager>(_ => DefaultIconManager.Instance)
+            .AddSingleton<ThemeManager>(_ => ThemeManager.Instance);
 
-        return new StellarAdminBuilder(services);
+        var stellarAdminBuilder = new StellarAdminBuilder(services);
+        stellarAdminBuilder.AddIconPack<LucideIconPack>();
+        stellarAdminBuilder.UseTheme<VegaThemePack>();
+
+        return stellarAdminBuilder;
     }
 }

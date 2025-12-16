@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper;
 
 namespace StellarAdmin.TagHelpers;
@@ -29,7 +30,12 @@ public class SidebarMenuLinkTagHelper : StellarAnchorTagHelperBase
 
     public SidebarMenuLinkVariant? Variant { get; set; }
 
-    public SidebarMenuLinkTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
+    public SidebarMenuLinkTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));

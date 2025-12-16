@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-slot", TagStructure = TagStructure.NormalOrSelfClosing)]
 public class SlotTagHelper : StellarTagHelper
 {
+    public SlotTagHelper(ThemeManager themeManager)
+        : base(themeManager) { }
+
     [HtmlAttributeName("name")]
     public required string Name { get; set; }
 

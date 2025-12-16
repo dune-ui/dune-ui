@@ -1,12 +1,26 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-breadcrumb-separator")]
-public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger, IIconManager iconManager)
-    : StellarTagHelper
+public class BreadcrumbSeparatorTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+    private readonly IIconManager _iconManager;
+
+    public BreadcrumbSeparatorTagHelper(
+        ThemeManager themeManager,
+        ICssClassMerger classMerger,
+        IIconManager iconManager
+    )
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+        _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "li";
@@ -17,7 +31,7 @@ public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger, IIconMana
         output.Attributes.SetAttribute("aria-hidden", "true");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge("[&>svg]:size-3.5", output.GetUserSuppliedClass())
+            _classMerger.Merge("[&>svg]:size-3.5", output.GetUserSuppliedClass())
         );
 
         var childContent = await output.GetChildContentAsync();
@@ -33,7 +47,7 @@ public class BreadcrumbSeparatorTagHelper(ICssClassMerger classMerger, IIconMana
                 [new TagHelperAttribute("class", "size-4")],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(iconManager) { Name = "chevron-right" };
+            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-right" };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }

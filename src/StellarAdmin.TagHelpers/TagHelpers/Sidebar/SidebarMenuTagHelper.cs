@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-sidebar-menu")]
-public class SidebarMenuTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class SidebarMenuTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public SidebarMenuTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "ul";
@@ -14,7 +23,7 @@ public class SidebarMenuTagHelper(ICssClassMerger classMerger) : StellarTagHelpe
         output.Attributes.SetAttribute("data-sidebar", "menu");
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge("flex w-full min-w-0 flex-col gap-1", output.GetUserSuppliedClass())
+            _classMerger.Merge("flex w-full min-w-0 flex-col gap-1", output.GetUserSuppliedClass())
         );
 
         output.Content.AppendHtml(await output.GetChildContentAsync());

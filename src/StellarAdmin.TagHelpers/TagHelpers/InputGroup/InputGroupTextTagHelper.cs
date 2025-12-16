@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-input-group-text")]
-public class InputGroupTextTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class InputGroupTextTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public InputGroupTextTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
@@ -12,7 +21,7 @@ public class InputGroupTextTagHelper(ICssClassMerger classMerger) : StellarTagHe
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "text-muted-foreground flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
                 output.GetUserSuppliedClass()
             )

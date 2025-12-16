@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-accordion")]
-public class AccordionTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class AccordionTagHelper : StellarTagHelper
 {
+    public AccordionTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -12,7 +16,11 @@ public class AccordionTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge("w-full", output.GetUserSuppliedClass())
+            BuildClassString(
+                new ComponentName("dui-accordion"),
+                "flex w-full flex-col",
+                output.GetUserSuppliedClass()
+            )
         );
 
         return Task.CompletedTask;

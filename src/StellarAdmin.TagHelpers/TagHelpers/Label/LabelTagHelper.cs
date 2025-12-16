@@ -2,13 +2,27 @@
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-label")]
-public class LabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classMerger)
-    : StellarTagHelper
+public class LabelTagHelper : StellarTagHelper
 {
+    private readonly IHtmlGenerator _htmlGenerator;
+    private readonly ICssClassMerger _classMerger;
+
+    public LabelTagHelper(
+        ThemeManager themeManager,
+        IHtmlGenerator htmlGenerator,
+        ICssClassMerger classMerger
+    )
+        : base(themeManager)
+    {
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     private const string ForAttributeName = "asp-for";
 
     /// <summary>
@@ -32,7 +46,7 @@ public class LabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classM
         var tagBuilder =
             For == null
                 ? new TagBuilder("label")
-                : htmlGenerator.GenerateLabel(
+                : _htmlGenerator.GenerateLabel(
                     ViewContext,
                     For.ModelExplorer,
                     For.Name,
@@ -48,7 +62,7 @@ public class LabelTagHelper(IHtmlGenerator htmlGenerator, ICssClassMerger classM
         }
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
                 output.GetUserSuppliedClass()
             )

@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-tab-list")]
-public class TabListTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class TabListTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public TabListTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     public TabListOrientation? Orientation { get; set; }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -18,7 +27,7 @@ public class TabListTagHelper(ICssClassMerger classMerger) : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            classMerger.Merge(
+            _classMerger.Merge(
                 "bg-muted text-muted-foreground inline-flex items-center justify-center rounded-lg p-[3px]",
                 effectiveOrientation == TabListOrientation.Horizontal
                     ? "h-9 w-fit"

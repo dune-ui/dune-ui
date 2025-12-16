@@ -1,11 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-field")]
-public class FieldTagHelper(ICssClassMerger classMerger) : StellarTagHelper
+public class FieldTagHelper : StellarTagHelper
 {
+    private readonly ICssClassMerger _classMerger;
+
+    public FieldTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager)
+    {
+        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+    }
+
     [HtmlAttributeName("orientation")]
     public FieldOrientation Orientation { get; set; } = FieldOrientation.Vertical;
 
@@ -18,7 +27,7 @@ public class FieldTagHelper(ICssClassMerger classMerger) : StellarTagHelper
         var userSuppliedClass = output.GetUserSuppliedClass();
         output.Attributes.SetAttribute("class", string.Empty);
 
-        var tagBuilder = new FieldTagBuilder(classMerger, Orientation, userSuppliedClass);
+        var tagBuilder = new FieldTagBuilder(_classMerger, Orientation, userSuppliedClass);
 
         output.TagName = tagBuilder.TagName;
         output.TagMode = TagMode.StartTagAndEndTag;
