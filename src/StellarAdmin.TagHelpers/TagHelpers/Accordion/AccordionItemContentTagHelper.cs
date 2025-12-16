@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
@@ -9,7 +10,7 @@ public class AccordionItemContentTagHelper : StellarTagHelper
     public AccordionItemContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -20,11 +21,21 @@ public class AccordionItemContentTagHelper : StellarTagHelper
             BuildClassString(
                 new ComponentName("dui-accordion-content"),
                 "overflow-hidden",
-                "details-disabled-closed-content:hidden",
-                output.GetUserSuppliedClass()
+                "details-disabled-closed-content:hidden"
             )
         );
 
-        return Task.CompletedTask;
+        var innerTagBuilder = new TagBuilder("div");
+        innerTagBuilder.Attributes.Add(
+            "class",
+            BuildClassString(
+                new ComponentName("dui-accordion-content-inner"),
+                "[&_a]:hover:text-foreground h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
+                output.GetUserSuppliedClass()
+            )
+        );
+        innerTagBuilder.InnerHtml.AppendHtml(await output.GetChildContentAsync());
+
+        output.Content.AppendHtml(innerTagBuilder);
     }
 }
