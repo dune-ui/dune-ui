@@ -46,7 +46,5 @@ public class ButtonTagHelper : StellarTagHelper
             effectiveVariant,
             effectiveSize
         );
-
-        output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }

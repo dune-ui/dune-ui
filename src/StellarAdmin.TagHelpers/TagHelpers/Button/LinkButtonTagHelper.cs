@@ -29,15 +29,7 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
     ///     Defaults to <see cref="ButtonSize.Default" />
     /// </remarks>
     [HtmlAttributeName("size")]
-    public ButtonSize Size
-    {
-        get;
-        set
-        {
-            ArgumentNullException.ThrowIfNull(value, nameof(Size));
-            field = value;
-        }
-    } = ButtonSize.Default;
+    public ButtonSize? Size { get; set; }
 
     /// <summary>
     ///     The button variant.
@@ -46,18 +38,13 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
     ///     Defaults to <see cref="ButtonVariant.Default" />.
     /// </remarks>
     [HtmlAttributeName("variant")]
-    public ButtonVariant Variant
-    {
-        get;
-        set
-        {
-            ArgumentNullException.ThrowIfNull(value, nameof(Variant));
-            field = value;
-        }
-    } = ButtonVariant.Default;
+    public ButtonVariant? Variant { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveSize = Size ?? ButtonSize.Default;
+        var effectiveVariant = Variant ?? ButtonVariant.Default;
+
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -77,8 +64,11 @@ public class LinkButtonTagHelper : StellarAnchorTagHelperBase
         };
         await anchorTagHelper.ProcessAsync(context, output);
 
-        ButtonRenderingHelper.RenderAttributes(output, _classMerger, Variant, Size);
-
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        ButtonRenderingHelper.RenderAttributes(
+            output,
+            _classMerger,
+            effectiveVariant,
+            effectiveSize
+        );
     }
 }
