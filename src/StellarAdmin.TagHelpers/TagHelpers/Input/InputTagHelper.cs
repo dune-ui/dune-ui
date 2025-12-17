@@ -109,7 +109,13 @@ public class InputTagHelper : FieldInputBaseTagHelper
         }
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(classNames.Union([output.GetUserSuppliedClass()]).ToArray())
+            _classMerger.Merge(
+                classNames
+                    .Select(cn => new ClassList(cn))
+                    .Union([new ClassList(output.GetUserSuppliedClass())])
+                    .Cast<ClassElement>()
+                    .ToArray()
+            )
         );
 
         // Add input-specific attributes

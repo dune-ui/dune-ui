@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
@@ -33,8 +34,11 @@ internal class FieldTagBuilder : TagBuilder
         Attributes.Add(
             "class",
             classMerger.Merge(
-                new[] { "group/field flex w-full gap-3 data-[invalid=true]:text-destructive" }
-                    .Concat(OrientationClasses[orientation])
+                new ClassElement[]
+                {
+                    "group/field flex w-full gap-3 data-[invalid=true]:text-destructive",
+                }
+                    .Concat(OrientationClasses[orientation].Select(cl => new ClassList(cl)))
                     .Append(userSuppliedClass)
                     .ToArray()
             )

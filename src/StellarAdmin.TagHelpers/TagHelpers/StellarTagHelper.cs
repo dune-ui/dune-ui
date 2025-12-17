@@ -56,26 +56,14 @@ public class StellarTagHelper : TagHelper
 
     protected string BuildClassString(params ClassElement[] classes)
     {
-        return ClassMerger.Merge(
-                classes
-                    .Select(c =>
-                    {
-                        return c switch
-                        {
-                            ComponentName cn => ThemeManager.GetComponentClass(cn.Name),
-                            ClassList cl => cl.Classes,
-                            _ => string.Empty,
-                        };
-                    })
-                    .ToArray()
-            ) ?? string.Empty;
+        return ClassMerger.Merge(classes) ?? string.Empty;
     }
 
     protected string? BuildClassString(string? componentName, string?[] additionalClasses)
     {
         if (componentName == null)
         {
-            return ClassMerger.Merge(additionalClasses);
+            return ClassMerger.Merge([.. additionalClasses]);
         }
 
         return ClassMerger.Merge(
@@ -129,20 +117,3 @@ public class StellarTagHelper : TagHelper
         return parentTagHelperStack;
     }
 }
-
-public abstract record ClassElement
-{
-    public static implicit operator ClassElement(string? classes)
-    {
-        if (classes == null)
-        {
-            return new ClassList(string.Empty);
-        }
-
-        return new ClassList(classes);
-    }
-}
-
-public record ClassList(string Classes) : ClassElement;
-
-public record ComponentName(string Name) : ClassElement;

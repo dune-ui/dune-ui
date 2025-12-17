@@ -6,17 +6,21 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-breadcrumb")]
 public class BreadcrumbTagHelper : StellarTagHelper
 {
-    public BreadcrumbTagHelper(ThemeManager themeManager)
-        : base(themeManager) { }
+    public BreadcrumbTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "nav";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("aria-label", "breadcrumb");
         output.Attributes.SetAttribute("data-slot", "breadcrumb");
+        output.Attributes.SetAttribute(
+            "class",
+            BuildClassString(new ComponentName("dui-breadcrumb"), output.GetUserSuppliedClass())
+        );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

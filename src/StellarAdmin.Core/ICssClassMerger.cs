@@ -1,6 +1,8 @@
-﻿namespace StellarAdmin;
+﻿using StellarAdmin.Theming;
+
+namespace StellarAdmin;
 
 public interface ICssClassMerger
 {
-    string? Merge(params string?[] classNames);
+    string? Merge(params ClassElement?[] classes);
 }

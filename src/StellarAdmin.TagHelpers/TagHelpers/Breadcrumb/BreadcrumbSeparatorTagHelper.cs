@@ -7,7 +7,6 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-breadcrumb-separator")]
 public class BreadcrumbSeparatorTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
     private readonly IIconManager _iconManager;
 
     public BreadcrumbSeparatorTagHelper(
@@ -15,9 +14,8 @@ public class BreadcrumbSeparatorTagHelper : StellarTagHelper
         ICssClassMerger classMerger,
         IIconManager iconManager
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
@@ -31,7 +29,10 @@ public class BreadcrumbSeparatorTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("aria-hidden", "true");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("[&>svg]:size-3.5", output.GetUserSuppliedClass())
+            BuildClassString(
+                new ComponentName("dui-breadcrumb-separator"),
+                output.GetUserSuppliedClass()
+            )
         );
 
         var childContent = await output.GetChildContentAsync();

@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-breadcrumb-page")]
 public class BreadcrumbPageTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public BreadcrumbPageTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -25,9 +20,12 @@ public class BreadcrumbPageTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("aria-current", "page");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("text-foreground font-normal", output.GetUserSuppliedClass())
+            BuildClassString(
+                new ComponentName("dui-breadcrumb-page"),
+                output.GetUserSuppliedClass()
+            )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

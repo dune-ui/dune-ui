@@ -24,7 +24,7 @@ public class SidebarMenuSubLinkTagHelper : StellarAnchorTagHelperBase
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));

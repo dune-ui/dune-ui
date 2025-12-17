@@ -8,7 +8,6 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-breadcrumb-ellipsis")]
 public class BreadcrumbEllipsisTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
     private readonly IIconManager _iconManager;
 
     public BreadcrumbEllipsisTagHelper(
@@ -16,9 +15,8 @@ public class BreadcrumbEllipsisTagHelper : StellarTagHelper
         ICssClassMerger classMerger,
         IIconManager iconManager
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
@@ -32,8 +30,9 @@ public class BreadcrumbEllipsisTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("aria-hidden", "true");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex size-9 items-center justify-center",
+            BuildClassString(
+                new ComponentName("dui-breadcrumb-ellipsis"),
+                "flex items-center justify-center",
                 output.GetUserSuppliedClass()
             )
         );

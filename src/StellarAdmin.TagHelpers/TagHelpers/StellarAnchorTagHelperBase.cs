@@ -7,8 +7,8 @@ namespace StellarAdmin.TagHelpers;
 
 public class StellarAnchorTagHelperBase : StellarTagHelper
 {
-    public StellarAnchorTagHelperBase(ThemeManager themeManager)
-        : base(themeManager) { }
+    public StellarAnchorTagHelperBase(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
 
     private const string ActionAttributeName = "asp-action";
     private const string ControllerAttributeName = "asp-controller";

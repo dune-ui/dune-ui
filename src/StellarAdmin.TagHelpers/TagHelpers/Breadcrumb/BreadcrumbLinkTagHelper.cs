@@ -9,17 +9,15 @@ namespace StellarAdmin.TagHelpers;
 public class BreadcrumbLinkTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public BreadcrumbLinkTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -46,12 +44,10 @@ public class BreadcrumbLinkTagHelper : StellarAnchorTagHelperBase
         output.Attributes.SetAttribute("data-slot", "breadcrumb-link");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "hover:text-foreground transition-colors",
+            BuildClassString(
+                new ComponentName("dui-breadcrumb-link"),
                 output.GetUserSuppliedClass()
             )
         );
-
-        output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }

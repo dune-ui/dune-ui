@@ -21,7 +21,7 @@ public class ButtonTagHelper : StellarTagHelper
     ///     Defaults to <see cref="ButtonSize.Default" />
     /// </remarks>
     [HtmlAttributeName("size")]
-    public ButtonSize Size { get; set; } = ButtonSize.Default;
+    public ButtonSize? Size { get; set; }
 
     /// <summary>
     ///     The button variant.
@@ -30,14 +30,22 @@ public class ButtonTagHelper : StellarTagHelper
     ///     Defaults to <see cref="ButtonVariant.Default" />.
     /// </remarks>
     [HtmlAttributeName("variant")]
-    public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
+    public ButtonVariant? Variant { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveSize = Size ?? ButtonSize.Default;
+        var effectiveVariant = Variant ?? ButtonVariant.Default;
+
         output.TagName = "button";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        ButtonRenderingHelper.RenderAttributes(output, _classMerger, Variant, Size);
+        ButtonRenderingHelper.RenderAttributes(
+            output,
+            _classMerger,
+            effectiveVariant,
+            effectiveSize
+        );
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }

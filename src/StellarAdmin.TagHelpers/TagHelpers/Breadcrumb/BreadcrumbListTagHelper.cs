@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-breadcrumb-list")]
 public class BreadcrumbListTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public BreadcrumbListTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "ol";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,12 +17,13 @@ public class BreadcrumbListTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "breadcrumb-list");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
+            BuildClassString(
+                new ComponentName("dui-breadcrumb-list"),
+                "flex flex-wrap items-center break-words",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }
