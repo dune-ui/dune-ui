@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-card-title")]
 public class CardTitleTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public CardTitleTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,9 +17,9 @@ public class CardTitleTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "card-title");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("leading-none font-semibold", output.GetUserSuppliedClass())
+            BuildClassString(new ComponentName("dui-card-title"), output.GetUserSuppliedClass())
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

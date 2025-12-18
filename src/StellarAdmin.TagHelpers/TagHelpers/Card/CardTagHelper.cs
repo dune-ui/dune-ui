@@ -6,28 +6,30 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-card")]
 public class CardTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
+    [HtmlAttributeName("size")]
+    public CardSize? Size { get; set; }
 
     public CardTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveSize = Size ?? CardSize.Default;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "card");
+        output.Attributes.SetAttribute("data-size", effectiveSize.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+            BuildClassString(
+                new ComponentName("dui-card"),
+                "group/card flex flex-col",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

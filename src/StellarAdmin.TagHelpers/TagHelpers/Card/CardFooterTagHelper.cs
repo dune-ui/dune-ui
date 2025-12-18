@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-card-footer")]
 public class CardFooterTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public CardFooterTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,12 +17,13 @@ public class CardFooterTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "card-footer");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex items-center px-6 [.border-t]:pt-6",
+            BuildClassString(
+                new ComponentName("dui-card-footer"),
+                "flex items-center",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }
