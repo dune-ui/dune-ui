@@ -62,6 +62,8 @@ public class SelectTagHelper : FieldInputBaseTagHelper
         output.TagName = "select";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.Add("data-slot", "native-select");
+
         var allowMultipleValues =
             output.Attributes.TryGetAttribute("multiple", out var multipleAttribute)
             && (

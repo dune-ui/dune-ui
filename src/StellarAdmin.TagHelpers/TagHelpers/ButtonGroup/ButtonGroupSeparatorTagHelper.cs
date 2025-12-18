@@ -6,32 +6,31 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-button-group-separator")]
 public class ButtonGroupSeparatorTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ButtonGroupSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     [HtmlAttributeName("orientation")]
-    public SeparatorOrientation Orientation { get; set; } = SeparatorOrientation.Vertical;
+    public SeparatorOrientation? Orientation { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveOrientation = Orientation ?? SeparatorOrientation.Vertical;
+
         output.Attributes.SetAttribute("data-slot", "button-group-separator");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto",
+            BuildClassString(
+                new ComponentName("dui-button-group-separator"),
+                "relative self-stretch data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto",
                 output.GetUserSuppliedClass()
             )
         );
 
-        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, _classMerger)
+        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, ClassMerger)
         {
-            Orientation = Orientation,
+            Orientation = effectiveOrientation,
         };
+
         await separatorTagHelper.ProcessAsync(context, output);
     }
 }

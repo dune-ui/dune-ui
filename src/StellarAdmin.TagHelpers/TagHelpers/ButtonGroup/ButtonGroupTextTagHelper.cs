@@ -6,27 +6,24 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-button-group-text")]
 public class ButtonGroupTextTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ButtonGroupTextTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.SetAttribute("data-slot", "button-group-text");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+            BuildClassString(
+                new ComponentName("dui-button-group-text"),
+                "flex items-center [&_svg]:pointer-events-none",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }
