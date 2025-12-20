@@ -6,33 +6,32 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-stack")]
 public class StackTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public StackTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     [HtmlAttributeName("align")]
-    public StackAlign Align { get; set; } = StackAlign.Stretch;
+    public StackAlign? Align { get; set; }
 
     [HtmlAttributeName("gap")]
-    public StackGap Gap { get; set; } = StackGap.Default;
+    public StackGap? Gap { get; set; }
 
     [HtmlAttributeName("justify")]
-    public StackJustify Justify { get; set; } = StackJustify.Start;
+    public StackJustify? Justify { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveAlign = Align ?? StackAlign.Stretch;
+        var effectiveGap = Gap ?? StackGap.Default;
+        var effectiveJustify = Justify ?? StackJustify.Start;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
+            ClassMerger.Merge(
                 "flex flex-col",
-                Align switch
+                effectiveAlign switch
                 {
                     StackAlign.Stretch => "items-stretch",
                     StackAlign.Center => "items-center",
@@ -40,7 +39,7 @@ public class StackTagHelper : StellarTagHelper
                     StackAlign.End => "items-end",
                     _ => "items-stretch",
                 },
-                Gap switch
+                effectiveGap switch
                 {
                     StackGap.ExtraSmall => "gap-y-1",
                     StackGap.Small => "gap-y-2",
@@ -49,7 +48,7 @@ public class StackTagHelper : StellarTagHelper
                     StackGap.ExtraLarge => "gap-y-8",
                     _ => "gap-y-4",
                 },
-                Justify switch
+                effectiveJustify switch
                 {
                     StackJustify.Start => "justify-start",
                     StackJustify.End => "justify-end",

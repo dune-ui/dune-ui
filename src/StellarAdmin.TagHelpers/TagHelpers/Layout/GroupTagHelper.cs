@@ -6,33 +6,32 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-group")]
 public class GroupTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public GroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     [HtmlAttributeName("align")]
-    public GroupAlign Align { get; set; } = GroupAlign.Start;
+    public GroupAlign? Align { get; set; }
 
     [HtmlAttributeName("gap")]
-    public GroupGap Gap { get; set; } = GroupGap.Default;
+    public GroupGap? Gap { get; set; }
 
     [HtmlAttributeName("justify")]
-    public GroupJustify Justify { get; set; } = GroupJustify.Start;
+    public GroupJustify? Justify { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveAlign = Align ?? GroupAlign.Start;
+        var effectiveGap = Gap ?? GroupGap.Default;
+        var effectiveJustify = Justify ?? GroupJustify.Start;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
+            ClassMerger.Merge(
                 "flex flex-row",
-                Align switch
+                effectiveAlign switch
                 {
                     GroupAlign.Center => "items-center",
                     GroupAlign.Start => "items-start",
@@ -41,7 +40,7 @@ public class GroupTagHelper : StellarTagHelper
                     GroupAlign.Baseline => "items-baseline",
                     _ => "items-start",
                 },
-                Gap switch
+                effectiveGap switch
                 {
                     GroupGap.ExtraSmall => "gap-x-1",
                     GroupGap.Small => "gap-x-2",
@@ -50,7 +49,7 @@ public class GroupTagHelper : StellarTagHelper
                     GroupGap.ExtraLarge => "gap-x-8",
                     _ => "gap-x-4",
                 },
-                Justify switch
+                effectiveJustify switch
                 {
                     GroupJustify.Start => "justify-start",
                     GroupJustify.End => "justify-end",
