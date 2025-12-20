@@ -5,20 +5,22 @@ namespace StellarAdmin.TagHelpers;
 
 internal class FieldTagBuilder : TagBuilder
 {
-    private static readonly Dictionary<FieldOrientation, string[]> OrientationClasses = new()
+    private static readonly Dictionary<FieldOrientation, ClassElement[]> OrientationClasses = new()
     {
-        [FieldOrientation.Vertical] = ["flex-col [&>*]:w-full [&>.sr-only]:w-auto"],
+        [FieldOrientation.Vertical] =
+        [
+            new ComponentName("dui-field-orientation-vertical"),
+            "flex-col [&>*]:w-full [&>.sr-only]:w-auto",
+        ],
         [FieldOrientation.Horizontal] =
         [
-            "flex-row items-center",
-            "[&>[data-slot=field-label]]:flex-auto",
-            "has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+            new ComponentName("dui-field-orientation-horizontal"),
+            "flex-row items-center [&>[data-slot=field-label]]:flex-auto has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
         ],
         [FieldOrientation.Responsive] =
         [
-            "flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto",
-            "@md/field-group:[&>[data-slot=field-label]]:flex-auto",
-            "@md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+            new ComponentName("dui-field-orientation-responsive"),
+            "flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
         ],
     };
 
@@ -30,27 +32,15 @@ internal class FieldTagBuilder : TagBuilder
         : base("div")
     {
         Attributes.Add("data-slot", "field");
-        Attributes.Add("data-orientation", GetOrientationAttributeText(orientation));
+        Attributes.Add("data-orientation", orientation.GetDataAttributeText());
         Attributes.Add(
             "class",
             classMerger.Merge(
-                new ClassElement[]
-                {
-                    "group/field flex w-full gap-3 data-[invalid=true]:text-destructive",
-                }
-                    .Concat(OrientationClasses[orientation].Select(cl => new ClassList(cl)))
+                new ClassElement[] { new ComponentName("dui-field"), "group/field flex w-full" }
+                    .Union(OrientationClasses[orientation])
                     .Append(userSuppliedClass)
                     .ToArray()
             )
         );
     }
-
-    private string GetOrientationAttributeText(FieldOrientation orientation) =>
-        orientation switch
-        {
-            FieldOrientation.Vertical => "vertical",
-            FieldOrientation.Horizontal => "horizontal",
-            FieldOrientation.Responsive => "responsive",
-            _ => string.Empty,
-        };
 }

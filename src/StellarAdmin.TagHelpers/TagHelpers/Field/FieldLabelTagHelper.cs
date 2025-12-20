@@ -9,17 +9,15 @@ namespace StellarAdmin.TagHelpers;
 public class FieldLabelTagHelper : StellarTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public FieldLabelTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     private const string ForAttributeName = "asp-for";
@@ -42,15 +40,15 @@ public class FieldLabelTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "field-label");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50",
-                "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4",
-                "has-[:checked]:bg-primary/5 has-[:checked]:border-primary dark:has-[:checked]:bg-primary/10",
+            ClassMerger.Merge(
+                new ComponentName("dui-field-label"),
+                "group/field-label peer/field-label flex w-fit leading-snug",
+                "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
                 output.GetUserSuppliedClass()
             )
         );
 
-        var labelTagHelper = new LabelTagHelper(ThemeManager, _htmlGenerator, _classMerger)
+        var labelTagHelper = new LabelTagHelper(ThemeManager, _htmlGenerator, ClassMerger)
         {
             For = For,
             ViewContext = ViewContext,

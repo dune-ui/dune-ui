@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-field-title")]
 public class FieldTitleTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public FieldTitleTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,12 +17,13 @@ public class FieldTitleTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "field-label");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex w-fit items-center gap-2 text-sm leading-snug font-medium group-data-[disabled=true]/field:opacity-50",
+            ClassMerger.Merge(
+                new ComponentName("dui-field-title"),
+                "flex w-fit items-center leading-snug",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

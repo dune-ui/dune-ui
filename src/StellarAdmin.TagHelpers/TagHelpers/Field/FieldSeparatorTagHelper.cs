@@ -7,13 +7,8 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-field-separator")]
 public class FieldSeparatorTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public FieldSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -29,8 +24,9 @@ public class FieldSeparatorTagHelper : StellarTagHelper
         );
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
+            ClassMerger.Merge(
+                new ComponentName("dui-field-separator"),
+                "relative",
                 output.GetUserSuppliedClass()
             )
         );
@@ -41,7 +37,7 @@ public class FieldSeparatorTagHelper : StellarTagHelper
             [new TagHelperAttribute("class", "absolute inset-0 top-1/2")],
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );
-        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, _classMerger)
+        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, ClassMerger)
         {
             Orientation = SeparatorOrientation.Horizontal,
         };
@@ -55,7 +51,10 @@ public class FieldSeparatorTagHelper : StellarTagHelper
             contentWrapperTagBuilder.Attributes.Add("data-slot", "field-separator-content");
             contentWrapperTagBuilder.Attributes.Add(
                 "class",
-                "bg-background text-muted-foreground relative mx-auto block w-fit px-2"
+                ClassMerger.Merge(
+                    new ComponentName("dui-field-separator-content"),
+                    "bg-background relative mx-auto block w-fit"
+                )
             );
 
             contentWrapperTagBuilder.InnerHtml.AppendHtml(childContent);

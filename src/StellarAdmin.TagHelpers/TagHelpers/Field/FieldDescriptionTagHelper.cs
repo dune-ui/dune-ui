@@ -8,13 +8,8 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-field-description")]
 public class FieldDescriptionTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public FieldDescriptionTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     private const string ForAttributeName = "asp-for";
 
@@ -33,15 +28,16 @@ public class FieldDescriptionTagHelper : StellarTagHelper
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        output.TagName = "div";
+        output.TagName = "p";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "field-description");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-muted-foreground text-sm leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
-                "last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5",
+            ClassMerger.Merge(
+                new ComponentName("dui-field-description"),
+                "leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
+                "last:mt-0 nth-last-2:-mt-1",
                 "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
                 output.GetUserSuppliedClass()
             )

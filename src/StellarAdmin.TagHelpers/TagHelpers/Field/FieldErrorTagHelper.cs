@@ -10,17 +10,15 @@ namespace StellarAdmin.TagHelpers;
 public class FieldErrorTagHelper : StellarTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public FieldErrorTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     private const string ForAttributeName = "asp-for";
@@ -61,8 +59,9 @@ public class FieldErrorTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "field-error");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-destructive text-sm font-normal",
+            ClassMerger.Merge(
+                new ComponentName("dui-field-error"),
+                "font-normal",
                 "hidden [&.field-validation-error]:block",
                 output.GetUserSuppliedClass()
             )

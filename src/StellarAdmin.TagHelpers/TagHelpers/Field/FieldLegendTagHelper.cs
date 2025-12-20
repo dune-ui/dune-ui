@@ -6,42 +6,26 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-field-legend")]
 public class FieldLegendTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public FieldLegendTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     [HtmlAttributeName("variant")]
-    public FieldLegendVariant Variant { get; set; } = FieldLegendVariant.Legend;
+    public FieldLegendVariant? Variant { get; set; }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveVariant = Variant ?? FieldLegendVariant.Legend;
+
         output.TagName = "legend";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "field-legend");
-        output.Attributes.SetAttribute("data-variant", GetVariantAttributeText());
+        output.Attributes.SetAttribute("data-variant", effectiveVariant.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "mb-3 font-medium",
-                "data-[variant=legend]:text-base",
-                "data-[variant=label]:text-sm",
-                output.GetUserSuppliedClass()
-            )
+            BuildClassString(new ComponentName("dui-field-legend"), output.GetUserSuppliedClass())
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
-
-    private string GetVariantAttributeText() =>
-        Variant switch
-        {
-            FieldLegendVariant.Legend => "legend",
-            FieldLegendVariant.Label => "label",
-            _ => string.Empty,
-        };
 }
