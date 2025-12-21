@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-kbd-group")]
 public class KbdGroupTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public KbdGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "kbd";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,9 +17,13 @@ public class KbdGroupTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "kbd-group");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("inline-flex items-center gap-1", output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ComponentName("dui-kbd-group"),
+                "inline-flex items-center",
+                output.GetUserSuppliedClass()
+            )
         );
 
-        output.Content.SetHtmlContent(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }
