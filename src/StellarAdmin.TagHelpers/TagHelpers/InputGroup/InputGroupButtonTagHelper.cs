@@ -6,32 +6,27 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-input-group-button")]
 public class InputGroupButtonTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
+    private static readonly Dictionary<InputGroupButtonSize, ComponentName> SizeClasses =
+        new Dictionary<InputGroupButtonSize, ComponentName>
+        {
+            [InputGroupButtonSize.ExtraSmall] = new ComponentName("dui-input-group-button-size-xs"),
+            [InputGroupButtonSize.Small] = new ComponentName("dui-input-group-button-size-sm"),
+            [InputGroupButtonSize.IconExtraSmall] = new ComponentName(
+                "dui-input-group-button-size-icon-xs"
+            ),
+            [InputGroupButtonSize.IconSmall] = new ComponentName(
+                "dui-input-group-button-size-icon-sm"
+            ),
+        };
 
-    public InputGroupButtonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
-
-    private static readonly Dictionary<InputGroupButtonSize, string> SizeClasses = new Dictionary<
-        InputGroupButtonSize,
-        string
-    >
-    {
-        [InputGroupButtonSize.ExtraSmall] =
-            "h-6 gap-1 px-2 rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-3.5 has-[>svg]:px-2",
-        [InputGroupButtonSize.Small] = "h-8 px-2.5 gap-1.5 rounded-md has-[>svg]:px-2.5",
-        [InputGroupButtonSize.IconExtraSmall] =
-            "size-6 rounded-[calc(var(--radius)-5px)] p-0 has-[>svg]:p-0",
-        [InputGroupButtonSize.IconSmall] = "size-8 p-0 has-[>svg]:p-0",
-    };
+    [HtmlAttributeName("size")]
+    public InputGroupButtonSize? Size { get; set; }
 
     [HtmlAttributeName("variant")]
     public ButtonVariant? Variant { get; set; }
 
-    [HtmlAttributeName("size")]
-    public InputGroupButtonSize? Size { get; set; }
+    public InputGroupButtonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -43,8 +38,9 @@ public class InputGroupButtonTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-size", effectiveSize.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-sm shadow-none flex gap-2 items-center",
+            ClassMerger.Merge(
+                new ComponentName("dui-input-group-button"),
+                "shadow-none flex items-center",
                 SizeClasses[effectiveSize],
                 output.GetUserSuppliedClass()
             )
@@ -52,7 +48,7 @@ public class InputGroupButtonTagHelper : StellarTagHelper
 
         ButtonRenderingHelper.RenderAttributes(
             output,
-            _classMerger,
+            ClassMerger,
             Variant ?? ButtonVariant.Ghost,
             ButtonSize.Default
         );

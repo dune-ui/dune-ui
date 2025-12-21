@@ -6,13 +6,8 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-input-group-text")]
 public class InputGroupTextTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public InputGroupTextTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -21,8 +16,9 @@ public class InputGroupTextTagHelper : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-muted-foreground flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+            ClassMerger.Merge(
+                new ComponentName("dui-input-group-text"),
+                "flex items-center [&_svg]:pointer-events-none",
                 output.GetUserSuppliedClass()
             )
         );

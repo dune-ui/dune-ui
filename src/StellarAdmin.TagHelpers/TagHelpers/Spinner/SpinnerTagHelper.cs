@@ -15,7 +15,7 @@ public class SpinnerTagHelper : StellarTagHelper
         ICssClassMerger classMerger,
         IIconManager iconManager
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));

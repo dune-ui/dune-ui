@@ -6,29 +6,38 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-input-group-addon")]
 public class InputGroupAddOnTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
-    public InputGroupAddOnTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
+    private static readonly Dictionary<
+        InputGroupAddOnVariantAlignment,
+        ClassElement[]
+    > AlignmentClasses = new Dictionary<InputGroupAddOnVariantAlignment, ClassElement[]>
     {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
-
-    private static readonly Dictionary<InputGroupAddOnVariantAlignment, string> AlignmentClasses =
-        new Dictionary<InputGroupAddOnVariantAlignment, string>
-        {
-            [InputGroupAddOnVariantAlignment.InlineStart] =
-                "order-first pl-3 has-[>button]:ml-[-0.45rem] has-[>kbd]:ml-[-0.35rem]",
-            [InputGroupAddOnVariantAlignment.InlineEnd] =
-                "order-last pr-3 has-[>button]:mr-[-0.45rem] has-[>kbd]:mr-[-0.35rem]",
-            [InputGroupAddOnVariantAlignment.BlockStart] =
-                "order-first w-full justify-start px-3 pt-3 [.border-b]:pb-3 group-has-[>input]/input-group:pt-2.5",
-            [InputGroupAddOnVariantAlignment.BlockEnd] =
-                "order-last w-full justify-start px-3 pb-3 [.border-t]:pt-3 group-has-[>input]/input-group:pb-2.5",
-        };
+        [InputGroupAddOnVariantAlignment.InlineStart] =
+        [
+            new ComponentName("dui-input-group-addon-align-inline-start"),
+            "order-first",
+        ],
+        [InputGroupAddOnVariantAlignment.InlineEnd] =
+        [
+            new ComponentName("dui-input-group-addon-align-inline-end"),
+            "order-last",
+        ],
+        [InputGroupAddOnVariantAlignment.BlockStart] =
+        [
+            new ComponentName("dui-input-group-addon-align-block-start"),
+            "order-first w-full justify-start",
+        ],
+        [InputGroupAddOnVariantAlignment.BlockEnd] =
+        [
+            new ComponentName("dui-input-group-addon-align-block-end"),
+            "order-last w-full justify-start",
+        ],
+    };
 
     [HtmlAttributeName("align")]
     public InputGroupAddOnVariantAlignment? Alignment { get; set; }
+
+    public InputGroupAddOnTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -55,10 +64,15 @@ public class InputGroupAddOnTagHelper : StellarTagHelper
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-muted-foreground flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium select-none [&>svg:not([class*='size-'])]:size-4 [&>kbd]:rounded-[calc(var(--radius)-5px)] group-data-[disabled=true]/input-group:opacity-50",
-                AlignmentClasses[effectiveAlignment],
-                output.GetUserSuppliedClass()
+            ClassMerger.Merge(
+                new ClassElement[]
+                {
+                    new ComponentName("dui-input-group-addon"),
+                    "flex cursor-text items-center justify-center select-none",
+                }
+                    .Union(AlignmentClasses[effectiveAlignment])
+                    .Append(output.GetUserSuppliedClass())
+                    .ToArray()
             )
         );
 

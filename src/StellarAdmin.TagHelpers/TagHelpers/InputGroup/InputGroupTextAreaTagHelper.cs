@@ -9,7 +9,6 @@ namespace StellarAdmin.TagHelpers;
 public class InputGroupTextAreaTagHelper : StellarTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     /// <summary>
     ///     An expression to be evaluated against the current model.
@@ -29,10 +28,9 @@ public class InputGroupTextAreaTagHelper : StellarTagHelper
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -40,13 +38,14 @@ public class InputGroupTextAreaTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "input-group-control");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex-1 resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent",
+            ClassMerger.Merge(
+                new ComponentName("dui-input-group-textarea"),
+                "flex-1 resize-none",
                 output.GetUserSuppliedClass()
             )
         );
 
-        var textareaTagHelper = new TextareaTagHelper(ThemeManager, _htmlGenerator, _classMerger)
+        var textareaTagHelper = new TextareaTagHelper(ThemeManager, _htmlGenerator, ClassMerger)
         {
             ViewContext = ViewContext,
             For = For,
