@@ -7,24 +7,52 @@ using StellarAdmin.Theming;
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination-first")]
-public class PaginationFirstTagHelper : PaginationLinkTagHelper
+public class PaginationFirstTagHelper : StellarAnchorTagHelperBase
 {
+    private readonly IHtmlGenerator _htmlGenerator;
     private readonly IIconManager _iconManager;
+
+    [HtmlAttributeName("size")]
+    public ButtonSize? Size { get; set; }
 
     public PaginationFirstTagHelper(
         ThemeManager themeManager,
-        IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger,
+        IHtmlGenerator htmlGenerator,
         IIconManager iconManager
     )
-        : base(themeManager, htmlGenerator, classMerger)
+        : base(themeManager, classMerger)
     {
-        _iconManager = iconManager;
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        await RenderLink(context, output);
+        output.Attributes.SetAttribute(
+            "class",
+            ClassMerger.Merge(
+                new ComponentName("dui-pagination-previous"),
+                output.GetUserSuppliedClass()
+            )
+        );
+        var linkTagHelper = new PaginationLinkTagHelper(ThemeManager, _htmlGenerator, ClassMerger)
+        {
+            ViewContext = ViewContext,
+            Action = Action,
+            Area = Area,
+            Controller = Controller,
+            Fragment = Fragment,
+            Host = Host,
+            Page = Page,
+            PageHandler = PageHandler,
+            Protocol = Protocol,
+            Route = Route,
+            RouteValues = RouteValues,
+            IsActive = false,
+            Size = Size,
+        };
+        await linkTagHelper.ProcessAsync(context, output);
 
         var content = await output.GetChildContentAsync();
 

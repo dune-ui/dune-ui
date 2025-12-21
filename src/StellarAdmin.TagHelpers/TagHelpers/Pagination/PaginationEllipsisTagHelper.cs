@@ -8,7 +8,6 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-pagination-ellipsis")]
 public class PaginationEllipsisTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
     private readonly IIconManager _iconManager;
 
     public PaginationEllipsisTagHelper(
@@ -16,9 +15,8 @@ public class PaginationEllipsisTagHelper : StellarTagHelper
         ICssClassMerger classMerger,
         IIconManager iconManager
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
@@ -31,8 +29,9 @@ public class PaginationEllipsisTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "pagination-ellipsis");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex size-9 items-center justify-center",
+            ClassMerger.Merge(
+                new ComponentName("dui-pagination-ellipsis"),
+                "flex items-center justify-center",
                 output.GetUserSuppliedClass()
             )
         );

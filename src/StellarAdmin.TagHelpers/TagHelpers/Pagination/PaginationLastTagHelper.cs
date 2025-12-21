@@ -7,9 +7,13 @@ using StellarAdmin.Theming;
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-pagination-last")]
-public class PaginationLastTagHelper : PaginationLinkTagHelper
+public class PaginationLastTagHelper : StellarAnchorTagHelperBase
 {
+    private readonly IHtmlGenerator _htmlGenerator;
     private readonly IIconManager _iconManager;
+
+    [HtmlAttributeName("size")]
+    public ButtonSize? Size { get; set; }
 
     public PaginationLastTagHelper(
         ThemeManager themeManager,
@@ -17,14 +21,38 @@ public class PaginationLastTagHelper : PaginationLinkTagHelper
         ICssClassMerger classMerger,
         IIconManager iconManager
     )
-        : base(themeManager, htmlGenerator, classMerger)
+        : base(themeManager, classMerger)
     {
+        _htmlGenerator = htmlGenerator;
         _iconManager = iconManager;
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        await RenderLink(context, output);
+        output.Attributes.SetAttribute(
+            "class",
+            ClassMerger.Merge(
+                new ComponentName("dui-pagination-next"),
+                output.GetUserSuppliedClass()
+            )
+        );
+        var linkTagHelper = new PaginationLinkTagHelper(ThemeManager, _htmlGenerator, ClassMerger)
+        {
+            ViewContext = ViewContext,
+            Action = Action,
+            Area = Area,
+            Controller = Controller,
+            Fragment = Fragment,
+            Host = Host,
+            Page = Page,
+            PageHandler = PageHandler,
+            Protocol = Protocol,
+            Route = Route,
+            RouteValues = RouteValues,
+            IsActive = false,
+            Size = Size,
+        };
+        await linkTagHelper.ProcessAsync(context, output);
 
         var content = await output.GetChildContentAsync();
 

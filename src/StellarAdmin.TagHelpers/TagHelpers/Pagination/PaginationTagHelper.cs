@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-pagination")]
 public class PaginationTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public PaginationTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "nav";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -24,9 +19,13 @@ public class PaginationTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "pagination");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("mx-auto flex w-full justify-center", output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ComponentName("dui-pagination"),
+                "mx-auto flex w-full justify-center",
+                output.GetUserSuppliedClass()
+            )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

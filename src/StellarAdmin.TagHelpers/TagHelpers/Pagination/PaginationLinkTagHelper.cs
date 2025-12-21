@@ -9,7 +9,6 @@ namespace StellarAdmin.TagHelpers;
 public class PaginationLinkTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public PaginationLinkTagHelper(
         ThemeManager themeManager,
@@ -19,24 +18,19 @@ public class PaginationLinkTagHelper : StellarAnchorTagHelperBase
         : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     [HtmlAttributeName("is-active")]
-    public bool IsActive { get; set; } = false;
+    public bool? IsActive { get; set; }
 
     [HtmlAttributeName("size")]
-    public ButtonSize Size { get; set; } = ButtonSize.Default;
+    public ButtonSize? Size { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        await RenderLink(context, output);
+        var effectiveIsActive = IsActive ?? false;
+        var effectiveSize = Size ?? ButtonSize.Default;
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
-    }
-
-    protected async Task RenderLink(TagHelperContext context, TagHelperOutput output)
-    {
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -56,18 +50,25 @@ public class PaginationLinkTagHelper : StellarAnchorTagHelperBase
         };
         await anchorTagHelper.ProcessAsync(context, output);
 
-        if (IsActive)
+        if (effectiveIsActive)
         {
             output.Attributes.SetAttribute("aria-current", "page");
         }
         output.Attributes.SetAttribute("data-slot", "pagination-link");
-        output.Attributes.SetAttribute("data-active", IsActive.ToString().ToLower());
+        output.Attributes.SetAttribute("data-active", effectiveIsActive ? "true" : "false");
+        output.Attributes.SetAttribute(
+            "class",
+            ClassMerger.Merge(
+                new ComponentName("dui-pagination-link"),
+                output.GetUserSuppliedClass()
+            )
+        );
 
         ButtonRenderingHelper.RenderAttributes(
             output,
-            _classMerger,
-            IsActive ? ButtonVariant.Outline : ButtonVariant.Ghost,
-            Size
+            ClassMerger,
+            effectiveIsActive ? ButtonVariant.Outline : ButtonVariant.Ghost,
+            effectiveSize
         );
     }
 }
