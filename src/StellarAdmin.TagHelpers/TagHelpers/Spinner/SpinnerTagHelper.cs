@@ -23,7 +23,10 @@ public class SpinnerTagHelper : StellarTagHelper
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var iconTagHelper = new IconTagHelper(_iconManager) { Name = "loader-circle" };
+        var iconTagHelper = new IconTagHelper(ThemeManager, ClassMerger, _iconManager)
+        {
+            Name = "loader-circle",
+        };
         await iconTagHelper.ProcessAsync(context, output);
 
         output.Attributes.SetAttribute(

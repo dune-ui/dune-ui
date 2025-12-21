@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Icons;
+using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
 
 [HtmlTargetElement("sa-icon", TagStructure = TagStructure.WithoutEndTag)]
 [OutputElementHint("svg")]
-public class IconTagHelper : TagHelper
+public class IconTagHelper : StellarTagHelper
 {
     private readonly IIconManager _iconManager;
     private static readonly List<SvgShape> NotFoundIcon =
@@ -30,7 +31,12 @@ public class IconTagHelper : TagHelper
         ),
     ];
 
-    public IconTagHelper(IIconManager iconManager)
+    public IconTagHelper(
+        ThemeManager themeManager,
+        ICssClassMerger classMerger,
+        IIconManager iconManager
+    )
+        : base(themeManager, classMerger)
     {
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }

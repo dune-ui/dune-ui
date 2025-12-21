@@ -46,7 +46,10 @@ public class PaginationLastTagHelper : PaginationLinkTagHelper
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-last" };
+            var iconTagHelper = new IconTagHelper(ThemeManager, ClassMerger, _iconManager)
+            {
+                Name = "chevron-last",
+            };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }

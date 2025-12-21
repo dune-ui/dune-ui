@@ -92,7 +92,10 @@ public class AlertTagHelper : StellarTagHelper
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(_iconManager) { Name = Icon };
+            var iconTagHelper = new IconTagHelper(ThemeManager, ClassMerger, _iconManager)
+            {
+                Name = Icon,
+            };
             await iconTagHelper.ProcessAsync(context, iconTagHelperOutput);
 
             output.Content.AppendHtml(iconTagHelperOutput);

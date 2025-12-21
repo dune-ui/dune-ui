@@ -46,7 +46,10 @@ public class PaginationNextTagHelper : PaginationLinkTagHelper
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-right" };
+            var iconTagHelper = new IconTagHelper(ThemeManager, ClassMerger, _iconManager)
+            {
+                Name = "chevron-right",
+            };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
         }

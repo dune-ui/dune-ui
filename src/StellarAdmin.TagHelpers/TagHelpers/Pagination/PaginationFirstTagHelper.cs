@@ -40,7 +40,10 @@ public class PaginationFirstTagHelper : PaginationLinkTagHelper
                 [],
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
-            var iconTagHelper = new IconTagHelper(_iconManager) { Name = "chevron-first" };
+            var iconTagHelper = new IconTagHelper(ThemeManager, ClassMerger, _iconManager)
+            {
+                Name = "chevron-first",
+            };
             await iconTagHelper.ProcessAsync(context, iconOutput);
             output.Content.AppendHtml(iconOutput);
 
