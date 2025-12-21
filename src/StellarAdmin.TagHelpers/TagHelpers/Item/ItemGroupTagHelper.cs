@@ -6,25 +6,25 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-item-group")]
 public class ItemGroupTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ItemGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.SetAttribute("role", "list");
+        output.Attributes.SetAttribute("data-slot", "item-group");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("group/item-group flex flex-col", GetUserSpecifiedClass(output))
+            ClassMerger.Merge(
+                new ComponentName("dui-item-group"),
+                "group/item-group flex w-full flex-col",
+                GetUserSpecifiedClass(output)
+            )
         );
-        output.Attributes.SetAttribute("data-slot", "item-group");
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

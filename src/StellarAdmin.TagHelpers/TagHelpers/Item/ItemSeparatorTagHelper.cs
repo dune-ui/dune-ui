@@ -6,26 +6,24 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-item-separator")]
 public class ItemSeparatorTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ItemSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     [HtmlAttributeName("is-decorative")]
-    public bool IsDecorative { get; set; } = true;
+    public bool? IsDecorative { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        output.Attributes.SetAttribute("data-slot", "item-separator");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("my-0", GetUserSpecifiedClass(output))
+            ClassMerger.Merge(
+                new ComponentName("dui-item-separator"),
+                GetUserSpecifiedClass(output)
+            )
         );
-        output.Attributes.SetAttribute("data-slot", "item-separator");
 
-        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, _classMerger)
+        var separatorTagHelper = new SeparatorTagHelper(ThemeManager, ClassMerger)
         {
             Orientation = SeparatorOrientation.Horizontal,
             IsDecorative = IsDecorative,

@@ -6,44 +6,39 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-item-media")]
 public class ItemMediaTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
-    public ItemMediaTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
-
-    private const string BaseClasses =
-        "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5";
-    private static readonly Dictionary<ItemMediaVariant, string> ItemVariantClasses = new()
-    {
-        [ItemMediaVariant.Default] = "bg-transparent",
-        [ItemMediaVariant.Icon] =
-            "size-8 border rounded-sm bg-muted [&_svg:not([class*='size-'])]:size-4",
-        [ItemMediaVariant.Image] =
-            "size-10 rounded-sm overflow-hidden [&_img]:size-full [&_img]:object-cover",
-    };
+    private static readonly Dictionary<ItemMediaVariant, string> ItemVariantClasses =
+        new Dictionary<ItemMediaVariant, string>
+        {
+            [ItemMediaVariant.Default] = "dui-item-media-variant-default",
+            [ItemMediaVariant.Icon] = "dui-item-media-variant-icon",
+            [ItemMediaVariant.Image] = "dui-item-media-variant-image",
+        };
 
     [HtmlAttributeName("variant")]
-    public ItemMediaVariant Variant { get; set; } = ItemMediaVariant.Default;
+    public ItemMediaVariant? Variant { get; set; }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public ItemMediaTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveVariant = Variant ?? ItemMediaVariant.Default;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.SetAttribute("data-slot", "item-media");
+        output.Attributes.SetAttribute("data-variant", effectiveVariant.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                BaseClasses,
-                ItemVariantClasses[Variant],
+            ClassMerger.Merge(
+                new ComponentName("dui-item-media"),
+                "flex shrink-0 items-center justify-center [&_svg]:pointer-events-none",
+                ItemVariantClasses[effectiveVariant],
                 GetUserSpecifiedClass(output)
             )
         );
-        output.Attributes.SetAttribute("data-slot", "item-media");
-        output.Attributes.SetAttribute("data-variant", Variant);
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

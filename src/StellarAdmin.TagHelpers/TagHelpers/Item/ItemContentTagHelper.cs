@@ -6,28 +6,24 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-item-content")]
 public class ItemContentTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ItemContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.SetAttribute("data-slot", "item-content");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none",
+            ClassMerger.Merge(
+                new ComponentName("dui-item-content"),
+                "flex flex-1 flex-col [&+[data-slot=item-content]]:flex-none",
                 GetUserSpecifiedClass(output)
             )
         );
-        output.Attributes.SetAttribute("data-slot", "item-content");
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

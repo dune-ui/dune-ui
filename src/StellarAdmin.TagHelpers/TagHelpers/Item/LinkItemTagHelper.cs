@@ -9,7 +9,12 @@ namespace StellarAdmin.TagHelpers;
 public class LinkItemTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
+
+    [HtmlAttributeName("size")]
+    public ItemSize? Size { get; set; }
+
+    [HtmlAttributeName("variant")]
+    public ItemVariant? Variant { get; set; }
 
     public LinkItemTagHelper(
         ThemeManager themeManager,
@@ -19,14 +24,7 @@ public class LinkItemTagHelper : StellarAnchorTagHelperBase
         : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
-
-    [HtmlAttributeName("size")]
-    public ItemSize Size { get; set; } = ItemSize.Default;
-
-    [HtmlAttributeName("variant")]
-    public ItemVariant Variant { get; set; } = ItemVariant.Default;
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -49,7 +47,6 @@ public class LinkItemTagHelper : StellarAnchorTagHelperBase
         };
         await anchorTagHelper.ProcessAsync(context, output);
 
-        var itemRenderer = new ItemRenderer(_classMerger);
-        await itemRenderer.RenderAsync(context, output, Size, Variant);
+        await ItemRenderingHelper.RenderAsync(output, ClassMerger, Size, Variant);
     }
 }

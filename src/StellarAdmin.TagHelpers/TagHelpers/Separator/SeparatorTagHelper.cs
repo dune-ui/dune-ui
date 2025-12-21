@@ -9,19 +9,21 @@ public class SeparatorTagHelper : StellarTagHelper
     private readonly ICssClassMerger _classMerger;
 
     public SeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     [HtmlAttributeName("is-decorative")]
-    public bool IsDecorative { get; set; } = true;
+    public bool? IsDecorative { get; set; }
 
     [HtmlAttributeName("orientation")]
     public SeparatorOrientation Orientation { get; set; } = SeparatorOrientation.Horizontal;
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveIsDecorative = IsDecorative ?? false;
+
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -32,7 +34,7 @@ public class SeparatorTagHelper : StellarTagHelper
                 output.GetUserSuppliedClass()
             )
         );
-        output.Attributes.SetAttribute("data-role", IsDecorative ? "none" : "separator");
+        output.Attributes.SetAttribute("data-role", effectiveIsDecorative ? "none" : "separator");
         output.Attributes.SetAttribute("data-orientation", GetOrientationAttributeText());
     }
 

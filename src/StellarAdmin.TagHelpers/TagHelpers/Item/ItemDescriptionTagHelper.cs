@@ -6,28 +6,23 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-item-description")]
 public class ItemDescriptionTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ItemDescriptionTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        output.TagName = "div";
+        output.TagName = "p";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.SetAttribute("data-slot", "item-description");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance",
-                "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
+            ClassMerger.Merge(
+                new ComponentName("dui-item-description"),
+                "[&>a:hover]:text-primary line-clamp-2 font-normal [&>a]:underline [&>a]:underline-offset-4",
                 GetUserSpecifiedClass(output)
             )
         );
-        output.Attributes.SetAttribute("data-slot", "item-description");
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
     }
