@@ -29,9 +29,11 @@ public class SpinnerTagHelper : StellarTagHelper
         };
         await iconTagHelper.ProcessAsync(context, output);
 
+        output.Attributes.SetAttribute("role", "status");
+        output.Attributes.SetAttribute("aria-label", "Loading");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("animate-spin", output.GetUserSuppliedClass())
+            _classMerger.Merge("size-4 animate-spin", output.GetUserSuppliedClass())
         );
     }
 }
