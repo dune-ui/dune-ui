@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
@@ -6,28 +7,25 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-progress")]
 public class ProgressTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ProgressTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     [HtmlAttributeName("maximum")]
-    public int Maximum { get; set; } = 100;
+    public int? Maximum { get; set; }
 
     [HtmlAttributeName("minimum")]
-    public int Minimum { get; set; } = 0;
+    public int? Minimum { get; set; }
 
     [HtmlAttributeName("value")]
-    public int Value { get; set; } = 0;
+    public int? Value { get; set; }
 
-    public override void Init(TagHelperContext context)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        base.Init(context);
+        var effectiveMinimum = Minimum ?? 0;
+        var effectiveMaximum = Maximum ?? 100;
+        var effectiveValue = Value ?? 0;
 
-        if (Minimum >= Maximum)
+        if (effectiveMinimum >= effectiveMaximum)
         {
             throw new ArgumentOutOfRangeException(
                 nameof(Minimum),
@@ -35,29 +33,53 @@ public class ProgressTagHelper : StellarTagHelper
             );
         }
 
-        if (Value < Minimum || Value > Maximum)
+        if (effectiveValue < effectiveMinimum || effectiveValue > effectiveMaximum)
         {
             throw new ArgumentOutOfRangeException(
                 nameof(Value),
                 "Must be between Minimum and Maximum"
             );
         }
-    }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "progress");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "bg-primary/20 relative h-2 w-full overflow-hidden rounded-full",
+            ClassMerger.Merge(
+                new ComponentName("dui-progress-root"),
+                "flex flex-wrap gap-3",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        var trackTagBuilder = new TagBuilder("div");
+        trackTagBuilder.Attributes.Add("data-slot", "progress-track");
+        trackTagBuilder.Attributes.Add(
+            "class",
+            ClassMerger.Merge(
+                new ComponentName("dui-progress-track"),
+                "relative flex w-full items-center overflow-x-hidden"
+            )
+        );
+
+        var indicatorTagBuilder = new TagBuilder("div");
+        indicatorTagBuilder.Attributes.Add("data-slot", "progress-indicator");
+        indicatorTagBuilder.Attributes.Add(
+            "class",
+            ClassMerger.Merge(new ComponentName("dui-progress-indicator"), "h-full transition-all")
+        );
+        indicatorTagBuilder.Attributes.Add(
+            "style",
+            $"inset-inline-start: 0px; height: inherit; width: {GetPercentageCompleted(effectiveMinimum, effectiveMaximum, effectiveValue)}%;"
+        );
+        trackTagBuilder.InnerHtml.AppendHtml(indicatorTagBuilder);
+        output.PostContent.AppendHtml(trackTagBuilder);
+    }
+
+    private int GetPercentageCompleted(int minimum, int maximum, int value)
+    {
+        return (int)Math.Round(((double)(value - minimum) / (maximum - minimum)) * 100);
     }
 }
