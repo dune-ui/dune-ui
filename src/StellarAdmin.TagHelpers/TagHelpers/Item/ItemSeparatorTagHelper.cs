@@ -9,9 +9,6 @@ public class ItemSeparatorTagHelper : StellarTagHelper
     public ItemSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
-    [HtmlAttributeName("is-decorative")]
-    public bool? IsDecorative { get; set; }
-
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.Attributes.SetAttribute("data-slot", "item-separator");
@@ -26,7 +23,6 @@ public class ItemSeparatorTagHelper : StellarTagHelper
         var separatorTagHelper = new SeparatorTagHelper(ThemeManager, ClassMerger)
         {
             Orientation = SeparatorOrientation.Horizontal,
-            IsDecorative = IsDecorative,
         };
         await separatorTagHelper.ProcessAsync(context, output);
     }
