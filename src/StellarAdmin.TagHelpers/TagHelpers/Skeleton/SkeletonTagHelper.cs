@@ -6,13 +6,8 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-skeleton")]
 public class SkeletonTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public SkeletonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -22,7 +17,11 @@ public class SkeletonTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "skeleton");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("bg-accent animate-pulse rounded-md", output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ComponentName("dui-skeleton"),
+                "animate-pulse",
+                output.GetUserSuppliedClass()
+            )
         );
 
         return Task.CompletedTask;
