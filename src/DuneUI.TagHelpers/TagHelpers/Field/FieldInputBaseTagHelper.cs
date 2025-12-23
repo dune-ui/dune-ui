@@ -9,17 +9,15 @@ namespace DuneUI.TagHelpers;
 public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     protected FieldInputBaseTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     private const string ForAttributeName = "asp-for";
@@ -115,10 +113,7 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
                         ? Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
                         : Task.FromResult(new DefaultTagHelperContent().Append(Description))
             );
-            var fieldDescriptionTagHelper = new FieldDescriptionTagHelper(
-                ThemeManager,
-                _classMerger
-            )
+            var fieldDescriptionTagHelper = new FieldDescriptionTagHelper(ThemeManager, ClassMerger)
             {
                 For = For,
                 ViewContext = ViewContext,
@@ -136,7 +131,7 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
     )
     {
         var fieldTagBuilder = new FieldTagBuilder(
-            _classMerger,
+            ClassMerger,
             autoFieldLayout == AutoFieldLayout.Vertical
                 ? FieldOrientation.Vertical
                 : FieldOrientation.Horizontal,
@@ -164,7 +159,7 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
                 (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
             );
 
-            var fieldContentTagHelper = new FieldContentTagHelper(ThemeManager, _classMerger);
+            var fieldContentTagHelper = new FieldContentTagHelper(ThemeManager, ClassMerger);
             await fieldContentTagHelper.ProcessAsync(context, fieldContentOutput);
 
             await RenderLabelControl(context, fieldContentOutput.Content);
@@ -199,7 +194,7 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
             var fieldErrorTagHelper = new FieldErrorTagHelper(
                 ThemeManager,
                 _htmlGenerator,
-                _classMerger
+                ClassMerger
             )
             {
                 For = For,
@@ -226,7 +221,7 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
             var fieldLabelTagHelper = new FieldLabelTagHelper(
                 ThemeManager,
                 _htmlGenerator,
-                _classMerger
+                ClassMerger
             )
             {
                 For = For,

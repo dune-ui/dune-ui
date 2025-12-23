@@ -10,17 +10,15 @@ namespace DuneUI.TagHelpers;
 public class LabelTagHelper : DuneUITagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public LabelTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
         ICssClassMerger classMerger
     )
-        : base(themeManager)
+        : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     private const string ForAttributeName = "asp-for";
@@ -62,8 +60,9 @@ public class LabelTagHelper : DuneUITagHelperBase
         }
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
+            ClassMerger.Merge(
+                new ComponentName("dui-label"),
+                "flex items-center select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed",
                 output.GetUserSuppliedClass()
             )
         );

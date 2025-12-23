@@ -6,13 +6,8 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-sidebar-menu")]
 public class SidebarMenuTagHelper : DuneUITagHelperBase
 {
-    private readonly ICssClassMerger _classMerger;
-
     public SidebarMenuTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -23,7 +18,7 @@ public class SidebarMenuTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-sidebar", "menu");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("flex w-full min-w-0 flex-col gap-1", output.GetUserSuppliedClass())
+            ClassMerger.Merge("flex w-full min-w-0 flex-col gap-1", output.GetUserSuppliedClass())
         );
 
         output.Content.AppendHtml(await output.GetChildContentAsync());

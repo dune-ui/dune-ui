@@ -6,13 +6,8 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-button")]
 public class ButtonTagHelper : DuneUITagHelperBase
 {
-    private readonly ICssClassMerger _classMerger;
-
     public ButtonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     /// <summary>
     ///     The size of the button.
@@ -42,7 +37,7 @@ public class ButtonTagHelper : DuneUITagHelperBase
 
         ButtonRenderingHelper.RenderAttributes(
             output,
-            _classMerger,
+            ClassMerger,
             effectiveVariant,
             effectiveSize
         );

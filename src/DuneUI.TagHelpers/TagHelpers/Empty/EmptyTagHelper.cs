@@ -6,15 +6,10 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-empty")]
 public class EmptyTagHelper : DuneUITagHelperBase
 {
-    private readonly ICssClassMerger _classMerger;
-
     public EmptyTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,12 +17,13 @@ public class EmptyTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-slot", "empty");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12",
+            ClassMerger.Merge(
+                new ComponentName("dui-empty"),
+                "flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.SetHtmlContent(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

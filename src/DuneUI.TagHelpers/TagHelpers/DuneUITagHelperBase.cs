@@ -11,18 +11,13 @@ public class DuneUITagHelperBase : TagHelper
         new Dictionary<string, TagHelperContent>();
 
     [HtmlAttributeNotBound]
-    public ICssClassMerger ClassMerger { get; private set; }
+    public ICssClassMerger ClassMerger { get; }
 
     [HtmlAttributeNotBound]
     protected internal DuneUITagHelperBase? ParentTagHelper { get; private set; }
 
     [HtmlAttributeNotBound]
     protected ThemeManager ThemeManager { get; }
-
-    public DuneUITagHelperBase(ThemeManager themeManager)
-    {
-        ThemeManager = themeManager ?? throw new ArgumentNullException(nameof(themeManager));
-    }
 
     public DuneUITagHelperBase(ThemeManager themeManager, ICssClassMerger classMerger)
     {

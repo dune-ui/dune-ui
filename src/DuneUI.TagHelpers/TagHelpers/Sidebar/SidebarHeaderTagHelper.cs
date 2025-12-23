@@ -6,13 +6,8 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-sidebar-header")]
 public class SidebarHeaderTagHelper : DuneUITagHelperBase
 {
-    private readonly ICssClassMerger _classMerger;
-
     public SidebarHeaderTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -23,7 +18,7 @@ public class SidebarHeaderTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-sidebar", "header");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("flex flex-col gap-2 p-2", output.GetUserSuppliedClass())
+            ClassMerger.Merge("flex flex-col gap-2 p-2", output.GetUserSuppliedClass())
         );
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
