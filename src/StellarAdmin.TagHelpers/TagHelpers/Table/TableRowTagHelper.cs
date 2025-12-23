@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-table-row")]
 public class TableRowTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public TableRowTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "tr";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,12 +17,9 @@ public class TableRowTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "table-row");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
-                output.GetUserSuppliedClass()
-            )
+            ClassMerger.Merge(new ComponentName("dui-table-row"), output.GetUserSuppliedClass())
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

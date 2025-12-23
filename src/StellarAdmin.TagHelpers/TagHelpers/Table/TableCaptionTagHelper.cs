@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-table-caption")]
 public class TableCaptionTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public TableCaptionTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "caption";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,9 +17,9 @@ public class TableCaptionTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "table-caption");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("text-muted-foreground mt-4 text-sm", output.GetUserSuppliedClass())
+            ClassMerger.Merge(new ComponentName("dui-table-caption"), output.GetUserSuppliedClass())
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-table-header")]
 public class TableHeaderTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public TableHeaderTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "thead";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,9 +17,9 @@ public class TableHeaderTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "table-header");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge("[&_tr]:border-b", output.GetUserSuppliedClass())
+            ClassMerger.Merge(new ComponentName("dui-table-header"), output.GetUserSuppliedClass())
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

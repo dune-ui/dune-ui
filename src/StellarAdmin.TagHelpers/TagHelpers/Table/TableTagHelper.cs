@@ -7,13 +7,8 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-table")]
 public class TableTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public TableTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -21,13 +16,16 @@ public class TableTagHelper : StellarTagHelper
         output.TagMode = TagMode.StartTagAndEndTag;
 
         output.Attributes.SetAttribute("data-slot", "table-container");
-        output.Attributes.SetAttribute("class", "relative w-full overflow-x-auto");
+        output.Attributes.SetAttribute(
+            "class",
+            ThemeManager.GetComponentClass("dui-table-container")
+        );
 
         var tableTagBuilder = new TagBuilder("table");
         tableTagBuilder.Attributes.Add("data-slot", "table");
         tableTagBuilder.Attributes.Add(
             "class",
-            _classMerger.Merge("w-full caption-bottom text-sm", output.GetUserSuppliedClass())
+            ClassMerger.Merge(new ComponentName("dui-table"), output.GetUserSuppliedClass())
         );
         tableTagBuilder.InnerHtml.AppendHtml(await output.GetChildContentAsync());
 

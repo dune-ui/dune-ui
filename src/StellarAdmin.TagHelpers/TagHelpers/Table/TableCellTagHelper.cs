@@ -6,15 +6,10 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-table-cell")]
 public class TableCellTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
     public TableCellTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
+        : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -22,12 +17,9 @@ public class TableCellTagHelper : StellarTagHelper
         output.Attributes.SetAttribute("data-slot", "table-cell");
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-                output.GetUserSuppliedClass()
-            )
+            ClassMerger.Merge(new ComponentName("dui-table-cell"), output.GetUserSuppliedClass())
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }
