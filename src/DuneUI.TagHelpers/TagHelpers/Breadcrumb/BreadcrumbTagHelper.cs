@@ -1,0 +1,26 @@
+﻿using DuneUI.Theming;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+
+namespace DuneUI.TagHelpers;
+
+[HtmlTargetElement("dui-breadcrumb")]
+public class BreadcrumbTagHelper : DuneUITagHelperBase
+{
+    public BreadcrumbTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    {
+        output.TagName = "nav";
+        output.TagMode = TagMode.StartTagAndEndTag;
+
+        output.Attributes.SetAttribute("aria-label", "breadcrumb");
+        output.Attributes.SetAttribute("data-slot", "breadcrumb");
+        output.Attributes.SetAttribute(
+            "class",
+            BuildClassString(new ComponentName("dui-breadcrumb"), output.GetUserSuppliedClass())
+        );
+
+        return Task.CompletedTask;
+    }
+}

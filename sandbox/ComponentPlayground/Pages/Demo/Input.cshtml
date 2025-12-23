@@ -1,126 +1,126 @@
 ﻿@page
 @model ComponentPlayground.Pages.Demo.Input
 
-<sa-container class="py-6 lg:py-8">
+<dui-container class="py-6 lg:py-8">
     <div class="grid grid-cols-2 gap-4">
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Basic input</h2>
         <div>
-            <sa-input id="simple-sa" name="simple-sa"/>
+            <dui-input id="simple-sa" name="simple-sa"/>
         </div>
         <div>
             <input id="simple-native" name="simple-native" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Basic input with value</h2>
         <div>
-            <sa-input value="this is a value"/>
+            <dui-input value="this is a value"/>
         </div>
         <div>
             <input value="this is a value" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a string</h2>
         <div>
-            <sa-input asp-for="Model.StringValue"/>
+            <dui-input asp-for="Model.StringValue"/>
         </div>
         <div>
             <input asp-for="Model.StringValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to an int</h2>
         <div>
-            <sa-input asp-for="Model.IntValue"/>
+            <dui-input asp-for="Model.IntValue"/>
         </div>
         <div>
             <input asp-for="Model.IntValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a double</h2>
         <div>
-            <sa-input asp-for="Model.DoubleValue"/>
+            <dui-input asp-for="Model.DoubleValue"/>
         </div>
         <div>
             <input asp-for="Model.DoubleValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date/time</h2>
         <div>
-            <sa-input asp-for="Model.DateTimeValue"/>
+            <dui-input asp-for="Model.DateTimeValue"/>
         </div>
         <div>
             <input asp-for="Model.DateTimeValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date/time (type=date)</h2>
         <div>
-            <sa-input asp-for="Model.DateTimeValue" type="date"/>
+            <dui-input asp-for="Model.DateTimeValue" type="date"/>
         </div>
         <div>
             <input asp-for="Model.DateTimeValue" class="form-input" type="date"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date/time (type=time)</h2>
         <div>
-            <sa-input asp-for="Model.DateTimeValue" type="time"/>
+            <dui-input asp-for="Model.DateTimeValue" type="time"/>
         </div>
         <div>
             <input asp-for="Model.DateTimeValue" class="form-input" type="time"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date/time (type=month)</h2>
         <div>
-            <sa-input asp-for="Model.DateTimeValue" type="month"/>
+            <dui-input asp-for="Model.DateTimeValue" type="month"/>
         </div>
         <div>
             <input asp-for="Model.DateTimeValue" class="form-input" type="month"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date/time (type=week)</h2>
         <div>
-            <sa-input asp-for="Model.DateTimeValue" type="week"/>
+            <dui-input asp-for="Model.DateTimeValue" type="week"/>
         </div>
         <div>
             <input asp-for="Model.DateTimeValue" class="form-input" type="week"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date</h2>
         <div>
-            <sa-input asp-for="Model.DateOnlyValue"/>
+            <dui-input asp-for="Model.DateOnlyValue"/>
         </div>
         <div>
             <input asp-for="Model.DateOnlyValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a date (type=date)</h2>
         <div>
-            <sa-input asp-for="Model.DateOnlyValue" type="date"/>
+            <dui-input asp-for="Model.DateOnlyValue" type="date"/>
         </div>
         <div>
             <input asp-for="Model.DateOnlyValue" class="form-input" type="date"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a time</h2>
         <div>
-            <sa-input asp-for="Model.TimeOnlyValue"/>
+            <dui-input asp-for="Model.TimeOnlyValue"/>
         </div>
         <div>
             <input asp-for="Model.TimeOnlyValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a time (type=time)</h2>
         <div>
-            <sa-input asp-for="Model.TimeOnlyValue" type="time"/>
+            <dui-input asp-for="Model.TimeOnlyValue" type="time"/>
         </div>
         <div>
             <input asp-for="Model.TimeOnlyValue" class="form-input" type="time"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to a boolean</h2>
         <div>
-            <sa-input asp-for="Model.BooleanValue"/>
+            <dui-input asp-for="Model.BooleanValue"/>
         </div>
         <div>
             <input asp-for="Model.BooleanValue" class="form-checkbox"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">[DataType(DataType.Password)]</h2>
         <div>
-            <sa-input asp-for="Model.PasswordValue"/>
+            <dui-input asp-for="Model.PasswordValue"/>
         </div>
         <div>
             <input asp-for="Model.PasswordValue" class="form-input"/>
         </div>
         <h2 class="col-span-2 bg-gray-100 text-base font-bold">Bound to IFormFile</h2>
         <div>
-            <sa-input asp-for="Model.FileValue"/>
+            <dui-input asp-for="Model.FileValue"/>
         </div>
         <div>
             <input asp-for="Model.FileValue"/>
         </div>
     </div>
-</sa-container>
+</dui-container>

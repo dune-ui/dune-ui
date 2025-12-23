@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>DuneUI</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="TailwindMerge.NET" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference
+      Include="..\..\gen\DuneUI.Generators\DuneUI.Generators.csproj"
+      ReferenceOutputAssembly="false"
+      OutputItemType="Analyzer"
+    />
+  </ItemGroup>
+  <!-- Icon packs -->
+  <ItemGroup>
+    <AdditionalFiles Include="..\client\dist\lucide-static\icon-nodes.json">
+      <Link>Icons\Lucide\icon-nodes.json</Link>
+    </AdditionalFiles>
+  </ItemGroup>
+  <!-- Theme packs -->
+  <ItemGroup>
+    <AdditionalFiles Include="Theming\ThemePacks\*.themepack" />
+  </ItemGroup>
+</Project>

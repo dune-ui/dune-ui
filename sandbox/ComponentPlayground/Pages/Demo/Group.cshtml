@@ -1,101 +1,101 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Group
 
-<sa-container>
-    <sa-stack>
+<dui-container>
+    <dui-stack>
         <h2 class="text-lg">Gap sizes</h2>
         <p>Extra small</p>
-        <sa-group gap="GroupGap.ExtraSmall" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group gap="GroupGap.ExtraSmall" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Small</p>
-        <sa-group gap="GroupGap.Small" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group gap="GroupGap.Small" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Default</p>
-        <sa-group class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Large</p>
-        <sa-group gap="GroupGap.Large" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group gap="GroupGap.Large" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Extra large</p>
-        <sa-group gap="GroupGap.ExtraLarge" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group gap="GroupGap.ExtraLarge" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <h2 class="text-lg">Align</h2>
         <p>Stretch</p>
-        <sa-group align="GroupAlign.Stretch" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group align="GroupAlign.Stretch" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-        </sa-group>
+        </dui-group>
         <p>Start</p>
-        <sa-group align="GroupAlign.Start" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group align="GroupAlign.Start" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-        </sa-group>
+        </dui-group>
         <p>Center</p>
-        <sa-group align="GroupAlign.Center" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group align="GroupAlign.Center" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-        </sa-group>
+        </dui-group>
         <p>End</p>
-        <sa-group align="GroupAlign.End" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group align="GroupAlign.End" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-        </sa-group>
+        </dui-group>
         <p>Baseline</p>
-        <sa-group align="GroupAlign.Baseline" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group align="GroupAlign.Baseline" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 pt-2 pb-6">01</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 pt-8 pb-12">02</div>
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 pt-12 pb-4">03</div>
-        </sa-group>
+        </dui-group>
         <h2 class="text-lg">Justify</h2>
         <p>Start</p>
-        <sa-group justify="GroupJustify.Start" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group justify="GroupJustify.Start" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Center</p>
-        <sa-group justify="GroupJustify.Center" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group justify="GroupJustify.Center" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>End</p>
-        <sa-group justify="GroupJustify.End" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group justify="GroupJustify.End" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Justify between</p>
-        <sa-group justify="GroupJustify.SpaceBetween" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group justify="GroupJustify.SpaceBetween" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
+        </dui-group>
         <p>Justify around</p>
-        <sa-group justify="GroupJustify.SpaceAround" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-group justify="GroupJustify.SpaceAround" class="max-w-3xl font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-group>
-    </sa-stack>
-</sa-container>
+        </dui-group>
+    </dui-stack>
+</dui-container>

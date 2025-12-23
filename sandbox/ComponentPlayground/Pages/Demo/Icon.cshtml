@@ -1,27 +1,27 @@
 ﻿@page
 @inject IIconManager IconManager
-@using StellarAdmin.Icons
+@using DuneUI.Icons
 @model ComponentPlayground.Pages.Demo.Icon
 
 <div class="flex flex-col gap-y-4">
     <h2>Icon</h2>
 
-    <sa-icon name="huh!?"/>
+    <dui-icon name="huh!?"/>
     
-    <sa-icon name="ampersand-square"/>
+    <dui-icon name="ampersand-square"/>
 
-    <sa-icon name="align-horizontal-justify-center"/>
+    <dui-icon name="align-horizontal-justify-center"/>
 
-    <sa-icon stroke-width="1" name="align-horizontal-justify-center"/>
+    <dui-icon stroke-width="1" name="align-horizontal-justify-center"/>
 
-    <sa-icon stroke-width="4" name="align-horizontal-justify-center"/>
+    <dui-icon stroke-width="4" name="align-horizontal-justify-center"/>
 
-    <sa-icon name="align-horizontal-justify-center"/>
+    <dui-icon name="align-horizontal-justify-center"/>
 
     <div class="flex flex-wrap gap-x-2 gap-y-2">
         @foreach (var iconName in IconManager.GetIconNames())
         {
-            <sa-icon name="@iconName" stroke-width="1"/>
+            <dui-icon name="@iconName" stroke-width="1"/>
         }
     </div>
 </div>

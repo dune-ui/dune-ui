@@ -1,95 +1,95 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Stack
 
-<sa-container class="py-6 lg:py-8">
-    <sa-stack>
+<dui-container class="py-6 lg:py-8">
+    <dui-stack>
         <h2 class="text-lg">Gap sizes</h2>
         <p>Extra small</p>
-        <sa-stack gap="StackGap.ExtraSmall" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack gap="StackGap.ExtraSmall" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Small</p>
-        <sa-stack gap="StackGap.Small" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack gap="StackGap.Small" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Default</p>
-        <sa-stack class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Large</p>
-        <sa-stack gap="StackGap.Large" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack gap="StackGap.Large" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Extra large</p>
-        <sa-stack gap="StackGap.ExtraLarge" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack gap="StackGap.ExtraLarge" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <h2 class="text-lg">Align</h2>
         <p>Stretch</p>
-        <sa-stack align="StackAlign.Stretch" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack align="StackAlign.Stretch" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Start</p>
-        <sa-stack align="StackAlign.Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack align="StackAlign.Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>End</p>
-        <sa-stack align="StackAlign.End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack align="StackAlign.End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Center</p>
-        <sa-stack align="StackAlign.Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
+        <dui-stack align="StackAlign.Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
             <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4 px-12">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 py-4 px-6">03</div>
-        </sa-stack>
+        </dui-stack>
         <h2 class="text-lg">Justify</h2>
         <p>Center</p>
-        <sa-stack justify="StackJustify.Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <dui-stack justify="StackJustify.Center" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Start</p>
-        <sa-stack justify="StackJustify.Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <dui-stack justify="StackJustify.Start" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>End</p>
-        <sa-stack justify="StackJustify.End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <dui-stack justify="StackJustify.End" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Space between</p>
-        <sa-stack justify="StackJustify.SpaceBetween" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <dui-stack justify="StackJustify.SpaceBetween" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
+        </dui-stack>
         <p>Space around</p>
-        <sa-stack justify="StackJustify.SpaceAround" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
+        <dui-stack justify="StackJustify.SpaceAround" class="max-w-xs font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded h-[300px]">
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">01</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">02</div>
             <div class="flex items-center justify-center rounded-lg bg-indigo-500 p-4">03</div>
-        </sa-stack>
-    </sa-stack>
-</sa-container>
+        </dui-stack>
+    </dui-stack>
+</dui-container>

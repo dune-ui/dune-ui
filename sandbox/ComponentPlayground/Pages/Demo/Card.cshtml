@@ -1,109 +1,109 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Card
 
 <div class="flex flex-col gap-y-4">
-    <sa-card class="w-full max-w-sm">
-        <sa-card-header>
-            <sa-card-title>Login to your account</sa-card-title>
-            <sa-card-description>
+    <dui-card class="w-full max-w-sm">
+        <dui-card-header>
+            <dui-card-title>Login to your account</dui-card-title>
+            <dui-card-description>
                 Enter your email below to login to your account
-            </sa-card-description>
-            <sa-card-action>
-                <sa-button variant="ButtonVariant.Link">Sign Up</sa-button>
-            </sa-card-action>
-        </sa-card-header>
-        <sa-card-content>
+            </dui-card-description>
+            <dui-card-action>
+                <dui-button variant="ButtonVariant.Link">Sign Up</dui-button>
+            </dui-card-action>
+        </dui-card-header>
+        <dui-card-content>
             <p>Some content goes here...</p>
-        </sa-card-content>
-        <sa-card-footer class="flex-col gap-2">
-            <sa-button type="submit" class="w-full">
+        </dui-card-content>
+        <dui-card-footer class="flex-col gap-2">
+            <dui-button type="submit" class="w-full">
                 Login
-            </sa-button>
-            <sa-button variant="ButtonVariant.Outline" class="w-full">
+            </dui-button>
+            <dui-button variant="ButtonVariant.Outline" class="w-full">
                 Login with Google
-            </sa-button>
-        </sa-card-footer>
-    </sa-card>
+            </dui-button>
+        </dui-card-footer>
+    </dui-card>
 
     <div class="w-full p-6 flex justify-center">
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 w-full max-w-6xl">
-            <sa-card>
-                <sa-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <sa-card-title class="text-sm font-medium">Total Revenue</sa-card-title>
-                    <sa-icon name="dollar-sign" class="h-4 w-4 text-muted-foreground"/>
-                </sa-card-header>
-                <sa-card-content>
+            <dui-card>
+                <dui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <dui-card-title class="text-sm font-medium">Total Revenue</dui-card-title>
+                    <dui-icon name="dollar-sign" class="h-4 w-4 text-muted-foreground"/>
+                </dui-card-header>
+                <dui-card-content>
                     <div class="text-2xl font-bold">$45,231.89</div>
                     <p class="text-xs text-muted-foreground">
                         +20.1% from last month
                     </p>
-                </sa-card-content>
-            </sa-card>
-            <sa-card>
-                <sa-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <sa-card-title class="text-sm font-medium">Subscriptions</sa-card-title>
-                    <sa-icon name="users" class="h-4 w-4 text-muted-foreground"/>
-                </sa-card-header>
-                <sa-card-content>
+                </dui-card-content>
+            </dui-card>
+            <dui-card>
+                <dui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <dui-card-title class="text-sm font-medium">Subscriptions</dui-card-title>
+                    <dui-icon name="users" class="h-4 w-4 text-muted-foreground"/>
+                </dui-card-header>
+                <dui-card-content>
                     <div class="text-2xl font-bold">+2,350</div>
                     <p class="text-xs text-muted-foreground">
                         +180.1% from last month
                     </p>
-                </sa-card-content>
-            </sa-card>
-            <sa-card>
-                <sa-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <sa-card-title class="text-sm font-medium">Sales</sa-card-title>
-                    <sa-icon name="trending-up" class="h-4 w-4 text-muted-foreground"/>
-                </sa-card-header>
-                <sa-card-content>
+                </dui-card-content>
+            </dui-card>
+            <dui-card>
+                <dui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <dui-card-title class="text-sm font-medium">Sales</dui-card-title>
+                    <dui-icon name="trending-up" class="h-4 w-4 text-muted-foreground"/>
+                </dui-card-header>
+                <dui-card-content>
                     <div class="text-2xl font-bold">+12,234</div>
                     <p class="text-xs text-muted-foreground">
                         +19% from last month
                     </p>
-                </sa-card-content>
-            </sa-card>
-            <sa-card>
-                <sa-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <sa-card-title class="text-sm font-medium">Active Now</sa-card-title>
-                    <sa-icon name="activity" class="h-4 w-4 text-muted-foreground"/>
-                </sa-card-header>
-                <sa-card-content>
+                </dui-card-content>
+            </dui-card>
+            <dui-card>
+                <dui-card-header class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <dui-card-title class="text-sm font-medium">Active Now</dui-card-title>
+                    <dui-icon name="activity" class="h-4 w-4 text-muted-foreground"/>
+                </dui-card-header>
+                <dui-card-content>
                     <div class="text-2xl font-bold">+573</div>
                     <p class="text-xs text-muted-foreground">
                         +201 since last hour
                     </p>
-                </sa-card-content>
-            </sa-card>
+                </dui-card-content>
+            </dui-card>
         </div>
     </div>
     
-    <sa-card class="w-48">
-        <sa-card-content class="p-3">
+    <dui-card class="w-48">
+        <dui-card-content class="p-3">
             <div class="aspect-square rounded-md bg-gray-100 mb-2">
                 <div class="flex items-center justify-center h-full text-muted-foreground text-xs">
                     Product Image
                 </div>
             </div>
-            <sa-card-title class="text-sm mb-1">Wireless Headphones</sa-card-title>
-            <sa-card-description class="text-xs mb-2 line-clamp-2">
+            <dui-card-title class="text-sm mb-1">Wireless Headphones</dui-card-title>
+            <dui-card-description class="text-xs mb-2 line-clamp-2">
                 High-quality wireless headphones
-            </sa-card-description>
+            </dui-card-description>
             <div class="flex items-center space-x-1 mb-2">
                 <div class="flex">
-                    <sa-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <sa-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <sa-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <sa-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <sa-icon name="star" class="h-3 w-3 text-gray-300" />
+                    <dui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <dui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <dui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <dui-icon name="star" class="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <dui-icon name="star" class="h-3 w-3 text-gray-300" />
                 </div>
                 <span class="text-xs text-muted-foreground">(4.0)</span>
             </div>
             <div class="flex items-center justify-between">
                 <span class="text-sm font-bold">$199</span>
-                <sa-button size="ButtonSize.Small" class="text-xs px-2 py-1 h-7">Add</sa-button>
+                <dui-button size="ButtonSize.Small" class="text-xs px-2 py-1 h-7">Add</dui-button>
             </div>
-        </sa-card-content>
-    </sa-card>
+        </dui-card-content>
+    </dui-card>
 </div>

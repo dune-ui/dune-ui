@@ -1,173 +1,173 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.InputGroup
 
 <div class="w-full max-w-md">
-    <sa-container>
-        <sa-stack class="py-6 lg:py-8">
+    <dui-container>
+        <dui-stack class="py-6 lg:py-8">
             <h2>Icon</h2>
-            <sa-input-group>
-                <sa-input-group-input placeholder="Search..."/>
-                <sa-input-group-addon>
-                    <sa-icon name="search"/>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-input type="email" placeholder="Enter your email"/>
-                <sa-input-group-addon>
-                    <sa-icon name="mail"/>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-input placeholder="Card number"/>
-                <sa-input-group-addon>
-                    <sa-icon name="credit-card"/>
-                </sa-input-group-addon>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-icon name="check"/>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-input placeholder="Card number"/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-icon name="star"/>
-                    <sa-icon name="info"/>
-                </sa-input-group-addon>
-            </sa-input-group>
+            <dui-input-group>
+                <dui-input-group-input placeholder="Search..."/>
+                <dui-input-group-addon>
+                    <dui-icon name="search"/>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-input type="email" placeholder="Enter your email"/>
+                <dui-input-group-addon>
+                    <dui-icon name="mail"/>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-input placeholder="Card number"/>
+                <dui-input-group-addon>
+                    <dui-icon name="credit-card"/>
+                </dui-input-group-addon>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-icon name="check"/>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-input placeholder="Card number"/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-icon name="star"/>
+                    <dui-icon name="info"/>
+                </dui-input-group-addon>
+            </dui-input-group>
             <h2>Text</h2>
-            <sa-input-group>
-                <sa-input-group-addon>
-                    <sa-input-group-text>$</sa-input-group-text>
-                </sa-input-group-addon>
-                <sa-input-group-input placeholder="0.00"/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-text>USD</sa-input-group-text>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-addon>
-                    <sa-input-group-text>https://</sa-input-group-text>
-                </sa-input-group-addon>
-                <sa-input-group-input placeholder="example.com" class="pl-0.5"/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-text>.com</sa-input-group-text>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-input placeholder="Enter your username"/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-text>@@company.com</sa-input-group-text>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-input placeholder="Enter your message"/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd">
-                    <sa-input-group-text class="text-muted-foreground text-xs">
+            <dui-input-group>
+                <dui-input-group-addon>
+                    <dui-input-group-text>$</dui-input-group-text>
+                </dui-input-group-addon>
+                <dui-input-group-input placeholder="0.00"/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-text>USD</dui-input-group-text>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-addon>
+                    <dui-input-group-text>https://</dui-input-group-text>
+                </dui-input-group-addon>
+                <dui-input-group-input placeholder="example.com" class="pl-0.5"/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-text>.com</dui-input-group-text>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-input placeholder="Enter your username"/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-text>@@company.com</dui-input-group-text>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-input placeholder="Enter your message"/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd">
+                    <dui-input-group-text class="text-muted-foreground text-xs">
                         120 characters left
-                    </sa-input-group-text>
-                </sa-input-group-addon>
-            </sa-input-group>
+                    </dui-input-group-text>
+                </dui-input-group-addon>
+            </dui-input-group>
             <h2>Buttons</h2>
-            <sa-input-group>
-                <sa-input-group-input placeholder="https://x.com/shadcn" readonly/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-button
+            <dui-input-group>
+                <dui-input-group-input placeholder="https://x.com/shadcn" readonly/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-button
                         aria-label="Copy"
                         title="Copy"
                         size="InputGroupButtonSize.IconExtraSmall"
                     >
-                        <sa-icon name="copy"/>
-                    </sa-input-group-button>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group class="[--radius:9999px]">
-                <sa-input-group-addon class="text-muted-foreground pl-1.5">
+                        <dui-icon name="copy"/>
+                    </dui-input-group-button>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group class="[--radius:9999px]">
+                <dui-input-group-addon class="text-muted-foreground pl-1.5">
                     https://
-                </sa-input-group-addon>
-                <sa-input-group-input id="input-secure-19"/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-button
+                </dui-input-group-addon>
+                <dui-input-group-input id="input-secure-19"/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-button
                         size="InputGroupButtonSize.IconExtraSmall"
                     >
-                        <sa-icon name="star"/>
-                    </sa-input-group-button>
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group>
-                <sa-input-group-input placeholder="Type to search..."/>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-button variant="ButtonVariant.Secondary">Search</sa-input-group-button>
-                </sa-input-group-addon>
-            </sa-input-group>
+                        <dui-icon name="star"/>
+                    </dui-input-group-button>
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group>
+                <dui-input-group-input placeholder="Type to search..."/>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-button variant="ButtonVariant.Secondary">Search</dui-input-group-button>
+                </dui-input-group-addon>
+            </dui-input-group>
             <h2>Textarea</h2>
-            <sa-input-group>
-                <sa-input-group-textarea
+            <dui-input-group>
+                <dui-input-group-textarea
                     placeholder="console.log('Hello, world!');"
                     class="min-h-[200px]"
                 />
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd" class="border-t">
-                    <sa-input-group-text>Line 1, Column 1</sa-input-group-text>
-                    <sa-input-group-button size="InputGroupButtonSize.Small" class="ml-auto" variant="ButtonVariant.Default">
-                        Run <sa-icon name="corner-down-left"/>
-                    </sa-input-group-button>
-                </sa-input-group-addon>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.BlockStart" class="border-b">
-                    <sa-input-group-text class="font-mono font-medium">
-                        <sa-icon name="file-braces-corner" />
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd" class="border-t">
+                    <dui-input-group-text>Line 1, Column 1</dui-input-group-text>
+                    <dui-input-group-button size="InputGroupButtonSize.Small" class="ml-auto" variant="ButtonVariant.Default">
+                        Run <dui-icon name="corner-down-left"/>
+                    </dui-input-group-button>
+                </dui-input-group-addon>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.BlockStart" class="border-b">
+                    <dui-input-group-text class="font-mono font-medium">
+                        <dui-icon name="file-braces-corner" />
                         script.js
-                    </sa-input-group-text>
-                    <sa-input-group-button class="ml-auto" size="InputGroupButtonSize.IconExtraSmall">
-                        <sa-icon name="refresh-ccw" />
-                    </sa-input-group-button>
-                    <sa-input-group-button variant="ButtonVariant.Ghost" size="InputGroupButtonSize.IconExtraSmall">
-                        <sa-icon name="copy" />
-                    </sa-input-group-button>
-                </sa-input-group-addon>
-            </sa-input-group>
+                    </dui-input-group-text>
+                    <dui-input-group-button class="ml-auto" size="InputGroupButtonSize.IconExtraSmall">
+                        <dui-icon name="refresh-ccw" />
+                    </dui-input-group-button>
+                    <dui-input-group-button variant="ButtonVariant.Ghost" size="InputGroupButtonSize.IconExtraSmall">
+                        <dui-icon name="copy" />
+                    </dui-input-group-button>
+                </dui-input-group-addon>
+            </dui-input-group>
             <h2>Spinner</h2>
-            <sa-input-group data-disabled>
-                <sa-input-group-input placeholder="Searching..." disabled />
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-spinner />
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group data-disabled>
-                <sa-input-group-input placeholder="Processing..." disabled />
-                <sa-input-group-addon>
-                    <sa-spinner />
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group data-disabled>
-                <sa-input-group-input placeholder="Saving changes..." disabled />
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-text>Saving...</sa-input-group-text>
-                    <sa-spinner />
-                </sa-input-group-addon>
-            </sa-input-group>
-            <sa-input-group data-disabled>
-                <sa-input-group-input placeholder="Refreshing data..." disabled />
-                <sa-input-group-addon>
-                    <sa-icon name="loader" class="animate-spin" />
-                </sa-input-group-addon>
-                <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                    <sa-input-group-text class="text-muted-foreground">
+            <dui-input-group data-disabled>
+                <dui-input-group-input placeholder="Searching..." disabled />
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-spinner />
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group data-disabled>
+                <dui-input-group-input placeholder="Processing..." disabled />
+                <dui-input-group-addon>
+                    <dui-spinner />
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group data-disabled>
+                <dui-input-group-input placeholder="Saving changes..." disabled />
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-text>Saving...</dui-input-group-text>
+                    <dui-spinner />
+                </dui-input-group-addon>
+            </dui-input-group>
+            <dui-input-group data-disabled>
+                <dui-input-group-input placeholder="Refreshing data..." disabled />
+                <dui-input-group-addon>
+                    <dui-icon name="loader" class="animate-spin" />
+                </dui-input-group-addon>
+                <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                    <dui-input-group-text class="text-muted-foreground">
                         Please wait...
-                    </sa-input-group-text>
-                </sa-input-group-addon>
-            </sa-input-group>
+                    </dui-input-group-text>
+                </dui-input-group-addon>
+            </dui-input-group>
             <h2>Button Group</h2>
-            <sa-button-group>
-                <sa-button-group-text>
-                    <sa-label for="url">https://</sa-label>
-                </sa-button-group-text>
-                <sa-input-group>
-                    <sa-input-group-input id="url" />
-                    <sa-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
-                        <sa-icon name="link-2" />
-                    </sa-input-group-addon>
-                </sa-input-group>
-                <sa-button-group-text>.com</sa-button-group-text>
-            </sa-button-group>
-        </sa-stack>
-    </sa-container>
+            <dui-button-group>
+                <dui-button-group-text>
+                    <dui-label for="url">https://</dui-label>
+                </dui-button-group-text>
+                <dui-input-group>
+                    <dui-input-group-input id="url" />
+                    <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                        <dui-icon name="link-2" />
+                    </dui-input-group-addon>
+                </dui-input-group>
+                <dui-button-group-text>.com</dui-button-group-text>
+            </dui-button-group>
+        </dui-stack>
+    </dui-container>
 </div>

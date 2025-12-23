@@ -1,75 +1,75 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Field
 
 <div class="flex flex-col gap-y-4 p-12">
   <p>Field</p>
-  <sa-field>
-    <sa-field-label>
+  <dui-field>
+    <dui-field-label>
       First Name
-    </sa-field-label>
-    <sa-input/>
-    <sa-field-error>This is a super-dooper error</sa-field-error>
-    <sa-field-description>
+    </dui-field-label>
+    <dui-input/>
+    <dui-field-error>This is a super-dooper error</dui-field-error>
+    <dui-field-description>
       First name as displayed on card
-    </sa-field-description>
-  </sa-field>
-  <sa-separator />
+    </dui-field-description>
+  </dui-field>
+  <dui-separator />
   <p>Field using shorthand</p>
-  <sa-input render-field="false" 
+  <dui-input render-field="false" 
             label="First Name" 
             description="First name as displayed on card" 
             error="This is a super-dooper error"/>
-  <sa-separator />
+  <dui-separator />
   <p>Explicit field bound to model</p>
-  <sa-field>
-    <sa-field-label asp-for="Model.FirstName"/>
-    <sa-input asp-for="Model.FirstName"/>
-    <sa-field-error asp-for="Model.FirstName"/>
-    <sa-field-description asp-for="Model.FirstName"/>
-  </sa-field>
-  <sa-separator />
+  <dui-field>
+    <dui-field-label asp-for="Model.FirstName"/>
+    <dui-input asp-for="Model.FirstName"/>
+    <dui-field-error asp-for="Model.FirstName"/>
+    <dui-field-description asp-for="Model.FirstName"/>
+  </dui-field>
+  <dui-separator />
   <p>Implicit field bound to model</p>
-  <sa-input asp-for="Model.FirstName"/>
-  <sa-separator />
+  <dui-input asp-for="Model.FirstName"/>
+  <dui-separator />
   <p>Card</p>
-  <sa-card class="w-full max-w-md">
-    <sa-card-content>
+  <dui-card class="w-full max-w-md">
+    <dui-card-content>
       <form>
-        <sa-field-group>
-          <sa-field-set>
-            <sa-field-legend>Payment Method</sa-field-legend>
-            <sa-field-description>
+        <dui-field-group>
+          <dui-field-set>
+            <dui-field-legend>Payment Method</dui-field-legend>
+            <dui-field-description>
               All transactions are secure and encrypted
-            </sa-field-description>
-            <sa-field-group>
-              <sa-field>
-                <sa-field-label for="checkout-7j9-card-name-43j">
+            </dui-field-description>
+            <dui-field-group>
+              <dui-field>
+                <dui-field-label for="checkout-7j9-card-name-43j">
                   Name on Card
-                </sa-field-label>
-                <sa-input
+                </dui-field-label>
+                <dui-input
                   id="checkout-7j9-card-name-43j"
                   placeholder="Evil Rabbit"
                   required/>
-              </sa-field>
-              <sa-field>
-                <sa-field-label for="checkout-7j9-card-number-uw1">
+              </dui-field>
+              <dui-field>
+                <dui-field-label for="checkout-7j9-card-number-uw1">
                   Card Number
-                </sa-field-label>
-                <sa-input
+                </dui-field-label>
+                <dui-input
                   id="checkout-7j9-card-number-uw1"
                   placeholder="1234 5678 9012 3456"
                   required/>
-                <sa-field-description>
+                <dui-field-description>
                   Enter your 16-digit card number
-                </sa-field-description>
-              </sa-field>
+                </dui-field-description>
+              </dui-field>
               <div class="grid grid-cols-3 gap-4">
-                <sa-field>
-                  <sa-field-label for="checkout-exp-month-ts6">
+                <dui-field>
+                  <dui-field-label for="checkout-exp-month-ts6">
                     Month
-                  </sa-field-label>
-                  <sa-select>
+                  </dui-field-label>
+                  <dui-select>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -82,115 +82,115 @@
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
-                  </sa-select>
-                </sa-field>
-                <sa-field>
-                  <sa-field-label for="checkout-7j9-exp-year-f59">
+                  </dui-select>
+                </dui-field>
+                <dui-field>
+                  <dui-field-label for="checkout-7j9-exp-year-f59">
                     Year
-                  </sa-field-label>
-                  <sa-select defaultValue="">
+                  </dui-field-label>
+                  <dui-select defaultValue="">
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
                     <option value="2026">2026</option>
                     <option value="2027">2027</option>
                     <option value="2028">2028</option>
                     <option value="2029">2029</option>
-                  </sa-select>
-                </sa-field>
-                <sa-field>
-                  <sa-field-label for="checkout-7j9-cvv">CVV</sa-field-label>
-                  <sa-input id="checkout-7j9-cvv" placeholder="123" required/>
-                </sa-field>
+                  </dui-select>
+                </dui-field>
+                <dui-field>
+                  <dui-field-label for="checkout-7j9-cvv">CVV</dui-field-label>
+                  <dui-input id="checkout-7j9-cvv" placeholder="123" required/>
+                </dui-field>
               </div>
-            </sa-field-group>
-          </sa-field-set>
-          <sa-field-separator/>
-          <sa-field-set>
-            <sa-field-legend>Billing Address</sa-field-legend>
-            <sa-field-description>
+            </dui-field-group>
+          </dui-field-set>
+          <dui-field-separator/>
+          <dui-field-set>
+            <dui-field-legend>Billing Address</dui-field-legend>
+            <dui-field-description>
               The billing address associated with your payment method
-            </sa-field-description>
-            <sa-field-group>
-              <sa-field orientation="FieldOrientation.Horizontal">
-                <sa-input
+            </dui-field-description>
+            <dui-field-group>
+              <dui-field orientation="FieldOrientation.Horizontal">
+                <dui-input
                   type="checkbox"
                   id="checkout-7j9-same-as-shipping-wgm"/>
-                <sa-field-label
+                <dui-field-label
                   htmlFor="checkout-7j9-same-as-shipping-wgm"
                   class="font-normal">
                   Same as shipping address
-                </sa-field-label>
-              </sa-field>
-            </sa-field-group>
-          </sa-field-set>
-          <sa-field-set>
-            <sa-field-group>
-              <sa-field>
-                <sa-field-label for="checkout-7j9-optional-comments">
+                </dui-field-label>
+              </dui-field>
+            </dui-field-group>
+          </dui-field-set>
+          <dui-field-set>
+            <dui-field-group>
+              <dui-field>
+                <dui-field-label for="checkout-7j9-optional-comments">
                   Comments
-                </sa-field-label>
-                <sa-textarea
+                </dui-field-label>
+                <dui-textarea
                   id="checkout-7j9-optional-comments"
                   name="checkout-7j9-optional-comments"
                   placeholder="Add any additional comments"
                   class="resize-none">These are some comments...
-                </sa-textarea>
-              </sa-field>
-            </sa-field-group>
-          </sa-field-set>
-          <sa-field orientation="FieldOrientation.Horizontal">
-            <sa-button type="submit">Submit</sa-button>
-            <sa-button variant="ButtonVariant.Outline" type="button">
+                </dui-textarea>
+              </dui-field>
+            </dui-field-group>
+          </dui-field-set>
+          <dui-field orientation="FieldOrientation.Horizontal">
+            <dui-button type="submit">Submit</dui-button>
+            <dui-button variant="ButtonVariant.Outline" type="button">
               Cancel
-            </sa-button>
-          </sa-field>
-        </sa-field-group>
+            </dui-button>
+          </dui-field>
+        </dui-field-group>
       </form>
-    </sa-card-content>
-  </sa-card>
+    </dui-card-content>
+  </dui-card>
 
-  <sa-card class="w-full max-w-4xl">
-    <sa-card-content>
+  <dui-card class="w-full max-w-4xl">
+    <dui-card-content>
       <form>
-        <sa-field-set>
-          <sa-field-legend>Profile</sa-field-legend>
-          <sa-field-description>Fill in your profile information.</sa-field-description>
-          <sa-field-separator/>
-          <sa-field-group>
-            <sa-field orientation="FieldOrientation.Responsive">
-              <sa-field-content>
-                <sa-field-label for="name">Name</sa-field-label>
-                <sa-field-description>
+        <dui-field-set>
+          <dui-field-legend>Profile</dui-field-legend>
+          <dui-field-description>Fill in your profile information.</dui-field-description>
+          <dui-field-separator/>
+          <dui-field-group>
+            <dui-field orientation="FieldOrientation.Responsive">
+              <dui-field-content>
+                <dui-field-label for="name">Name</dui-field-label>
+                <dui-field-description>
                   Provide your full name for identification
-                </sa-field-description>
-              </sa-field-content>
-              <sa-input id="name" placeholder="Evil Rabbit" required/>
-            </sa-field>
-            <sa-field-separator/>
-            <sa-field orientation="FieldOrientation.Responsive">
-              <sa-field-content>
-                <sa-field-label form="lastName">Message</sa-field-label>
-                <sa-field-description>
+                </dui-field-description>
+              </dui-field-content>
+              <dui-input id="name" placeholder="Evil Rabbit" required/>
+            </dui-field>
+            <dui-field-separator/>
+            <dui-field orientation="FieldOrientation.Responsive">
+              <dui-field-content>
+                <dui-field-label form="lastName">Message</dui-field-label>
+                <dui-field-description>
                   You can write your message here. Keep it short, preferably
                   under 100 characters.
-                </sa-field-description>
-              </sa-field-content>
-              <sa-textarea
+                </dui-field-description>
+              </dui-field-content>
+              <dui-textarea
                 id="message"
                 placeholder="Hello, world!"
                 required
-                class="min-h-[100px] resize-none sm:min-w-[300px]"></sa-textarea>
-            </sa-field>
-            <sa-field-separator/>
-            <sa-field orientation="FieldOrientation.Responsive">
-              <sa-button type="submit">Submit</sa-button>
-              <sa-button type="button" variant="ButtonVariant.Outline">
+                class="min-h-[100px] resize-none sm:min-w-[300px]"></dui-textarea>
+            </dui-field>
+            <dui-field-separator/>
+            <dui-field orientation="FieldOrientation.Responsive">
+              <dui-button type="submit">Submit</dui-button>
+              <dui-button type="button" variant="ButtonVariant.Outline">
                 Cancel
-              </sa-button>
-            </sa-field>
-          </sa-field-group>
-        </sa-field-set>
+              </dui-button>
+            </dui-field>
+          </dui-field-group>
+        </dui-field-set>
       </form>
-    </sa-card-content>
-  </sa-card>
+    </dui-card-content>
+  </dui-card>
 </div>

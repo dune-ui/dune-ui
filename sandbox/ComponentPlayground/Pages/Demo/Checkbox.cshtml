@@ -1,79 +1,79 @@
 ﻿@page
 @model ComponentPlayground.Pages.Demo.Checkbox
 
-<sa-container class="py-6 lg:py-8">
-    <sa-stack>
+<dui-container class="py-6 lg:py-8">
+    <dui-stack>
         <h2 class="bg-gray-100 text-base font-bold">Unbound checkbox</h2>
         <div>
-            <sa-input type="checkbox"/>
+            <dui-input type="checkbox"/>
         </div>
         <h2 class="bg-gray-100 text-base font-bold">Bound checkbox</h2>
         <div>
-            <sa-input asp-for="Model.BooleanValue"/>
+            <dui-input asp-for="Model.BooleanValue"/>
         </div>
         <h2 class="bg-gray-100 text-base font-bold">Bound checkbox with error</h2>
         <div>
-            <sa-input asp-for="Model.AcceptTerms"/>
+            <dui-input asp-for="Model.AcceptTerms"/>
         </div>
         @*<h2 class="bg-gray-100 text-base font-bold">Checkbox group</h2>
         <div class="w-full max-w-md">
-            <sa-field-group>
-                <sa-field-set>
-                    <sa-field-label>Tasks</sa-field-label>
-                    <sa-field-description>
+            <dui-field-group>
+                <dui-field-set>
+                    <dui-field-label>Tasks</dui-field-label>
+                    <dui-field-description>
                         Get notified when tasks you&apos;ve created have updates. <a href="#">Manage tasks</a>
-                    </sa-field-description>
-                    <sa-checkbox-group>
-                        <sa-field-label>
-                            <sa-field orientation="Horizontal">
-                                <sa-input asp-for="Model.EnablePushNotifications"/>
-                                <sa-field-content>
-                                    <sa-field-title>Push notifications</sa-field-title>
-                                    <sa-field-description>
+                    </dui-field-description>
+                    <dui-checkbox-group>
+                        <dui-field-label>
+                            <dui-field orientation="Horizontal">
+                                <dui-input asp-for="Model.EnablePushNotifications"/>
+                                <dui-field-content>
+                                    <dui-field-title>Push notifications</dui-field-title>
+                                    <dui-field-description>
                                         Receive push notifications on your mobile device
-                                    </sa-field-description>
-                                </sa-field-content>
-                            </sa-field>
-                        </sa-field-label>
-                        <sa-field-label>
-                            <sa-field orientation="Horizontal">
-                                <sa-input asp-for="Model.EnableEmailNotifications"/>
-                                <sa-field-content>
-                                    <sa-field-title>Email notifications</sa-field-title>
-                                    <sa-field-description>
+                                    </dui-field-description>
+                                </dui-field-content>
+                            </dui-field>
+                        </dui-field-label>
+                        <dui-field-label>
+                            <dui-field orientation="Horizontal">
+                                <dui-input asp-for="Model.EnableEmailNotifications"/>
+                                <dui-field-content>
+                                    <dui-field-title>Email notifications</dui-field-title>
+                                    <dui-field-description>
                                         Receive notifications via your registered email address
-                                    </sa-field-description>
-                                </sa-field-content>
-                            </sa-field>
-                        </sa-field-label>
-                    </sa-checkbox-group>
-                </sa-field-set>
-            </sa-field-group>
+                                    </dui-field-description>
+                                </dui-field-content>
+                            </dui-field>
+                        </dui-field-label>
+                    </dui-checkbox-group>
+                </dui-field-set>
+            </dui-field-group>
         </div>
         <h2 class="bg-gray-100 text-base font-bold">Checkbox group (with cards)</h2>
         <div class="w-full max-w-md">
-            <sa-field-group>
-                <sa-field-set>
-                    <sa-field-label>Tasks</sa-field-label>
-                    <sa-field-description>
+            <dui-field-group>
+                <dui-field-set>
+                    <dui-field-label>Tasks</dui-field-label>
+                    <dui-field-description>
                         Get notified when tasks you&apos;ve created have updates. <a href="#">Manage tasks</a>
-                    </sa-field-description>
-                    <sa-checkbox-group>
-                        <sa-field orientation="Horizontal">
-                            <sa-input asp-for="Model.EnablePushNotifications" id="notifications-push"/>
-                            <sa-field-label for="notifications-push">
+                    </dui-field-description>
+                    <dui-checkbox-group>
+                        <dui-field orientation="Horizontal">
+                            <dui-input asp-for="Model.EnablePushNotifications" id="notifications-push"/>
+                            <dui-field-label for="notifications-push">
                                 Push notifications
-                            </sa-field-label>
-                        </sa-field>
-                        <sa-field orientation="Horizontal">
-                            <sa-input asp-for="Model.EnableEmailNotifications" id="notifications-email"/>
-                            <sa-field-label for="notifications-email">
+                            </dui-field-label>
+                        </dui-field>
+                        <dui-field orientation="Horizontal">
+                            <dui-input asp-for="Model.EnableEmailNotifications" id="notifications-email"/>
+                            <dui-field-label for="notifications-email">
                                 Email notifications
-                            </sa-field-label>
-                        </sa-field>
-                    </sa-checkbox-group>
-                </sa-field-set>
-            </sa-field-group>
+                            </dui-field-label>
+                        </dui-field>
+                    </dui-checkbox-group>
+                </dui-field-set>
+            </dui-field-group>
         </div>*@
-    </sa-stack>
-</sa-container>
+    </dui-stack>
+</dui-container>

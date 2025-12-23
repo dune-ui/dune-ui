@@ -1,52 +1,52 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Button
 
 <div class="flex flex-col gap-y-4">
     <div class="flex gap-x-2">
-        <sa-button>Default</sa-button>
-        <sa-button variant="ButtonVariant.Secondary">Secondary</sa-button>
-        <sa-button variant="ButtonVariant.Outline">Outline</sa-button>
-        <sa-button variant="ButtonVariant.Destructive">Destructive</sa-button>
-        <sa-button variant="ButtonVariant.Ghost">Ghost</sa-button>
-        <sa-button variant="ButtonVariant.Link">Link</sa-button>
+        <dui-button>Default</dui-button>
+        <dui-button variant="ButtonVariant.Secondary">Secondary</dui-button>
+        <dui-button variant="ButtonVariant.Outline">Outline</dui-button>
+        <dui-button variant="ButtonVariant.Destructive">Destructive</dui-button>
+        <dui-button variant="ButtonVariant.Ghost">Ghost</dui-button>
+        <dui-button variant="ButtonVariant.Link">Link</dui-button>
     </div>
     <div class="flex gap-x-2 items-center">
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">Small</sa-button>
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Default">Default</sa-button>
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Large">Large</sa-button>
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall">
-            <sa-icon name="airplay"></sa-icon>
-        </sa-button>
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
-            <sa-icon name="airplay"></sa-icon>
-        </sa-button>
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconLarge">
-            <sa-icon name="airplay"></sa-icon>
-        </sa-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Small">Small</dui-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Default">Default</dui-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Large">Large</dui-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall">
+            <dui-icon name="airplay"></dui-icon>
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
+            <dui-icon name="airplay"></dui-icon>
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.IconLarge">
+            <dui-icon name="airplay"></dui-icon>
+        </dui-button>
     </div>
     <div class="flex gap-x-2">
-        <sa-linkbutton asp-page="/Demo/Stack">Default</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Secondary">Secondary</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Outline">Outline</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Destructive">Destructive</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Ghost">Ghost</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Link">Link</sa-linkbutton>
+        <dui-linkbutton asp-page="/Demo/Stack">Default</dui-linkbutton>
+        <dui-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Secondary">Secondary</dui-linkbutton>
+        <dui-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Outline">Outline</dui-linkbutton>
+        <dui-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Destructive">Destructive</dui-linkbutton>
+        <dui-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Ghost">Ghost</dui-linkbutton>
+        <dui-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Link">Link</dui-linkbutton>
     </div>
     <div class="flex gap-x-2">
-        <sa-button variant="ButtonVariant.Outline">
-            <sa-icon name="git-branch"/>
+        <dui-button variant="ButtonVariant.Outline">
+            <dui-icon name="git-branch"/>
             New Branch
-        </sa-button>
-        <sa-button>
-            <sa-icon name="circle-plus"/>
+        </dui-button>
+        <dui-button>
+            <dui-icon name="circle-plus"/>
             Quick Create
-        </sa-button>
-        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon" class="rounded-full">
-            <sa-icon name="git-branch"/>
-        </sa-button>
-        <sa-button variant="ButtonVariant.Outline" disabled>
-            <sa-spinner class="size-4" /> Submit
-        </sa-button>
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Icon" class="rounded-full">
+            <dui-icon name="git-branch"/>
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" disabled>
+            <dui-spinner class="size-4" /> Submit
+        </dui-button>
     </div>
 </div>

@@ -1,35 +1,35 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Alert
 
-<sa-container class="py-6 lg:py-8">
+<dui-container class="py-6 lg:py-8">
     <div class="max-w-lg mx-auto">
-        <sa-stack>
-            <sa-alert>
-                <sa-icon name="circle-check"/>
-                <sa-alert-title>All purchases restored</sa-alert-title>
-                <sa-alert-description>We have found and restored 9 of your purchases</sa-alert-description>
-            </sa-alert>
-            <sa-alert icon="circle-check" title="All purchases restored"
+        <dui-stack>
+            <dui-alert>
+                <dui-icon name="circle-check"/>
+                <dui-alert-title>All purchases restored</dui-alert-title>
+                <dui-alert-description>We have found and restored 9 of your purchases</dui-alert-description>
+            </dui-alert>
+            <dui-alert icon="circle-check" title="All purchases restored"
                        description="We have found and restored 9 of your purchases"/>
-            <sa-alert variant="AlertVariant.Destructive" icon="circle-alert" title="Unable to restore purchases"
+            <dui-alert variant="AlertVariant.Destructive" icon="circle-alert" title="Unable to restore purchases"
                        description="We have found 9 purchases but were unable to restore them. Please contact support."/>
-            <sa-alert>
-                <sa-icon name="popcorn"/>
-                <sa-alert-title>This Alert has a title and an icon. No description.</sa-alert-title>
-            </sa-alert>
-            <sa-alert variant="AlertVariant.Destructive">
-                <sa-icon name="alert-circle"/>
-                <sa-alert-title>Unable to process your payment.</sa-alert-title>
-                <sa-alert-description>
+            <dui-alert>
+                <dui-icon name="popcorn"/>
+                <dui-alert-title>This Alert has a title and an icon. No description.</dui-alert-title>
+            </dui-alert>
+            <dui-alert variant="AlertVariant.Destructive">
+                <dui-icon name="alert-circle"/>
+                <dui-alert-title>Unable to process your payment.</dui-alert-title>
+                <dui-alert-description>
                     <p>Please verify your billing information and try again.</p>
                     <ul class="list-inside list-disc text-sm">
                         <li>Check your card details</li>
                         <li>Ensure sufficient funds</li>
                         <li>Verify billing address</li>
                     </ul>
-                </sa-alert-description>
-            </sa-alert>
-        </sa-stack>
+                </dui-alert-description>
+            </dui-alert>
+        </dui-stack>
     </div>
-</sa-container>
+</dui-container>

@@ -1,13 +1,13 @@
 using System.Collections.Immutable;
-using StellarAdmin;
-using StellarAdmin.Icons;
+using DuneUI;
+using DuneUI.Icons;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder
-    .Services.AddStellarAdmin()
+    .Services.AddDuneUI()
     .AddIcon(
         "ampersand-square",
         [

@@ -1,101 +1,101 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Radio
 
-<sa-container class="py-6 lg:py-8">
-    <sa-stack>
+<dui-container class="py-6 lg:py-8">
+    <dui-stack>
         <h2 class="bg-gray-100 text-base font-bold">Unbound radio</h2>
         <div>
-            <sa-input type="radio"/>
+            <dui-input type="radio"/>
         </div>
         <h2 class="bg-gray-100 text-base font-bold">Unbound radio with label</h2>
         <div>
             <div class="flex gap-x-3">
-                <sa-input type="radio"/>
-                <sa-label>This is a label</sa-label>
+                <dui-input type="radio"/>
+                <dui-label>This is a label</dui-label>
             </div>
         </div>
         <h2 class="bg-gray-100 text-base font-bold">Bound radio</h2>
         <div>
-            <sa-input type="radio" asp-for="Model.Layout" value="default" label="Default"/>
-            <sa-input type="radio" asp-for="Model.Layout" value="comfortable" label="Comfortable"/>
-            <sa-field orientation="FieldOrientation.Horizontal">
-                <sa-input type="radio" asp-for="Model.Layout" value="compact" label="Compact"/>
-                <sa-field-content>
-                    <sa-field-label>Compactamente</sa-field-label>
-                    <sa-field-description>Compactamente ksjfhksjhdf jshdkfshf</sa-field-description>
-                </sa-field-content>
-            </sa-field>
+            <dui-input type="radio" asp-for="Model.Layout" value="default" label="Default"/>
+            <dui-input type="radio" asp-for="Model.Layout" value="comfortable" label="Comfortable"/>
+            <dui-field orientation="FieldOrientation.Horizontal">
+                <dui-input type="radio" asp-for="Model.Layout" value="compact" label="Compact"/>
+                <dui-field-content>
+                    <dui-field-label>Compactamente</dui-field-label>
+                    <dui-field-description>Compactamente ksjfhksjhdf jshdkfshf</dui-field-description>
+                </dui-field-content>
+            </dui-field>
         </div>
         @*<h2 class="bg-gray-100 text-base font-bold">Radio group</h2>
         <div class="w-full max-w-md">
-            <sa-field-group>
-                <sa-field-set>
-                    <sa-field-label for="compute-environment-p8w">
+            <dui-field-group>
+                <dui-field-set>
+                    <dui-field-label for="compute-environment-p8w">
                         Compute Environment
-                    </sa-field-label>
-                    <sa-field-description>
+                    </dui-field-label>
+                    <dui-field-description>
                         Select the compute environment for your cluster.
-                    </sa-field-description>
-                    <sa-radio-group>
-                        <sa-field orientation="Horizontal">
-                            <sa-input asp-for="Model.ComputeEnvironment" type="radio" value="kubernetes" id="compute-environment-kubernetes"/>
-                            <sa-field-content>
-                                <sa-field-label for="compute-environment-kubernetes">Kubernetes</sa-field-label>
-                                <sa-field-description>
+                    </dui-field-description>
+                    <dui-radio-group>
+                        <dui-field orientation="Horizontal">
+                            <dui-input asp-for="Model.ComputeEnvironment" type="radio" value="kubernetes" id="compute-environment-kubernetes"/>
+                            <dui-field-content>
+                                <dui-field-label for="compute-environment-kubernetes">Kubernetes</dui-field-label>
+                                <dui-field-description>
                                     Run GPU workloads on a K8s configured cluster.
-                                </sa-field-description>
-                            </sa-field-content>
-                        </sa-field>
-                        <sa-field orientation="Horizontal">
-                            <sa-input asp-for="Model.ComputeEnvironment" type="radio" value="vm" id="compute-environment-vm"/>
-                            <sa-field-content>
-                                <sa-field-label for="compute-environment-vm">Virtual Machine</sa-field-label>
-                                <sa-field-description>
+                                </dui-field-description>
+                            </dui-field-content>
+                        </dui-field>
+                        <dui-field orientation="Horizontal">
+                            <dui-input asp-for="Model.ComputeEnvironment" type="radio" value="vm" id="compute-environment-vm"/>
+                            <dui-field-content>
+                                <dui-field-label for="compute-environment-vm">Virtual Machine</dui-field-label>
+                                <dui-field-description>
                                     Access a VM configured cluster to run GPU workloads.
-                                </sa-field-description>
-                            </sa-field-content>
-                        </sa-field>
-                    </sa-radio-group>
-                </sa-field-set>
-            </sa-field-group>
+                                </dui-field-description>
+                            </dui-field-content>
+                        </dui-field>
+                    </dui-radio-group>
+                </dui-field-set>
+            </dui-field-group>
         </div>
         <h2 class="bg-gray-100 text-base font-bold">Radio cards</h2>
         <div class="w-full max-w-md">
-            <sa-field-group>
-                <sa-field-set>
-                    <sa-field-label for="compute-environment-p8w">
+            <dui-field-group>
+                <dui-field-set>
+                    <dui-field-label for="compute-environment-p8w">
                         Compute Environment
-                    </sa-field-label>
-                    <sa-field-description>
+                    </dui-field-label>
+                    <dui-field-description>
                         Select the compute environment for your cluster.
-                    </sa-field-description>
-                    <sa-radio-group> 
-                        <sa-field-label>
-                            <sa-field orientation="Horizontal">
-                                <sa-field-content>
-                                    <sa-field-title>Kubernetes</sa-field-title>
-                                    <sa-field-description>
+                    </dui-field-description>
+                    <dui-radio-group> 
+                        <dui-field-label>
+                            <dui-field orientation="Horizontal">
+                                <dui-field-content>
+                                    <dui-field-title>Kubernetes</dui-field-title>
+                                    <dui-field-description>
                                         Run GPU workloads on a K8s configured cluster.
-                                    </sa-field-description>
-                                </sa-field-content>
-                                <sa-input asp-for="Model.ComputeEnvironment" type="radio" value="kubernetes"/>
-                            </sa-field>
-                        </sa-field-label>
-                        <sa-field-label>
-                            <sa-field orientation="Horizontal">
-                                <sa-field-content>
-                                    <sa-field-title>Virtual Machine</sa-field-title>
-                                    <sa-field-description>
+                                    </dui-field-description>
+                                </dui-field-content>
+                                <dui-input asp-for="Model.ComputeEnvironment" type="radio" value="kubernetes"/>
+                            </dui-field>
+                        </dui-field-label>
+                        <dui-field-label>
+                            <dui-field orientation="Horizontal">
+                                <dui-field-content>
+                                    <dui-field-title>Virtual Machine</dui-field-title>
+                                    <dui-field-description>
                                         Access a VM configured cluster to run GPU workloads.
-                                    </sa-field-description>
-                                </sa-field-content>
-                                <sa-input asp-for="Model.ComputeEnvironment" type="radio" value="vm"/>
-                            </sa-field>
-                        </sa-field-label>
-                    </sa-radio-group>
-                </sa-field-set>
-            </sa-field-group>
+                                    </dui-field-description>
+                                </dui-field-content>
+                                <dui-input asp-for="Model.ComputeEnvironment" type="radio" value="vm"/>
+                            </dui-field>
+                        </dui-field-label>
+                    </dui-radio-group>
+                </dui-field-set>
+            </dui-field-group>
         </div>*@
-    </sa-stack>
-</sa-container>
+    </dui-stack>
+</dui-container>

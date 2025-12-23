@@ -1,36 +1,36 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Badge
 
 <div className="flex flex-col items-center gap-2">
     <div className="flex w-full flex-wrap gap-2">
-        <sa-badge>Badge</sa-badge>
-        <sa-badge variant="BadgeVariant.Secondary">Secondary</sa-badge>
-        <sa-badge variant="BadgeVariant.Destructive">Destructive</sa-badge>
-        <sa-badge variant="BadgeVariant.Outline">Outline</sa-badge>
+        <dui-badge>Badge</dui-badge>
+        <dui-badge variant="BadgeVariant.Secondary">Secondary</dui-badge>
+        <dui-badge variant="BadgeVariant.Destructive">Destructive</dui-badge>
+        <dui-badge variant="BadgeVariant.Outline">Outline</dui-badge>
     </div>
     <div className="flex w-full flex-wrap gap-2">
-        <sa-badge
+        <dui-badge
             variant="BadgeVariant.Secondary"
             class="bg-blue-500 text-white dark:bg-blue-600"
         >
-            <sa-icon name="badge-check"/>
+            <dui-icon name="badge-check"/>
             Verified
-        </sa-badge>
-        <sa-badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
+        </dui-badge>
+        <dui-badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
             8
-        </sa-badge>
-        <sa-badge
+        </dui-badge>
+        <dui-badge
             class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
             variant="BadgeVariant.Destructive"
         >
             99
-        </sa-badge>
-        <sa-badge
+        </dui-badge>
+        <dui-badge
             class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
             variant="BadgeVariant.Outline"
         >
             20+
-        </sa-badge>
+        </dui-badge>
     </div>
 </div>

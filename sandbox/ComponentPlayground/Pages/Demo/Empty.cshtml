@@ -1,33 +1,33 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Empty
 
 <div class="max-w-xl">
-    <sa-empty>
-        <sa-empty-header>
-            <sa-empty-media variant="Icon">
-                <sa-icon name="folder-code"/>
-            </sa-empty-media>
-            <sa-empty-title>No Projects Yet</sa-empty-title>
-            <sa-empty-description>
+    <dui-empty>
+        <dui-empty-header>
+            <dui-empty-media variant="Icon">
+                <dui-icon name="folder-code"/>
+            </dui-empty-media>
+            <dui-empty-title>No Projects Yet</dui-empty-title>
+            <dui-empty-description>
                 You haven&apos;t created any projects yet. Get started by creating
                 your first project.
-            </sa-empty-description>
-        </sa-empty-header>
-        <sa-empty-content>
+            </dui-empty-description>
+        </dui-empty-header>
+        <dui-empty-content>
             <div class="flex gap-2">
-                <sa-button>Create Project</sa-button>
-                <sa-button variant="ButtonVariant.Outline">Import Project</sa-button>
+                <dui-button>Create Project</dui-button>
+                <dui-button variant="ButtonVariant.Outline">Import Project</dui-button>
             </div>
-        </sa-empty-content>
-        <sa-linkbutton
+        </dui-empty-content>
+        <dui-linkbutton
             variant="ButtonVariant.Link"
             class="text-muted-foreground"
             size="ButtonSize.Small"
             href="#"
         >
             Learn More
-            <sa-icon name="arrow-up-right"/>
-        </sa-linkbutton>
-    </sa-empty>
+            <dui-icon name="arrow-up-right"/>
+        </dui-linkbutton>
+    </dui-empty>
 </div>

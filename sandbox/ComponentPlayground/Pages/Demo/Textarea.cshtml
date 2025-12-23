@@ -4,25 +4,25 @@
 <div class="flex flex-col gap-y-4 p-12">
     <p>A simple text area</p>
     <div>
-        <sa-textarea>This is a text area</sa-textarea>
+        <dui-textarea>This is a text area</dui-textarea>
     </div>
     <p>A text area with an assigned id and name</p>
     <div>
-        <sa-textarea id="area1-id" name="area1-name">This is a text area</sa-textarea>
+        <dui-textarea id="area1-id" name="area1-name">This is a text area</dui-textarea>
     </div>
     <p>A text area with rows and cols and explicit field properties</p>
     <div>
-        <sa-textarea label="Rows and cols" description="This one has rows and cols" error="This is an error" rows="10"
+        <dui-textarea label="Rows and cols" description="This one has rows and cols" error="This is an error" rows="10"
                       cols="50" class="input-validation-error">This is a text area
-        </sa-textarea>
+        </dui-textarea>
     </div>
     <p>A text area bound to a model</p>
     <div>
-        <sa-textarea asp-for="Model.Comments" rows="10" cols="50"></sa-textarea>
+        <dui-textarea asp-for="Model.Comments" rows="10" cols="50"></dui-textarea>
     </div>
     <p>A text area bound to a model and overriding name, label, etc</p>
     <div>
-        <sa-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" description="Custom description"
-                      rows="10" cols="50"></sa-textarea>
+        <dui-textarea asp-for="Model.Comments" name="custom_label" label="Custom label" description="Custom description"
+                      rows="10" cols="50"></dui-textarea>
     </div>
 </div>

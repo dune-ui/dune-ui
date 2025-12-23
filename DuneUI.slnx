@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/gen/">
+    <Project Path="gen/DuneUI.Generators/DuneUI.Generators.csproj" />
+  </Folder>
+  <Folder Name="/sandbox/">
+    <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
+  </Folder>
+  <Folder Name="/workflows/">
+    <File Path=".github/workflows/ci.yml" />
+  </Folder>
+  <Project Path="src/DuneUI.Core/DuneUI.Core.csproj" />
+  <Project Path="src/DuneUI.TagHelpers/DuneUI.TagHelpers.csproj" />
+</Solution>

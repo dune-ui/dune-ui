@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - ComponentPlayground</title>
     <link rel="stylesheet" href="/css/site.css" />
-    <link rel="stylesheet" href="/_content/StellarAdmin.TagHelpers/stellar-admin.css"/>
+    <link rel="stylesheet" href="/_content/DuneUI.TagHelpers/dune-ui.css"/>
 </head>
 <body>
-<sa-sidebar-wrapper>
-    <sa-sidebar variant="Inset">
-        @*<sa-sidebar-header>Header</sa-sidebar-header>*@
-        <sa-sidebar-content>
+<dui-sidebar-wrapper>
+    <dui-sidebar variant="Inset">
+        @*<dui-sidebar-header>Header</dui-sidebar-header>*@
+        <dui-sidebar-content>
             @{
                 List<DemoGroup> demoGroups =
                 [
@@ -62,30 +62,30 @@
             }
             @foreach (var demoGroup in demoGroups)
             {
-                <sa-sidebar-group>
-                    <sa-sidebar-group-label>@demoGroup.Title</sa-sidebar-group-label>
-                    <sa-sidebar-group-content>
-                        <sa-sidebar-menu>
+                <dui-sidebar-group>
+                    <dui-sidebar-group-label>@demoGroup.Title</dui-sidebar-group-label>
+                    <dui-sidebar-group-content>
+                        <dui-sidebar-menu>
                             @foreach (var demoItem in demoGroup.Items)
                             {
-                                <sa-sidebar-menu-item>
-                                    <sa-sidebar-menu-link asp-page="@demoItem.Page">
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link asp-page="@demoItem.Page">
                                         @demoItem.Title
-                                    </sa-sidebar-menu-link>
-                                </sa-sidebar-menu-item>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
                             }
-                        </sa-sidebar-menu>
-                    </sa-sidebar-group-content>
-                </sa-sidebar-group>
+                        </dui-sidebar-menu>
+                    </dui-sidebar-group-content>
+                </dui-sidebar-group>
             }
-        </sa-sidebar-content>
-        @*<sa-sidebar-footer>Footer</sa-sidebar-footer>*@
-    </sa-sidebar>
-    <sa-sidebar-inset>
+        </dui-sidebar-content>
+        @*<dui-sidebar-footer>Footer</dui-sidebar-footer>*@
+    </dui-sidebar>
+    <dui-sidebar-inset>
         @RenderBody()
-    </sa-sidebar-inset>
-</sa-sidebar-wrapper>
-<script src="/_content/StellarAdmin.TagHelpers/stellar-admin.js"></script>
+    </dui-sidebar-inset>
+</dui-sidebar-wrapper>
+<script src="/_content/DuneUI.TagHelpers/dune-ui.js"></script>
 @await RenderSectionAsync("Scripts", false)
 </body>
 </html>

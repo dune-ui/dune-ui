@@ -1,58 +1,58 @@
 ﻿@page
-@using StellarAdmin.TagHelpers
+@using DuneUI.TagHelpers
 @model ComponentPlayground.Pages.Demo.Tabs
 
 <div class="w-full max-w-md">
-    <sa-container>
-        <sa-stack class="py-6 lg:py-8">
+    <dui-container>
+        <dui-stack class="py-6 lg:py-8">
             <h2>Default</h2>
-            <sa-tab-list>
-                <sa-tab-link asp-page="/Demo/Icon">Icons</sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Tabs">Tabs</sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Textarea">Textarea</sa-tab-link>
-            </sa-tab-list>
+            <dui-tab-list>
+                <dui-tab-link asp-page="/Demo/Icon">Icons</dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Tabs">Tabs</dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Textarea">Textarea</dui-tab-link>
+            </dui-tab-list>
             <h2>Vertical</h2>
-            <sa-tab-list orientation="TabListOrientation.Vertical" class="w-fit">
-                <sa-tab-link asp-page="/Demo/Icon">Icons</sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Tabs">Tabs</sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Textarea">Textarea</sa-tab-link>
-            </sa-tab-list>
+            <dui-tab-list orientation="TabListOrientation.Vertical" class="w-fit">
+                <dui-tab-link asp-page="/Demo/Icon">Icons</dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Tabs">Tabs</dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Textarea">Textarea</dui-tab-link>
+            </dui-tab-list>
             <h2>With Icons</h2>
-            <sa-tab-list>
-                <sa-tab-link asp-page="/Demo/Icon">
-                    <sa-icon name="image"/>
+            <dui-tab-list>
+                <dui-tab-link asp-page="/Demo/Icon">
+                    <dui-icon name="image"/>
                     Icons
-                </sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Tabs">
-                    <sa-icon name="notebook-tabs"/>
+                </dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Tabs">
+                    <dui-icon name="notebook-tabs"/>
                     Tabs
-                </sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Textarea">
-                    <sa-icon name="text-cursor-input"/>
+                </dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Textarea">
+                    <dui-icon name="text-cursor-input"/>
                     Textarea
-                </sa-tab-link>
-            </sa-tab-list>
+                </dui-tab-link>
+            </dui-tab-list>
             <h2>Vertical w/ icons</h2>
-            <sa-tab-list orientation="TabListOrientation.Vertical" class="w-fit">
-                <sa-tab-link asp-page="/Demo/Icon">
-                    <sa-icon name="image"/>
+            <dui-tab-list orientation="TabListOrientation.Vertical" class="w-fit">
+                <dui-tab-link asp-page="/Demo/Icon">
+                    <dui-icon name="image"/>
                     Icons
-                </sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Tabs">
-                    <sa-icon name="notebook-tabs"/>
+                </dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Tabs">
+                    <dui-icon name="notebook-tabs"/>
                     Tabs
-                </sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Textarea">
-                    <sa-icon name="text-cursor-input"/>
+                </dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Textarea">
+                    <dui-icon name="text-cursor-input"/>
                     Textarea
-                </sa-tab-link>
-            </sa-tab-list>
+                </dui-tab-link>
+            </dui-tab-list>
             <h2>Vertical with bigger gap</h2>
-            <sa-tab-list orientation="TabListOrientation.Vertical" class="w-fit gap-1">
-                <sa-tab-link asp-page="/Demo/Icon">Icons</sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Tabs">Tabs</sa-tab-link>
-                <sa-tab-link asp-page="/Demo/Textarea">Textarea</sa-tab-link>
-            </sa-tab-list>
-        </sa-stack>
-    </sa-container>
+            <dui-tab-list orientation="TabListOrientation.Vertical" class="w-fit gap-1">
+                <dui-tab-link asp-page="/Demo/Icon">Icons</dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Tabs">Tabs</dui-tab-link>
+                <dui-tab-link asp-page="/Demo/Textarea">Textarea</dui-tab-link>
+            </dui-tab-list>
+        </dui-stack>
+    </dui-container>
 </div>
