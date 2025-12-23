@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Theming;
@@ -9,7 +10,9 @@ namespace StellarAdmin.TagHelpers;
 public class TabLinkTagHelper : StellarAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
+
+    [HtmlAttributeName("disabled")]
+    public bool? IsDisabled { get; set; }
 
     [HtmlAttributeName("is-active")]
     public bool? IsActive { get; set; }
@@ -22,11 +25,12 @@ public class TabLinkTagHelper : StellarAnchorTagHelperBase
         : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var effectiveIsDisabled = IsDisabled ?? false;
+
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -46,16 +50,35 @@ public class TabLinkTagHelper : StellarAnchorTagHelperBase
         };
         await anchorTagHelper.ProcessAsync(context, output);
 
+        var isActive = IsActive ?? IsActiveRoute();
+        output.Attributes.SetAttribute("role", "tab");
         output.Attributes.SetAttribute("data-slot", "tabs-trigger");
-        output.Attributes.SetAttribute(
-            "data-active",
-            IsActive ?? IsActiveRoute() ? "true" : "false"
-        );
+        output.Attributes.SetAttribute("aria-selected", isActive ? "true" : "false");
+        if (isActive)
+        {
+            output.Attributes.SetAttribute("data-active", "");
+        }
+
+        output.Attributes.SetAttribute("aria-disabled", effectiveIsDisabled ? "true" : "false");
+        if (effectiveIsDisabled)
+        {
+            if (output.Attributes.TryGetAttribute("href", out var hrefAttribute))
+            {
+                output.Attributes.Remove(hrefAttribute);
+            }
+            output.Attributes.SetAttribute("data-disabled", "");
+        }
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "data-[active=true]:bg-background dark:data-[active=true]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[active=true]:border-input dark:data-[active=true]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[active=true]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+            ClassMerger.Merge(
+                new ComponentName("dui-tabs-trigger"),
+                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground/60 hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center whitespace-nowrap transition-all group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+                "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent",
+                "data-active:bg-background dark:data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 data-active:text-foreground",
+                "after:bg-foreground after:absolute after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100",
+                // Additional DuneUI classes
+                "data-disabled:cursor-not-allowed",
                 output.GetUserSuppliedClass()
             )
         );

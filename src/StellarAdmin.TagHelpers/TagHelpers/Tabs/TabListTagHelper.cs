@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using StellarAdmin.Theming;
 
 namespace StellarAdmin.TagHelpers;
@@ -6,36 +7,55 @@ namespace StellarAdmin.TagHelpers;
 [HtmlTargetElement("sa-tab-list")]
 public class TabListTagHelper : StellarTagHelper
 {
-    private readonly ICssClassMerger _classMerger;
-
-    public TabListTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager)
-    {
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
-    }
-
+    [HtmlAttributeName("orientation")]
     public TabListOrientation? Orientation { get; set; }
 
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    [HtmlAttributeName("variant")]
+    public TabListVariant? Variant { get; set; }
+
+    public TabListTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+        : base(themeManager, classMerger) { }
+
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         var effectiveOrientation = Orientation ?? TabListOrientation.Horizontal;
+        var effectiveVariant = Variant ?? TabListVariant.Default;
 
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.SetAttribute("data-slot", "tabs-list");
+        output.Attributes.SetAttribute("data-slot", "tabs");
+        output.Attributes.SetAttribute(
+            "data-orientation",
+            effectiveOrientation.GetDataAttributeText()
+        );
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "bg-muted text-muted-foreground inline-flex items-center justify-center rounded-lg p-[3px]",
-                effectiveOrientation == TabListOrientation.Horizontal
-                    ? "h-9 w-fit"
-                    : "flex-col [&_[data-slot=tabs-trigger]]:w-full [&_[data-slot=tabs-trigger]]:justify-start",
+            ClassMerger.Merge(
+                new ComponentName("dui-tabs"),
+                "group/tabs flex data-[orientation=horizontal]:flex-col",
                 output.GetUserSuppliedClass()
             )
         );
 
-        return base.ProcessAsync(context, output);
+        var tabListTagBuilder = new TagBuilder("div");
+        tabListTagBuilder.Attributes.Add("data-slot", "tabs-list");
+        tabListTagBuilder.Attributes.Add("data-variant", effectiveVariant.GetDataAttributeText());
+        tabListTagBuilder.Attributes.Add(
+            "class",
+            ClassMerger.Merge(
+                new ComponentName("dui-tabs-list"),
+                "group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
+                effectiveVariant == TabListVariant.Default
+                    ? new ComponentName("dui-tabs-list-variant-default")
+                    : new ComponentName("dui-tabs-list-variant-line"),
+                effectiveVariant == TabListVariant.Default ? "bg-muted" : "gap-1 bg-transparent",
+                output.GetUserSuppliedClass()
+            )
+        );
+        tabListTagBuilder.InnerHtml.AppendHtml(await output.GetChildContentAsync());
+
+        output.Content.AppendHtml(tabListTagBuilder);
     }
 }
