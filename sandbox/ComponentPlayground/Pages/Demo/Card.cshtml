@@ -1,4 +1,5 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.Card
 
 <div class="flex flex-col gap-y-4">
@@ -9,7 +10,7 @@
                 Enter your email below to login to your account
             </sa-card-description>
             <sa-card-action>
-                <sa-button variant="Link">Sign Up</sa-button>
+                <sa-button variant="ButtonVariant.Link">Sign Up</sa-button>
             </sa-card-action>
         </sa-card-header>
         <sa-card-content>
@@ -19,7 +20,7 @@
             <sa-button type="submit" class="w-full">
                 Login
             </sa-button>
-            <sa-button variant="Outline" class="w-full">
+            <sa-button variant="ButtonVariant.Outline" class="w-full">
                 Login with Google
             </sa-button>
         </sa-card-footer>
@@ -101,7 +102,7 @@
             </div>
             <div class="flex items-center justify-between">
                 <span class="text-sm font-bold">$199</span>
-                <sa-button size="Small" class="text-xs px-2 py-1 h-7">Add</sa-button>
+                <sa-button size="ButtonSize.Small" class="text-xs px-2 py-1 h-7">Add</sa-button>
             </div>
         </sa-card-content>
     </sa-card>

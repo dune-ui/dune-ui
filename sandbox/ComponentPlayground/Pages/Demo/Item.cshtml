@@ -1,4 +1,5 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.Item
 
 <sa-item>
@@ -10,7 +11,7 @@
     </sa-item-content>
 </sa-item>
 
-<sa-item variant="Muted">
+<sa-item variant="ItemVariant.Muted">
     <sa-item-content>
         <sa-item-title>Basic Item</sa-item-title>
         <sa-item-description>
@@ -19,7 +20,7 @@
     </sa-item-content>
 </sa-item>
 <p>&nbsp;</p>
-<sa-item variant="Outline">
+<sa-item variant="ItemVariant.Outline">
     <sa-item-content>
         <sa-item-title>Basic Item</sa-item-title>
         <sa-item-description>
@@ -28,7 +29,7 @@
     </sa-item-content>
 </sa-item>
 <p>&nbsp;</p>
-<sa-item variant="Outline" size="Small">
+<sa-item variant="ItemVariant.Outline" size="ItemSize.Small">
     <sa-item-media>
         <sa-icon name="badge-check"/>
     </sa-item-media>
@@ -40,7 +41,7 @@
     </sa-item-actions>
 </sa-item>
 <p>&nbsp;</p>
-<sa-item variant="Outline">
+<sa-item variant="ItemVariant.Outline">
     <sa-item-media>
         <sa-avatar src="https://github.com/shadcn.png" />
     </sa-item-media>

@@ -1,4 +1,5 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.Empty
 
 <div class="max-w-xl">
@@ -16,13 +17,13 @@
         <sa-empty-content>
             <div class="flex gap-2">
                 <sa-button>Create Project</sa-button>
-                <sa-button variant="Outline">Import Project</sa-button>
+                <sa-button variant="ButtonVariant.Outline">Import Project</sa-button>
             </div>
         </sa-empty-content>
         <sa-linkbutton
-            variant="Link"
+            variant="ButtonVariant.Link"
             class="text-muted-foreground"
-            size="Small"
+            size="ButtonSize.Small"
             href="#"
         >
             Learn More

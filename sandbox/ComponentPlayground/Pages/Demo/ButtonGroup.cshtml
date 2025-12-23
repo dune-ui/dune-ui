@@ -1,103 +1,104 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.ButtonGroup
 
 <div class="flex flex-col gap-y-4">
     <sa-button-group>
-        <sa-button variant="Outline" size="Small">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
             Small
         </sa-button>
-        <sa-button variant="Outline" size="Small">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
             Button
         </sa-button>
-        <sa-button variant="Outline" size="Small">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
             Group
         </sa-button>
-        <sa-button variant="Outline" size="IconSmall">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall">
             <sa-icon name="plus"/>
         </sa-button>
     </sa-button-group>
     <sa-button-group>
-        <sa-button variant="Outline" size="Default">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Default">
             Default
         </sa-button>
-        <sa-button variant="Outline" size="Default">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Default">
             Button
         </sa-button>
-        <sa-button variant="Outline" size="Default">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Default">
             Group
         </sa-button>
-        <sa-button variant="Outline" size="Icon">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
             <sa-icon name="plus"/>
         </sa-button>
     </sa-button-group>
     <sa-button-group>
-        <sa-button variant="Outline" size="Large">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Large">
             Large
         </sa-button>
-        <sa-button variant="Outline" size="Large">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Large">
             Button
         </sa-button>
-        <sa-button variant="Outline" size="Large">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Large">
             Group
         </sa-button>
-        <sa-button variant="Outline" size="IconLarge">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconLarge">
             <sa-icon name="plus"/>
         </sa-button>
     </sa-button-group>
     <sa-button-group
-        orientation="Vertical"
+        orientation="ButtonGroupOrientation.Vertical"
         aria-label="Media controls"
         className="h-fit"
     >
-        <sa-button variant="Outline" size="Icon">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
             <sa-icon name="plus" />
         </sa-button>
-        <sa-button variant="Outline" size="Icon">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
             <sa-icon name="minus" />
         </sa-button>
     </sa-button-group>
     <sa-button-group>
         <sa-button-group>
-            <sa-button variant="Outline" size="Small">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
                 1
             </sa-button>
-            <sa-button variant="Outline" size="Small">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
                 2
             </sa-button>
-            <sa-button variant="Outline" size="Small">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
                 3
             </sa-button>
-            <sa-button variant="Outline" size="Small">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
                 4
             </sa-button>
-            <sa-button variant="Outline" size="Small">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
                 5
             </sa-button>
         </sa-button-group>
         <sa-button-group>
-            <sa-button variant="Outline" size="IconSmall" aria-label="Previous">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall" aria-label="Previous">
                 <sa-icon name="arrow-left" />
             </sa-button>
-            <sa-button variant="Outline" size="IconSmall" aria-label="Next">
+            <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall" aria-label="Next">
                 <sa-icon name="arrow-right" />
             </sa-button>
         </sa-button-group>
     </sa-button-group>
     <sa-button-group>
-        <sa-button variant="Secondary" size="Small">
+        <sa-button variant="ButtonVariant.Secondary" size="ButtonSize.Small">
             Copy
         </sa-button>
         <sa-button-group-separator />
-        <sa-button variant="Secondary" size="Small">
+        <sa-button variant="ButtonVariant.Secondary" size="ButtonSize.Small">
             Paste
         </sa-button>
     </sa-button-group>
     <sa-button-group>
-        <sa-button variant="Secondary" size="Small">
+        <sa-button variant="ButtonVariant.Secondary" size="ButtonSize.Small">
             Copy
         </sa-button>
         <sa-button-group-separator />
-        <sa-button variant="Secondary" size="IconSmall">
+        <sa-button variant="ButtonVariant.Secondary" size="ButtonSize.IconSmall">
             <sa-icon name="plus"/>
         </sa-button>
     </sa-button-group>

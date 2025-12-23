@@ -1,4 +1,5 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.Separator
 
 <div class="max-w-sm mx-auto">
@@ -11,9 +12,9 @@
     <sa-separator class="my-4" />
     <div class="flex h-5 items-center space-x-4 text-sm">
         <div>Blog</div>
-        <sa-separator orientation="Vertical" />
+        <sa-separator orientation="SeparatorOrientation.Vertical" />
         <div>Docs</div>
-        <sa-separator orientation="Vertical" />
+        <sa-separator orientation="SeparatorOrientation.Vertical" />
         <div>Source</div>
     </div>
 </div>

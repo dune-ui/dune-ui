@@ -1,39 +1,40 @@
 ﻿@page
+@using StellarAdmin.TagHelpers
 @model ComponentPlayground.Pages.Demo.Button
 
 <div class="flex flex-col gap-y-4">
     <div class="flex gap-x-2">
         <sa-button>Default</sa-button>
-        <sa-button variant="Secondary">Secondary</sa-button>
-        <sa-button variant="Outline">Outline</sa-button>
-        <sa-button variant="Destructive">Destructive</sa-button>
-        <sa-button variant="Ghost">Ghost</sa-button>
-        <sa-button variant="Link">Link</sa-button>
+        <sa-button variant="ButtonVariant.Secondary">Secondary</sa-button>
+        <sa-button variant="ButtonVariant.Outline">Outline</sa-button>
+        <sa-button variant="ButtonVariant.Destructive">Destructive</sa-button>
+        <sa-button variant="ButtonVariant.Ghost">Ghost</sa-button>
+        <sa-button variant="ButtonVariant.Link">Link</sa-button>
     </div>
     <div class="flex gap-x-2 items-center">
-        <sa-button variant="Outline" size="Small">Small</sa-button>
-        <sa-button variant="Outline" size="Default">Default</sa-button>
-        <sa-button variant="Outline" size="Large">Large</sa-button>
-        <sa-button variant="Outline" size="IconSmall">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Small">Small</sa-button>
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Default">Default</sa-button>
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Large">Large</sa-button>
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall">
             <sa-icon name="airplay"></sa-icon>
         </sa-button>
-        <sa-button variant="Outline" size="Icon">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
             <sa-icon name="airplay"></sa-icon>
         </sa-button>
-        <sa-button variant="Outline" size="IconLarge">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.IconLarge">
             <sa-icon name="airplay"></sa-icon>
         </sa-button>
     </div>
     <div class="flex gap-x-2">
         <sa-linkbutton asp-page="/Demo/Stack">Default</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="Secondary">Secondary</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="Outline">Outline</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="Destructive">Destructive</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="Ghost">Ghost</sa-linkbutton>
-        <sa-linkbutton asp-page="/Demo/Stack" variant="Link">Link</sa-linkbutton>
+        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Secondary">Secondary</sa-linkbutton>
+        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Outline">Outline</sa-linkbutton>
+        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Destructive">Destructive</sa-linkbutton>
+        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Ghost">Ghost</sa-linkbutton>
+        <sa-linkbutton asp-page="/Demo/Stack" variant="ButtonVariant.Link">Link</sa-linkbutton>
     </div>
     <div class="flex gap-x-2">
-        <sa-button variant="Outline">
+        <sa-button variant="ButtonVariant.Outline">
             <sa-icon name="git-branch"/>
             New Branch
         </sa-button>
@@ -41,10 +42,10 @@
             <sa-icon name="circle-plus"/>
             Quick Create
         </sa-button>
-        <sa-button variant="Outline" size="Icon" class="rounded-full">
+        <sa-button variant="ButtonVariant.Outline" size="ButtonSize.Icon" class="rounded-full">
             <sa-icon name="git-branch"/>
         </sa-button>
-        <sa-button variant="Outline" disabled>
+        <sa-button variant="ButtonVariant.Outline" disabled>
             <sa-spinner class="size-4" /> Submit
         </sa-button>
     </div>
