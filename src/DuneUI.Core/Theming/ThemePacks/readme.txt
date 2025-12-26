@@ -21,3 +21,5 @@ Replace: <empty string>
 to work with the ASP.NET Core validation class (.input-validation-error) 
 Find: (\s)(dark:)?(aria\-invalid:)(\S+)
 Replace: $1$2$3$4$1$2[&.input-validation-error]:$4
+
+8. Go to the -dui-checkbox styles and replace all data-checked: with checked: (there should be around 4 of them)

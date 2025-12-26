@@ -1,4 +1,5 @@
-﻿using DuneUI.Theming;
+﻿using DuneUI.Icons;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -9,6 +10,7 @@ namespace DuneUI.TagHelpers;
 public class InputGroupInputTagHelper : DuneUITagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
+    private readonly IIconManager _iconManager;
 
     /// <summary>
     ///     An expression to be evaluated against the current model.
@@ -38,11 +40,13 @@ public class InputGroupInputTagHelper : DuneUITagHelperBase
     public InputGroupInputTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
-        ICssClassMerger classMerger
+        ICssClassMerger classMerger,
+        IIconManager iconManager
     )
         : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+        _iconManager = iconManager;
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -57,7 +61,12 @@ public class InputGroupInputTagHelper : DuneUITagHelperBase
             )
         );
 
-        var inputTagHelper = new InputTagHelper(ThemeManager, _htmlGenerator, ClassMerger)
+        var inputTagHelper = new InputTagHelper(
+            ThemeManager,
+            _htmlGenerator,
+            ClassMerger,
+            _iconManager
+        )
         {
             ViewContext = ViewContext,
             For = For,

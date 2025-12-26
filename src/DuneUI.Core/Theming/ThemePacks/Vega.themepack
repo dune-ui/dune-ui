@@ -210,7 +210,7 @@ border-border/50 bg-background gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs s
 
 /* MARK: Checkbox */
 -dui-checkbox
-border-input dark:bg-input/30 data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary data-checked:border-primary aria-invalid:aria-checked:border-primary [&.input-validation-error]:aria-checked:border-primary aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 flex size-4 items-center justify-center rounded-[4px] border shadow-xs transition-shadow group-has-disabled/field:opacity-50 focus-visible:ring-[3px]
+border-input dark:bg-input/30 checked:bg-primary checked:text-primary-foreground dark:checked:bg-primary checked:border-primary aria-invalid:aria-checked:border-primary [&.input-validation-error]:aria-checked:border-primary aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 flex size-4 items-center justify-center rounded-[4px] border shadow-xs transition-shadow group-has-disabled/field:opacity-50 focus-visible:ring-[3px]
 
 -dui-checkbox-indicator
 [&>svg]:size-3.5
