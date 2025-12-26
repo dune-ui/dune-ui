@@ -1,4 +1,5 @@
-﻿using DuneUI.Theming;
+﻿using DuneUI.Icons;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -10,22 +11,26 @@ namespace DuneUI.TagHelpers;
 public class SelectTagHelper : FieldInputBaseTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
+    private readonly IIconManager _iconManager;
     private FrameworkSelectTagHelper? _frameworkTagHelper;
 
     public SelectTagHelper(
         ThemeManager themeManager,
         IHtmlGenerator htmlGenerator,
-        ICssClassMerger classMerger
+        ICssClassMerger classMerger,
+        IIconManager iconManager
     )
         : base(themeManager, htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
+        _iconManager = iconManager;
     }
 
     [HtmlAttributeName("asp-items")]
     public IEnumerable<SelectListItem>? Items { get; set; }
+
+    [HtmlAttributeName("size")]
+    public SelectSize? Size { get; set; }
 
     public override void Init(TagHelperContext context)
     {
@@ -50,38 +55,89 @@ public class SelectTagHelper : FieldInputBaseTagHelper
         IDictionary<string, object?>? htmlAttributes
     )
     {
+        var effectiveSize = Size ?? SelectSize.Default;
+        var userSuppliedClass = output.GetUserSuppliedClass();
+
+        /*
+         * Render the select
+         */
+        var selectOutput = new TagHelperOutput(
+            "select",
+            new TagHelperAttributeList(
+                output
+                    .Attributes.Where(a =>
+                        !a.Name.Equals("class", StringComparison.OrdinalIgnoreCase)
+                    )
+                    .Union(
+                        [
+                            new TagHelperAttribute("data-slot", "native-select"),
+                            new TagHelperAttribute(
+                                "data-size",
+                                effectiveSize.GetDataAttributeText()
+                            ),
+                            new TagHelperAttribute(
+                                "class",
+                                ClassMerger.Merge(
+                                    new ComponentName("dui-native-select"),
+                                    "outline-none disabled:pointer-events-none disabled:cursor-not-allowed"
+                                )
+                            ),
+                        ]
+                    )
+            ),
+            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+        );
         if ((For != null || Items != null) && _frameworkTagHelper != null)
         {
-            _frameworkTagHelper.Process(context, output);
+            _frameworkTagHelper.Process(context, selectOutput);
+            selectOutput.Content.SetHtmlContent(await output.GetChildContentAsync());
         }
         else
         {
-            output.Content.SetHtmlContent(await output.GetChildContentAsync());
+            selectOutput.Content.SetHtmlContent(await output.GetChildContentAsync());
         }
+        output.Content.AppendHtml(selectOutput);
 
-        output.TagName = "select";
+        /*
+         * Render the icon
+         */
+        var iconTagHelperOutput = new TagHelperOutput(
+            string.Empty,
+            [
+                new TagHelperAttribute(
+                    "class",
+                    ClassMerger.Merge(
+                        new ComponentName("dui-native-select-icon"),
+                        "pointer-events-none absolute select-none"
+                    )
+                ),
+                new TagHelperAttribute("aria-hidden", "true"),
+                new TagHelperAttribute("data-slot", "native-select-icon"),
+            ],
+            (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
+        );
+        var iconTagHelper = new IconTagHelper(ThemeManager, ClassMerger, _iconManager)
+        {
+            Name = "chevron-down",
+        };
+        await iconTagHelper.ProcessAsync(context, iconTagHelperOutput);
+
+        output.Content.AppendHtml(iconTagHelperOutput);
+
+        /*
+         * Finally, render the wrapper
+         */
+        output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.Add("data-slot", "native-select");
-
-        var allowMultipleValues =
-            output.Attributes.TryGetAttribute("multiple", out var multipleAttribute)
-            && (
-                multipleAttribute.Value == null
-                || (string)multipleAttribute.Value == "true"
-                || (string)multipleAttribute.Value == "multiple"
-            );
-
-        output.Attributes.SetAttribute(
+        output.Attributes.Add("data-slot", "native-select-wrapper");
+        output.Attributes.Add("data-size", effectiveSize.GetDataAttributeText());
+        output.Attributes.Add(
             "class",
-            _classMerger.Merge(
-                allowMultipleValues ? "p-2" : "appearance-none h-9 pl-3 pr-9 py-2",
-                "border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
-                allowMultipleValues
-                    ? null
-                    : "bg-[image:var(--chevron-down-icon-50)] bg-no-repeat bg-position-[center_right_0.75rem] bg-size-[1rem]",
-                "[&.input-validation-error]:ring-destructive/20 dark:[&.input-validation-error]:ring-destructive/40 [&.input-validation-error]:border-destructive",
-                output.GetUserSuppliedClass()
+            ClassMerger.Merge(
+                new ComponentName("dui-native-select-wrapper"),
+                "group/native-select relative w-fit has-[select:disabled]:opacity-50",
+                userSuppliedClass
             )
         );
 

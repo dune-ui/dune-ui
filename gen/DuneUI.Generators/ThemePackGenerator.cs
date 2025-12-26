@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -81,5 +82,41 @@ public class ThemePackGenerator : IIncrementalGenerator
                 sourceContext.AddSource($"{themeName}ThemePack.g.cs", generatedSource.ToString());
             }
         );
+    }
+
+    private KeyValuePair<string, string> Transform(KeyValuePair<string, string> input)
+    {
+        return input.Key switch
+        {
+            "dui-native-select" => AddInputValidationErrorVariantsFromAriaInvalid(
+                input.Key,
+                input.Value
+            ),
+            _ => input,
+        };
+    }
+
+    private KeyValuePair<string, string> AddInputValidationErrorVariantsFromAriaInvalid(
+        string key,
+        string value
+    )
+    {
+        var sb = new StringBuilder();
+
+        var individualClasses = value.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var individualClass in individualClasses)
+        {
+            sb.Append(individualClass);
+            sb.Append(" ");
+
+            if (individualClass.Contains("aria-invalid:"))
+            {
+                sb.Append(individualClass.Replace("aria-invalid:", "[&.input-validation-error]:"));
+                sb.Append(" ");
+            }
+        }
+
+        return new KeyValuePair<string, string>(key, sb.ToString());
     }
 }

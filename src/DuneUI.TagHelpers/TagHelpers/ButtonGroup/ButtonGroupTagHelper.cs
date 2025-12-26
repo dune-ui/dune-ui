@@ -13,6 +13,9 @@ public class ButtonGroupTagHelper : DuneUITagHelperBase
             [
                 new ComponentName("dui-button-group-orientation-horizontal"),
                 "[&>[data-slot]~[data-slot]]:rounded-l-none [&>[data-slot]~[data-slot]]:border-l-0 [&>[data-slot]]:rounded-r-none",
+                /* DuneUI additional classes */
+                // Handles dui-select where the select is nested in a container
+                "[&>[data-slot]>[data-slot]]:rounded-r-none [&>[data-slot]~[data-slot]>[data-slot]]:rounded-l-none  [&>[data-slot]~[data-slot]>[data-slot]]:border-l-0",
             ],
             [ButtonGroupOrientation.Vertical] =
             [

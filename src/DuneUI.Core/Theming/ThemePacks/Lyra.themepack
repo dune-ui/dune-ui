@@ -1,7 +1,6 @@
 ﻿/* MARK: Accordion */
-    .cn-accordion-item {
-    @apply not-last:border-b;
-    }
+-dui-accordion-item
+not-last:border-b
 
 -dui-accordion-trigger
 focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground rounded-none py-2.5 text-left text-xs font-medium hover:underline focus-visible:ring-1 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4
@@ -109,7 +108,7 @@ size-5 [&>svg]:size-4
 
 /* MARK: Button */
 -dui-button
-focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-none border border-transparent bg-clip-padding text-xs font-medium focus-visible:ring-1 aria-invalid:ring-1 [&_svg:not([class*='size-'])]:size-4
+focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 rounded-none border border-transparent bg-clip-padding text-xs font-medium focus-visible:ring-1 [&_svg:not([class*='size-'])]:size-4
 
 -dui-button-variant-default
 bg-primary text-primary-foreground [a]:hover:bg-primary/80
@@ -198,7 +197,7 @@ border-border/50 bg-background gap-1.5 rounded-none border px-2.5 py-1.5 text-xs
 
 /* MARK: Checkbox */
 -dui-checkbox
-border-input dark:bg-input/30 data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary data-checked:border-primary aria-invalid:aria-checked:border-primary aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 flex size-4 items-center justify-center rounded-none border transition-colors group-has-disabled/field:opacity-50 focus-visible:ring-1 aria-invalid:ring-1
+border-input dark:bg-input/30 data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary data-checked:border-primary aria-invalid:aria-checked:border-primary [&.input-validation-error]:aria-checked:border-primary aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 flex size-4 items-center justify-center rounded-none border transition-colors group-has-disabled/field:opacity-50 focus-visible:ring-1
 
 -dui-checkbox-indicator
 [&>svg]:size-3.5
@@ -454,7 +453,7 @@ data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fa
 
 /* MARK: Input */
 -dui-input
-dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-8 rounded-none border bg-transparent px-2.5 py-1 text-xs transition-colors file:h-6 file:text-xs file:font-medium focus-visible:ring-1 aria-invalid:ring-1 md:text-xs
+dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-8 rounded-none border bg-transparent px-2.5 py-1 text-xs transition-colors file:h-6 file:text-xs file:font-medium focus-visible:ring-1 md:text-xs
 
 /* MARK: Input OTP */
 -dui-input-otp
@@ -464,7 +463,7 @@ gap-2
 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive rounded-none has-aria-invalid:ring-1
 
 -dui-input-otp-slot
-dark:bg-input/30 border-input data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive size-8 border-y border-r text-xs transition-all outline-none first:rounded-none first:border-l last:rounded-none data-[active=true]:ring-1
+dark:bg-input/30 border-input data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive data-[active=true]:aria-invalid:border-destructive size-8 border-y border-r text-xs transition-all outline-none first:rounded-none first:border-l last:rounded-none data-[active=true]:ring-1
 
 -dui-input-otp-caret-line
 animate-caret-blink bg-foreground h-4 w-px duration-1000
@@ -617,7 +616,7 @@ bg-popover text-popover-foreground ring-foreground/10 rounded-none shadow ring-1
 
 /* MARK: Native Select */
 -dui-native-select
-border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-8 w-full min-w-0 appearance-none rounded-none border bg-transparent py-1 pr-8 pl-2.5 text-xs transition-colors select-none focus-visible:ring-1 aria-invalid:ring-1 data-[size=sm]:h-7 data-[size=sm]:rounded-none data-[size=sm]:py-0.5
+border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 h-8 w-full min-w-0 appearance-none rounded-none border bg-transparent py-1 pr-8 pl-2.5 text-xs transition-colors select-none focus-visible:ring-1 data-[size=sm]:h-7 data-[size=sm]:rounded-none data-[size=sm]:py-0.5
 
 -dui-native-select-icon
 text-muted-foreground top-1/2 right-2.5 size-4 -translate-y-1/2
@@ -669,7 +668,7 @@ text-muted-foreground ml-auto text-xs tabular-nums
 grid gap-2
 
 -dui-radio-group-item
-border-input text-primary dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 data-checked:bg-primary data-checked:border-primary flex size-4 rounded-full focus-visible:ring-1 aria-invalid:ring-1
+border-input text-primary dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 data-checked:bg-primary data-checked:border-primary flex size-4 rounded-full focus-visible:ring-1
 
 -dui-radio-group-indicator
 group-aria-invalid/radio-group-item:text-destructive flex size-4 items-center justify-center text-white
@@ -690,7 +689,7 @@ rounded-none
 
 /* MARK: Select */
 -dui-select-trigger
-border-input data-[placeholder]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 gap-1.5 rounded-none border bg-transparent py-2 pr-2 pl-2.5 text-xs transition-colors select-none focus-visible:ring-1 aria-invalid:ring-1 data-[size=default]:h-8 data-[size=sm]:h-7 data-[size=sm]:rounded-none *:data-[slot=select-value]:flex *:data-[slot=select-value]:gap-1.5 [&_svg:not([class*='size-'])]:size-4
+border-input data-[placeholder]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 gap-1.5 rounded-none border bg-transparent py-2 pr-2 pl-2.5 text-xs transition-colors select-none focus-visible:ring-1 data-[size=default]:h-8 data-[size=sm]:h-7 data-[size=sm]:rounded-none *:data-[slot=select-value]:flex *:data-[slot=select-value]:gap-1.5 [&_svg:not([class*='size-'])]:size-4
 
 -dui-select-value
 flex flex-1 text-left
@@ -862,7 +861,7 @@ rounded-none
 
 /* MARK: Switch */
 -dui-switch
-data-checked:bg-primary data-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 dark:data-unchecked:bg-input/80 shrink-0 rounded-full border border-transparent focus-visible:ring-1 aria-invalid:ring-1 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px]
+data-checked:bg-primary data-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 dark:data-unchecked:bg-input/80 shrink-0 rounded-full border border-transparent focus-visible:ring-1 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px]
 
 -dui-switch-thumb
 bg-background dark:data-unchecked:bg-foreground dark:data-checked:bg-primary-foreground rounded-full group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 group-data-[size=default]/switch:data-checked:translate-x-[calc(100%-2px)] group-data-[size=sm]/switch:data-checked:translate-x-[calc(100%-2px)] group-data-[size=default]/switch:data-unchecked:translate-x-0 group-data-[size=sm]/switch:data-unchecked:translate-x-0
@@ -910,11 +909,11 @@ text-xs/relaxed
 
 /* MARK: Textarea */
 -dui-textarea
-border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-none border bg-transparent px-2.5 py-2 text-xs transition-colors focus-visible:ring-1 aria-invalid:ring-1 md:text-xs
+border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive dark:aria-invalid:border-destructive/50 dark:[&.input-validation-error]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-none border bg-transparent px-2.5 py-2 text-xs transition-colors focus-visible:ring-1 md:text-xs
 
 /* MARK: Toggle */
 -dui-toggle
-hover:text-foreground aria-pressed:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[state=on]:bg-muted gap-1 rounded-none text-xs font-medium transition-all [&_svg:not([class*='size-'])]:size-4
+hover:text-foreground aria-pressed:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 [&.input-validation-error]:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:[&.input-validation-error]:ring-destructive/40 aria-invalid:border-destructive [&.input-validation-error]:border-destructive data-[state=on]:bg-muted gap-1 rounded-none text-xs font-medium transition-all [&_svg:not([class*='size-'])]:size-4
 
 -dui-toggle-variant-default
 bg-transparent
@@ -980,7 +979,7 @@ size-8 p-0 has-[>svg]:p-0
 text-muted-foreground gap-2 text-xs [&_svg:not([class*='size-'])]:size-4
 
 -dui-input-group-input
-rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent
+rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 [&.input-validation-error]:ring-0 dark:bg-transparent dark:disabled:bg-transparent
 
 -dui-input-group-textarea
-rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent
+rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 [&.input-validation-error]:ring-0 dark:bg-transparent dark:disabled:bg-transparent

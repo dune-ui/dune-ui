@@ -10,7 +10,6 @@ namespace DuneUI.TagHelpers;
 public class InputTagHelper : FieldInputBaseTagHelper
 {
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public InputTagHelper(
         ThemeManager themeManager,
@@ -20,7 +19,6 @@ public class InputTagHelper : FieldInputBaseTagHelper
         : base(themeManager, htmlGenerator, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     [HtmlAttributeName("form")]
@@ -77,7 +75,7 @@ public class InputTagHelper : FieldInputBaseTagHelper
             ? typeAttribute.Value?.ToString()
             : null;
 
-        string[] classNames = type switch
+        ClassElement[] classNames = type switch
         {
             "checkbox" =>
             [
@@ -92,10 +90,13 @@ public class InputTagHelper : FieldInputBaseTagHelper
             ],
             _ =>
             [
-                "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-                "file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
-                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-                "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+                // "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                // "file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
+                // "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                // "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+                new ComponentName("dui-input"),
+                "file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+                // Custom DuneUI overrides for validation
                 "[&.input-validation-error]:ring-destructive/20 dark:[&.input-validation-error]:ring-destructive/40 [&.input-validation-error]:border-destructive",
             ],
         };
@@ -109,12 +110,8 @@ public class InputTagHelper : FieldInputBaseTagHelper
         }
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                classNames
-                    .Select(cn => new ClassList(cn))
-                    .Union([new ClassList(output.GetUserSuppliedClass())])
-                    .Cast<ClassElement>()
-                    .ToArray()
+            ClassMerger.Merge(
+                classNames.Union([new ClassList(output.GetUserSuppliedClass())]).ToArray()
             )
         );
 
@@ -130,8 +127,6 @@ public class InputTagHelper : FieldInputBaseTagHelper
                 {
                     output.Attributes.SetAttribute("data-slot", "radio-group-item");
                 }*/
-                break;
-            default:
                 break;
         }
 
