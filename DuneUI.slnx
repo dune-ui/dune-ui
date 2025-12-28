@@ -5,6 +5,9 @@
   <Folder Name="/sandbox/">
     <Project Path="sandbox/ComponentPlayground/ComponentPlayground.csproj" />
   </Folder>
+  <Folder Name="/util/">
+    <Project Path="util/ThemePackGenerator/ThemePackGenerator.csproj" />
+  </Folder>
   <Folder Name="/workflows/">
     <File Path=".github/workflows/ci.yml" />
   </Folder>
