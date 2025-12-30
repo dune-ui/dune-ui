@@ -32,7 +32,8 @@ public partial class Program
                 .RemoveAriaInvalidRing()
                 .CreateInputValidationErrorClassesFromAriaInvalid()
                 .ReplaceDuiCheckboxDataChecked()
-                .ReplaceDuiRadioGroupItemDataChecked();
+                .ReplaceDuiRadioGroupItemDataChecked()
+                .CreateRadioButtonStyles();
 
             var fileName = Path.GetFileNameWithoutExtension(themeFile)
                 .Replace("style-", string.Empty);

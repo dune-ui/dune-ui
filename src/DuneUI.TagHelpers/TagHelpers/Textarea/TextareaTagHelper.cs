@@ -24,7 +24,7 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
         _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
-    protected override async Task<AutoFieldLayout> RenderInput(
+    protected override async Task<AutoFieldConfiguration> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
         IDictionary<string, object?>? htmlAttributes
@@ -74,7 +74,7 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
             output.Content.SetHtmlContent(childContent);
         }
 
-        return AutoFieldLayout.Vertical;
+        return new AutoFieldConfiguration(AutoFieldLayout.Vertical);
     }
 
     private TagBuilder GenerateTextAreaTagBuilder(

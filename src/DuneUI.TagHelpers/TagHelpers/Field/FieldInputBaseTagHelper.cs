@@ -66,13 +66,13 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
         }
     }
 
-    protected abstract Task<AutoFieldLayout> RenderInput(
+    protected abstract Task<AutoFieldConfiguration> RenderInput(
         TagHelperContext context,
         TagHelperOutput output,
         IDictionary<string, object?>? htmlAttributes
     );
 
-    private async Task<AutoFieldLayout> InternalRenderInput(
+    private async Task<AutoFieldConfiguration> InternalRenderInput(
         TagHelperContext context,
         TagHelperOutput output
     )
@@ -100,10 +100,14 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
 
     private async Task RenderDescriptionControl(
         TagHelperContext context,
-        TagHelperContent targetContent
+        TagHelperContent targetContent,
+        AutoFieldElement elements
     )
     {
-        if (For != null || Description != null)
+        if (
+            (For != null || Description != null)
+            && elements.HasFlagFast(AutoFieldElement.Description)
+        )
         {
             var descriptionTagHelperOutput = new TagHelperOutput(
                 string.Empty,
@@ -127,12 +131,12 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
     private async Task RenderFieldWrapper(
         TagHelperContext context,
         TagHelperOutput output,
-        AutoFieldLayout autoFieldLayout
+        AutoFieldConfiguration autoFieldConfiguration
     )
     {
         var fieldTagBuilder = new FieldTagBuilder(
             ClassMerger,
-            autoFieldLayout == AutoFieldLayout.Vertical
+            autoFieldConfiguration.Layout == AutoFieldLayout.Vertical
                 ? FieldOrientation.Vertical
                 : FieldOrientation.Horizontal,
             null
@@ -142,14 +146,14 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
         output.PreElement.AppendHtml(fieldTagBuilder.RenderStartTag());
 
         if (
-            autoFieldLayout
+            autoFieldConfiguration.Layout
             is AutoFieldLayout.HorizontalInputFirst
                 or AutoFieldLayout.HorizontalInputLast
         )
         {
             // Render the label and description inside a field content, and also render the error
             TagHelperContent targetContent =
-                autoFieldLayout == AutoFieldLayout.HorizontalInputFirst
+                autoFieldConfiguration.Layout == AutoFieldLayout.HorizontalInputFirst
                     ? output.PostElement
                     : output.PreElement;
 
@@ -162,26 +166,46 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
             var fieldContentTagHelper = new FieldContentTagHelper(ThemeManager, ClassMerger);
             await fieldContentTagHelper.ProcessAsync(context, fieldContentOutput);
 
-            await RenderLabelControl(context, fieldContentOutput.Content);
-            await RenderDescriptionControl(context, fieldContentOutput.Content);
-            await RenderErrorControl(context, fieldContentOutput.Content);
+            await RenderLabelControl(
+                context,
+                fieldContentOutput.Content,
+                autoFieldConfiguration.Elements
+            );
+            await RenderDescriptionControl(
+                context,
+                fieldContentOutput.Content,
+                autoFieldConfiguration.Elements
+            );
+            await RenderErrorControl(
+                context,
+                fieldContentOutput.Content,
+                autoFieldConfiguration.Elements
+            );
 
             targetContent.AppendHtml(fieldContentOutput);
         }
         else
         {
-            await RenderLabelControl(context, output.PreElement);
-            await RenderErrorControl(context, output.PostElement);
-            await RenderDescriptionControl(context, output.PostElement);
+            await RenderLabelControl(context, output.PreElement, autoFieldConfiguration.Elements);
+            await RenderErrorControl(context, output.PostElement, autoFieldConfiguration.Elements);
+            await RenderDescriptionControl(
+                context,
+                output.PostElement,
+                autoFieldConfiguration.Elements
+            );
         }
 
         // Render the closing tag of the field wrapper
         output.PostElement.AppendHtml(fieldTagBuilder.RenderEndTag());
     }
 
-    private async Task RenderErrorControl(TagHelperContext context, TagHelperContent targetContent)
+    private async Task RenderErrorControl(
+        TagHelperContext context,
+        TagHelperContent targetContent,
+        AutoFieldElement elements
+    )
     {
-        if (For != null || Error != null)
+        if ((For != null || Error != null) && elements.HasFlag(AutoFieldElement.Error))
         {
             var errorTagHelperOutput = new TagHelperOutput(
                 string.Empty,
@@ -206,9 +230,13 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
         }
     }
 
-    private async Task RenderLabelControl(TagHelperContext context, TagHelperContent targetContent)
+    private async Task RenderLabelControl(
+        TagHelperContext context,
+        TagHelperContent targetContent,
+        AutoFieldElement elements
+    )
     {
-        if (For != null || Label != null)
+        if ((For != null || Label != null) && elements.HasFlagFast(AutoFieldElement.Label))
         {
             var labelTagHelperOutput = new TagHelperOutput(
                 string.Empty,

@@ -48,14 +48,7 @@ public static partial class Processors
 
             foreach (var (key, value) in input)
             {
-                var newValue = value;
-                
-                foreach (Match match in AriaInvalidClassRegex().Matches(value))
-                {
-                    newValue += $" {match.Groups["dark"].Value}[&.input-validation-error]:{match.Groups["class"].Value}";
-                }
-                
-                output.Add(key, newValue);
+                output.Add(key, AriaInvalidRingRegex().Replace(value, string.Empty));
             }
 
             return output;
@@ -73,7 +66,14 @@ public static partial class Processors
 
             foreach (var (key, value) in input)
             {
-                output.Add(key, AriaInvalidRingRegex().Replace(value, string.Empty));
+                var newValue = value;
+                
+                foreach (Match match in AriaInvalidClassRegex().Matches(value))
+                {
+                    newValue += $" {match.Groups["dark"].Value}[&.input-validation-error]:{match.Groups["class"].Value}";
+                }
+                
+                output.Add(key, newValue);
             }
 
             return output;
@@ -109,6 +109,31 @@ public static partial class Processors
             if (output.TryGetValue("dui-radio-group-item", out var classes))
             {
                 output["dui-radio-group-item"] = classes.Replace("data-checked:", "checked:");
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        /// Creates dui-radiobutton* styles based on the existing radio-group-item* styles that exists
+        /// in shadcn
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, string> CreateRadioButtonStyles()
+        {
+            var output = new Dictionary<string, string>(input);
+
+            if (output.TryGetValue("dui-radio-group-item", out var radioGroupItem))
+            {
+                output["dui-radiobutton"] = radioGroupItem;
+            }
+            if (output.TryGetValue("dui-radio-group-indicator", out var radioGroupIndicator))
+            {
+                output["dui-radiobutton-indicator"] = radioGroupIndicator;
+            }
+            if (output.TryGetValue("dui-radio-group-indicator-icon", out var radioGroupIndicatorIcon))
+            {
+                output["dui-radiobutton-indicator-icon"] = radioGroupIndicatorIcon;
             }
 
             return output;
