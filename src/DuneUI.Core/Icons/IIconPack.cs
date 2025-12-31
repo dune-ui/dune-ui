@@ -2,5 +2,5 @@
 
 public interface IIconPack
 {
-    IDictionary<string, List<SvgShape>> GetIcons();
+    IDictionary<string, IconDefinition> GetIcons();
 }

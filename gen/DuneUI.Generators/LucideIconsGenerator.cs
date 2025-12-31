@@ -44,16 +44,38 @@ namespace DuneUI.Generators
                         generatedSource.AppendLine();
                         generatedSource.AppendLine("namespace DuneUI.Icons.Lucide;");
                         generatedSource.AppendLine();
-                        generatedSource.AppendLine("internal static partial class LucideIcons");
+                        generatedSource.AppendLine("internal static class LucideIcons");
                         generatedSource.AppendLine("{");
 
                         // Generate the static classes for the individual icons
                         foreach (var iconKvp in data)
                         {
                             generatedSource.AppendLine(
-                                $"    public static List<SvgShape> {IconNameToPascalCase(iconKvp.Key)} ="
+                                $"    public static IconDefinition {IconNameToPascalCase(iconKvp.Key)} = new IconDefinition("
                             );
-                            generatedSource.AppendLine("    [");
+                            generatedSource.AppendLine("        new Dictionary<string, string>");
+                            generatedSource.AppendLine("        {");
+                            generatedSource.AppendLine(
+                                "            [\"xmlns\"] = \"http://www.w3.org/2000/svg\","
+                            );
+                            generatedSource.AppendLine("            [\"width\"] = \"24\",");
+                            generatedSource.AppendLine("            [\"height\"] = \"24\",");
+                            generatedSource.AppendLine(
+                                "            [\"viewBox\"] = \"0 0 24 24\","
+                            );
+                            generatedSource.AppendLine("            [\"fill\"] = \"none\",");
+                            generatedSource.AppendLine(
+                                "            [\"stroke\"] = \"currentColor\","
+                            );
+                            generatedSource.AppendLine("            [\"stroke-width\"] = \"2\",");
+                            generatedSource.AppendLine(
+                                "            [\"stroke-linecap\"] = \"round\","
+                            );
+                            generatedSource.AppendLine(
+                                "            [\"stroke-linejoin\"] = \"round\","
+                            );
+                            generatedSource.AppendLine("        },");
+                            generatedSource.AppendLine("        [");
                             foreach (var iconShapeKvp in iconKvp.Value)
                             {
                                 generatedSource.AppendLine("        new SvgShape(");
@@ -73,16 +95,17 @@ namespace DuneUI.Generators
                                 generatedSource.AppendLine("        ),");
                             }
 
-                            generatedSource.AppendLine("    ];");
+                            generatedSource.AppendLine("        ]");
+                            generatedSource.AppendLine("    );");
                             generatedSource.AppendLine();
                         }
 
                         // Generate the static dictionary for icon definition lookup
                         generatedSource.AppendLine(
-                            "    public static FrozenDictionary<string, List<SvgShape>> IconDefinitions = new Dictionary<"
+                            "    public static FrozenDictionary<string, IconDefinition> IconDefinitions = new Dictionary<"
                         );
                         generatedSource.AppendLine("        string,");
-                        generatedSource.AppendLine("        List<SvgShape>");
+                        generatedSource.AppendLine("        IconDefinition");
                         generatedSource.AppendLine("    >");
                         generatedSource.AppendLine("    {");
                         foreach (var iconKvp in data)

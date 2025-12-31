@@ -30,11 +30,11 @@ public class DuneUIBuilder
     ///     Adds a custom icon.
     /// </summary>
     /// <param name="name">The name of the icon.</param>
-    /// <param name="shapes">The shapes that represent the icon.</param>
+    /// <param name="iconDefinition">The icon definition.</param>
     /// <returns>The <see cref="DuneUIBuilder" /> instance.</returns>
-    public DuneUIBuilder AddIcon(string name, List<SvgShape> shapes)
+    public DuneUIBuilder AddIcon(string name, IconDefinition iconDefinition)
     {
-        DefaultIconManager.Instance.AddIcon(name, shapes);
+        DefaultIconManager.Instance.AddIcon(name, iconDefinition);
 
         return this;
     }

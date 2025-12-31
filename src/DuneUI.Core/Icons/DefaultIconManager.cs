@@ -2,15 +2,15 @@
 
 internal sealed class DefaultIconManager : IIconManager
 {
-    private IDictionary<string, List<SvgShape>> _icons = new Dictionary<string, List<SvgShape>>();
+    private IDictionary<string, IconDefinition> _icons = new Dictionary<string, IconDefinition>();
 
     public static DefaultIconManager Instance { get; } = new DefaultIconManager();
 
     private DefaultIconManager() { }
 
-    public void AddIcon(string name, List<SvgShape> shapes)
+    public void AddIcon(string name, IconDefinition iconDefinition)
     {
-        _icons.Add(name, shapes);
+        _icons.Add(name, iconDefinition);
     }
 
     public void AddIconPack<TIconPack>()
@@ -18,7 +18,7 @@ internal sealed class DefaultIconManager : IIconManager
     {
         var iconPack = new TIconPack();
 
-        _icons = new Dictionary<string, List<SvgShape>>([.. _icons, .. iconPack.GetIcons()]);
+        _icons = new Dictionary<string, IconDefinition>([.. _icons, .. iconPack.GetIcons()]);
     }
 
     public string[] GetIconNames()
@@ -26,8 +26,8 @@ internal sealed class DefaultIconManager : IIconManager
         return _icons.Keys.ToArray();
     }
 
-    public bool TryGetIcon(string name, out List<SvgShape>? shapes)
+    public bool TryGetIcon(string name, out IconDefinition? iconDefinition)
     {
-        return _icons.TryGetValue(name, out shapes);
+        return _icons.TryGetValue(name, out iconDefinition);
     }
 }
