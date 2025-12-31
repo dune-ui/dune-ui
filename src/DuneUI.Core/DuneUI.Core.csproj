@@ -17,9 +17,7 @@
   </ItemGroup>
   <!-- Icon packs -->
   <ItemGroup>
-    <AdditionalFiles Include="..\client\dist\lucide-static\icon-nodes.json">
-      <Link>Icons\Lucide\icon-nodes.json</Link>
-    </AdditionalFiles>
+    <AdditionalFiles Include="Icons\Definitions\*.json" />
   </ItemGroup>
   <!-- Theme packs -->
   <ItemGroup>

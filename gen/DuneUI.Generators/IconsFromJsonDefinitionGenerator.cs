@@ -9,32 +9,32 @@ using Microsoft.CodeAnalysis;
 namespace DuneUI.Generators
 {
     [Generator]
-    public class LucideIconsGenerator : IIncrementalGenerator
+    public class IconsFromJsonDefinitionGenerator : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
             var jsonFileProvider = context.AdditionalTextsProvider.Where(file =>
-                Path.GetFileName(file.Path) == "icon-nodes.json"
-            );
-
-            var jsonDataProvider = jsonFileProvider.Select(
-                (file, cancellationToken) => file.GetText(cancellationToken)?.ToString()
+                Path.GetDirectoryName(file.Path) is { } directoryName
+                && directoryName.EndsWith(Path.Combine("Icons", "Definitions"))
+                && Path.GetExtension(file.Path) == ".json"
             );
 
             context.RegisterSourceOutput(
-                jsonDataProvider,
-                (sourceContext, jsonContent) =>
+                jsonFileProvider,
+                (sourceContext, provider) =>
                 {
-                    if (string.IsNullOrEmpty(jsonContent))
+                    var sourceText = provider.GetText();
+                    if (sourceText == null || sourceText.Lines.Count == 0)
                     {
                         return;
                     }
 
+                    var iconPackName = Path.GetFileNameWithoutExtension(provider.Path);
                     try
                     {
                         // Deserialize the JSON content
                         var data = JsonSerializer.Deserialize<Dictionary<string, List<SvgShape>>>(
-                            jsonContent!
+                            sourceText.ToString()
                         )!;
 
                         // Build the C# source file based on the data
@@ -42,40 +42,20 @@ namespace DuneUI.Generators
                         generatedSource.AppendLine("using System.Collections.Frozen;");
                         generatedSource.AppendLine("using System.Collections.Immutable;");
                         generatedSource.AppendLine();
-                        generatedSource.AppendLine("namespace DuneUI.Icons.Lucide;");
+                        generatedSource.AppendLine("namespace DuneUI.Icons;");
                         generatedSource.AppendLine();
-                        generatedSource.AppendLine("internal static class LucideIcons");
+                        generatedSource.AppendLine(
+                            $"internal static partial class {iconPackName}Icons"
+                        );
                         generatedSource.AppendLine("{");
 
                         // Generate the static classes for the individual icons
                         foreach (var iconKvp in data)
                         {
                             generatedSource.AppendLine(
-                                $"    public static IconDefinition {IconNameToPascalCase(iconKvp.Key)} = new IconDefinition("
+                                $"    public static List<SvgShape> {IconNameToPascalCase(iconKvp.Key)} ="
                             );
-                            generatedSource.AppendLine("        new Dictionary<string, string>");
-                            generatedSource.AppendLine("        {");
-                            generatedSource.AppendLine(
-                                "            [\"xmlns\"] = \"http://www.w3.org/2000/svg\","
-                            );
-                            generatedSource.AppendLine("            [\"width\"] = \"24\",");
-                            generatedSource.AppendLine("            [\"height\"] = \"24\",");
-                            generatedSource.AppendLine(
-                                "            [\"viewBox\"] = \"0 0 24 24\","
-                            );
-                            generatedSource.AppendLine("            [\"fill\"] = \"none\",");
-                            generatedSource.AppendLine(
-                                "            [\"stroke\"] = \"currentColor\","
-                            );
-                            generatedSource.AppendLine("            [\"stroke-width\"] = \"2\",");
-                            generatedSource.AppendLine(
-                                "            [\"stroke-linecap\"] = \"round\","
-                            );
-                            generatedSource.AppendLine(
-                                "            [\"stroke-linejoin\"] = \"round\","
-                            );
-                            generatedSource.AppendLine("        },");
-                            generatedSource.AppendLine("        [");
+                            generatedSource.AppendLine("    [");
                             foreach (var iconShapeKvp in iconKvp.Value)
                             {
                                 generatedSource.AppendLine("        new SvgShape(");
@@ -95,8 +75,7 @@ namespace DuneUI.Generators
                                 generatedSource.AppendLine("        ),");
                             }
 
-                            generatedSource.AppendLine("        ]");
-                            generatedSource.AppendLine("    );");
+                            generatedSource.AppendLine("    ];");
                             generatedSource.AppendLine();
                         }
 
@@ -111,7 +90,7 @@ namespace DuneUI.Generators
                         foreach (var iconKvp in data)
                         {
                             generatedSource.AppendLine(
-                                $"        [\"{iconKvp.Key}\"] = {IconNameToPascalCase(iconKvp.Key)},"
+                                $"        [\"{iconKvp.Key}\"] = new IconDefinition(SvgAttributes.ToImmutableDictionary(), {IconNameToPascalCase(iconKvp.Key)}),"
                             );
                         }
 
@@ -119,7 +98,10 @@ namespace DuneUI.Generators
                         generatedSource.AppendLine("}");
 
                         // Add the generated source to the compilation
-                        sourceContext.AddSource("LucideIcons.g.cs", generatedSource.ToString());
+                        sourceContext.AddSource(
+                            $"{iconPackName}Icons.g.cs",
+                            generatedSource.ToString()
+                        );
                     }
                     catch (Exception ex)
                     {

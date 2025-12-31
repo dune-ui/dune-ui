@@ -54,19 +54,6 @@ public class IconTagHelper : DuneUITagHelperBase
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
-    private static readonly Dictionary<string, string> DefaultIconSvgAttributeValues = new()
-    {
-        ["xmlns"] = "http://www.w3.org/2000/svg",
-        ["width"] = "48",
-        ["height"] = "48",
-        ["viewBox"] = "0 0 48 48",
-        ["fill"] = "none",
-        ["stroke"] = "currentColor",
-        ["stroke-width"] = "2",
-        ["stroke-linecap"] = "round",
-        ["stroke-linejoin"] = "round",
-    };
-
     [HtmlAttributeName("name")]
     public string? Name { get; set; }
 
@@ -80,11 +67,7 @@ public class IconTagHelper : DuneUITagHelperBase
         output.TagName = "svg";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        var effectiveAttributes = iconDefinition
-            .Attributes.UnionBy(DefaultIconSvgAttributeValues, x => x.Key)
-            .ToDictionary(x => x.Key, x => x.Value);
-
-        foreach (var (name, value) in effectiveAttributes)
+        foreach (var (name, value) in iconDefinition.Attributes)
             if (!output.Attributes.ContainsName(name))
                 output.Attributes.SetAttribute(name, value);
 

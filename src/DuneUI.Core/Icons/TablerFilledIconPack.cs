@@ -1,9 +1,9 @@
 ﻿namespace DuneUI.Icons;
 
-public class LucideIconPack : IIconPack
+public class TablerFilledIconPack : IIconPack
 {
     public IDictionary<string, IconDefinition> GetIcons()
     {
-        return LucideIcons.IconDefinitions;
+        return TablerFilledIcons.IconDefinitions;
     }
 }

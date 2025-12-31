@@ -18,7 +18,10 @@ internal sealed class DefaultIconManager : IIconManager
     {
         var iconPack = new TIconPack();
 
-        _icons = new Dictionary<string, IconDefinition>([.. _icons, .. iconPack.GetIcons()]);
+        _icons = iconPack
+            .GetIcons()
+            .UnionBy(_icons, x => x.Key)
+            .ToDictionary(x => x.Key, x => x.Value, StringComparer.OrdinalIgnoreCase);
     }
 
     public string[] GetIconNames()
