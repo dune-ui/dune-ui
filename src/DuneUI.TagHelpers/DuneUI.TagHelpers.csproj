@@ -21,15 +21,18 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
-  <Target Name="CopyFiles" BeforeTargets="Build">
-    <ItemGroup>
-      <ClientDistFiles Include="..\client\dist\*.css" />
-      <ClientDistFiles Include="..\client\dist\*.js" />
-    </ItemGroup>
-    <Copy
-      SourceFiles="@(ClientDistFiles)"
-      DestinationFolder="wwwroot\%(RecursiveDir)"
-      SkipUnchangedFiles="true"
+  <Target Name="Tailwind" BeforeTargets="Build">
+    <Exec
+      WorkingDirectory="Client"
+      Command="npm install"
+      Condition=" !Exists('Client/node_modules') "
+    />
+    <Exec
+      Command="npx @tailwindcss/cli -i ./css/dune-ui.css -o ../wwwroot/dune-ui.css --minify --optimize"
+      WorkingDirectory="Client"
     />
   </Target>
+  <ItemGroup>
+    <Content Update="Client/**/*.*" Pack="false" />
+  </ItemGroup>
 </Project>
