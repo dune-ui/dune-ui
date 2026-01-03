@@ -43,7 +43,7 @@ jobs:
     - name: Pack NuGet package
       if: env.IS_RELEASE == 'true'
       run: |
-        dotnet pack --configuration Release --no-build -o ./artifacts \
+        dotnet pack --configuration Release -o ./artifacts \
           -p:Version=${{ env.TAG_VERSION }} \
           -p:PackageVersion=${{ env.TAG_VERSION }} \
           -p:IncludeSymbols=true \
