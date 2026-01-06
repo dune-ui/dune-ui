@@ -48,6 +48,16 @@ In your `_Layout.cshtml` file (or whichever layout file you use), include the Du
 </head>
 ```
 
+### 5. Start using the Tag Helpers
+
+You can now start using the DuneUI Tag Helpers inside your Razor Pages or MVC Views. For example, the code snippet below adds an alert to your page. 
+
+```razor
+<dui-alert>
+    <dui-alert-title>Success! You have configured DuneUI correctly.</dui-alert-title>
+</dui-alert>
+```
+
 ## Documentation
 
-Complete documentation can be [found online](https://www.duneui.com/docs/tag-helpers) along with previews and code examples of all the included components.
+Documentation and code examples for all the Tag Helpers [can be found online](https://www.duneui.com/docs/tag-helpers/components/avatar).
