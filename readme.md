@@ -3,8 +3,10 @@
 DuneUI Tag Helpers is a collection of beautifully designed components based on [shadcn/ui](https://ui.shadcn.com/) which you can use to create CRUD screens in [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) MVC and Razor Pages applications.
 
 <div style="text-align:center;">
+
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![NuGet](https://img.shields.io/nuget/v/DuneUI.TagHelpers)](https://www.nuget.org/packages/DuneUI.TagHelpers/)
+
 </div>
 
 ## Quick start
