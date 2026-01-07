@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-menu-sub")]
-public class SidebarMenuSubTagHelper : DuneUITagHelperBase
+public class SidebarMenuSubTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarMenuSubTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "ul";
@@ -19,8 +17,8 @@ public class SidebarMenuSubTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                "border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
-                "group-data-[collapsible=icon]:hidden",
+                new ComponentName("dui-sidebar-menu-sub"),
+                "flex min-w-0 flex-col",
                 output.GetUserSuppliedClass()
             )
         );

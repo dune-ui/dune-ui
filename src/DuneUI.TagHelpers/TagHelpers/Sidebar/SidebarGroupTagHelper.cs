@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-group")]
-public class SidebarGroupTagHelper : DuneUITagHelperBase
+public class SidebarGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -19,11 +17,12 @@ public class SidebarGroupTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                "relative flex w-full min-w-0 flex-col p-2",
+                new ComponentName("dui-sidebar-group"),
+                "relative flex w-full min-w-0 flex-col",
                 output.GetUserSuppliedClass()
             )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-menu-sub-item")]
-public class SidebarMenuSubItemTagHelper : DuneUITagHelperBase
+public class SidebarMenuSubItemTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarMenuSubItemTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "li";

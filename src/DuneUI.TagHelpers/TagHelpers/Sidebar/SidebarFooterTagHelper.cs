@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-footer")]
-public class SidebarFooterTagHelper : DuneUITagHelperBase
+public class SidebarFooterTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarFooterTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -18,9 +16,13 @@ public class SidebarFooterTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-sidebar", "footer");
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge("flex flex-col gap-2 p-2", output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ComponentName("dui-sidebar-footer"),
+                "flex flex-col",
+                output.GetUserSuppliedClass()
+            )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

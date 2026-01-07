@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-group-content")]
-public class SidebarGroupContentTagHelper : DuneUITagHelperBase
+public class SidebarGroupContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarGroupContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -18,9 +16,13 @@ public class SidebarGroupContentTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-sidebar", "group-content");
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge("w-full text-sm", output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ComponentName("dui-sidebar-group-content"),
+                "w-full",
+                output.GetUserSuppliedClass()
+            )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

@@ -8,23 +8,24 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-sidebar-menu-link")]
 public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
 {
-    private static readonly Dictionary<SidebarMenuLinkSize, string> SizeClasses = new()
+    private static readonly Dictionary<SidebarMenuLinkSize, ComponentName> SizeClasses = new()
     {
-        [SidebarMenuLinkSize.Default] = "h-8 text-sm",
-        [SidebarMenuLinkSize.Small] = "h-7 text-xs",
-        [SidebarMenuLinkSize.Large] = "h-12 text-sm group-data-[collapsible=icon]:p-0!",
+        [SidebarMenuLinkSize.Default] = new ComponentName("dui-sidebar-menu-button-size-default"),
+        [SidebarMenuLinkSize.Small] = new ComponentName("dui-sidebar-menu-button-size-sm"),
+        [SidebarMenuLinkSize.Large] = new ComponentName("dui-sidebar-menu-button-size-lg"),
     };
 
-    private static readonly Dictionary<SidebarMenuLinkVariant, string> VariantClasses = new()
+    private static readonly Dictionary<SidebarMenuLinkVariant, ComponentName> VariantClasses = new()
     {
-        [SidebarMenuLinkVariant.Default] =
-            "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-        [SidebarMenuLinkVariant.Outline] =
-            "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+        [SidebarMenuLinkVariant.Default] = new ComponentName(
+            "dui-sidebar-menu-button-variant-default"
+        ),
+        [SidebarMenuLinkVariant.Outline] = new ComponentName(
+            "dui-sidebar-menu-button-variant-outline"
+        ),
     };
 
     private readonly IHtmlGenerator _htmlGenerator;
-    private readonly ICssClassMerger _classMerger;
 
     public SidebarMenuLinkSize? Size { get; set; }
 
@@ -32,13 +33,12 @@ public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
 
     public SidebarMenuLinkTagHelper(
         ThemeManager themeManager,
-        IHtmlGenerator htmlGenerator,
-        ICssClassMerger classMerger
+        ICssClassMerger classMerger,
+        IHtmlGenerator htmlGenerator
     )
         : base(themeManager, classMerger)
     {
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
-        _classMerger = classMerger ?? throw new ArgumentNullException(nameof(classMerger));
     }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -68,18 +68,20 @@ public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
         output.Attributes.SetAttribute("data-slot", "sidebar-menu-button");
         output.Attributes.SetAttribute("data-sidebar", "menu-button");
         output.Attributes.SetAttribute("data-size", effectiveSize.GetDataAttributeText());
-        output.Attributes.SetAttribute("data-active", IsActiveRoute() ? "true" : "false");
+        if (IsActiveRoute())
+        {
+            output.Attributes.SetAttribute("data-active", null);
+        }
 
         output.Attributes.SetAttribute(
             "class",
-            _classMerger.Merge(
-                "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+            ClassMerger.Merge(
+                new ComponentName("dui-sidebar-menu-button"),
+                "peer/menu-button flex w-full items-center  overflow-hidden outline-hidden group/menu-button disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&_svg]:size-4 [&_svg]:shrink-0",
                 SizeClasses[effectiveSize],
                 VariantClasses[effectiveVariant],
                 output.GetUserSuppliedClass()
             )
         );
-
-        output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }

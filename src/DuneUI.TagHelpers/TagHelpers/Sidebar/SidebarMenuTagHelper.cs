@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-menu")]
-public class SidebarMenuTagHelper : DuneUITagHelperBase
+public class SidebarMenuTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarMenuTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "ul";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -18,9 +16,13 @@ public class SidebarMenuTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-sidebar", "menu");
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge("flex w-full min-w-0 flex-col gap-1", output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ComponentName("dui-sidebar-menu"),
+                "flex w-full min-w-0 flex-col",
+                output.GetUserSuppliedClass()
+            )
         );
 
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

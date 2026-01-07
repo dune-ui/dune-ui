@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
-[HtmlTargetElement("dui-sidebar-group-label")]
-public class SidebarGroupLabelTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+[HtmlTargetElement("dui-sidebar-menu-badge")]
+public class SidebarMenuBadge(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
 {
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -12,13 +12,13 @@ public class SidebarGroupLabelTagHelper(ThemeManager themeManager, ICssClassMerg
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        output.Attributes.SetAttribute("data-slot", "sidebar-group-label");
-        output.Attributes.SetAttribute("data-sidebar", "group-label");
+        output.Attributes.SetAttribute("data-slot", "sidebar-menu-badge");
+        output.Attributes.SetAttribute("data-sidebar", "menu-badge");
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-group-label"),
-                "flex shrink-0 items-center outline-hidden [&>svg]:shrink-0",
+                new ComponentName("dui-sidebar-menu-badge"),
+                "flex items-center justify-center tabular-nums select-none group-data-[collapsible=icon]:hidden",
                 output.GetUserSuppliedClass()
             )
         );
