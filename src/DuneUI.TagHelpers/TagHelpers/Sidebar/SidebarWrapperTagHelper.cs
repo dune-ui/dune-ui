@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-sidebar-wrapper")]
-public class SidebarContainerTagHelper : DuneUITagHelperBase
+public class SidebarWrapperTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
+    : DuneUITagHelperBase(themeManager, classMerger)
 {
-    public SidebarContainerTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-        : base(themeManager, classMerger) { }
-
     private const string SidebarWidth = "16rem";
     private const string SidebarWidthIcon = "3rem";
 

@@ -40,7 +40,8 @@ public class SidebarTagHelper : DuneUITagHelperBase
         gapTagBuilder.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
+                new ComponentName("dui-sidebar-gap"),
+                "relative w-(--sidebar-width) bg-transparent",
                 "group-data-[collapsible=offcanvas]:w-0",
                 "group-data-[side=right]:rotate-180",
                 variant is "floating" or "inset"
@@ -74,7 +75,7 @@ public class SidebarTagHelper : DuneUITagHelperBase
         sidebarInnerTagBuilder.Attributes.Add("data-slot", "sidebar-inner");
         sidebarInnerTagBuilder.Attributes.Add(
             "class",
-            "bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+            ClassMerger.Merge(new ComponentName("dui-sidebar-inner"), "flex size-full flex-col")
         );
         sidebarInnerTagBuilder.InnerHtml.AppendHtml(await output.GetChildContentAsync());
 
