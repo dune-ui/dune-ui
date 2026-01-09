@@ -4,88 +4,84 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - ComponentPlayground</title>
-    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/site.css"/>
     <link rel="stylesheet" href="/_content/DuneUI.TagHelpers/dune-ui.css"/>
 </head>
 <body>
-<dui-sidebar-wrapper>
-    <dui-sidebar variant="Inset">
-        @*<dui-sidebar-header>Header</dui-sidebar-header>*@
-        <dui-sidebar-content>
-            @{
-                List<DemoGroup> demoGroups =
-                [
-                    new DemoGroup("Display",
-                    [
-                        new DemoItem("Avatar", "/Demo/Avatar"),
-                        new DemoItem("Badge", "/Demo/Badge"),
-                        new DemoItem("Card", "/Demo/Card"),
-                        new DemoItem("Empty", "/Demo/Empty"),
-                        new DemoItem("Icon", "/Demo/Icon"),
-                        new DemoItem("Item", "/Demo/Item"),
-                        new DemoItem("Kbd", "/Demo/Kbd"),
-                        new DemoItem("Separator", "/Demo/Separator"),
-                        new DemoItem("Skeleton", "/Demo/Skeleton"),
-                        new DemoItem("Table", "/Demo/Table"),
-                    ]),
-                    new DemoGroup("Feedback",
-                    [
-                        new DemoItem("Alert", "/Demo/Alert"),
-                        new DemoItem("Progress", "/Demo/Progress"),
-                        new DemoItem("Spinner", "/Demo/Spinner"),
-                    ]),
-                    new DemoGroup("Forms",
-                    [
-                        new DemoItem("Button", "/Demo/Button"),
-                        new DemoItem("Button Group", "/Demo/ButtonGroup"),
-                        new DemoItem("Checkbox", "/Demo/Checkbox"),
-                        new DemoItem("Field", "/Demo/Field"),
-                        new DemoItem("Label", "/Demo/Label"),
-                        new DemoItem("Input", "/Demo/Input"),
-                        new DemoItem("Input Group", "/Demo/InputGroup"),
-                        new DemoItem("Radio", "/Demo/Radio"),
-                        new DemoItem("Select", "/Demo/Select"),
-                        new DemoItem("Textarea", "/Demo/Textarea")
-                    ]),
-                    new DemoGroup("Layout", 
-                    [
-                        new DemoItem("Group", "/Demo/Group"),
-                        new DemoItem("Stack", "/Demo/Stack")
-                    ]),
-                    new DemoGroup("Navigation",
-                    [
-                        new DemoItem("Breadcrumb", "/Demo/Breadcrumb"),
-                        new DemoItem("Pagination", "/Demo/Pagination"),
-                        new DemoItem("Tabs", "/Demo/Tabs"),
-                    ])
-                ];
-            }
-            @foreach (var demoGroup in demoGroups)
+@{
+    List<DemoGroup> demoGroups =
+    [
+        new DemoGroup("Display",
+        [
+            new DemoItem("Avatar", "/Demo/Avatar"),
+            new DemoItem("Badge", "/Demo/Badge"),
+            new DemoItem("Card", "/Demo/Card"),
+            new DemoItem("Empty", "/Demo/Empty"),
+            new DemoItem("Icon", "/Demo/Icon"),
+            new DemoItem("Item", "/Demo/Item"),
+            new DemoItem("Kbd", "/Demo/Kbd"),
+            new DemoItem("Separator", "/Demo/Separator"),
+            new DemoItem("Skeleton", "/Demo/Skeleton"),
+            new DemoItem("Table", "/Demo/Table"),
+        ]),
+        new DemoGroup("Feedback",
+        [
+            new DemoItem("Alert", "/Demo/Alert"),
+            new DemoItem("Progress", "/Demo/Progress"),
+            new DemoItem("Spinner", "/Demo/Spinner"),
+        ]),
+        new DemoGroup("Forms",
+        [
+            new DemoItem("Button", "/Demo/Button"),
+            new DemoItem("Button Group", "/Demo/ButtonGroup"),
+            new DemoItem("Checkbox", "/Demo/Checkbox"),
+            new DemoItem("Field", "/Demo/Field"),
+            new DemoItem("Label", "/Demo/Label"),
+            new DemoItem("Input", "/Demo/Input"),
+            new DemoItem("Input Group", "/Demo/InputGroup"),
+            new DemoItem("Radio", "/Demo/Radio"),
+            new DemoItem("Select", "/Demo/Select"),
+            new DemoItem("Textarea", "/Demo/Textarea")
+        ]),
+        new DemoGroup("Layout",
+        [
+            new DemoItem("Group", "/Demo/Group"),
+            new DemoItem("Stack", "/Demo/Stack")
+        ]),
+        new DemoGroup("Navigation",
+        [
+            new DemoItem("Breadcrumb", "/Demo/Breadcrumb"),
+            new DemoItem("Pagination", "/Demo/Pagination"),
+            new DemoItem("Tabs", "/Demo/Tabs"),
+        ])
+    ];
+}
+<div class="flex">
+    <!-- Sidebar -->
+    <div
+        class="w-64 bg-gray-800 text-white p-4 transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0">
+        <h2 class="text-2xl font-bold mb-6">My App</h2>
+        <nav>
+        @foreach (var demoGroup in demoGroups)
+        {
+            <h3 class="text-sm font-bold uppercase ml-2 mb-2">@demoGroup.Title</h3>
+            <ul class="mb-4">
+            @foreach (var demoItem in demoGroup.Items)
             {
-                <dui-sidebar-group>
-                    <dui-sidebar-group-label>@demoGroup.Title</dui-sidebar-group-label>
-                    <dui-sidebar-group-content>
-                        <dui-sidebar-menu>
-                            @foreach (var demoItem in demoGroup.Items)
-                            {
-                                <dui-sidebar-menu-item>
-                                    <dui-sidebar-menu-link asp-page="@demoItem.Page">
-                                        @demoItem.Title
-                                    </dui-sidebar-menu-link>
-                                </dui-sidebar-menu-item>
-                            }
-                        </dui-sidebar-menu>
-                    </dui-sidebar-group-content>
-                </dui-sidebar-group>
+                <li class="mb-1 text-sm">
+                    <a asp-page="@demoItem.Page" class="block p-2 rounded hover:bg-gray-700">@demoItem.Title</a>
+                </li>
             }
-        </dui-sidebar-content>
-        @*<dui-sidebar-footer>Footer</dui-sidebar-footer>*@
-    </dui-sidebar>
-    <dui-sidebar-inset>
+            </ul>
+        }
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
         @RenderBody()
-    </dui-sidebar-inset>
-</dui-sidebar-wrapper>
-<script src="/_content/DuneUI.TagHelpers/dune-ui.js"></script>
+    </div>
+</div>
 @await RenderSectionAsync("Scripts", false)
 </body>
 </html>
