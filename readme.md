@@ -37,18 +37,7 @@ Update your `_ViewImports.cshtml` to register the DuneUI Tag Helpers.
 @addTagHelper *, DuneUI.TagHelpers
 ```
 
-### 4. Include stylesheet
-
-In your `_Layout.cshtml` file (or whichever layout file you use), include the DuneUI stylesheet in the `head` section.
-
-```razor
-<head>
-    <!-- ... -->
-    <link rel="stylesheet" href="/_content/DuneUI.TagHelpers/dune-ui.css"/>
-</head>
-```
-
-### 5. Start using the Tag Helpers
+### 4. Start using the Tag Helpers
 
 You can now start using the DuneUI Tag Helpers inside your Razor Pages or MVC Views. For example, the code snippet below adds an alert to your page. 
 
