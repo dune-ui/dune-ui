@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <RootNamespace>DuneUI</RootNamespace>
+    <Description>A collection of beautifully designed components you can use to create CRUD screens in ASP.NET Core MVC and Razor Pages applications</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <NoWarn>1701;1702</NoWarn>

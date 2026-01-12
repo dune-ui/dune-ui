@@ -1,0 +1,17 @@
+﻿<Project>
+  <PropertyGroup>
+    <Authors>Jerrie Pelser</Authors>
+    <Copyright>Copyright © 2026 Jerrie Pelser</Copyright>
+    <PackageTags>tag helper;shadcn;crud</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/dune-ui/dune-ui</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/dune-ui/dune-ui.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>dune-ui-symbol.png</PackageIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\assets\logo\dune-ui-symbol.png" Pack="true" PackagePath="" />
+    <None Include="..\..\readme.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

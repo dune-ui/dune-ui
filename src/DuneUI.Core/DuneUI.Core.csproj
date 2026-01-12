@@ -4,6 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>DuneUI</RootNamespace>
+    <Description>Core components used by DuneUI - a collection of beautifully designed components you can use to create CRUD screens in ASP.NET Core MVC and Razor Pages applications</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TailwindMerge.NET" />
