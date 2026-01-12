@@ -1,4 +1,8 @@
-﻿# DuneUI 
+﻿# DuneUI
+
+<div align="center">
+    <img src="assets/logo/dune-ui-logo.svg">
+</div>
 
 DuneUI Tag Helpers is a collection of beautifully designed components based on [shadcn/ui](https://ui.shadcn.com/) which you can use to create CRUD screens in [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) MVC and Razor Pages applications.
 
