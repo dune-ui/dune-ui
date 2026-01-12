@@ -41,7 +41,13 @@ Update your `_ViewImports.cshtml` to register the DuneUI Tag Helpers.
 @addTagHelper *, DuneUI.TagHelpers
 ```
 
-### 4. Start using the Tag Helpers
+### 4. (Optional) Remove 3rd party stylesheets
+
+Using DuneUI along with 3rd party CSS libraries like Bootstrap will almost certainly result in incorrect rendering of the DuneUI components, since these libraries apply their own styling which may override the styling applied by DuneUI.
+
+As such, we **strongly recommend** that you remove 3rd party stylesheets and only depend on the CSS styling applied by DuneUI.
+
+### 5. Start using the Tag Helpers
 
 You can now start using the DuneUI Tag Helpers inside your Razor Pages or MVC Views. For example, the code snippet below adds an alert to your page. 
 
