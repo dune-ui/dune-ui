@@ -9,7 +9,7 @@ DuneUI Tag Helpers is a collection of beautifully designed components based on [
 <div align="center">
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![NuGet](https://img.shields.io/nuget/v/DuneUI.TagHelpers)](https://www.nuget.org/packages/DuneUI.TagHelpers/)
+[![NuGet](https://img.shields.io/nuget/v/DuneUI)](https://www.nuget.org/packages/DuneUI/)
 
 </div>
 
