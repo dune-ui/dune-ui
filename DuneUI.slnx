@@ -11,6 +11,5 @@
   <Folder Name="/workflows/">
     <File Path=".github/workflows/ci.yml" />
   </Folder>
-  <Project Path="src/DuneUI.Core/DuneUI.Core.csproj" />
-  <Project Path="src/DuneUI.TagHelpers/DuneUI.TagHelpers.csproj" />
+  <Project Path="src/DuneUI/DuneUI.csproj" />
 </Solution>

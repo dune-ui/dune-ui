@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DuneUI;
 
-internal sealed class DuneUIStylesInjectionTagHelperComponent : TagHelperComponent
+internal sealed class StyleInjectionTagHelperComponent : TagHelperComponent
 {
     [ViewContext]
     public ViewContext ViewContext { get; set; } = default!;
@@ -24,7 +24,7 @@ internal sealed class DuneUIStylesInjectionTagHelperComponent : TagHelperCompone
         var pathBase = httpContext.Request.PathBase;
         var duneUIStylesSrc = fileVersionProvider.AddFileVersionToPath(
             pathBase,
-            UriHelper.BuildRelative(pathBase, "/_content/DuneUI.TagHelpers/dune-ui.css")
+            UriHelper.BuildRelative(pathBase, "/_content/DuneUI/dune-ui.css")
         );
 
         output.PostContent.AppendHtml("<link rel=\"stylesheet\" href=\"");

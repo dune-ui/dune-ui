@@ -17,10 +17,10 @@ DuneUI Tag Helpers is a collection of beautifully designed components based on [
 
 ### 1. Install package
 
-Install the `DuneUI.TagHelpers` NuGet package:
+Install the `DuneUI` NuGet package:
 
 ```bash
-dotnet add package DuneUI.TagHelpers
+dotnet add package DuneUI
 ```
 
 ### 2. Register services
@@ -39,7 +39,7 @@ Update your `_ViewImports.cshtml` to register the DuneUI Tag Helpers.
 
 ```razor
 @using DuneUI.TagHelpers
-@addTagHelper *, DuneUI.TagHelpers
+@addTagHelper *, DuneUI
 ```
 
 ### 4. (Optional) Remove 3rd party stylesheets

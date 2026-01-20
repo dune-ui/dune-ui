@@ -4,6 +4,6 @@
 @import "tw-animate-css";
 @import "./theme.css";
 
-@source "../../../DuneUI.Core/Theming/ThemePacks";
+@source "../../Theming/ThemePacks/";
 @source "../../TagHelpers/";
 

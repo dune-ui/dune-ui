@@ -3,6 +3,7 @@ using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.DependencyInjection;
+using TailwindMerge;
 
 namespace DuneUI;
 
@@ -18,10 +19,14 @@ public static class ServiceCollectionExtensions
     /// <returns>The <see cref="DuneUIBuilder" /> instances that allows you to register and configure DuneUI services.</returns>
     public static DuneUIBuilder AddDuneUI(this IServiceCollection services)
     {
-        services.AddTransient<ITagHelperComponent, DuneUIStylesInjectionTagHelperComponent>();
+        services
+            .AddSingleton<TwMerge>()
+            .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()
+            .AddSingleton<IIconManager>(_ => DefaultIconManager.Instance)
+            .AddSingleton<ThemeManager>(_ => ThemeManager.Instance)
+            .AddTransient<ITagHelperComponent, StyleInjectionTagHelperComponent>();
 
         var duneUIBuilder = new DuneUIBuilder(services);
-        duneUIBuilder.AddCore();
         duneUIBuilder.AddIconPack<LucideIconPack>();
         duneUIBuilder.UseTheme<VegaThemePack>();
 
