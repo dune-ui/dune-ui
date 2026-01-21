@@ -7,11 +7,11 @@ using Microsoft.Extensions.Options;
 
 namespace DuneUI;
 
-internal sealed class StyleInjectionTagHelperComponent : TagHelperComponent
+public class ScriptInjectionTagHelperComponent : TagHelperComponent
 {
     private DuneUIConfiguration _duneUIConfiguration;
 
-    public StyleInjectionTagHelperComponent(IOptions<DuneUIConfiguration> duneUIConfiguration)
+    public ScriptInjectionTagHelperComponent(IOptions<DuneUIConfiguration> duneUIConfiguration)
     {
         _duneUIConfiguration =
             duneUIConfiguration.Value
@@ -23,7 +23,7 @@ internal sealed class StyleInjectionTagHelperComponent : TagHelperComponent
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        if (!string.Equals(context.TagName, "head", StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(context.TagName, "body", StringComparison.OrdinalIgnoreCase))
         {
             return Task.CompletedTask;
         }
@@ -33,18 +33,18 @@ internal sealed class StyleInjectionTagHelperComponent : TagHelperComponent
             httpContext.RequestServices.GetRequiredService<IFileVersionProvider>();
         var pathBase = httpContext.Request.PathBase;
 
-        foreach (var stylesheet in _duneUIConfiguration.GetStylesheets())
+        foreach (var script in _duneUIConfiguration.GetScripts())
         {
-            var href = stylesheet.StartsWith("/")
+            var href = script.StartsWith("/")
                 ? fileVersionProvider.AddFileVersionToPath(
                     pathBase,
-                    UriHelper.BuildRelative(pathBase, stylesheet)
+                    UriHelper.BuildRelative(pathBase, script)
                 )
-                : stylesheet;
+                : script;
 
-            output.PostContent.AppendHtml("<link rel=\"stylesheet\" href=\"");
+            output.PostContent.AppendHtml("<script src=\"");
             output.PostContent.Append(href);
-            output.PostContent.AppendHtml("\">");
+            output.PostContent.AppendHtml("\"></script>");
         }
 
         return Task.CompletedTask;

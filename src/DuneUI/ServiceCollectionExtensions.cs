@@ -24,11 +24,23 @@ public static class ServiceCollectionExtensions
             .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()
             .AddSingleton<IIconManager>(_ => DefaultIconManager.Instance)
             .AddSingleton<ThemeManager>(_ => ThemeManager.Instance)
+            .AddTransient<ITagHelperComponent, ScriptInjectionTagHelperComponent>()
             .AddTransient<ITagHelperComponent, StyleInjectionTagHelperComponent>();
+
+        services.AddOptions<DuneUIConfiguration>();
 
         var duneUIBuilder = new DuneUIBuilder(services);
         duneUIBuilder.AddIconPack<LucideIconPack>();
         duneUIBuilder.UseTheme<VegaThemePack>();
+
+        duneUIBuilder.RegisterNamedStylesheet(
+            "DuneUIBaseStylesheet",
+            "/_content/DuneUI/dune-ui.css"
+        );
+        duneUIBuilder.RegisterNamedScript(
+            "DuneUIProScripts",
+            "/_content/DuneUI.TagHelpers.Pro/dune-ui-pro.js"
+        );
 
         return duneUIBuilder;
     }
