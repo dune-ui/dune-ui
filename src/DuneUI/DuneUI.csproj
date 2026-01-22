@@ -47,7 +47,8 @@
   <!-- Icon packs -->
   <ItemGroup>
     <Content Update="Icons/Definitions/**/*.*" Pack="false" />
-    <AdditionalFiles Include="Icons\Definitions\*.json" />
+    <!--<AdditionalFiles Include="Icons\Definitions\*.json" />-->
+    <AdditionalFiles Include="Icons\Definitions\Lucide.json" />
   </ItemGroup>
   <!-- Theme packs -->
   <ItemGroup>
