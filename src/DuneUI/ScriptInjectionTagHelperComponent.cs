@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -44,7 +45,7 @@ public class ScriptInjectionTagHelperComponent : TagHelperComponent
 
             output.PostContent.AppendHtml("<script src=\"");
             output.PostContent.Append(href);
-            output.PostContent.AppendHtml("\"></script>");
+            output.PostContent.AppendHtmlLine("\"></script>");
         }
 
         return Task.CompletedTask;

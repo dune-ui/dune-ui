@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -44,7 +45,7 @@ internal sealed class StyleInjectionTagHelperComponent : TagHelperComponent
 
             output.PostContent.AppendHtml("<link rel=\"stylesheet\" href=\"");
             output.PostContent.Append(href);
-            output.PostContent.AppendHtml("\">");
+            output.PostContent.AppendHtmlLine("\">");
         }
 
         return Task.CompletedTask;
