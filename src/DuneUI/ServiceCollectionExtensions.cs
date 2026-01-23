@@ -37,10 +37,6 @@ public static class ServiceCollectionExtensions
             "DuneUIBaseStylesheet",
             "/_content/DuneUI/dune-ui.css"
         );
-        duneUIBuilder.RegisterNamedScript(
-            "DuneUIProScripts",
-            "/_content/DuneUI.TagHelpers.Pro/dune-ui-pro.js"
-        );
 
         return duneUIBuilder;
     }
