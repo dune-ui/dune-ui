@@ -81,6 +81,14 @@ export default (openOnHover, defaultOpen, position, offset) => ({
             return this.$id('popover-menu') + '-trigger';
         },
     },
+    init() {
+        this.$el.close = () => {
+            this.close();
+        };
+        this.$el.open = () => {
+            this.open();
+        }
+    },
     close() {
         this.isOpen = false;
         this.isOpenedViaHover = false;

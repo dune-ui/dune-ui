@@ -2,7 +2,8 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:css": "npx @tailwindcss/cli -i ./css/dune-ui.css -o ../wwwroot/dune-ui.css",
-    "build:js": "rolldown -c"
+    "build:js": "rolldown -c",
+    "build:js:watch": "rolldown -c rolldown.config.js -w"
   },
   "type": "module",
   "devDependencies": {

@@ -34,13 +34,22 @@
   <ItemGroup>
     <Content Update="Client/**/*.*" Pack="false" />
   </ItemGroup>
-  <Target Name="Tailwind" BeforeTargets="Build">
+  <Target Name="Client" BeforeTargets="Build">
     <Exec
       WorkingDirectory="Client"
       Command="npm install"
       Condition=" !Exists('Client/node_modules') "
     />
-    <Exec Command="npm run build" WorkingDirectory="Client" />
+    <Exec
+      Command="npm run build:css"
+      WorkingDirectory="Client"
+      Condition=" '$(Configuration)' == 'Debug' "
+    />
+    <Exec
+      Command="npm run build"
+      WorkingDirectory="Client"
+      Condition=" '$(Configuration)' == 'Release' "
+    />
   </Target>
   <!-- Icon packs -->
   <ItemGroup>
