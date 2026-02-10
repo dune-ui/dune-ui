@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/docs/">
+    <Project Path="docs/DocsSamples/DocsSamples.csproj" />
+    <Project Path="docs/DocsSamplesGenerator/DocsSamplesGenerator.csproj" />
+  </Folder>
   <Folder Name="/gen/">
     <Project Path="gen/DuneUI.Generators/DuneUI.Generators.csproj" />
   </Folder>

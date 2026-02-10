@@ -1,0 +1,17 @@
+﻿<dui-group gap="GroupGap.Small">
+    <!-- code begin -->
+    <!-- Specify the URL via the href attribute -->
+    <dui-linkbutton variant="ButtonVariant.Outline" href="https://dotnet.microsoft.com/" target="_blank">
+        .NET Home Page
+    </dui-linkbutton>
+    <!-- Specify the Razor Page to navigate to -->
+    <dui-linkbutton variant="ButtonVariant.Outline" asp-page="/Booking/Confirmation" asp-route-id="123">
+        Booking Confirmation
+    </dui-linkbutton>
+    <!-- Specify the MVC Controller Action to navigate to -->
+    <dui-linkbutton variant="ButtonVariant.Outline" asp-controller="Booking" asp-action="Confirmation"
+                   asp-route-id="123">
+        Booking Confirmation
+    </dui-linkbutton>
+    <!-- code end -->
+</dui-group>

@@ -1,0 +1,21 @@
+﻿<dui-field-set class="w-full">
+    <dui-field-legend>Bed Preference</dui-field-legend>
+    <dui-field-description>
+        Choose your preferred bed configuration.
+    </dui-field-description>
+    <dui-field-group data-slot="radio-group">
+        <dui-input type="radio" name="bed-preference" value="king" id="bed-king"
+                   label="1 King"
+                   description="Large bed for couples or solo travelers"
+                   disabled/>
+        <dui-input type="radio" name="bed-preference" value="queen" id="bed-queen"
+                   label="1 Queen"
+                   description="Standard bed for up to two people"
+                   disabled/>
+        <dui-input type="radio" name="bed-preference" value="single" id="bed-single"
+                   label="2 Single"
+                   description="Ideal for friends or colleagues"
+                   checked
+                   disabled/>
+    </dui-field-group>
+</dui-field-set>

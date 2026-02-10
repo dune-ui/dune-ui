@@ -1,0 +1,19 @@
+﻿@model FieldsetImplicitModel
+
+<div class="w-full max-w-md space-y-6">
+    <!-- code begin -->
+    <dui-field-set>
+        <dui-field-legend>Address Information</dui-field-legend>
+        <dui-field-description>
+            We need your address to deliver your order.
+        </dui-field-description>
+        <dui-field-group>
+            <dui-input asp-for="Street"/>
+            <div class="grid grid-cols-2 gap-4">
+                <dui-input asp-for="City"/>
+                <dui-input asp-for="PostalCode"/>
+            </div>
+        </dui-field-group>
+    </dui-field-set>
+    <!-- code end -->
+</div>

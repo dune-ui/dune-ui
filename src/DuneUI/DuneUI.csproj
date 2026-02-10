@@ -14,6 +14,7 @@
     <NoWarn>$(NoWarn);CA2264</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AngleSharp" />
     <PackageReference Include="TailwindMerge.NET" />
   </ItemGroup>
   <ItemGroup>
@@ -39,10 +40,7 @@
       Command="npm install"
       Condition=" !Exists('Client/node_modules') "
     />
-    <Exec
-      Command="npx @tailwindcss/cli -i ./css/dune-ui.css -o ../wwwroot/dune-ui.css"
-      WorkingDirectory="Client"
-    />
+    <Exec Command="npm run build" WorkingDirectory="Client" />
   </Target>
   <!-- Icon packs -->
   <ItemGroup>

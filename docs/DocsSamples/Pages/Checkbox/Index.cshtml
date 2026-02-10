@@ -1,0 +1,35 @@
+﻿@page
+@model DocsSamples.Pages.Checkbox.Index
+
+<docs-example-wrapper>
+    <docs-example title="Intro">
+        <partial name="_Intro"/>
+    </docs-example>
+    <docs-example title="Model Binding">
+        <partial name="_ModelBinding" for="Model.ModelBinding"/>
+    </docs-example>
+    <docs-example title="Validation">
+        <partial name="_Validation" for="Model.Validation"/>
+    </docs-example>
+    <docs-example title="Disabled">
+        <partial name="_Disabled"/>
+    </docs-example>
+    <docs-example title="Group">
+        <partial name="_Group"/>
+    </docs-example>
+    <docs-example title="Group (Model Binding)">
+        <partial name="_GroupModelBinding" for="Model.Group"/>
+    </docs-example>
+    <docs-example title="Field (Explicit)">
+        <partial name="_FieldExplicit"/>
+    </docs-example>
+    <docs-example title="Field (Implicit)">
+        <partial name="_FieldImplicit"/>
+    </docs-example>
+    <docs-example title="Manual Validation (Explicit)">
+        <partial name="_ManualValidationExplicit"/>
+    </docs-example>
+    <docs-example title="Manual Validation (Implicit)">
+        <partial name="_ManualValidationImplicit"/>
+    </docs-example>
+</docs-example-wrapper>

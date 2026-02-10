@@ -1,0 +1,17 @@
+﻿@page
+@model DocsSamples.Pages.Progress.Index
+
+<docs-example-wrapper>
+    <docs-example title="Intro">
+        <partial name="_Intro"/>
+    </docs-example>
+    <docs-example title="Min and Max">
+        <partial name="_MinMax"/>
+    </docs-example>
+    <docs-example title="With Label">
+        <partial name="_WithLabel"/>
+    </docs-example>
+    <docs-example title="File Upload List">
+        <partial name="_FileUploadList" model="@Index.Files"/>
+    </docs-example>
+</docs-example-wrapper>

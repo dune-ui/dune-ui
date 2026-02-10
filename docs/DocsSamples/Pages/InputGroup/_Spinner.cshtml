@@ -1,0 +1,36 @@
+﻿<div class="w-full max-w-md">
+    <dui-stack>
+        <!-- code begin -->
+        <dui-input-group data-disabled>
+            <dui-input-group-input placeholder="Searching..." disabled/>
+            <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <dui-spinner/>
+            </dui-input-group-addon>
+        </dui-input-group>
+        <dui-input-group data-disabled>
+            <dui-input-group-input placeholder="Processing..." disabled/>
+            <dui-input-group-addon>
+                <dui-spinner/>
+            </dui-input-group-addon>
+        </dui-input-group>
+        <dui-input-group data-disabled>
+            <dui-input-group-input placeholder="Saving changes..." disabled/>
+            <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <dui-input-group-text>Saving...</dui-input-group-text>
+                <dui-spinner/>
+            </dui-input-group-addon>
+        </dui-input-group>
+        <dui-input-group data-disabled>
+            <dui-input-group-input placeholder="Refreshing data..." disabled/>
+            <dui-input-group-addon>
+                <dui-icon name="loader" class="animate-spin"/>
+            </dui-input-group-addon>
+            <dui-input-group-addon align="InputGroupAddOnVariantAlignment.InlineEnd">
+                <dui-input-group-text class="text-muted-foreground">
+                    Please wait...
+                </dui-input-group-text>
+            </dui-input-group-addon>
+        </dui-input-group>
+        <!-- code end -->
+    </dui-stack>
+</div>

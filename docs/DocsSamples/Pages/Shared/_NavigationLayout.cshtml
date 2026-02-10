@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<dui-sidebar-wrapper>
+    <dui-sidebar variant="Inset">
+        <dui-sidebar-content>
+            @{
+                List<DemoGroup> demoGroups =
+                [
+                    new DemoGroup("All",
+                    [
+                        new DemoItem("Accordion", "/Accordion/Index"),
+                        new DemoItem("Alert", "/Alert/Index"),
+                        new DemoItem("Avatar", "/Avatar/Index"),
+                        new DemoItem("as-child", "/AsChild/Index"),
+                        new DemoItem("Badge", "/Badge/Index"),
+                        new DemoItem("Breadcrumb", "/Breadcrumb/Index"),
+                        new DemoItem("Button", "/Button/Index"),
+                        new DemoItem("Button Group", "/ButtonGroup/Index"),
+                        new DemoItem("Card", "/Card/Index"),
+                        new DemoItem("Checkbox", "/Checkbox/Index"),
+                        new DemoItem("Collapsible", "/Collapsible/Index"),
+                        new DemoItem("Dialog", "/Dialog/Index"),
+                        new DemoItem("Empty", "/Empty/Index"),
+                        new DemoItem("Field", "/Field/Index"),
+                        new DemoItem("Group", "/Group/Index"),
+                        new DemoItem("Icon", "/Icon/Index"),
+                        new DemoItem("Input", "/Input/Index"),
+                        new DemoItem("Input Group", "/InputGroup/Index"),
+                        new DemoItem("Item", "/Item/Index"),
+                        new DemoItem("Kbd", "/Kbd/Index"),
+                        new DemoItem("Link Button", "/LinkButton/Index"),
+                        new DemoItem("Pagination", "/Pagination/Index"),
+                        new DemoItem("Popover", "/Popover/Index"),
+                        new DemoItem("Progress", "/Progress/Index"),
+                        new DemoItem("Radio", "/Radio/Index"),
+                        new DemoItem("Select", "/Select/Index"),
+                        new DemoItem("Separator", "/Separator/Index"),
+                        new DemoItem("Skeleton", "/Skeleton/Index"),
+                        new DemoItem("Spinner", "/Spinner/Index"),
+                        new DemoItem("Stack", "/Stack/Index"),
+                        new DemoItem("Table", "/Table/Index"),
+                        new DemoItem("Tabs", "/Tabs/Index"),
+                        new DemoItem("Textarea", "/Textarea/Index"),
+                        new DemoItem("Tooltip", "/Tooltip/Index"),
+                    ])
+                ];
+            }
+            @foreach (var demoGroup in demoGroups)
+            {
+                <dui-sidebar-group>
+                    <dui-sidebar-group-label>@demoGroup.Title</dui-sidebar-group-label>
+                    <dui-sidebar-group-content>
+                        <dui-sidebar-menu>
+                            @foreach (var demoItem in demoGroup.Items)
+                            {
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link asp-page="@demoItem.Page">
+                                        @demoItem.Title
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                            }
+                        </dui-sidebar-menu>
+                    </dui-sidebar-group-content>
+                </dui-sidebar-group>
+            }
+        </dui-sidebar-content>
+        @*<dui-sidebar-footer>Footer</dui-sidebar-footer>*@
+    </dui-sidebar>
+    <dui-sidebar-inset>
+        <div class="py-8 flex w-full justify-center">
+            @RenderBody()
+        </div>
+    </dui-sidebar-inset>
+</dui-sidebar-wrapper>

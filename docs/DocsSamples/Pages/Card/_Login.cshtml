@@ -1,0 +1,40 @@
+﻿<dui-card class="mx-auto w-full max-w-sm">
+    <dui-card-header>
+        <dui-card-title>Login to your account</dui-card-title>
+        <dui-card-description>
+            Enter your email below to login to your account
+        </dui-card-description>
+    </dui-card-header>
+    <dui-card-content>
+        <form>
+            <dui-field-group>
+                <dui-field>
+                    <dui-field-label for="email">Email</dui-field-label>
+                    <dui-input id="email" type="email" placeholder="m@example.com" required/>
+                </dui-field>
+                <dui-field>
+                    <div class="flex items-center">
+                        <dui-field-label for="password">Password</dui-field-label>
+                        <a href="#" class="ml-auto inline-block underline-offset-4 hover:underline">
+                            Forgot your password?
+                        </a>
+                    </div>
+                    <dui-input id="password" type="password" required/>
+                </dui-field>
+            </dui-field-group>
+        </form>
+    </dui-card-content>
+    <dui-card-footer class="flex-col gap-2">
+        <dui-button type="submit" class="w-full">
+            Login
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" class="w-full">
+            Login with Google
+        </dui-button>
+        <div class="mt-4 text-center">
+            Don&apos;t have an account? <a href="#" class="underline underline-offset-4">
+                Sign up
+            </a>
+        </div>
+    </dui-card-footer>
+</dui-card>

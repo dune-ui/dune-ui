@@ -1,0 +1,114 @@
+﻿<div class="w-full max-w-md">
+  <!-- code begin -->
+  <dui-field-group>
+    <dui-field-set>
+      <dui-field-legend>Payment Method</dui-field-legend>
+      <dui-field-description>
+        All transactions are secure and encrypted
+      </dui-field-description>
+      <dui-field-group>
+        <dui-field>
+          <dui-field-label for="card-name">
+            Name on Card
+          </dui-field-label>
+          <dui-input
+            id="card-name"
+            placeholder="Ibn Battuta"
+          />
+        </dui-field>
+        <dui-field>
+          <dui-field-label for="card-number">
+            Card Number
+          </dui-field-label>
+          <dui-input
+            id="card-number"
+            placeholder="1234 5678 9012 3456"
+          />
+          <dui-field-description>
+            Enter your 16-digit card number
+          </dui-field-description>
+        </dui-field>
+        <div class="grid grid-cols-3 gap-4">
+          <dui-field>
+            <dui-field-label for="exp-month">
+              Month
+            </dui-field-label>
+            <dui-select id="exp-month">
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </dui-select>
+          </dui-field>
+          <dui-field>
+            <dui-field-label for="exp-year">
+              Year
+            </dui-field-label>
+            <dui-select id="exp-year">
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+            </dui-select>
+          </dui-field>
+          <dui-field>
+            <dui-field-label for="cvv">CVV</dui-field-label>
+            <dui-input id="cvv" placeholder="123"/>
+          </dui-field>
+        </div>
+      </dui-field-group>
+    </dui-field-set>
+    <dui-field-separator/>
+    <dui-field-set>
+      <dui-field-legend>Billing Address</dui-field-legend>
+      <dui-field-description>
+        The billing address associated with your payment method
+      </dui-field-description>
+      <dui-field-group>
+        <dui-field orientation="FieldOrientation.Horizontal">
+          <dui-input
+            type="checkbox"
+            id="same-as-shipping"
+          />
+          <dui-field-label
+            for="same-as-shipping"
+            class="font-normal"
+          >
+            Same as shipping address
+          </dui-field-label>
+        </dui-field>
+      </dui-field-group>
+    </dui-field-set>
+    <dui-field-set>
+      <dui-field-group>
+        <dui-field>
+          <dui-field-label for="optional-comments">
+            Comments
+          </dui-field-label>
+          <dui-textarea
+            id="optional-comments"
+            placeholder="Add any additional comments"
+            class="resize-none"
+          />
+        </dui-field>
+      </dui-field-group>
+    </dui-field-set>
+    <dui-field orientation="FieldOrientation.Horizontal">
+      <dui-button type="button">Submit</dui-button>
+      <dui-button variant="ButtonVariant.Outline" type="button">
+        Cancel
+      </dui-button>
+    </dui-field>
+  </dui-field-group>
+  <!-- code end -->
+</div>

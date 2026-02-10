@@ -1,0 +1,24 @@
+﻿@model Index.ValidationModel
+
+<dui-field-set class="w-full">
+    <dui-field-legend>Bed Preference</dui-field-legend>
+    <dui-field-description>
+        Choose your preferred bed configuration.
+    </dui-field-description>
+    <dui-field-group data-slot="radio-group">
+        <dui-input asp-for="BedType" type="radio" value="king"
+                   label="1 King"
+                   description="Large bed for couples or solo travelers"
+        />
+        <dui-input asp-for="BedType" type="radio" value="queen"
+                   label="1 Queen"
+                   description="Standard bed for up to two people"
+        />
+        <dui-input asp-for="BedType" type="radio" value="single"
+                   label="2 Single"
+                   description="Ideal for friends or colleagues"
+        />
+        <dui-field-error asp-for="BedType"/>
+    </dui-field-group>
+</dui-field-set>
+

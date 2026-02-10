@@ -1,0 +1,24 @@
+﻿@model CheckboxImplicitModel
+
+<div class="w-full max-w-md">
+    <!-- code begin -->
+    <dui-field-group>
+        <dui-field-set>
+            <dui-field-legend variant="FieldLegendVariant.Label">
+                Show these items on the desktop
+            </dui-field-legend>
+            <dui-field-description>
+                Select the items you want to show on the desktop.
+            </dui-field-description>
+            <dui-field-group class="gap-3">
+                <dui-input asp-for="MustDisplayHardDisks"/>
+                <dui-input asp-for="MustDisplayExternalDisks"/>
+                <dui-input asp-for="MustDisplayCdDvd"/>
+                <dui-input asp-for="MustDisplayConnectedServers"/>
+            </dui-field-group>
+        </dui-field-set>
+        <dui-field-separator/>
+        <dui-input asp-for="MustSyncDesktopFolders"/>
+    </dui-field-group>
+    <!-- code end -->
+</div>

@@ -1,0 +1,42 @@
+﻿<div class="w-full max-w-md">
+    <!-- code begin -->
+    <dui-field-group>
+        <dui-field-set>
+            <dui-field-label>Responses</dui-field-label>
+            <dui-field-description>
+                Get notified when ChatGPT responds to requests that take time, like
+                research or image generation.
+            </dui-field-description>
+            <dui-field-group data-slot="checkbox-group">
+                <dui-field orientation="FieldOrientation.Horizontal">
+                    <dui-input type="checkbox" id="push" checked disabled/>
+                    <dui-field-label for="push" class="font-normal">
+                        Push notifications
+                    </dui-field-label>
+                </dui-field>
+            </dui-field-group>
+        </dui-field-set>
+        <dui-field-separator/>
+        <dui-field-set>
+            <dui-field-label>Tasks</dui-field-label>
+            <dui-field-description>
+                Get notified when tasks you&apos;ve created have updates. <a href="#">Manage tasks</a>
+            </dui-field-description>
+            <dui-field-group data-slot="checkbox-group">
+                <dui-field orientation="FieldOrientation.Horizontal">
+                    <dui-input type="checkbox" id="push-tasks"/>
+                    <dui-field-label for="push-tasks" class="font-normal">
+                        Push notifications
+                    </dui-field-label>
+                </dui-field>
+                <dui-field orientation="FieldOrientation.Horizontal">
+                    <dui-input type="checkbox" id="email-tasks"/>
+                    <dui-field-label for="email-tasks" class="font-normal">
+                        Email notifications
+                    </dui-field-label>
+                </dui-field>
+            </dui-field-group>
+        </dui-field-set>
+    </dui-field-group>
+    <!-- code end -->
+</div>

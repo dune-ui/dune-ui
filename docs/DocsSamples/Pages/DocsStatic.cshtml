@@ -1,0 +1,14 @@
+﻿@page
+@model DocsSamples.Pages.DocsStatic
+@{
+    Layout = "_CleanLayout";
+}
+
+@if (Model == null)
+{
+    <partial name="@Model.PartialName"/>
+}
+else
+{
+    <partial name="@Model.PartialName" for="Model"/>
+}

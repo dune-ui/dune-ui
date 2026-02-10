@@ -1,0 +1,49 @@
+﻿@model ImplicitModel
+
+<div class="w-full max-w-md">
+    <!-- code begin -->
+    @{
+        var months = Enumerable.Range(1, 12).Select(i => $"{i:00}").Select(i => new SelectListItem(i, i));
+        var years = Enumerable.Range(2024, 2029).Select(i => new SelectListItem(i.ToString(), i.ToString()));
+    }
+  
+    <dui-field-group>
+        <dui-field-set>
+            <dui-field-legend>Payment Method</dui-field-legend>
+            <dui-field-description>
+                All transactions are secure and encrypted
+            </dui-field-description>
+            <dui-field-group>
+                <dui-input asp-for="Name"/>
+                <dui-input asp-for="CardNumber"/>
+                <div class="grid grid-cols-3 gap-4">
+                    <dui-select asp-for="Month" asp-items="@months" />
+                    <dui-select asp-for="Year" asp-items="@years" />
+                    <dui-input asp-for="Cvv"/>
+                </div>
+            </dui-field-group>
+        </dui-field-set>
+        <dui-field-separator/>
+        <dui-field-set>
+            <dui-field-legend>Billing Address</dui-field-legend>
+            <dui-field-description>
+                The billing address associated with your payment method
+            </dui-field-description>
+            <dui-field-group>
+                <dui-input asp-for="IsBillingAddressSame" />
+            </dui-field-group>
+        </dui-field-set>
+        <dui-field-set>
+            <dui-field-group>
+                <dui-textarea asp-for="Comments"/>
+            </dui-field-group>
+        </dui-field-set>
+        <dui-field orientation="FieldOrientation.Horizontal">
+            <dui-button type="button">Submit</dui-button>
+            <dui-button variant="ButtonVariant.Outline" type="button">
+                Cancel
+            </dui-button>
+        </dui-field>
+    </dui-field-group>
+    <!-- code end -->
+</div>

@@ -1,0 +1,15 @@
+﻿@model Index.GroupModel
+
+<div class="w-full max-w-md">
+    <!-- code begin -->
+    <dui-field-set>
+        <dui-field-label>Show these items on the desktop:</dui-field-label>
+        <dui-field-group data-slot="checkbox-group" class="[&_[data-slot=field-label]]:font-normal">
+            <dui-input asp-for="Landmarks"/>
+            <dui-input asp-for="Restaurants"/>
+            <dui-input asp-for="Stations"/>
+            <dui-input asp-for="LocalGuides"/>
+        </dui-field-group>
+    </dui-field-set>
+    <!-- code end -->
+</div>

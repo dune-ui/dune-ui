@@ -1,0 +1,30 @@
+﻿<div class="w-full max-w-md">
+    <dui-stack>
+        <!-- code begin -->
+        <dui-input-group>
+            <dui-input-group-textarea
+                placeholder="console.log('Hello, world!');"
+                class="min-h-[200px]"
+            />
+            <dui-input-group-addon align="InputGroupAddOnVariantAlignment.BlockEnd" class="border-t">
+                <dui-input-group-text>Line 1, Column 1</dui-input-group-text>
+                <dui-input-group-button size="InputGroupButtonSize.Small" class="ml-auto" variant="ButtonVariant.Default">
+                    Run <dui-icon name="corner-down-left"/>
+                </dui-input-group-button>
+            </dui-input-group-addon>
+            <dui-input-group-addon align="InputGroupAddOnVariantAlignment.BlockStart" class="border-b">
+                <dui-input-group-text class="font-mono font-medium">
+                    <dui-icon name="file-braces-corner" />
+                    script.js
+                </dui-input-group-text>
+                <dui-input-group-button class="ml-auto" size="InputGroupButtonSize.IconExtraSmall">
+                    <dui-icon name="refresh-ccw" />
+                </dui-input-group-button>
+                <dui-input-group-button variant="ButtonVariant.Ghost" size="InputGroupButtonSize.IconExtraSmall">
+                    <dui-icon name="copy" />
+                </dui-input-group-button>
+            </dui-input-group-addon>
+        </dui-input-group>
+        <!-- code end -->
+    </dui-stack>
+</div>

@@ -1,0 +1,27 @@
+﻿@model List<Index.ProgressFile>
+
+<div class="flex w-full flex-col max-w-md">
+    <!-- code begin -->
+    <dui-item-group>
+        @foreach (var file in Model)
+        {
+            <dui-item size="ItemSize.ExtraSmall" class="px-0">
+                <dui-item-media variant="ItemMediaVariant.Icon">
+                    <dui-icon name="file"/>
+                </dui-item-media>
+                <dui-item-content class="inline-block truncate">
+                    <dui-item-title class="inline">@file.Name</dui-item-title>
+                </dui-item-content>
+                <dui-item-content>
+                    <dui-progress value="@file.Progress" class="w-40"/>
+                </dui-item-content>
+                <dui-item-actions class="w-16 justify-end">
+                <span class="text-muted-foreground text-sm">
+                    @file.TimeRemaining
+                </span>
+                </dui-item-actions>
+            </dui-item>
+        }
+    </dui-item-group>
+    <!-- code end -->
+</div>

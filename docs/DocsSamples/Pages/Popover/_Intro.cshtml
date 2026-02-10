@@ -1,0 +1,49 @@
+﻿<div class="min-h-[250px]">
+    <!-- code begin -->
+    <dui-popover>
+        <dui-popover-trigger as-child="true">
+            <dui-button variant="ButtonVariant.Outline">
+                <dui-icon name="sliders-horizontal" class="text-muted-foreground"/>
+                Configure View
+            </dui-button>
+        </dui-popover-trigger>
+        <dui-popover-content class="flex flex-col gap-3">
+            <dui-field-set>
+                <dui-field-legend variant="FieldLegendVariant.Label">Sort By</dui-field-legend>
+                <dui-field-group data-slot="radio-group">
+                    <dui-field orientation="FieldOrientation.Horizontal">
+                        <dui-input type="radio" name="sort-by" value="departure" id="sort-departure" checked/>
+                        <dui-field-label for="sort-departure" class="font-normal">
+                            Departure Date
+                        </dui-field-label>
+                    </dui-field>
+                    <dui-field orientation="FieldOrientation.Horizontal">
+                        <dui-input type="radio" name="sort-by" value="posted" id="sort-posted"/>
+                        <dui-field-label for="sort-posted" class="font-normal">
+                            Date Posted
+                        </dui-field-label>
+                    </dui-field>
+                </dui-field-group>
+            </dui-field-set>
+            <dui-separator orientation="SeparatorOrientation.Horizontal"/>
+            <dui-field-set>
+                <dui-field-legend variant="FieldLegendVariant.Label">View As</dui-field-legend>
+                <dui-field-group data-slot="radio-group">
+                    <dui-field orientation="FieldOrientation.Horizontal">
+                        <dui-input type="radio" name="view-as" value="departure" id="view-list" checked/>
+                        <dui-field-label for="view-list" class="font-normal">
+                            List
+                        </dui-field-label>
+                    </dui-field>
+                    <dui-field orientation="FieldOrientation.Horizontal">
+                        <dui-input type="radio" name="view-as" value="posted" id="view-gallery"/>
+                        <dui-field-label for="view-gallery" class="font-normal">
+                            Gallery
+                        </dui-field-label>
+                    </dui-field>
+                </dui-field-group>
+            </dui-field-set>
+        </dui-popover-content>
+    </dui-popover>
+    <!-- code end -->
+</div>

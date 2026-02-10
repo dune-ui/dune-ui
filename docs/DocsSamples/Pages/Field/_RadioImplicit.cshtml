@@ -1,0 +1,17 @@
+﻿@model RadioImplicitModel
+
+<div class="w-full max-w-md">
+    <!-- code begin -->
+    <dui-field-set>
+        <dui-field-legend variant="FieldLegendVariant.Label">Subscription Plan</dui-field-legend>
+        <dui-field-description>
+            Yearly and lifetime plans offer significant savings.
+        </dui-field-description>
+        <dui-field-group data-slot="radio-group">
+            <dui-input asp-for="SubscriptionType" label="Monthly ($9.99/month)" type="radio" value="monthly"/>
+            <dui-input asp-for="SubscriptionType" label="Yearly ($99.99/year)" type="radio" value="yearly"/>
+            <dui-input asp-for="SubscriptionType" label="Lifetime ($299.99)" type="radio" value="lifetime"/>
+        </dui-field-group>
+    </dui-field-set>
+    <!-- code end -->
+</div>

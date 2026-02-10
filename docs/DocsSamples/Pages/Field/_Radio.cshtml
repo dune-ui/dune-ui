@@ -1,0 +1,30 @@
+﻿<div class="w-full max-w-md">
+    <!-- code begin -->
+    <dui-field-set>
+        <dui-field-legend variant="FieldLegendVariant.Label">Subscription Plan</dui-field-legend>
+        <dui-field-description>
+            Yearly and lifetime plans offer significant savings.
+        </dui-field-description>
+        <dui-field-group data-slot="radio-group">
+            <dui-field orientation="FieldOrientation.Horizontal">
+                <dui-input type="radio" value="monthly" id="plan-monthly"/>
+                <dui-field-label for="plan-monthly" class="font-normal">
+                    Monthly ($9.99/month)
+                </dui-field-label>
+            </dui-field>
+            <dui-field orientation="FieldOrientation.Horizontal">
+                <dui-input type="radio" value="yearly" id="plan-yearly" checked/>
+                <dui-field-label for="plan-yearly" class="font-normal">
+                    Yearly ($99.99/year)
+                </dui-field-label>
+            </dui-field>
+            <dui-field orientation="FieldOrientation.Horizontal">
+                <dui-input type="radio" value="lifetime" id="plan-lifetime"/>
+                <dui-field-label for="plan-lifetime" class="font-normal">
+                    Lifetime ($299.99)
+                </dui-field-label>
+            </dui-field>
+        </dui-field-group>
+    </dui-field-set>
+    <!-- code end -->
+</div>
