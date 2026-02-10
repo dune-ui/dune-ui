@@ -35,20 +35,38 @@ builder.Services.AddDuneUI();
 
 ### 3. Update imports
 
-Update your `_ViewImports.cshtml` to register the DuneUI Tag Helpers.
+Update your `_ViewImports.cshtml` to register the DuneUI Tag Helpers and import the `DuneUI.TagHelpers` namespace.
 
 ```razor
 @using DuneUI.TagHelpers
 @addTagHelper *, DuneUI
 ```
 
-### 4. (Optional) Remove 3rd party stylesheets
+### 4. Add stylesheets and JavaScript file 
+
+Add the DuneUI stylesheet (`/_content/DuneUI/dune-ui.css`) and JavaScript file (`/_content/DuneUI/dune-ui.js`) to your Razor layout.  
+
+```razor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ...   
+    <link rel="stylesheet" href="/_content/DuneUI/dune-ui.css" asp-append-version="true"/>
+</head>
+<body>
+    ...
+    <script src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
+</body>
+</html>
+```
+
+### 5. (Optional) Remove 3rd party stylesheets
 
 Using DuneUI along with 3rd party CSS libraries like Bootstrap will almost certainly result in incorrect rendering of the DuneUI components, since these libraries apply their own styling which may override the styling applied by DuneUI.
 
 As such, we **strongly recommend** that you remove 3rd party stylesheets and only depend on the CSS styling applied by DuneUI.
 
-### 5. Start using the Tag Helpers
+### 6. Start using the Tag Helpers
 
 Start using the DuneUI Tag Helpers inside your Razor Pages or MVC Views. For example, the code snippet below adds an alert to your page. 
 
