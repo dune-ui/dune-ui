@@ -1,8 +1,35 @@
 export default (openOnHover, defaultOpen, position, offset) => ({
+    // Properties
     openOnHover: openOnHover,
     isOpen: defaultOpen,
     isOpenedViaHover: false,
     debounceTimeout: null,
+
+    // Initialization
+    init() {
+        this.$el.close = () => {
+            this.close();
+        };
+        this.$el.open = () => {
+            this.open();
+        }
+    },
+
+    // Methods
+    close() {
+        this.isOpen = false;
+        this.isOpenedViaHover = false;
+    },
+    open(viaHover = false) {
+        this.isOpen = true;
+        this.isOpenedViaHover = viaHover;
+    },
+    toggle() {
+        this.isOpen === true ? this.close() : this.open();
+        this.isOpenedViaHover = false;
+    },
+    
+    // Directive bindings
     root: {
         ['x-id']() {
             return ['popover'];
@@ -80,25 +107,5 @@ export default (openOnHover, defaultOpen, position, offset) => ({
         [':aria-labelledby']() {
             return this.$id('popover-menu') + '-trigger';
         },
-    },
-    init() {
-        this.$el.close = () => {
-            this.close();
-        };
-        this.$el.open = () => {
-            this.open();
-        }
-    },
-    close() {
-        this.isOpen = false;
-        this.isOpenedViaHover = false;
-    },
-    open(viaHover = false) {
-        this.isOpen = true;
-        this.isOpenedViaHover = viaHover;
-    },
-    toggle() {
-        this.isOpen === true ? this.close() : this.open();
-        this.isOpenedViaHover = false;
-    },
+    }
 })

@@ -17,7 +17,7 @@ public class Program
             _ => new DemoUrlHelperFactory(new UrlHelperFactory())
         );
         builder.Services.AddRazorPages();
-        builder.Services.AddDuneUI().UseTheme<VegaThemePack>();
+        builder.Services.AddDuneUI().UseTheme<NovaThemePack>();
 
         var app = builder.Build();
 

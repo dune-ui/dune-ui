@@ -1,12 +1,39 @@
 export default (show, dismissable) => ({
+    // Properties
     show: show,
     dismissable: dismissable,
+    _resolve: null,
+
+    // Initialization
+    init() {
+        this.$el.close = () => {
+            this.close();
+        };
+        
+        this.$el.open = () => {
+            this.open();
+
+            return new Promise((resolve) => {
+                this._resolve = resolve;
+            });
+        };
+    },
+
+    // Methods
     close() {
         this.show = false;
+        
+        if (this._resolve) {
+            this._resolve('Hello there!!');
+        }
+        
+        this._resolve = null;
     },
     open() {
         this.show = true;
     },
+
+    // Directive bindings
     root: {
         ['x-id']() {
             return ['dialog'];
@@ -70,9 +97,7 @@ export default (show, dismissable) => ({
     },
     closeButton: {
         ['@click']() {
-            if (this.dismissable) {
-                return this.close();
-            }
+            return this.close();
         },
     }
 })

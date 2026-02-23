@@ -1,0 +1,22 @@
+﻿<dui-button variant="ButtonVariant.Outline" id="openViaJsButton">
+    Open via JS
+</dui-button>
+<dui-dialog id="openViaJsDialog">
+    <dui-dialog-content>
+        <dui-dialog-header>
+            <dui-dialog-title>Edit profile</dui-dialog-title>
+            <dui-dialog-description>Make changes to your profile here. Click save when you're done.</dui-dialog-description>
+        </dui-dialog-header>
+        This is the dialog content...
+    </dui-dialog-content>
+</dui-dialog>
+<script>
+    const openViaJsDialog = document.getElementById("openViaJsDialog");
+    const openViaJsButton = document.getElementById("openViaJsButton");
+
+    openViaJsButton.addEventListener("click", () => {
+        openViaJsDialog.open().then((value) => {
+            console.log('Closed:', value);
+        })
+    })
+</script>

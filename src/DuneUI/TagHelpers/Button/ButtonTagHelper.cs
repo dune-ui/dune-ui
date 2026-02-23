@@ -41,5 +41,7 @@ public class ButtonTagHelper : DuneUITagHelperBase
             effectiveVariant,
             effectiveSize
         );
+
+        output.Content.AppendHtml(await output.GetChildContentAsync());
     }
 }
