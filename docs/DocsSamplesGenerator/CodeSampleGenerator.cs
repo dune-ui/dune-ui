@@ -231,7 +231,6 @@ public partial class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "Checkbox/_ManualValidationImplicit",
             "Checkbox/_ModelBinding",
             "Checkbox/_Validation",
-            "Collapsible/_AsChild",
             "Collapsible/_Intro",
             "Collapsible/_Settings",
             "Empty/_Basic",

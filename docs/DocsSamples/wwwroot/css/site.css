@@ -345,9 +345,6 @@
   .h-fit {
     height: fit-content;
   }
-  .min-h-\[70px\] {
-    min-height: 70px;
-  }
   .min-h-\[120px\] {
     min-height: 120px;
   }
@@ -848,16 +845,6 @@
   .\[--radius\:9999px\] {
     --radius: 9999px;
   }
-  .group-data-\[state\=open\]\/collapsible\:block {
-    &:is(:where(.group\/collapsible)[data-state="open"] *) {
-      display: block;
-    }
-  }
-  .group-data-\[state\=open\]\/collapsible\:hidden {
-    &:is(:where(.group\/collapsible)[data-state="open"] *) {
-      display: none;
-    }
-  }
   .hover\:bg-linear-to-r {
     &:hover {
       @media (hover: hover) {
@@ -1053,6 +1040,16 @@
   .dark\:text-sky-300 {
     @media (prefers-color-scheme: dark) {
       color: var(--color-sky-300);
+    }
+  }
+  .in-aria-expanded\:hidden {
+    :where([aria-expanded="true"]) & {
+      display: none;
+    }
+  }
+  .not-in-aria-expanded\:hidden {
+    &:not(:where([aria-expanded="true"]) *) {
+      display: none;
     }
   }
   .\[\&_\[data-slot\=field-label\]\]\:font-normal {
