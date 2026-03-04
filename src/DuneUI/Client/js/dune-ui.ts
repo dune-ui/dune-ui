@@ -1,2 +1,2 @@
-﻿import './my-element';
-import './del-collapsible';
+﻿import "./my-element";
+import "./del-collapsible";
