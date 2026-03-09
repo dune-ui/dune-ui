@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -22,7 +22,7 @@ public class DialogFooterTagHelper : DuneUITagHelperBase
         output.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-dialog-footer"),
+                new ThemeToken("dui-dialog-footer"),
                 "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
                 output.GetUserSuppliedClass()
             )

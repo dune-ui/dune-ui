@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -24,7 +24,7 @@ public class CardTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-card"),
+                new ThemeToken("dui-card"),
                 "group/card flex flex-col",
                 output.GetUserSuppliedClass()
             )

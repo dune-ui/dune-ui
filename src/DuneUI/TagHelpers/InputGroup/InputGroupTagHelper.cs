@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -20,7 +20,7 @@ public class InputGroupTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-input-group"),
+                new ThemeToken("dui-input-group"),
                 "group/input-group relative flex w-full min-w-0 items-center outline-none has-[>textarea]:h-auto",
                 output.GetUserSuppliedClass()
             )

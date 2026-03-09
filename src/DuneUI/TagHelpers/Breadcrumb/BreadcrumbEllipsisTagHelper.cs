@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -31,7 +31,7 @@ public class BreadcrumbEllipsisTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-breadcrumb-ellipsis"),
+                new ThemeToken("dui-breadcrumb-ellipsis"),
                 "flex items-center justify-center",
                 output.GetUserSuppliedClass()
             )

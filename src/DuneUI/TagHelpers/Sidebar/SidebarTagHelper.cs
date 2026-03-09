@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -40,7 +40,7 @@ public class SidebarTagHelper : DuneUITagHelperBase
         gapTagBuilder.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-gap"),
+                new ThemeToken("dui-sidebar-gap"),
                 "relative w-(--sidebar-width) bg-transparent",
                 "group-data-[collapsible=offcanvas]:w-0",
                 "group-data-[side=right]:rotate-180",
@@ -75,7 +75,7 @@ public class SidebarTagHelper : DuneUITagHelperBase
         sidebarInnerTagBuilder.Attributes.Add("data-slot", "sidebar-inner");
         sidebarInnerTagBuilder.Attributes.Add(
             "class",
-            ClassMerger.Merge(new ComponentName("dui-sidebar-inner"), "flex size-full flex-col")
+            ClassMerger.Merge(new ThemeToken("dui-sidebar-inner"), "flex size-full flex-col")
         );
         sidebarInnerTagBuilder.InnerHtml.AppendHtml(await output.GetChildContentAsync());
 

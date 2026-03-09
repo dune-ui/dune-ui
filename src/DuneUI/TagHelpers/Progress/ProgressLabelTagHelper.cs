@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class ProgressLabelTagHelper : DuneUITagHelperBase
         output.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-progress-label"),
+                new ThemeToken("dui-progress-label"),
                 output.GetUserSuppliedClass()
             )
         );

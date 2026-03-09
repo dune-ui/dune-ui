@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -23,7 +23,7 @@ public class FieldLegendTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-variant", effectiveVariant.GetDataAttributeText());
         output.Attributes.SetAttribute(
             "class",
-            BuildClassString(new ComponentName("dui-field-legend"), output.GetUserSuppliedClass())
+            BuildClassString(new ThemeToken("dui-field-legend"), output.GetUserSuppliedClass())
         );
 
         return Task.CompletedTask;

@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -33,7 +33,7 @@ public class TabListTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-tabs"),
+                new ThemeToken("dui-tabs"),
                 "group/tabs flex data-[orientation=horizontal]:flex-col",
                 output.GetUserSuppliedClass()
             )
@@ -45,11 +45,11 @@ public class TabListTagHelper : DuneUITagHelperBase
         tabListTagBuilder.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-tabs-list"),
+                new ThemeToken("dui-tabs-list"),
                 "group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
                 effectiveVariant == TabListVariant.Default
-                    ? new ComponentName("dui-tabs-list-variant-default")
-                    : new ComponentName("dui-tabs-list-variant-line"),
+                    ? new ThemeToken("dui-tabs-list-variant-default")
+                    : new ThemeToken("dui-tabs-list-variant-line"),
                 effectiveVariant == TabListVariant.Default ? "bg-muted" : "gap-1 bg-transparent",
                 output.GetUserSuppliedClass()
             )

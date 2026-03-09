@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DuneUI.TagHelpers;
@@ -9,17 +9,17 @@ internal class FieldTagBuilder : TagBuilder
     {
         [FieldOrientation.Vertical] =
         [
-            new ComponentName("dui-field-orientation-vertical"),
+            new ThemeToken("dui-field-orientation-vertical"),
             "flex-col [&>*]:w-full [&>.sr-only]:w-auto",
         ],
         [FieldOrientation.Horizontal] =
         [
-            new ComponentName("dui-field-orientation-horizontal"),
+            new ThemeToken("dui-field-orientation-horizontal"),
             "flex-row items-center [&>[data-slot=field-label]]:flex-auto has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
         ],
         [FieldOrientation.Responsive] =
         [
-            new ComponentName("dui-field-orientation-responsive"),
+            new ThemeToken("dui-field-orientation-responsive"),
             "flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto @md/field-group:[&>[data-slot=field-label]]:flex-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
         ],
     };
@@ -36,7 +36,7 @@ internal class FieldTagBuilder : TagBuilder
         Attributes.Add(
             "class",
             classMerger.Merge(
-                new ClassElement[] { new ComponentName("dui-field"), "group/field flex w-full" }
+                new ClassElement[] { new ThemeToken("dui-field"), "group/field flex w-full" }
                     .Union(OrientationClasses[orientation])
                     .Append(userSuppliedClass)
                     .ToArray()

@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class SidebarMenuBadge(ThemeManager themeManager, ICssClassMerger classMe
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-menu-badge"),
+                new ThemeToken("dui-sidebar-menu-badge"),
                 "flex items-center justify-center tabular-nums select-none group-data-[collapsible=icon]:hidden",
                 output.GetUserSuppliedClass()
             )

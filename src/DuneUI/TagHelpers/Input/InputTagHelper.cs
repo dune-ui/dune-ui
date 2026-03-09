@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
@@ -92,21 +92,21 @@ public class InputTagHelper : FieldInputBaseTagHelper
         {
             "checkbox" =>
             [
-                new ComponentName("dui-checkbox"),
+                new ThemeToken("dui-checkbox"),
                 "peer relative shrink-0 outline-none after:absolute after:-inset-x-3 after:-inset-y-2 disabled:cursor-not-allowed disabled:opacity-50",
                 // Custom DuneUI override
                 "before:content[''] appearance-none",
             ],
             "radio" =>
             [
-                new ComponentName("dui-radiobutton"),
+                new ThemeToken("dui-radiobutton"),
                 "peer relative aspect-square shrink-0 border outline-none after:absolute after:-inset-x-3 after:-inset-y-2 disabled:cursor-not-allowed disabled:opacity-50",
                 // Custom DuneUI override
                 "before:content[''] appearance-none rounded-full",
             ],
             _ =>
             [
-                new ComponentName("dui-input"),
+                new ThemeToken("dui-input"),
                 "file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                 // Custom DuneUI overrides for validation
                 "[&.input-validation-error]:ring-destructive/20 dark:[&.input-validation-error]:ring-destructive/40 [&.input-validation-error]:border-destructive",
@@ -144,7 +144,7 @@ public class InputTagHelper : FieldInputBaseTagHelper
                 checkboxSpan.Attributes.Add(
                     "class",
                     ClassMerger.Merge(
-                        new ComponentName("dui-checkbox-indicator"),
+                        new ThemeToken("dui-checkbox-indicator"),
                         "invisible peer-checked:visible"
                     )
                 );
@@ -185,7 +185,7 @@ public class InputTagHelper : FieldInputBaseTagHelper
                 spanTagBuilder.Attributes.Add(
                     "class",
                     ClassMerger.Merge(
-                        new ComponentName("dui-radiobutton-indicator"),
+                        new ThemeToken("dui-radiobutton-indicator"),
                         "size-0",
                         "invisible peer-checked:visible"
                     )
@@ -198,7 +198,7 @@ public class InputTagHelper : FieldInputBaseTagHelper
                         new TagHelperAttribute(
                             "class",
                             ClassMerger.Merge(
-                                new ComponentName("dui-radiobutton-indicator-icon"),
+                                new ThemeToken("dui-radiobutton-indicator-icon"),
                                 "pointer-events-none"
                             )
                         ),

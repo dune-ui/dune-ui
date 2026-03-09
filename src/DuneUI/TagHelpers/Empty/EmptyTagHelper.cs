@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class EmptyTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-empty"),
+                new ThemeToken("dui-empty"),
                 "flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance",
                 output.GetUserSuppliedClass()
             )

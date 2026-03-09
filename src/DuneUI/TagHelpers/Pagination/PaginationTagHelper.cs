@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -20,7 +20,7 @@ public class PaginationTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-pagination"),
+                new ThemeToken("dui-pagination"),
                 "mx-auto flex w-full justify-center",
                 output.GetUserSuppliedClass()
             )

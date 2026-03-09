@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class CardHeaderTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-card-header"),
+                new ThemeToken("dui-card-header"),
                 "group/card-header @container/card-header grid auto-rows-min items-start has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto]",
                 output.GetUserSuppliedClass()
             )

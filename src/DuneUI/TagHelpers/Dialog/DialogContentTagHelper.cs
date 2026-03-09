@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -44,7 +44,7 @@ public class DialogContentTagHelper(
         overlayTagBuilder.Attributes.Add("data-slot", "dialog-overlay");
         overlayTagBuilder.Attributes.Add(
             "class",
-            ClassMerger.Merge(new ComponentName("dui-dialog-overlay"), "fixed inset-0 isolate z-50")
+            ClassMerger.Merge(new ThemeToken("dui-dialog-overlay"), "fixed inset-0 isolate z-50")
         );
 
         /*
@@ -57,7 +57,7 @@ public class DialogContentTagHelper(
         dialogContentTagBuilder.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-dialog-content"),
+                new ThemeToken("dui-dialog-content"),
                 "fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 outline-none",
                 output.GetUserSuppliedClass()
             )
@@ -83,7 +83,7 @@ public class DialogContentTagHelper(
                 [
                     new TagHelperAttribute(
                         "class",
-                        ClassMerger.Merge(new ComponentName("dui-dialog-close"))
+                        ClassMerger.Merge(new ThemeToken("dui-dialog-close"))
                     ),
                     new TagHelperAttribute("x-bind", "closeButton"),
                 ],

@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -11,7 +11,7 @@ public class ButtonGroupTagHelper : DuneUITagHelperBase
         {
             [ButtonGroupOrientation.Horizontal] =
             [
-                new ComponentName("dui-button-group-orientation-horizontal"),
+                new ThemeToken("dui-button-group-orientation-horizontal"),
                 "[&>[data-slot]~[data-slot]]:rounded-l-none [&>[data-slot]~[data-slot]]:border-l-0 [&>[data-slot]]:rounded-r-none",
                 /* DuneUI additional classes */
                 // Handles dui-select where the select is nested in a container
@@ -19,7 +19,7 @@ public class ButtonGroupTagHelper : DuneUITagHelperBase
             ],
             [ButtonGroupOrientation.Vertical] =
             [
-                new ComponentName("dui-button-group-orientation-vertical"),
+                new ThemeToken("dui-button-group-orientation-vertical"),
                 "flex-col [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:border-t-0 [&>[data-slot]]:rounded-b-none",
             ],
         };
@@ -48,7 +48,7 @@ public class ButtonGroupTagHelper : DuneUITagHelperBase
             BuildClassString(
                 new ClassElement[]
                 {
-                    new ComponentName("dui-button-group"),
+                    new ThemeToken("dui-button-group"),
                     "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
                 }
                     .Union(OrientationClasses[effectiveOrientation])

@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -32,7 +32,7 @@ public class ItemMediaTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-item-media"),
+                new ThemeToken("dui-item-media"),
                 "flex shrink-0 items-center justify-center [&_svg]:pointer-events-none",
                 ItemVariantClasses[effectiveVariant],
                 GetUserSpecifiedClass(output)

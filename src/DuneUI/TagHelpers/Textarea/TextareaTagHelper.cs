@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
@@ -55,7 +55,7 @@ public class TextareaTagHelper : FieldInputBaseTagHelper
         output.Attributes.SetAttribute(
             "class",
             _classMerger.Merge(
-                new ComponentName("dui-textarea"),
+                new ThemeToken("dui-textarea"),
                 "placeholder:text-muted-foreground flex field-sizing-content min-h-16 w-full outline-none disabled:cursor-not-allowed disabled:opacity-50",
                 output.GetUserSuppliedClass()
             )

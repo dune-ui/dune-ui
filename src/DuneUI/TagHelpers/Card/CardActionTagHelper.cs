@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class CardActionTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-card-action"),
+                new ThemeToken("dui-card-action"),
                 "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
                 output.GetUserSuppliedClass()
             )

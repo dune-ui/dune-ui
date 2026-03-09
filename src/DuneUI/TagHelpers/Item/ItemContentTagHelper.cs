@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class ItemContentTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-item-content"),
+                new ThemeToken("dui-item-content"),
                 "flex flex-1 flex-col [&+[data-slot=item-content]]:flex-none",
                 GetUserSpecifiedClass(output)
             )

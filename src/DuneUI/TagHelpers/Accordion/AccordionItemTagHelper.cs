@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class AccordionItemTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-accordion-item"),
+                new ThemeToken("dui-accordion-item"),
                 "group",
                 output.GetUserSuppliedClass()
             )

@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class KbdTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-kbd"),
+                new ThemeToken("dui-kbd"),
                 "pointer-events-none inline-flex items-center justify-center select-none",
                 output.GetUserSuppliedClass()
             )

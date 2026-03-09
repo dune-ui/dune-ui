@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class CardTitleTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-slot", "card-title");
         output.Attributes.SetAttribute(
             "class",
-            BuildClassString(new ComponentName("dui-card-title"), output.GetUserSuppliedClass())
+            BuildClassString(new ThemeToken("dui-card-title"), output.GetUserSuppliedClass())
         );
 
         return Task.CompletedTask;

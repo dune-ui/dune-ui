@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class AvatarGroupCount : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-avatar-group-count"),
+                new ThemeToken("dui-avatar-group-count"),
                 "ring-background relative flex shrink-0 items-center justify-center ring-2"
             )
         );

@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class AlertAction : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-slot", "alert-action");
         output.Attributes.SetAttribute(
             "class",
-            BuildClassString(new ComponentName("dui-alert-action"), output.GetUserSuppliedClass())
+            BuildClassString(new ThemeToken("dui-alert-action"), output.GetUserSuppliedClass())
         );
 
         output.Content.SetHtmlContent(await output.GetChildContentAsync());

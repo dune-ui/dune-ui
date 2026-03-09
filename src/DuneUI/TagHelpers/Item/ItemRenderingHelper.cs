@@ -1,22 +1,22 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
 internal static class ItemRenderingHelper
 {
-    private static readonly Dictionary<ItemSize, ComponentName> ItemSizeClasses = new()
+    private static readonly Dictionary<ItemSize, ThemeToken> ItemSizeClasses = new()
     {
-        [ItemSize.Default] = new ComponentName("dui-item-size-default"),
-        [ItemSize.Small] = new ComponentName("dui-item-size-sm"),
-        [ItemSize.ExtraSmall] = new ComponentName("dui-item-size-xs"),
+        [ItemSize.Default] = new ThemeToken("dui-item-size-default"),
+        [ItemSize.Small] = new ThemeToken("dui-item-size-sm"),
+        [ItemSize.ExtraSmall] = new ThemeToken("dui-item-size-xs"),
     };
 
-    private static readonly Dictionary<ItemVariant, ComponentName> ItemVariantClasses = new()
+    private static readonly Dictionary<ItemVariant, ThemeToken> ItemVariantClasses = new()
     {
-        [ItemVariant.Default] = new ComponentName("dui-item-variant-default"),
-        [ItemVariant.Outline] = new ComponentName("dui-item-variant-outline"),
-        [ItemVariant.Muted] = new ComponentName("dui-item-variant-muted"),
+        [ItemVariant.Default] = new ThemeToken("dui-item-variant-default"),
+        [ItemVariant.Outline] = new ThemeToken("dui-item-variant-outline"),
+        [ItemVariant.Muted] = new ThemeToken("dui-item-variant-muted"),
     };
 
     public static async Task RenderAsync(
@@ -36,7 +36,7 @@ internal static class ItemRenderingHelper
         output.Attributes.SetAttribute(
             "class",
             classMerger.Merge(
-                new ComponentName("dui-item"),
+                new ThemeToken("dui-item"),
                 "w-full group/item focus-visible:border-ring focus-visible:ring-ring/50 flex items-center flex-wrap outline-none transition-colors duration-100 focus-visible:ring-[3px] [a]:transition-colors",
                 ItemSizeClasses[effectiveSize],
                 ItemVariantClasses[effectiveVariant],

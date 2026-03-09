@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -25,7 +25,7 @@ public class TableTagHelper : DuneUITagHelperBase
         tableTagBuilder.Attributes.Add("data-slot", "table");
         tableTagBuilder.Attributes.Add(
             "class",
-            ClassMerger.Merge(new ComponentName("dui-table"), output.GetUserSuppliedClass())
+            ClassMerger.Merge(new ThemeToken("dui-table"), output.GetUserSuppliedClass())
         );
         tableTagBuilder.InnerHtml.AppendHtml(await output.GetChildContentAsync());
 

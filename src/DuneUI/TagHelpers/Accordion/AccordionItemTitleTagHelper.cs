@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -18,7 +18,7 @@ public class AccordionItemTitleTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-accordion-trigger"),
+                new ThemeToken("dui-accordion-trigger"),
                 "group/accordion-trigger relative flex flex-1 items-start justify-between border border-transparent transition-all outline-none disabled:pointer-events-none disabled:opacity-50",
                 "cursor-default",
                 "details-disabled:pointer-events-none details-disabled:opacity-50",

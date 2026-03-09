@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class FieldContentTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-field-content"),
+                new ThemeToken("dui-field-content"),
                 "group/field-content flex flex-1 flex-col leading-snug",
                 output.GetUserSuppliedClass()
             )

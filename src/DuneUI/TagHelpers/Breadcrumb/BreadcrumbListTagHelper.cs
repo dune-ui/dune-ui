@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class BreadcrumbListTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-breadcrumb-list"),
+                new ThemeToken("dui-breadcrumb-list"),
                 "flex flex-wrap items-center break-words",
                 output.GetUserSuppliedClass()
             )

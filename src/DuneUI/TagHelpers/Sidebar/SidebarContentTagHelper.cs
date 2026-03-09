@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class SidebarContentTagHelper(ThemeManager themeManager, ICssClassMerger 
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-content"),
+                new ThemeToken("dui-sidebar-content"),
                 "flex min-h-0 flex-1 flex-col overflow-auto group-data-[collapsible=icon]:overflow-hidden",
                 output.GetUserSuppliedClass()
             )

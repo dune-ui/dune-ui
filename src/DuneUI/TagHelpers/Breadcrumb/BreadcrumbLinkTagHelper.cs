@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper;
@@ -45,7 +45,7 @@ public class BreadcrumbLinkTagHelper : DuneUIAnchorTagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-breadcrumb-link"),
+                new ThemeToken("dui-breadcrumb-link"),
                 output.GetUserSuppliedClass()
             )
         );

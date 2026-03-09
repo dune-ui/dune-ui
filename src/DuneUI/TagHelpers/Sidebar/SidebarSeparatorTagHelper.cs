@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -14,7 +14,7 @@ public class SidebarSeparatorTagHelper(ThemeManager themeManager, ICssClassMerge
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-separator"),
+                new ThemeToken("dui-sidebar-separator"),
                 "w-auto",
                 output.GetUserSuppliedClass()
             )

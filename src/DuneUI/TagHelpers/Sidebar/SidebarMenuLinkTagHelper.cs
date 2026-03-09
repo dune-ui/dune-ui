@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper;
@@ -8,19 +8,19 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-sidebar-menu-link")]
 public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
 {
-    private static readonly Dictionary<SidebarMenuLinkSize, ComponentName> SizeClasses = new()
+    private static readonly Dictionary<SidebarMenuLinkSize, ThemeToken> SizeClasses = new()
     {
-        [SidebarMenuLinkSize.Default] = new ComponentName("dui-sidebar-menu-button-size-default"),
-        [SidebarMenuLinkSize.Small] = new ComponentName("dui-sidebar-menu-button-size-sm"),
-        [SidebarMenuLinkSize.Large] = new ComponentName("dui-sidebar-menu-button-size-lg"),
+        [SidebarMenuLinkSize.Default] = new ThemeToken("dui-sidebar-menu-button-size-default"),
+        [SidebarMenuLinkSize.Small] = new ThemeToken("dui-sidebar-menu-button-size-sm"),
+        [SidebarMenuLinkSize.Large] = new ThemeToken("dui-sidebar-menu-button-size-lg"),
     };
 
-    private static readonly Dictionary<SidebarMenuLinkVariant, ComponentName> VariantClasses = new()
+    private static readonly Dictionary<SidebarMenuLinkVariant, ThemeToken> VariantClasses = new()
     {
-        [SidebarMenuLinkVariant.Default] = new ComponentName(
+        [SidebarMenuLinkVariant.Default] = new ThemeToken(
             "dui-sidebar-menu-button-variant-default"
         ),
-        [SidebarMenuLinkVariant.Outline] = new ComponentName(
+        [SidebarMenuLinkVariant.Outline] = new ThemeToken(
             "dui-sidebar-menu-button-variant-outline"
         ),
     };
@@ -76,7 +76,7 @@ public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-menu-button"),
+                new ThemeToken("dui-sidebar-menu-button"),
                 "peer/menu-button flex w-full items-center  overflow-hidden outline-hidden group/menu-button disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&_svg]:size-4 [&_svg]:shrink-0",
                 SizeClasses[effectiveSize],
                 VariantClasses[effectiveVariant],
