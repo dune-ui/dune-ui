@@ -380,11 +380,12 @@ public partial class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "Textarea/_ModelBinding",
             "Textarea/_Validation",
             "Tooltip/_Delay",
+            "Tooltip/_Elements",
             "Tooltip/_Intro",
+            "Tooltip/_JsApi",
+            "Tooltip/_JsEvents",
             "Tooltip/_Offset",
-            "Tooltip/_Open",
             "Tooltip/_Position",
-            "Tooltip/_Teleport",
         ];
     }
 

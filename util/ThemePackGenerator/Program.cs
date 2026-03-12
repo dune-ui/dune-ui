@@ -8,7 +8,7 @@ public partial class Program
 {
     public static async Task Main(string[] args)
     {
-        var themePackFolder = @"C:\development\dune-ui\dune-ui\src\DuneUI.Core\Theming\ThemePacks";
+        var themePackFolder = @"C:\development\dune-ui\dune-ui\src\DuneUI\Theming\ThemePacks";
         string[] themeFiles =
         [
             "https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/styles/style-lyra.css",
@@ -33,7 +33,8 @@ public partial class Program
                 .CreateInputValidationErrorClassesFromAriaInvalid()
                 .ReplaceDuiCheckboxDataChecked()
                 .ReplaceDuiRadioGroupItemDataChecked()
-                .CreateRadioButtonStyles();
+                .CreateRadioButtonStyles()
+                .CleanTooltipClasses();
 
             var fileName = Path.GetFileNameWithoutExtension(themeFile)
                 .Replace("style-", string.Empty);

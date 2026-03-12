@@ -41,6 +41,7 @@
     --color-purple-600: oklch(55.8% 0.288 302.321);
     --color-purple-700: oklch(49.6% 0.265 301.924);
     --color-purple-950: oklch(29.1% 0.149 302.717);
+    --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-sm: 24rem;
@@ -250,6 +251,12 @@
   .col-start-1 {
     grid-column-start: 1;
   }
+  .m-0 {
+    margin: calc(var(--spacing) * 0);
+  }
+  .m-5 {
+    margin: calc(var(--spacing) * 5);
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -336,6 +343,9 @@
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
+  .h-40 {
+    height: calc(var(--spacing) * 40);
+  }
   .h-\[40px\] {
     height: 40px;
   }
@@ -389,6 +399,9 @@
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
+  }
+  .w-100 {
+    width: calc(var(--spacing) * 100);
   }
   .w-\[40px\] {
     width: 40px;
@@ -546,6 +559,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
   .rounded {
     border-radius: 0.25rem;
   }
@@ -586,6 +602,9 @@
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
+  }
+  .bg-gray-50 {
+    background-color: var(--color-gray-50);
   }
   .bg-green-50 {
     background-color: var(--color-green-50);
@@ -673,6 +692,9 @@
   }
   .py-12 {
     padding-block: calc(var(--spacing) * 12);
+  }
+  .py-14 {
+    padding-block: calc(var(--spacing) * 14);
   }
   .pt-0 {
     padding-top: calc(var(--spacing) * 0);
@@ -842,8 +864,20 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .\[--interest-delay-end\:1s\] {
+    --interest-delay-end: 1s;
+  }
+  .\[--interest-delay-start\:1s\] {
+    --interest-delay-start: 1s;
+  }
   .\[--radius\:9999px\] {
     --radius: 9999px;
+  }
+  .\[interest-delay-end\:1s\] {
+    interest-delay-end: 1s;
+  }
+  .\[interest-delay-start\:1s\] {
+    interest-delay-start: 1s;
   }
   .hover\:bg-linear-to-r {
     &:hover {

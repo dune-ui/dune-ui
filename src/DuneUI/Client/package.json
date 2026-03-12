@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.18",
+    "@toolwind/anchors": "^1.0.10",
     "oxfmt": "^0.36.0",
     "rolldown": "^1.0.0-rc.3",
     "rollup-plugin-minify-html-literals": "^1.2.6",

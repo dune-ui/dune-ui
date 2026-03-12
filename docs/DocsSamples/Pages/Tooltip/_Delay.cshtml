@@ -1,25 +1,21 @@
 ﻿<div class="py-10">
     <!-- code begin -->
     <dui-group>
-        <dui-tooltip delay="1000">
-            <dui-tooltip-trigger>
-                <dui-button variant="ButtonVariant.Outline">
-                    Open Delay (1000ms)
-                </dui-button>
-            </dui-tooltip-trigger>
-            <dui-tooltip-content>
-                Opened after 1000ms
-            </dui-tooltip-content>
+        <dui-button variant="ButtonVariant.Outline"
+                    class="[interest-delay-start:1s] [--interest-delay-start:1s]"
+                    interestfor="--tooltip-delay-open">
+            Open Delay (1000ms)
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline"
+                    class="[interest-delay-end:1s] [--interest-delay-end:1s]"
+                    interestfor="--tooltip-delay-close">
+            Close Delay (1000ms)
+        </dui-button>
+        <dui-tooltip id="--tooltip-delay-open">
+            Opened after 1 second
         </dui-tooltip>
-        <dui-tooltip close-delay="1000">
-            <dui-tooltip-trigger>
-                <dui-button variant="ButtonVariant.Outline">
-                    Close Delay (1000ms)
-                </dui-button>
-            </dui-tooltip-trigger>
-            <dui-tooltip-content>
-                Will close after 1000ms
-            </dui-tooltip-content>
+        <dui-tooltip id="--tooltip-delay-close">
+            Will close after 1 second
         </dui-tooltip>
     </dui-group>
     <!-- code end -->
