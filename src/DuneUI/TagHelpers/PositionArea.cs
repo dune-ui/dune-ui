@@ -52,7 +52,7 @@ public static class PositionAreaExtensions
                 PositionArea.TopRight => "anchored-top-right",
                 PositionArea.BottomLeft => "anchored-bottom-left",
                 PositionArea.BottomRight => "anchored-bottom-right",
-                _ => throw new ArgumentOutOfRangeException(nameof(area), area, null),
+                _ => string.Empty,
             };
         }
     }

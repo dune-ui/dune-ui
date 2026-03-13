@@ -1,11 +1,11 @@
-﻿<div class="min-h-[260px]">
+﻿<div class="min-h-[260px] max-w-md flex justify center">
     <!-- code begin -->
-    <dui-popover open-on-hover="true">
-        <dui-popover-trigger class="cursor-pointer flex items-center gap-3">
-            <dui-avatar src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Brooklynn"/>
-            <span class="font-medium">Ibn Battuta</span>
-        </dui-popover-trigger>
-        <dui-popover-content class="flex flex-col gap-3">
+    <p>While most tourists stick to the bustling markets of Marrakech, our resident history expert,
+        <a href="#" interestfor="--popover-hover" class="underline decoration-dotted decoration-2 underline-offset-2">Ibn Battuta</a>,
+        suggests heading north to the ancient streets of Tangier to truly capture the spirit of the Maghreb
+    </p>
+    <dui-popover id="--popover-hover">
+        <div class="flex flex-col gap-3">
             <dui-avatar src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Brooklynn"/>
             <div>
                 <p class="font-medium">Ibn Battuta</p>
@@ -28,7 +28,7 @@
                     Message
                 </dui-button>
             </div>
-        </dui-popover-content>
+        </div>
     </dui-popover>
     <!-- code end -->
 </div>

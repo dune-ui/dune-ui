@@ -34,6 +34,7 @@ public partial class Program
                 .ReplaceDuiCheckboxDataChecked()
                 .ReplaceDuiRadioGroupItemDataChecked()
                 .CreateRadioButtonStyles()
+                .CleanPopoverClasses()
                 .CleanTooltipClasses();
 
             var fileName = Path.GetFileNameWithoutExtension(themeFile)

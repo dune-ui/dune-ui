@@ -43,13 +43,42 @@ public class TooltipTagHelper : DuneUITagHelperBase
             ClassMerger.Merge(
                 new ThemeToken("dui-tooltip-content"),
                 "w-fit max-w-xs origin-(--transform-origin) bg-foreground text-background",
-                "try-flip-all m-2",
+                "try-flip-all",
                 effectivePositionArea.GetTailwindClassName(),
+                GetMarginClassName(effectivePositionArea),
                 "duration-200 ease-in opacity-100 not-open:opacity-0 starting:open:opacity-0 [transition-property:opacity,display,overlay] [transition-behavior:allow-discrete]",
                 output.GetUserSuppliedClass()
             )
         );
 
         return Task.CompletedTask;
+    }
+
+    private string GetMarginClassName(PositionArea positionArea)
+    {
+        return positionArea switch
+        {
+            PositionArea.TopCenter
+            or PositionArea.TopSpanLeft
+            or PositionArea.TopSpanRight
+            or PositionArea.TopLeft
+            or PositionArea.TopRight
+            or PositionArea.Top => "mb-2",
+            PositionArea.LeftCenter
+            or PositionArea.LeftSpanTop
+            or PositionArea.LeftSpanBottom
+            or PositionArea.Left => "me-2",
+            PositionArea.BottomCenter
+            or PositionArea.BottomSpanLeft
+            or PositionArea.BottomSpanRight
+            or PositionArea.BottomLeft
+            or PositionArea.BottomRight
+            or PositionArea.Bottom => "mt-2",
+            PositionArea.RightCenter
+            or PositionArea.RightSpanTop
+            or PositionArea.RightSpanBottom
+            or PositionArea.Right => "ms-2",
+            _ => string.Empty,
+        };
     }
 }

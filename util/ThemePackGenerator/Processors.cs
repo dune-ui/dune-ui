@@ -10,11 +10,20 @@ public static partial class Processors
     [GeneratedRegex(@"\saria-invalid:ring-(\[)?[1-9](px\])?")]
     public static partial Regex AriaInvalidRingRegex();
 
+    [GeneratedRegex(@"duration-(\w+)\s?")]
+    public static partial Regex DurationRegex();
+
     [GeneratedRegex(@"(data-\[slot=checkbox-group\]:)(?<class>\S+)")]
     public static partial Regex FieldGroupCheckboxGroupRegex();
 
+    [GeneratedRegex(@"(\w+-)?flex(-\w+)?\s?")]
+    public static partial Regex FlexRegex();
+
     [GeneratedRegex(@"data-((open)|(closed)|(\[state=delayed-open])|(\[side=\w+])):\S+\s?")]
     public static partial Regex TooltipContentDataAnimationClasses();
+
+    [GeneratedRegex(@"data-((open)|(closed)|(\[state=delayed-open])|(\[side=\w+])):\S+\s?")]
+    public static partial Regex PopoverContentDataAnimationClasses();
 
     extension(Dictionary<string, string> input)
     {
@@ -116,18 +125,40 @@ public static partial class Processors
         }
 
         /// <summary>
-        ///     Shadcn tooltip animations were specified using a number of data classes. Since we are using the native
-        ///     interest invokers APIs, animations are declared differently and these are not required anymore.
+        ///     Shadcn popover animations were specified using a number of data classes. Since we are using the native
+        ///     popover APIs, animations are declared differently and these are not required anymore.
         /// </summary>
-        public IDictionary<string, string> CleanTooltipClasses()
+        public Dictionary<string, string> CleanPopoverClasses()
+        {
+            var output = new Dictionary<string, string>(input);
+
+            if (output.TryGetValue("dui-popover-content", out var classes))
+            {
+                classes = PopoverContentDataAnimationClasses().Replace(classes, string.Empty);
+                classes = FlexRegex().Replace(classes, string.Empty);
+                classes = DurationRegex().Replace(classes, string.Empty);
+
+                output["dui-popover-content"] = classes;
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        ///     Shadcn tooltip animations were specified using a number of data classes. Since we are using the native
+        ///     popover APIs, animations are declared differently and these are not required anymore.
+        /// </summary>
+        public Dictionary<string, string> CleanTooltipClasses()
         {
             var output = new Dictionary<string, string>(input);
 
             if (output.TryGetValue("dui-tooltip-content", out var classes))
             {
-                output["dui-tooltip-content"] = TooltipContentDataAnimationClasses()
-                    .Replace(classes, string.Empty)
-                    .Replace("inline-flex", string.Empty);
+                classes = TooltipContentDataAnimationClasses().Replace(classes, string.Empty);
+                classes = FlexRegex().Replace(classes, string.Empty);
+                classes = DurationRegex().Replace(classes, string.Empty);
+
+                output["dui-tooltip-content"] = classes;
             }
 
             return output;
