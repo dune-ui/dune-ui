@@ -15,21 +15,21 @@
     </dui-stack>
 </dui-popover>
 <script>
-        let counter = 0;
-        const eventsPopover = document.getElementById('--popover-js-events');
-        const eventsPopoverEventOutput = document.getElementById('--popover-js-events-output');
-        const eventsPopoverPreventCheckbox = document.getElementById('--popover-prevent-checkbox');
+    let counter = 0;
+    const eventsPopover = document.getElementById('--popover-js-events');
+    const eventsPopoverEventOutput = document.getElementById('--popover-js-events-output');
+    const eventsPopoverPreventCheckbox = document.getElementById('--popover-prevent-checkbox');
 
-        eventsPopover.addEventListener("beforetoggle", (e) => {
-            if (eventsPopoverPreventCheckbox.checked === true) {
-                eventsPopoverEventOutput.innerText = `${++counter}: Toggle prevented!\n` + eventsPopoverEventOutput.innerText;
-                e.preventDefault();
-                return;
-            }
-            eventsPopoverEventOutput.innerText = `${++counter}: Before toggle: ${e.oldState} -> ${e.newState}\n` + eventsPopoverEventOutput.innerText;
-        });
-        eventsPopover.addEventListener("toggle", (e) => {
-            eventsPopoverEventOutput.innerText = `${++counter}: Toggle: ${e.oldState} -> ${e.newState}\n` + eventsPopoverEventOutput.innerText;
-        });
-    </script>
+    eventsPopover.addEventListener("beforetoggle", (e) => {
+        if (eventsPopoverPreventCheckbox.checked === true) {
+            eventsPopoverEventOutput.innerText = `${++counter}: Toggle prevented!\n` + eventsPopoverEventOutput.innerText;
+            e.preventDefault();
+            return;
+        }
+        eventsPopoverEventOutput.innerText = `${++counter}: Before toggle: ${e.oldState} -> ${e.newState}\n` + eventsPopoverEventOutput.innerText;
+    });
+    eventsPopover.addEventListener("toggle", (e) => {
+        eventsPopoverEventOutput.innerText = `${++counter}: Toggle: ${e.oldState} -> ${e.newState}\n` + eventsPopoverEventOutput.innerText;
+    });
+</script>
 <!-- code end -->

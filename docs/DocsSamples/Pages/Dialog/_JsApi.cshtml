@@ -1,0 +1,39 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-group justify="GroupJustify.Center">
+        <dui-button variant="ButtonVariant.Outline" id="--dialog-open-via-js-show-modal-button">
+            Show Modal
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" id="--dialog-open-via-js-show-button">
+            Show
+        </dui-button>
+    </dui-group>
+    <dui-dialog id="--dialog-open-via-js-dialog">
+        This is the dialog content...
+        <dui-dialog-footer>
+            <dui-button variant="ButtonVariant.Outline" id="--dialog-open-via-js-close-button">
+                Close via JS
+            </dui-button>
+        </dui-dialog-footer>
+    </dui-dialog>
+    <script>
+        const dialogOpenViaJsShowModalButton = document.getElementById("--dialog-open-via-js-show-modal-button");
+        const dialogOpenViaJsShowButton = document.getElementById("--dialog-open-via-js-show-button");
+        const dialogOpenViaJsCloseButton = document.getElementById("--dialog-open-via-js-close-button");
+        const dialogOpenViaJsDialog = document.getElementById("--dialog-open-via-js-dialog");
+
+        dialogOpenViaJsShowModalButton.addEventListener("click", () => {
+            dialogOpenViaJsDialog.showModal();
+        });
+
+        dialogOpenViaJsShowButton.addEventListener("click", () => {
+            dialogOpenViaJsDialog.show();
+        });
+
+        dialogOpenViaJsCloseButton.addEventListener("click", () => {
+            dialogOpenViaJsDialog.close();
+        });
+
+    </script>
+    <!-- code end -->
+</div>

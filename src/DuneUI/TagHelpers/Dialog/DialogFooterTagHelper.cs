@@ -6,15 +6,11 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-dialog-footer")]
 public class DialogFooterTagHelper : DuneUITagHelperBase
 {
-    public bool? ShowCloseButton { get; set; }
-
     public DialogFooterTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var effectiveShowCloseButton = ShowCloseButton ?? false;
-
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -28,25 +24,6 @@ public class DialogFooterTagHelper : DuneUITagHelperBase
             )
         );
 
-        if (effectiveShowCloseButton)
-        {
-            var closeButtonContent = new DefaultTagHelperContent();
-            closeButtonContent.Append("Close");
-
-            var closeButtonOutput = new TagHelperOutput(
-                "",
-                [new TagHelperAttribute("x-bind", "closeButton")],
-                (_, _) => Task.FromResult<TagHelperContent>(closeButtonContent)
-            );
-            var buttonTagHelper = new ButtonTagHelper(ThemeManager, ClassMerger)
-            {
-                Variant = ButtonVariant.Outline,
-            };
-            await buttonTagHelper.ProcessAsync(context, closeButtonOutput);
-
-            output.Content.AppendHtml(closeButtonOutput);
-        }
-
-        output.Content.AppendHtml(await output.GetChildContentAsync());
+        return Task.CompletedTask;
     }
 }

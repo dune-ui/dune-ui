@@ -19,6 +19,9 @@ public static partial class Processors
     [GeneratedRegex(@"(\w+-)?flex(-\w+)?\s?")]
     public static partial Regex FlexRegex();
 
+    [GeneratedRegex(@"grid(\s)?")]
+    public static partial Regex GridRegex();
+
     [GeneratedRegex(@"data-((open)|(closed)|(\[state=delayed-open])|(\[side=\w+])):\S+\s?")]
     public static partial Regex TooltipContentDataAnimationClasses();
 
@@ -119,6 +122,22 @@ public static partial class Processors
             foreach (var (key, value) in input)
             {
                 output.Add(key, AriaInvalidRingRegex().Replace(value, string.Empty));
+            }
+
+            return output;
+        }
+
+        public Dictionary<string, string> CleanDialogClasses()
+        {
+            var output = new Dictionary<string, string>(input);
+
+            if (output.TryGetValue("dui-dialog-content", out var classes))
+            {
+                // The native dialog element controls it visibility by itself. The grid utility will force it to be
+                // always visible, so we add it only when the data-open attribute is present (i.e. the dialog is open)
+                classes = classes.Replace("grid", "data-open:grid");
+
+                output["dui-dialog-content"] = classes;
             }
 
             return output;

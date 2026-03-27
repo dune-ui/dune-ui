@@ -1,4 +1,5 @@
 ﻿using DuneUI.Theming;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -7,23 +8,25 @@ namespace DuneUI.TagHelpers;
 public class DialogTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
 {
-    [HtmlAttributeName("is-dismissable")]
-    public bool? IsDismissable { get; set; }
-
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var effectiveIsDismissable = IsDismissable ?? true;
-
-        output.TagName = "div";
+        output.TagName = "dialog";
         output.TagMode = TagMode.StartTagAndEndTag;
 
+        output.Attributes.SetAttribute("data-slot", "dialog-content");
         output.Attributes.SetAttribute(
-            "x-data",
-            AlpineJsDataSerializer.SerializeDataFunction("dialog", [false, effectiveIsDismissable])
+            "class",
+            ClassMerger.Merge(
+                new ThemeToken("dui-dialog-content"),
+                "fixed inset-0 m-auto outline-none",
+                "backdrop:supports-backdrop-filter:backdrop-blur-xs",
+                output.GetUserSuppliedClass()
+            )
         );
-        output.Attributes.SetAttribute("x-bind", "root");
 
-        output.Attributes.SetAttribute("data-slot", "dialog");
+        // Wrap inside web component
+        output.PreElement.AppendHtml("<del-dialog>");
+        output.PostElement.AppendHtml("</del-dialog>");
 
         return Task.CompletedTask;
     }
