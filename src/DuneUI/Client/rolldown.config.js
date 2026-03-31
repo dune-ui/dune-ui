@@ -6,7 +6,7 @@ export default defineConfig({
   input: "js/dune-ui.ts",
   output: {
     file: "../wwwroot/dune-ui.js",
-    format: "esm",
+    format: "iife",
     minify: true,
     sourcemap: true,
   },
