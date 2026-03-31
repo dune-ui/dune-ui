@@ -24,17 +24,26 @@
         </form>
     </dui-dialog>
     <script>
-        const dialogReturnValueDialog = document.getElementById("--dialog-return-value");
+        (function() {
+            const dialog = document.getElementById("--dialog-return-value");
 
-        dialogReturnValueDialog.addEventListener("close", () => {
-            const cancelled = !dialogReturnValueDialog.returnValue || dialogReturnValueDialog.returnValue === "cancel";
-            if (cancelled) {
-                alert("The action has been cancelled");
-                return;
-            }
+            dialog.addEventListener("close", () => {
+                const cancelled = dialog.returnValue === "" || dialog.returnValue === "cancel";
+                if (cancelled) {
+                    alert("The action has been cancelled");
+                    return;
+                }
 
-            alert("The action has been confirmed");
-        });
+                alert("The action has been confirmed");
+            });
+            dialog.addEventListener("toggle", (e) => {
+                // Reset the return value every time the dialog opens to prevent a previous
+                // returnValue from being returned when pressing the Esc key
+                if (e.newState === "open") {
+                    dialog.returnValue = "";
+                }
+            });
+        })();
     </script>
     <!-- code end -->
 </div>

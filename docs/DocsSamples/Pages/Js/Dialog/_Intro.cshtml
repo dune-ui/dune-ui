@@ -1,0 +1,44 @@
+﻿<!--strip
+asp-antiforgery="false"
+-->
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Outline" id="--js-dialog-intro-button">
+            Open Dialog
+        </dui-button>
+        <label class="text-sm font-bold">Result:</label>
+        <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--js-dialog-intro-result">-</div>
+    </dui-stack>
+    <dui-dialog id="--js-dialog-intro-dialog">
+        <dui-dialog-header>
+            <dui-dialog-title>Are you absolutely sure?</dui-dialog-title>
+            <dui-dialog-description>
+                This action cannot be undone. This will permanently delete your account from our servers.
+            </dui-dialog-description>
+        </dui-dialog-header>
+        <form method="dialog" asp-antiforgery="false">
+            <dui-dialog-footer>
+                <dui-button variant="ButtonVariant.Outline" type="submit" value="cancel">
+                    Cancel
+                </dui-button>
+                <dui-button type="submit" value="confirm" autofocus>
+                    Continue
+                </dui-button>
+            </dui-dialog-footer>
+        </form>
+    </dui-dialog>
+    <script type="module">
+        (function () {
+            const dialog = window.duneui.dialog(document.getElementById("--js-dialog-intro-dialog"));
+            const triggerButton = document.getElementById("--js-dialog-intro-button");
+            const resultDisplay = document.getElementById("--js-dialog-intro-result");
+
+            triggerButton.addEventListener("click", async (event) => {
+                const result = await dialog.showAsync();
+                resultDisplay.innerHTML = JSON.stringify(result, null, 4);
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

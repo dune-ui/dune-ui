@@ -1,16 +1,16 @@
 ﻿<!--strip
-is-active="true"
+asp-antiforgery="false"
 -->
 <div class="min-h-[450px]">
     <!-- code begin -->
     <dui-stack align="StackAlign.Start" class="min-w-md">
-        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-return-form-value" command="show-modal">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-return-form-value-dialog" command="show-modal">
             Open Dialog with Form
         </dui-button>
         <label class="text-sm font-bold">Output:</label>
         <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--dialog-return-form-value-output">-</div>
     </dui-stack>
-    <dui-dialog id="--dialog-return-form-value">
+    <dui-dialog id="--dialog-return-form-value-dialog">
         <form method="dialog" asp-antiforgery="false" class="grid gap-4">
             <dui-dialog-header>
                 <dui-dialog-title>Edit profile</dui-dialog-title>
@@ -29,7 +29,7 @@ is-active="true"
                 </dui-field>
             </dui-field-group>
             <dui-dialog-footer>
-                <dui-button variant="ButtonVariant.Outline" type="button" commandfor="--dialog-return-form-value"
+                <dui-button variant="ButtonVariant.Outline" type="button" commandfor="--dialog-return-form-value-dialog"
                             command="close">
                     Cancel
                 </dui-button>
@@ -40,20 +40,29 @@ is-active="true"
         </form>
     </dui-dialog>
     <script>
-        const dialogReturnFormValueDialog = document.getElementById("--dialog-return-form-value");
-        const dialogReturnFormValueOutput = document.getElementById("--dialog-return-form-value-output");
+        (function() {
+            const dialog = document.getElementById("--dialog-return-form-value-dialog");
+            const output = document.getElementById("--dialog-return-form-value-output");
 
-        dialogReturnFormValueDialog.addEventListener("close", () => {
-            const cancelled = !dialogReturnFormValueDialog.returnValue || dialogReturnFormValueDialog.returnValue === "cancel";
-            if (cancelled) {
-                dialogReturnFormValueOutput.innerHTML = "Cancelled";
-                return;
-            }
+            dialog.addEventListener("close", () => {
+                const cancelled = dialog.returnValue === "" || dialog.returnValue === "cancel";
+                if (cancelled) {
+                    output.innerHTML = "Cancelled";
+                    return;
+                }
 
-            const form = dialogReturnFormValueDialog.querySelector("form");
-            const data = Object.fromEntries(new FormData(form));
-            dialogReturnFormValueOutput.innerHTML = JSON.stringify(data, null, 2);
-        });
+                const form = dialog.querySelector("form");
+                const data = Object.fromEntries(new FormData(form));
+                output.innerHTML = JSON.stringify(data, null, 2);
+            });
+            dialog.addEventListener("toggle", (e) => {
+                // Reset the return value every time the dialog opens to prevent a previous
+                // returnValue from being returned when pressing the Esc key
+                if (e.newState === "open") {
+                    dialog.returnValue = "";
+                }
+            });
+        })();
     </script>
     <!-- code end -->
 </div>

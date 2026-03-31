@@ -17,23 +17,24 @@
         </dui-dialog-footer>
     </dui-dialog>
     <script>
-        const dialogOpenViaJsShowModalButton = document.getElementById("--dialog-open-via-js-show-modal-button");
-        const dialogOpenViaJsShowButton = document.getElementById("--dialog-open-via-js-show-button");
-        const dialogOpenViaJsCloseButton = document.getElementById("--dialog-open-via-js-close-button");
-        const dialogOpenViaJsDialog = document.getElementById("--dialog-open-via-js-dialog");
+        (function() {
+            const dialog = document.getElementById("--dialog-open-via-js-dialog");
+            const showModalButton = document.getElementById("--dialog-open-via-js-show-modal-button");
+            const showButton = document.getElementById("--dialog-open-via-js-show-button");
+            const closeButton = document.getElementById("--dialog-open-via-js-close-button");
 
-        dialogOpenViaJsShowModalButton.addEventListener("click", () => {
-            dialogOpenViaJsDialog.showModal();
-        });
+            showModalButton.addEventListener("click", () => {
+                dialog.showModal();
+            });
 
-        dialogOpenViaJsShowButton.addEventListener("click", () => {
-            dialogOpenViaJsDialog.show();
-        });
+            showButton.addEventListener("click", () => {
+                dialog.show();
+            });
 
-        dialogOpenViaJsCloseButton.addEventListener("click", () => {
-            dialogOpenViaJsDialog.close();
-        });
-
+            closeButton.addEventListener("click", () => {
+                dialog.close();
+            });
+        })();
     </script>
     <!-- code end -->
 </div>
