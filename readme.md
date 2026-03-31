@@ -44,7 +44,7 @@ Update your `_ViewImports.cshtml` to register the DuneUI Tag Helpers and import 
 
 ### 4. Add stylesheets and JavaScript file 
 
-Add the DuneUI stylesheet (`/_content/DuneUI/dune-ui.css`) and JavaScript file (`/_content/DuneUI/dune-ui.js`) to your Razor layout.  
+Add the DuneUI stylesheet (`/_content/DuneUI/dune-ui.css`) and JavaScript file (`/_content/DuneUI/dune-ui.js`) to your Razor layout.   
 
 ```razor
 <!DOCTYPE html>
@@ -52,10 +52,10 @@ Add the DuneUI stylesheet (`/_content/DuneUI/dune-ui.css`) and JavaScript file (
 <head>
     ...   
     <link rel="stylesheet" href="/_content/DuneUI/dune-ui.css" asp-append-version="true"/>
+    <script defer src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
 </head>
 <body>
     ...
-    <script src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
 </body>
 </html>
 ```
