@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -10,14 +10,11 @@ public class DuneUITagHelperBase : TagHelper
     private readonly Dictionary<string, TagHelperContent> _namedSlots =
         new Dictionary<string, TagHelperContent>();
 
-    [HtmlAttributeNotBound]
-    public ICssClassMerger ClassMerger { get; }
+    [HtmlAttributeNotBound] public ICssClassMerger ClassMerger { get; }
 
-    [HtmlAttributeNotBound]
-    protected internal DuneUITagHelperBase? ParentTagHelper { get; private set; }
+    [HtmlAttributeNotBound] protected internal DuneUITagHelperBase? ParentTagHelper { get; private set; }
 
-    [HtmlAttributeNotBound]
-    protected ThemeManager ThemeManager { get; }
+    [HtmlAttributeNotBound] protected ThemeManager ThemeManager { get; }
 
     public DuneUITagHelperBase(ThemeManager themeManager, ICssClassMerger classMerger)
     {
@@ -54,15 +51,15 @@ public class DuneUITagHelperBase : TagHelper
         return ClassMerger.Merge(classes) ?? string.Empty;
     }
 
-    protected string? BuildClassString(string? componentName, string?[] additionalClasses)
+    protected string? BuildClassString(string? themeTokenName, string?[] additionalClasses)
     {
-        if (componentName == null)
+        if (themeTokenName == null)
         {
             return ClassMerger.Merge([.. additionalClasses]);
         }
 
         return ClassMerger.Merge(
-            [ThemeManager.GetComponentClass(componentName), .. additionalClasses]
+            [ThemeManager.GetComponentClass(themeTokenName), .. additionalClasses]
         );
     }
 

@@ -1,0 +1,45 @@
+﻿<div class="py-10">
+    <!-- code begin -->
+    <dui-stack align="StackAlign.Center">
+        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.IconSmall" 
+                    interestfor="--tooltip-js-api" id="--tooltip-js-api-button">
+            <dui-icon name="braces"/>
+        </dui-button>
+        <dui-group>
+            <dui-button variant="ButtonVariant.Outline" id="--tooltip-js-api-open">
+                Open
+            </dui-button>
+            <dui-button variant="ButtonVariant.Outline" id="--tooltip-js-api-close">
+                Close
+            </dui-button>
+            <dui-button variant="ButtonVariant.Outline" id="--tooltip-js-api-toggle">
+                Toggle
+            </dui-button>
+        </dui-group>
+    </dui-stack>
+    <dui-tooltip id="--tooltip-js-api" popover="manual">
+        This tooltip can be controlled via the Popover JS API
+    </dui-tooltip>
+    <script>
+        const apiTooltip = document.getElementById('--tooltip-js-api');
+        const apiTooltipButton = document.getElementById('--tooltip-js-api-button');
+        const apiTooltipOpenButton = document.getElementById('--tooltip-js-api-open');
+        const apiTooltipCloseButton = document.getElementById('--tooltip-js-api-close');
+        const apiTooltipToggleButton = document.getElementById('--tooltip-js-api-toggle');
+
+        apiTooltipOpenButton.addEventListener('click', () => {
+            apiTooltip.showPopover({
+                source: apiTooltipButton
+            });
+        });
+        apiTooltipCloseButton.addEventListener('click', () => {
+            apiTooltip.hidePopover();
+        });
+        apiTooltipToggleButton.addEventListener('click', () => {
+            apiTooltip.togglePopover({
+                source: apiTooltipButton
+            });
+        });
+    </script>
+    <!-- code end -->
+</div>

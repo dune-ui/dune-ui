@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -13,22 +13,22 @@ public class InputGroupAddOnTagHelper : DuneUITagHelperBase
     {
         [InputGroupAddOnVariantAlignment.InlineStart] =
         [
-            new ComponentName("dui-input-group-addon-align-inline-start"),
+            new ThemeToken("dui-input-group-addon-align-inline-start"),
             "order-first",
         ],
         [InputGroupAddOnVariantAlignment.InlineEnd] =
         [
-            new ComponentName("dui-input-group-addon-align-inline-end"),
+            new ThemeToken("dui-input-group-addon-align-inline-end"),
             "order-last",
         ],
         [InputGroupAddOnVariantAlignment.BlockStart] =
         [
-            new ComponentName("dui-input-group-addon-align-block-start"),
+            new ThemeToken("dui-input-group-addon-align-block-start"),
             "order-first w-full justify-start",
         ],
         [InputGroupAddOnVariantAlignment.BlockEnd] =
         [
-            new ComponentName("dui-input-group-addon-align-block-end"),
+            new ThemeToken("dui-input-group-addon-align-block-end"),
             "order-last w-full justify-start",
         ],
     };
@@ -67,7 +67,7 @@ public class InputGroupAddOnTagHelper : DuneUITagHelperBase
             ClassMerger.Merge(
                 new ClassElement[]
                 {
-                    new ComponentName("dui-input-group-addon"),
+                    new ThemeToken("dui-input-group-addon"),
                     "flex cursor-text items-center justify-center select-none",
                 }
                     .Union(AlignmentClasses[effectiveAlignment])

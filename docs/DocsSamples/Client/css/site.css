@@ -2,3 +2,6 @@
 
 @source "../../Pages/";
 @source "../../TagHelpers/";
+
+@custom-variant in-aria-expanded (:where([aria-expanded="true"]) &);
+@custom-variant not-in-aria-expanded (&:not(:where([aria-expanded="true"]) *));

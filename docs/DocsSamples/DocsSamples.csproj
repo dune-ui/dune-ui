@@ -7,6 +7,15 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\DuneUI\DuneUI.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\AsChild\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\AsChild\_Step1.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\AsChild\_Step2.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\AsChild\_Step3.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\AsChild\_Step4.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\AsChild\_Step5.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\AsChild\_Step6.cshtml" />
+  </ItemGroup>
   <Target Name="Tailwind" BeforeTargets="Build">
     <Exec
       WorkingDirectory="Client"

@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -23,10 +23,10 @@ public class AlertTagHelper : DuneUITagHelperBase
     private const string IconAttributeName = "icon";
     private const string TitleAttributeName = "title";
 
-    private static readonly Dictionary<AlertVariant, ComponentName> AlertVariantClasses = new()
+    private static readonly Dictionary<AlertVariant, ThemeToken> AlertVariantClasses = new()
     {
-        [AlertVariant.Default] = new ComponentName("dui-alert-variant-default"),
-        [AlertVariant.Destructive] = new ComponentName("dui-alert-variant-destructive"),
+        [AlertVariant.Default] = new ThemeToken("dui-alert-variant-default"),
+        [AlertVariant.Destructive] = new ThemeToken("dui-alert-variant-destructive"),
     };
 
     [HtmlAttributeName(DescriptionAttributeName)]
@@ -53,7 +53,7 @@ public class AlertTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-alert"),
+                new ThemeToken("dui-alert"),
                 "w-full relative group/alert",
                 AlertVariantClasses[effectiveVariant],
                 output.GetUserSuppliedClass()

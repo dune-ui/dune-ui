@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="/_content/DuneUI/dune-ui.css" asp-append-version="true"/>
     @await RenderSectionAsync("Styles", false)
+    <script type="module" src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
 </head>
 <body>
 @RenderBody()
+<script src="/js/interestfor.min.js"></script>
 @await RenderSectionAsync("Scripts", false)
-<script src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿namespace DuneUI.Theming;
+namespace DuneUI.Theming;
 
 public abstract record ClassElement
 {
@@ -15,4 +15,4 @@ public abstract record ClassElement
 
 public record ClassList(string Classes) : ClassElement;
 
-public record ComponentName(string Name) : ClassElement;
+public record ThemeToken(string Name) : ClassElement;

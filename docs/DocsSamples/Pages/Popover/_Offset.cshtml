@@ -1,15 +1,15 @@
 ﻿<div class="min-h-[120px]">
-    <!-- code begin -->
-    <dui-popover popup-offset="20">
-        <dui-popover-trigger as-child="true">
-            <dui-button variant="ButtonVariant.Outline">Offset</dui-button>
-        </dui-popover-trigger>
-        <dui-popover-content>
+    <dui-group justify="GroupJustify.Center">
+        <!-- code begin -->
+        <dui-button variant="ButtonVariant.Outline" popovertarget="--popover-offset">
+            Offset
+        </dui-button>
+        <dui-popover id="--popover-offset" class="mt-5">
             <dui-stack>
                 <dui-skeleton class="h-4 w-[250px]"/>
                 <dui-skeleton class="h-4 w-[250px]"/>
             </dui-stack>
-        </dui-popover-content>
-    </dui-popover>
-    <!-- code end -->
+        </dui-popover>
+        <!-- code end -->
+    </dui-group>
 </div>

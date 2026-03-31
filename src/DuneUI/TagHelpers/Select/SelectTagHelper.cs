@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -78,7 +78,7 @@ public class SelectTagHelper : FieldInputBaseTagHelper
                             new TagHelperAttribute(
                                 "class",
                                 ClassMerger.Merge(
-                                    new ComponentName("dui-native-select"),
+                                    new ThemeToken("dui-native-select"),
                                     "outline-none disabled:pointer-events-none disabled:cursor-not-allowed"
                                 )
                             ),
@@ -107,7 +107,7 @@ public class SelectTagHelper : FieldInputBaseTagHelper
                 new TagHelperAttribute(
                     "class",
                     ClassMerger.Merge(
-                        new ComponentName("dui-native-select-icon"),
+                        new ThemeToken("dui-native-select-icon"),
                         "pointer-events-none absolute select-none"
                     )
                 ),
@@ -135,7 +135,7 @@ public class SelectTagHelper : FieldInputBaseTagHelper
         output.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-native-select-wrapper"),
+                new ThemeToken("dui-native-select-wrapper"),
                 "group/native-select relative w-fit has-[select:disabled]:opacity-50",
                 userSuppliedClass
             )

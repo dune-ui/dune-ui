@@ -22,7 +22,6 @@ public static class ServiceCollectionExtensions
         services
             .AddSingleton<TwMerge>()
             .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()
-            .AddSingleton<IAttributeMerger, AngleSharpAttributeMerger>()
             .AddSingleton<IIconManager>(_ => DefaultIconManager.Instance)
             .AddSingleton<ThemeManager>(_ => ThemeManager.Instance);
 

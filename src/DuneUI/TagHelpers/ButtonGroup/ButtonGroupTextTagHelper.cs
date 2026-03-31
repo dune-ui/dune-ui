@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class ButtonGroupTextTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-button-group-text"),
+                new ThemeToken("dui-button-group-text"),
                 "flex items-center [&_svg]:pointer-events-none",
                 output.GetUserSuppliedClass()
             )

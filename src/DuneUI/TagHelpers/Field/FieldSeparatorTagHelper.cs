@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -25,7 +25,7 @@ public class FieldSeparatorTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-field-separator"),
+                new ThemeToken("dui-field-separator"),
                 "relative",
                 output.GetUserSuppliedClass()
             )
@@ -52,7 +52,7 @@ public class FieldSeparatorTagHelper : DuneUITagHelperBase
             contentWrapperTagBuilder.Attributes.Add(
                 "class",
                 ClassMerger.Merge(
-                    new ComponentName("dui-field-separator-content"),
+                    new ThemeToken("dui-field-separator-content"),
                     "bg-background relative mx-auto block w-fit"
                 )
             );

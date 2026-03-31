@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -6,11 +6,11 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-empty-media")]
 public class EmptyMediaTagHelper : DuneUITagHelperBase
 {
-    private static readonly Dictionary<EmptyMediaVariant, ComponentName> VariantClasses =
-        new Dictionary<EmptyMediaVariant, ComponentName>
+    private static readonly Dictionary<EmptyMediaVariant, ThemeToken> VariantClasses =
+        new Dictionary<EmptyMediaVariant, ThemeToken>
         {
-            [EmptyMediaVariant.Default] = new ComponentName("dui-empty-media-default"),
-            [EmptyMediaVariant.Icon] = new ComponentName("dui-empty-media-icon"),
+            [EmptyMediaVariant.Default] = new ThemeToken("dui-empty-media-default"),
+            [EmptyMediaVariant.Icon] = new ThemeToken("dui-empty-media-icon"),
         };
 
     [HtmlAttributeName("variant")]
@@ -31,7 +31,7 @@ public class EmptyMediaTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-empty-media"),
+                new ThemeToken("dui-empty-media"),
                 "flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
                 VariantClasses[effectiveVariant],
                 output.GetUserSuppliedClass()

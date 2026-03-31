@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -19,7 +19,7 @@ public class AccordionItemContentTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-accordion-content"),
+                new ThemeToken("dui-accordion-content"),
                 "overflow-hidden",
                 "details-disabled-closed-content:hidden"
             )
@@ -29,7 +29,7 @@ public class AccordionItemContentTagHelper : DuneUITagHelperBase
         innerTagBuilder.Attributes.Add(
             "class",
             BuildClassString(
-                new ComponentName("dui-accordion-content-inner"),
+                new ThemeToken("dui-accordion-content-inner"),
                 "[&_a]:hover:text-foreground h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
                 output.GetUserSuppliedClass()
             )

@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -55,7 +55,7 @@ public class InputGroupInputTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-input-group-input"),
+                new ThemeToken("dui-input-group-input"),
                 "flex-1",
                 output.GetUserSuppliedClass()
             )

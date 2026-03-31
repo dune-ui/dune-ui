@@ -1,0 +1,27 @@
+﻿<div class="py-2">
+    <!-- code begin -->
+    <dui-stack gap="StackGap.Small">
+        <dui-button interestfor="--tooltip-js-events" size="ButtonSize.IconSmall" variant="ButtonVariant.Outline">
+            <dui-icon name="braces"/>
+        </dui-button>
+        <label class="text-sm font-bold">Events:</label>
+        <div class="font-mono w-100 h-40 overflow-y-auto bg-gray-50" id="--tooltip-js-events-output">
+        </div>
+    </dui-stack>
+    <dui-tooltip id="--tooltip-js-events">
+        This tooltip emits JS events when it opens and closes
+    </dui-tooltip>
+    <script>
+        let counter = 0;
+        const eventsTooltip = document.getElementById('--tooltip-js-events');
+        const eventsTooltipEventOutput = document.getElementById('--tooltip-js-events-output');
+
+        eventsTooltip.addEventListener("interest", (e) => {
+            eventsTooltipEventOutput.innerText = `${++counter}: Tooltip opened\n` + eventsTooltipEventOutput.innerText;
+        });
+        eventsTooltip.addEventListener("loseinterest", (e) => {
+            eventsTooltipEventOutput.innerText = `${++counter}: Tooltip closed\n` + eventsTooltipEventOutput.innerText;
+        });
+    </script>
+    <!-- code end -->
+</div>

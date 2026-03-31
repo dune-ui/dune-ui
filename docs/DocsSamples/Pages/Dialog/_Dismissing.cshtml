@@ -1,0 +1,55 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-dismiss-default" command="show-modal">
+            Default Dismiss
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-dismiss-light" command="show-modal">
+            Light Dismiss
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-dismiss-manual" command="show-modal">
+            Manual Dismiss
+        </dui-button>
+    </div>
+    <dui-dialog id="--dialog-dismiss-default">
+        <dui-dialog-header>
+            <dui-dialog-title>Default Dismiss</dui-dialog-title>
+        </dui-dialog-header>
+        <p>This dialog can be closed by pressing the
+            <dui-kbd>Esc</dui-kbd>
+            key or clicking the close button below.
+        </p>
+        <dui-dialog-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-dismiss-default" command="close">
+                Close
+            </dui-button>
+        </dui-dialog-footer>
+    </dui-dialog>
+    <dui-dialog id="--dialog-dismiss-light" closedby="any">
+        <dui-dialog-header>
+            <dui-dialog-title>Light Dismiss</dui-dialog-title>
+        </dui-dialog-header>
+        <p>This dialog can be closed by pressing the
+            <dui-kbd>Esc</dui-kbd>
+            key, clicking on the backdrop, or clicking the close button below.
+        </p>
+        <dui-dialog-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-dismiss-light" command="close">
+                Close
+            </dui-button>
+        </dui-dialog-footer>
+    </dui-dialog>
+    <dui-dialog id="--dialog-dismiss-manual" closedby="none">
+        <dui-dialog-header>
+            <dui-dialog-title>Manual Dismiss</dui-dialog-title>
+        </dui-dialog-header>
+        <p>This dialog can only be closed by clicking the close button below.
+        </p>
+        <dui-dialog-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-dismiss-manual" command="close">
+                Close
+            </dui-button>
+        </dui-dialog-footer>
+    </dui-dialog>
+    <!-- code end -->
+</div>

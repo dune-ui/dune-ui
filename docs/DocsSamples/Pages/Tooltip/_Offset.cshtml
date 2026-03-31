@@ -1,14 +1,16 @@
-﻿<div class="py-10">
+﻿<div class="py-14">
     <!-- code begin -->
-    <dui-tooltip tooltip-offset="20">
-        <dui-tooltip-trigger>
-            <dui-button variant="ButtonVariant.Outline">
-                Offset
-            </dui-button>
-        </dui-tooltip-trigger>
-        <dui-tooltip-content>
-            This tooltip is offset 20px from the trigger
-        </dui-tooltip-content>
+    <dui-button variant="ButtonVariant.Outline" interestfor="--tooltip-offset-20">
+        Offset 20px
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline" interestfor="--tooltip-offset-0">
+        Offset 0px
+    </dui-button>
+    <dui-tooltip id="--tooltip-offset-20" class="mt-5">
+        This tooltip is offset 20px from the trigger using the Tailwind <code>mt-5</code> utility
+    </dui-tooltip>
+    <dui-tooltip id="--tooltip-offset-0" class="m-0">
+        This tooltip is offset 0px from the trigger using the Tailwind <code>m-0</code> utility
     </dui-tooltip>
     <!-- code end -->
 </div>

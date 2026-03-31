@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class AlertTitleTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-alert-title"),
+                new ThemeToken("dui-alert-title"),
                 "[&_a]:hover:text-foreground [&_a]:underline [&_a]:underline-offset-3",
                 output.GetUserSuppliedClass()
             )

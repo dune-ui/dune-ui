@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -6,15 +6,15 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-input-group-button")]
 public class InputGroupButtonTagHelper : DuneUITagHelperBase
 {
-    private static readonly Dictionary<InputGroupButtonSize, ComponentName> SizeClasses =
-        new Dictionary<InputGroupButtonSize, ComponentName>
+    private static readonly Dictionary<InputGroupButtonSize, ThemeToken> SizeClasses =
+        new Dictionary<InputGroupButtonSize, ThemeToken>
         {
-            [InputGroupButtonSize.ExtraSmall] = new ComponentName("dui-input-group-button-size-xs"),
-            [InputGroupButtonSize.Small] = new ComponentName("dui-input-group-button-size-sm"),
-            [InputGroupButtonSize.IconExtraSmall] = new ComponentName(
+            [InputGroupButtonSize.ExtraSmall] = new ThemeToken("dui-input-group-button-size-xs"),
+            [InputGroupButtonSize.Small] = new ThemeToken("dui-input-group-button-size-sm"),
+            [InputGroupButtonSize.IconExtraSmall] = new ThemeToken(
                 "dui-input-group-button-size-icon-xs"
             ),
-            [InputGroupButtonSize.IconSmall] = new ComponentName(
+            [InputGroupButtonSize.IconSmall] = new ThemeToken(
                 "dui-input-group-button-size-icon-sm"
             ),
         };
@@ -39,7 +39,7 @@ public class InputGroupButtonTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-input-group-button"),
+                new ThemeToken("dui-input-group-button"),
                 "shadow-none flex items-center",
                 SizeClasses[effectiveSize],
                 output.GetUserSuppliedClass()

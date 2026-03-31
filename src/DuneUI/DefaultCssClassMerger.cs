@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using TailwindMerge;
 
 namespace DuneUI;
@@ -22,7 +22,7 @@ internal class DefaultCssClassMerger : ICssClassMerger
                 {
                     return c switch
                     {
-                        ComponentName cn => _themeManager.GetComponentClass(cn.Name),
+                        ThemeToken cn => _themeManager.GetComponentClass(cn.Name),
                         ClassList cl => cl.Classes,
                         _ => string.Empty,
                     };

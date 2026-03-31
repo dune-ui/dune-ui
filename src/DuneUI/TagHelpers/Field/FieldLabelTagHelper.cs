@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -41,7 +41,7 @@ public class FieldLabelTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-field-label"),
+                new ThemeToken("dui-field-label"),
                 "group/field-label peer/field-label flex w-fit leading-snug",
                 "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
                 output.GetUserSuppliedClass()

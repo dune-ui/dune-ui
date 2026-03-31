@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -22,7 +22,7 @@ public class FieldGroupTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-field-group"),
+                new ThemeToken("dui-field-group"),
                 "group/field-group @container/field-group flex w-full flex-col",
                 output.GetUserSuppliedClass()
             )

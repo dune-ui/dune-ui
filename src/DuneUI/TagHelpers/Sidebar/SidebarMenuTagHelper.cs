@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class SidebarMenuTagHelper(ThemeManager themeManager, ICssClassMerger cla
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-menu"),
+                new ThemeToken("dui-sidebar-menu"),
                 "flex w-full min-w-0 flex-col",
                 output.GetUserSuppliedClass()
             )

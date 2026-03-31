@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class TableRowTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-slot", "table-row");
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge(new ComponentName("dui-table-row"), output.GetUserSuppliedClass())
+            ClassMerger.Merge(new ThemeToken("dui-table-row"), output.GetUserSuppliedClass())
         );
 
         return Task.CompletedTask;

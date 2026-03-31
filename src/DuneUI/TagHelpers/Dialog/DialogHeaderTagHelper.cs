@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -18,7 +18,7 @@ public class DialogHeaderTagHelper : DuneUITagHelperBase
         output.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-dialog-header"),
+                new ThemeToken("dui-dialog-header"),
                 "flex flex-col",
                 output.GetUserSuppliedClass()
             )

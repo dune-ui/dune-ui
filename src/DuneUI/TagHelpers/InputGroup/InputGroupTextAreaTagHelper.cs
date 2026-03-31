@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -39,7 +39,7 @@ public class InputGroupTextAreaTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-input-group-textarea"),
+                new ThemeToken("dui-input-group-textarea"),
                 "flex-1 resize-none",
                 output.GetUserSuppliedClass()
             )

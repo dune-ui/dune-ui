@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -9,14 +9,14 @@ public class BadgeTagHelper : DuneUITagHelperBase
     public BadgeTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
-    private static readonly Dictionary<BadgeVariant, ComponentName> BadgeVariantClasses = new()
+    private static readonly Dictionary<BadgeVariant, ThemeToken> BadgeVariantClasses = new()
     {
-        [BadgeVariant.Default] = new ComponentName("dui-badge-variant-default"),
-        [BadgeVariant.Secondary] = new ComponentName("dui-badge-variant-secondary"),
-        [BadgeVariant.Destructive] = new ComponentName("dui-badge-variant-destructive"),
-        [BadgeVariant.Outline] = new ComponentName("dui-badge-variant-outline"),
-        [BadgeVariant.Ghost] = new ComponentName("dui-badge-variant-ghost"),
-        [BadgeVariant.Link] = new ComponentName("dui-badge-variant-link"),
+        [BadgeVariant.Default] = new ThemeToken("dui-badge-variant-default"),
+        [BadgeVariant.Secondary] = new ThemeToken("dui-badge-variant-secondary"),
+        [BadgeVariant.Destructive] = new ThemeToken("dui-badge-variant-destructive"),
+        [BadgeVariant.Outline] = new ThemeToken("dui-badge-variant-outline"),
+        [BadgeVariant.Ghost] = new ThemeToken("dui-badge-variant-ghost"),
+        [BadgeVariant.Link] = new ThemeToken("dui-badge-variant-link"),
     };
 
     [HtmlAttributeName("variant")]
@@ -33,7 +33,7 @@ public class BadgeTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-badge"),
+                new ThemeToken("dui-badge"),
                 "inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-colors overflow-hidden group/badge",
                 BadgeVariantClasses[effectiveVariant],
                 output.GetUserSuppliedClass()

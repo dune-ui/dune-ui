@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -15,7 +15,7 @@ public class ItemSeparatorTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-item-separator"),
+                new ThemeToken("dui-item-separator"),
                 GetUserSpecifiedClass(output)
             )
         );

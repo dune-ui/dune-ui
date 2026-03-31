@@ -1,0 +1,35 @@
+﻿<!-- code begin -->
+<dui-stack gap="StackGap.Small" class="min-w-md">
+    <dui-button popovertarget="--popover-js-events" variant="ButtonVariant.Outline">
+        Toggle Popover
+    </dui-button>
+    <dui-input type="checkbox" id="--popover-prevent-checkbox" label="Prevent popover toggle"/>
+    <label class="text-sm font-bold">Events:</label>
+    <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--popover-js-events-output">
+    </div>
+</dui-stack>
+<dui-popover id="--popover-js-events" class="mt-5">
+    <dui-stack>
+        <dui-skeleton class="h-4 w-[250px]"/>
+        <dui-skeleton class="h-4 w-[250px]"/>
+    </dui-stack>
+</dui-popover>
+<script>
+    let counter = 0;
+    const eventsPopover = document.getElementById('--popover-js-events');
+    const eventsPopoverEventOutput = document.getElementById('--popover-js-events-output');
+    const eventsPopoverPreventCheckbox = document.getElementById('--popover-prevent-checkbox');
+
+    eventsPopover.addEventListener("beforetoggle", (e) => {
+        if (eventsPopoverPreventCheckbox.checked === true) {
+            eventsPopoverEventOutput.innerText = `${++counter}: Toggle prevented!\n` + eventsPopoverEventOutput.innerText;
+            e.preventDefault();
+            return;
+        }
+        eventsPopoverEventOutput.innerText = `${++counter}: Before toggle: ${e.oldState} -> ${e.newState}\n` + eventsPopoverEventOutput.innerText;
+    });
+    eventsPopover.addEventListener("toggle", (e) => {
+        eventsPopoverEventOutput.innerText = `${++counter}: Toggle: ${e.oldState} -> ${e.newState}\n` + eventsPopoverEventOutput.innerText;
+    });
+</script>
+<!-- code end -->

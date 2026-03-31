@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -32,7 +32,7 @@ public class PaginationPreviousLinkTagHelper : DuneUIAnchorTagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-pagination-previous"),
+                new ThemeToken("dui-pagination-previous"),
                 output.GetUserSuppliedClass()
             )
         );

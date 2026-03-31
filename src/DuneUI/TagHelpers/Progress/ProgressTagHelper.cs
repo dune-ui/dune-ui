@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -48,7 +48,7 @@ public class ProgressTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-progress-root"),
+                new ThemeToken("dui-progress-root"),
                 "flex flex-wrap gap-3",
                 output.GetUserSuppliedClass()
             )
@@ -59,7 +59,7 @@ public class ProgressTagHelper : DuneUITagHelperBase
         trackTagBuilder.Attributes.Add(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-progress-track"),
+                new ThemeToken("dui-progress-track"),
                 "relative flex w-full items-center overflow-x-hidden"
             )
         );
@@ -68,7 +68,7 @@ public class ProgressTagHelper : DuneUITagHelperBase
         indicatorTagBuilder.Attributes.Add("data-slot", "progress-indicator");
         indicatorTagBuilder.Attributes.Add(
             "class",
-            ClassMerger.Merge(new ComponentName("dui-progress-indicator"), "h-full transition-all")
+            ClassMerger.Merge(new ThemeToken("dui-progress-indicator"), "h-full transition-all")
         );
         indicatorTagBuilder.Attributes.Add(
             "style",

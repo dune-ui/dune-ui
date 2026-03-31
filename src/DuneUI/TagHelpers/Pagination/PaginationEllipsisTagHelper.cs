@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -30,7 +30,7 @@ public class PaginationEllipsisTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-pagination-ellipsis"),
+                new ThemeToken("dui-pagination-ellipsis"),
                 "flex items-center justify-center",
                 output.GetUserSuppliedClass()
             )

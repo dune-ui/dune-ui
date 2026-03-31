@@ -14,7 +14,6 @@
     <NoWarn>$(NoWarn);CA2264</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" />
     <PackageReference Include="TailwindMerge.NET" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,37 @@
+﻿<div class="min-h-[260px]">
+    <dui-group justify="GroupJustify.Center">
+        <!-- code begin -->
+        <dui-button-group>
+            <dui-button variant="ButtonVariant.Outline">
+                <dui-icon name="bot"/>
+                Copilot
+            </dui-button>
+            <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Icon" popovertarget="--popover-offset">
+                <dui-icon name="chevron-down"/>
+            </dui-button>
+        </dui-button-group>
+        <dui-popover id="--popover-offset" position="PositionArea.BottomSpanLeft">
+            <dui-stack gap="StackGap.Small">
+                <dui-popover-header>
+                    <dui-popover-title>Start a new task with Copilot</dui-popover-title>
+                    <dui-popover-description>
+                        Describe your task in natural language.
+                    </dui-popover-description>
+                </dui-popover-header>
+                <dui-field>
+                    <dui-field-label for="--button-group-popopver-task" class="sr-only">
+                        Task Description
+                    </dui-field-label>
+                    <dui-textarea
+                        id="--button-group-popopver-task"
+                        placeholder="I need to..."
+                        class="resize-none"/>
+                    <dui-field-description>
+                        Copilot will open a pull request for review.
+                    </dui-field-description>
+                </dui-field>
+            </dui-stack>
+        </dui-popover>
+        <!-- code end -->
+    </dui-group>
+</div>

@@ -1,4 +1,4 @@
-﻿using DuneUI.Icons;
+using DuneUI.Icons;
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -30,7 +30,7 @@ public class BreadcrumbSeparatorTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-breadcrumb-separator"),
+                new ThemeToken("dui-breadcrumb-separator"),
                 output.GetUserSuppliedClass()
             )
         );

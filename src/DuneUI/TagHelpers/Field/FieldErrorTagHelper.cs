@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -60,7 +60,7 @@ public class FieldErrorTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-field-error"),
+                new ThemeToken("dui-field-error"),
                 "font-normal",
                 "hidden [&.field-validation-error]:block",
                 output.GetUserSuppliedClass()

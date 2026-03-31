@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -21,7 +21,7 @@ public class BreadcrumbPageTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-breadcrumb-page"),
+                new ThemeToken("dui-breadcrumb-page"),
                 output.GetUserSuppliedClass()
             )
         );

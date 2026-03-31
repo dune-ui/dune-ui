@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,12 @@ public class DialogTitleTagHelper : DuneUITagHelperBase
         output.Attributes.Add("data-slot", "dialog-title");
         output.Attributes.Add(
             "class",
-            ClassMerger.Merge(new ComponentName("dui-dialog-title"), output.GetUserSuppliedClass())
+            ClassMerger.Merge(
+                new ThemeToken("dui-dialog-title"),
+                new ThemeToken("dui-font-heading"),
+                "font-heading",
+                output.GetUserSuppliedClass()
+            )
         );
 
         output.Content.AppendHtml(await output.GetChildContentAsync());

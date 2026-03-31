@@ -1,17 +1,15 @@
 ﻿<div class="min-h-[300px]">
     <!-- code begin -->
-    <dui-collapsible class="flex w-[350px] flex-col gap-2 group/collapsible">
+    <div class="flex w-[350px] flex-col gap-2 group/collapsible">
         <div class="flex items-center justify-between gap-4">
             <h4 class="text-sm font-semibold">
                 @@ibnbattuta has 3 bookings
             </h4>
-            <dui-collapsible-trigger as-child="true">
-                <dui-button variant="ButtonVariant.Ghost" size="ButtonSize.Icon" class="size-8">
-                    <dui-icon name="chevrons-up-down" class="group-data-[state=open]/collapsible:hidden"/>
-                    <dui-icon name="chevrons-down-up" class="hidden group-data-[state=open]/collapsible:block"/>
-                    <span class="sr-only">Toggle</span>
-                </dui-button>
-            </dui-collapsible-trigger>
+            <dui-button variant="ButtonVariant.Ghost" size="ButtonSize.Icon" commandfor="my-collapsible" command="--toggle" class="size-8">
+                <dui-icon name="chevrons-up-down" class="in-aria-expanded:hidden"/>
+                <dui-icon name="chevrons-down-up" class="not-in-aria-expanded:hidden"/>
+                <span class="sr-only">Toggle</span>
+            </dui-button>
         </div>
         <dui-item variant="ItemVariant.Outline" size="ItemSize.Small">
             <dui-item-media>
@@ -24,7 +22,7 @@
                 <dui-item-description>Departure 8AM - Dec 24, 2025</dui-item-description>
             </dui-item-content>
         </dui-item>
-        <dui-collapsible-content class="flex flex-col gap-2">
+        <dui-collapsible id="my-collapsible" hidden="" class="flex flex-col gap-2">
             <dui-item variant="ItemVariant.Outline" size="ItemSize.Small">
                 <dui-item-media>
                     <img
@@ -47,7 +45,7 @@
                     <dui-item-description>Dec 26, 11:00 AM Slot | 2 Adult Tickets</dui-item-description>
                 </dui-item-content>
             </dui-item>
-        </dui-collapsible-content>
-    </dui-collapsible>
+        </dui-collapsible>
+    </div>
     <!-- code end -->
 </div>

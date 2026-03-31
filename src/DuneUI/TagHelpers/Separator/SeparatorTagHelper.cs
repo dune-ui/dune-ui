@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -6,11 +6,11 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-separator")]
 public class SeparatorTagHelper : DuneUITagHelperBase
 {
-    private static readonly Dictionary<SeparatorOrientation, ComponentName> OrientationClasses =
+    private static readonly Dictionary<SeparatorOrientation, ThemeToken> OrientationClasses =
         new()
         {
-            [SeparatorOrientation.Horizontal] = new ComponentName("dui-separator-horizontal"),
-            [SeparatorOrientation.Vertical] = new ComponentName("dui-separator-vertical"),
+            [SeparatorOrientation.Horizontal] = new ThemeToken("dui-separator-horizontal"),
+            [SeparatorOrientation.Vertical] = new ThemeToken("dui-separator-vertical"),
         };
 
     public SeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
@@ -40,7 +40,7 @@ public class SeparatorTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-separator"),
+                new ThemeToken("dui-separator"),
                 OrientationClasses[effectiveOrientation],
                 output.GetUserSuppliedClass()
             )

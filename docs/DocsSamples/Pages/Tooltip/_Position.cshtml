@@ -1,46 +1,38 @@
-﻿<div class="py-10">
+﻿<div class="py-10 flex justify-center">
     <!-- code begin -->
     <div class="grid grid-cols-2 gap-4">
-        <dui-tooltip tooltip-side="PopupSide.Top" tooltip-align="PopupAlign.Start">
-            <dui-tooltip-trigger>
-                <dui-button variant="ButtonVariant.Outline" class="size-30">
-                    Top Start
-                </dui-button>
-            </dui-tooltip-trigger>
-            <dui-tooltip-content>
-                Positioned with the top start of the trigger
-            </dui-tooltip-content>
-        </dui-tooltip>
-        <dui-tooltip tooltip-side="PopupSide.Right" tooltip-align="PopupAlign.Center">
-            <dui-tooltip-trigger>
-                <dui-button variant="ButtonVariant.Outline" class="size-30">
-                    Right Center
-                </dui-button>
-            </dui-tooltip-trigger>
-            <dui-tooltip-content>
-                Positioned with the right center of the trigger
-            </dui-tooltip-content>
-        </dui-tooltip>
-        <dui-tooltip tooltip-side="PopupSide.Left" tooltip-align="PopupAlign.End">
-            <dui-tooltip-trigger>
-                <dui-button variant="ButtonVariant.Outline" class="size-30">
-                    Left End
-                </dui-button>
-            </dui-tooltip-trigger>
-            <dui-tooltip-content>
-                Positioned with the left end of the trigger
-            </dui-tooltip-content>
-        </dui-tooltip>
-        <dui-tooltip tooltip-side="PopupSide.Bottom" tooltip-align="PopupAlign.End">
-            <dui-tooltip-trigger>
-                <dui-button variant="ButtonVariant.Outline" class="size-30">
-                    Bottom End
-                </dui-button>
-            </dui-tooltip-trigger>
-            <dui-tooltip-content>
-                Positioned with the bottom end of the trigger
-            </dui-tooltip-content>
-        </dui-tooltip>
+        <dui-button variant="ButtonVariant.Outline" class="size-30"
+                    interestfor="--tooltip-position-top-span-right">
+            Top<br/>Span Right
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" class="size-30"
+                    interestfor="--tooltip-position-right-center">
+            Right<br/>Center
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" class="size-30"
+                    interestfor="--tooltip-position-left-span-top">
+            Left<br/>Span Top
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" class="size-30"
+                    interestfor="--tooltip-position-bottom-span-left">
+            Bottom<br/>Span Left
+        </dui-button>
     </div>
+    <dui-tooltip position="PositionArea.TopSpanRight"
+                 id="--tooltip-position-top-span-right">
+        Positioned at the top of the trigger and spanning to the right
+    </dui-tooltip>
+    <dui-tooltip position="PositionArea.RightCenter"
+                 id="--tooltip-position-right-center">
+        Positioned at the right center of the trigger
+    </dui-tooltip>
+    <dui-tooltip position="PositionArea.LeftSpanTop"
+                 id="--tooltip-position-left-span-top">
+        Positioned at the left of the trigger and spanning to the top
+    </dui-tooltip>
+    <dui-tooltip position="PositionArea.BottomSpanLeft"
+                 id="--tooltip-position-bottom-span-left">
+        Positioned at the bottom of the trigger and spanning to the left
+    </dui-tooltip>
     <!-- code end -->
 </div>

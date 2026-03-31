@@ -1,0 +1,68 @@
+﻿<!--strip
+asp-antiforgery="false"
+-->
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-return-form-value-dialog" command="show-modal">
+            Open Dialog with Form
+        </dui-button>
+        <label class="text-sm font-bold">Output:</label>
+        <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--dialog-return-form-value-output">-</div>
+    </dui-stack>
+    <dui-dialog id="--dialog-return-form-value-dialog">
+        <form method="dialog" asp-antiforgery="false" class="grid gap-4">
+            <dui-dialog-header>
+                <dui-dialog-title>Edit profile</dui-dialog-title>
+                <dui-dialog-description>Make changes to your profile here. Click save when you're done.
+                </dui-dialog-description>
+            </dui-dialog-header>
+            <dui-field-group>
+                <dui-field>
+                    <dui-label for="--dialog-return-form-value-name">Name</dui-label>
+                    <dui-input id="--dialog-return-form-value-name" name="name" defaultValue="Ibn Battuta" required/>
+                </dui-field>
+                <dui-field>
+                    <dui-label for="--dialog-return-form-value-username">Username</dui-label>
+                    <dui-input id="--dialog-return-form-value-username" name="username" defaultValue="@@ibnbattuta"
+                               required/>
+                </dui-field>
+            </dui-field-group>
+            <dui-dialog-footer>
+                <dui-button variant="ButtonVariant.Outline" type="button" commandfor="--dialog-return-form-value-dialog"
+                            command="close">
+                    Cancel
+                </dui-button>
+                <dui-button type="submit" value="confirm">
+                    Save Changes
+                </dui-button>
+            </dui-dialog-footer>
+        </form>
+    </dui-dialog>
+    <script>
+        (function() {
+            const dialog = document.getElementById("--dialog-return-form-value-dialog");
+            const output = document.getElementById("--dialog-return-form-value-output");
+
+            dialog.addEventListener("close", () => {
+                const cancelled = dialog.returnValue === "" || dialog.returnValue === "cancel";
+                if (cancelled) {
+                    output.innerHTML = "Cancelled";
+                    return;
+                }
+
+                const form = dialog.querySelector("form");
+                const data = Object.fromEntries(new FormData(form));
+                output.innerHTML = JSON.stringify(data, null, 2);
+            });
+            dialog.addEventListener("toggle", (e) => {
+                // Reset the return value every time the dialog opens to prevent a previous
+                // returnValue from being returned when pressing the Esc key
+                if (e.newState === "open") {
+                    dialog.returnValue = "";
+                }
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

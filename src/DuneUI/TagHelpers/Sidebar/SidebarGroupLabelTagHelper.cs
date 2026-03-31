@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
@@ -17,7 +17,7 @@ public class SidebarGroupLabelTagHelper(ThemeManager themeManager, ICssClassMerg
         output.Attributes.SetAttribute(
             "class",
             ClassMerger.Merge(
-                new ComponentName("dui-sidebar-group-label"),
+                new ThemeToken("dui-sidebar-group-label"),
                 "flex shrink-0 items-center outline-hidden [&>svg]:shrink-0",
                 output.GetUserSuppliedClass()
             )

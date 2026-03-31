@@ -2,8 +2,9 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@toolwind/anchors";
 @import "./theme.css";
+@import "./shadcn-tailwind.css";
 
 @source "../../Theming/ThemePacks/";
 @source "../../TagHelpers/";
-

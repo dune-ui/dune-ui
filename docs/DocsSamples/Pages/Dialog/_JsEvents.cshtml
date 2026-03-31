@@ -1,0 +1,66 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack gap="StackGap.Small" align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-js-events-dialog" command="show-modal">
+            Open Dialog
+        </dui-button>
+        <dui-input type="checkbox"
+                   id="--dialog-js-events-prevent-toggle-checkbox"
+                   label="PreventDefault() in beforetoggle event"
+                   description="Will prevent the dialog from opening"/>
+        <label class="text-sm font-bold">Events:</label>
+        <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--dialog-js-events-output">
+        </div>
+    </dui-stack>
+    <dui-dialog id="--dialog-js-events-dialog">
+        <dui-dialog-header>
+            <dui-dialog-title>Events</dui-dialog-title>
+        </dui-dialog-header>
+        <p>This dialog is used to demonstrates events.</p>
+        <dui-input type="checkbox"
+                   id="--dialog-js-events-prevent-cancel-checkbox"
+                   label="PreventDefault() in cancel event"
+                   description="Will prevent the Request Close button from closing the dialog"/>
+        <dui-dialog-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-js-events-dialog" command="close">
+                Close
+            </dui-button>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-js-events-dialog" command="request-close">
+                Request Close
+            </dui-button>
+        </dui-dialog-footer>
+    </dui-dialog>
+    <script>
+        (function () {
+            let counter = 0;
+            const dialog = document.getElementById('--dialog-js-events-dialog');
+            const output = document.getElementById('--dialog-js-events-output');
+            const preventToggleCheckbox = document.getElementById('--dialog-js-events-prevent-toggle-checkbox');
+            const preventCancelCheckbox = document.getElementById('--dialog-js-events-prevent-cancel-checkbox');
+
+            dialog.addEventListener("beforetoggle", (e) => {
+                if (preventToggleCheckbox.checked === true) {
+                    output.innerText = `${++counter}: beforetoggle event prevented!\n` + output.innerText;
+                    e.preventDefault();
+                    return;
+                }
+                output.innerText = `${++counter}: beforetoggle event: ${e.oldState} -> ${e.newState}\n` + output.innerText;
+            });
+            dialog.addEventListener("toggle", (e) => {
+                output.innerText = `${++counter}: toggle event: ${e.oldState} -> ${e.newState}\n` + output.innerText;
+            });
+            dialog.addEventListener("cancel", (e) => {
+                if (preventCancelCheckbox.checked === true) {
+                    output.innerText = `${++counter}: cancel event prevented!\n` + output.innerText;
+                    e.preventDefault();
+                    return;
+                }
+                output.innerText = `${++counter}: cancel event\n` + output.innerText;
+            });
+            dialog.addEventListener("close", (e) => {
+                output.innerText = `${++counter}: close event\n` + output.innerText;
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

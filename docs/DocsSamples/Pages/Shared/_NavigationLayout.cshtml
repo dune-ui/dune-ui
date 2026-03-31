@@ -13,7 +13,6 @@
                         new DemoItem("Accordion", "/Accordion/Index"),
                         new DemoItem("Alert", "/Alert/Index"),
                         new DemoItem("Avatar", "/Avatar/Index"),
-                        new DemoItem("as-child", "/AsChild/Index"),
                         new DemoItem("Badge", "/Badge/Index"),
                         new DemoItem("Breadcrumb", "/Breadcrumb/Index"),
                         new DemoItem("Button", "/Button/Index"),
@@ -44,6 +43,7 @@
                         new DemoItem("Tabs", "/Tabs/Index"),
                         new DemoItem("Textarea", "/Textarea/Index"),
                         new DemoItem("Tooltip", "/Tooltip/Index"),
+                        new DemoItem("Js/Dialog", "/Js/Dialog/Index"),
                     ])
                 ];
             }
@@ -74,3 +74,6 @@
         </div>
     </dui-sidebar-inset>
 </dui-sidebar-wrapper>
+@section Scripts {
+    @await RenderSectionAsync("Scripts", false)
+}

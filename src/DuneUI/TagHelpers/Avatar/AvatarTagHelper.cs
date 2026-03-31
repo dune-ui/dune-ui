@@ -1,4 +1,4 @@
-﻿using DuneUI.Theming;
+using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -34,7 +34,7 @@ public class AvatarTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute(
             "class",
             BuildClassString(
-                new ComponentName("dui-avatar"),
+                new ThemeToken("dui-avatar"),
                 "after:border-border group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten",
                 output.GetUserSuppliedClass()
             )
@@ -49,7 +49,7 @@ public class AvatarTagHelper : DuneUITagHelperBase
             imageTagBuilder.Attributes.Add(
                 "class",
                 BuildClassString(
-                    new ComponentName("dui-avatar-image"),
+                    new ThemeToken("dui-avatar-image"),
                     "aspect-square size-full object-cover"
                 )
             );
@@ -63,7 +63,7 @@ public class AvatarTagHelper : DuneUITagHelperBase
             fallbackTagBuilder.Attributes.Add(
                 "class",
                 BuildClassString(
-                    new ComponentName("dui-avatar-fallback"),
+                    new ThemeToken("dui-avatar-fallback"),
                     "flex size-full items-center justify-center text-sm group-data-[size=sm]/avatar:text-xs"
                 )
             );

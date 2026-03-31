@@ -1,0 +1,54 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Outline" id="--js-dialog-manual-button">
+            Open Dialog
+        </dui-button>
+        <label class="text-sm font-bold">Result:</label>
+        <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--js-dialog-manual-result">-</div>
+    </dui-stack>
+    <dui-dialog id="--js-dialog-manual-dialog">
+        <dui-dialog-header>
+            <dui-dialog-title>Manual Result</dui-dialog-title>
+            <dui-dialog-description>
+                Demonstrates how you can manually return a result.
+            </dui-dialog-description>
+        </dui-dialog-header>
+        <dui-dialog-footer>
+            <dui-button id="-js-dialog-manual-button-cancel" variant="ButtonVariant.Outline">
+                Cancel
+            </dui-button>
+            <dui-button id="-js-dialog-manual-button-confirm" variant="ButtonVariant.Outline">
+                Confirm
+            </dui-button>
+            <dui-button id="-js-dialog-manual-button-confirm-with-data" variant="ButtonVariant.Outline">
+                Confirm with Data
+            </dui-button>
+        </dui-dialog-footer>
+    </dui-dialog>
+    <script type="module">
+        (function () {
+            const dialog = window.duneui.dialog(document.getElementById("--js-dialog-manual-dialog"));
+            const resultDisplay = document.getElementById("--js-dialog-manual-result");
+            const triggerButton = document.getElementById("--js-dialog-manual-button");
+            const cancelButton = document.getElementById("-js-dialog-manual-button-cancel");
+            const confirmButton = document.getElementById("-js-dialog-manual-button-confirm");
+            const confirmWithDataButton = document.getElementById("-js-dialog-manual-button-confirm-with-data");
+
+            triggerButton.addEventListener("click", async (event) => {
+                const result = await dialog.showAsync();
+                resultDisplay.innerHTML = JSON.stringify(result, null, 4);
+            });
+            cancelButton.addEventListener("click", async (event) => {
+                dialog.cancel();
+            });
+            confirmButton.addEventListener("click", async (event) => {
+                dialog.confirm();
+            });
+            confirmWithDataButton.addEventListener("click", async (event) => {
+                dialog.confirm({name: "Ibn", surname: "Battutta"});
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>
