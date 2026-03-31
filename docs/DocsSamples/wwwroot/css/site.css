@@ -407,9 +407,6 @@
   .w-3\/4 {
     width: calc(3/4 * 100%);
   }
-  .w-12\! {
-    width: calc(var(--spacing) * 12) !important;
-  }
   .w-16 {
     width: calc(var(--spacing) * 16);
   }

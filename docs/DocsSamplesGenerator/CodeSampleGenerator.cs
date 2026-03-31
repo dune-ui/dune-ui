@@ -175,7 +175,6 @@ public partial class CodeSampleGenerator(WebApplicationFactory<Program> factory)
             "Avatar/_Intro",
             "Avatar/_NameOrInitials",
             "Avatar/_Sizes",
-            "Badge/_AsChild",
             "Badge/_CustomColors",
             "Badge/_IconLeft",
             "Badge/_IconRight",
