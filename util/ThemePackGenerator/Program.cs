@@ -36,6 +36,7 @@ public partial class Program
                 .CreateRadioButtonStyles()
                 .CleanDialogClasses()
                 .CleanPopoverClasses()
+                .CleanSheetClasses()
                 .CleanTooltipClasses();
 
             var fileName = Path.GetFileNameWithoutExtension(themeFile)

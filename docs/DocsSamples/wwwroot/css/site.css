@@ -368,6 +368,9 @@
   .h-fit {
     height: fit-content;
   }
+  .h-full {
+    height: 100%;
+  }
   .max-h-\[300px\] {
     max-height: 300px;
   }
@@ -969,6 +972,16 @@
       @media (hover: hover) {
         text-decoration-line: underline;
       }
+    }
+  }
+  .data-\[side\=bottom\]\:h-\[50vh\] {
+    &[data-side="bottom"] {
+      height: 50vh;
+    }
+  }
+  .data-\[side\=top\]\:h-\[50vh\] {
+    &[data-side="top"] {
+      height: 50vh;
     }
   }
   .sm\:gap-12 {

@@ -1,0 +1,69 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack gap="StackGap.Small" align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-js-events-sheet" command="show-modal">
+            Open Sheet
+        </dui-button>
+        <dui-input type="checkbox"
+                   id="--sheet-js-events-prevent-toggle-checkbox"
+                   label="PreventDefault() in beforetoggle event"
+                   description="Will prevent the sheet from opening"/>
+        <label class="text-sm font-bold">Events:</label>
+        <div class="font-mono w-full h-40 overflow-y-auto bg-gray-50" id="--sheet-js-events-output">
+        </div>
+    </dui-stack>
+    <dui-sheet id="--sheet-js-events-sheet">
+        <dui-sheet-header>
+            <dui-sheet-title>Events</dui-sheet-title>
+            <dui-sheet-description>This demonstrates the events on the sheet - or rather, the underlying dialog
+            </dui-sheet-description>
+        </dui-sheet-header>
+        <div class="p-4">
+            <dui-input type="checkbox"
+                       id="--sheet-js-events-prevent-cancel-checkbox"
+                       label="PreventDefault() in cancel event"
+                       description="Will prevent the Request Close button from closing the sheet"/>
+        </div>
+        <dui-sheet-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-js-events-sheet" command="close">
+                Close
+            </dui-button>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-js-events-sheet" command="request-close">
+                Request Close
+            </dui-button>
+        </dui-sheet-footer>
+    </dui-sheet>
+    <script>
+        (function () {
+            let counter = 0;
+            const sheet = document.getElementById('--sheet-js-events-sheet');
+            const output = document.getElementById('--sheet-js-events-output');
+            const preventToggleCheckbox = document.getElementById('--sheet-js-events-prevent-toggle-checkbox');
+            const preventCancelCheckbox = document.getElementById('--sheet-js-events-prevent-cancel-checkbox');
+
+            sheet.addEventListener("beforetoggle", (e) => {
+                if (preventToggleCheckbox.checked === true) {
+                    output.innerText = `${++counter}: beforetoggle event prevented!\n` + output.innerText;
+                    e.preventDefault();
+                    return;
+                }
+                output.innerText = `${++counter}: beforetoggle event: ${e.oldState} -> ${e.newState}\n` + output.innerText;
+            });
+            sheet.addEventListener("toggle", (e) => {
+                output.innerText = `${++counter}: toggle event: ${e.oldState} -> ${e.newState}\n` + output.innerText;
+            });
+            sheet.addEventListener("cancel", (e) => {
+                if (preventCancelCheckbox.checked === true) {
+                    output.innerText = `${++counter}: cancel event prevented!\n` + output.innerText;
+                    e.preventDefault();
+                    return;
+                }
+                output.innerText = `${++counter}: cancel event\n` + output.innerText;
+            });
+            sheet.addEventListener("close", (e) => {
+                output.innerText = `${++counter}: close event\n` + output.innerText;
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

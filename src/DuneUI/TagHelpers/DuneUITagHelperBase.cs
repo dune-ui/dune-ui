@@ -10,11 +10,14 @@ public class DuneUITagHelperBase : TagHelper
     private readonly Dictionary<string, TagHelperContent> _namedSlots =
         new Dictionary<string, TagHelperContent>();
 
-    [HtmlAttributeNotBound] public ICssClassMerger ClassMerger { get; }
+    [HtmlAttributeNotBound]
+    public ICssClassMerger ClassMerger { get; }
 
-    [HtmlAttributeNotBound] protected internal DuneUITagHelperBase? ParentTagHelper { get; private set; }
+    [HtmlAttributeNotBound]
+    protected internal DuneUITagHelperBase? ParentTagHelper { get; private set; }
 
-    [HtmlAttributeNotBound] protected ThemeManager ThemeManager { get; }
+    [HtmlAttributeNotBound]
+    protected ThemeManager ThemeManager { get; }
 
     public DuneUITagHelperBase(ThemeManager themeManager, ICssClassMerger classMerger)
     {
@@ -58,9 +61,10 @@ public class DuneUITagHelperBase : TagHelper
             return ClassMerger.Merge([.. additionalClasses]);
         }
 
-        return ClassMerger.Merge(
-            [ThemeManager.GetComponentClass(themeTokenName), .. additionalClasses]
-        );
+        return ClassMerger.Merge([
+            ThemeManager.GetComponentClass(themeTokenName),
+            .. additionalClasses,
+        ]);
     }
 
     protected T? GetParentTagHelper<T>()

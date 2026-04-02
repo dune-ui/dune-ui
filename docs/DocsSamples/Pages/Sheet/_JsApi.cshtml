@@ -1,0 +1,43 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-group justify="GroupJustify.Center">
+        <dui-button variant="ButtonVariant.Outline" id="--sheet-js-api-show-modal-button">
+            Show Modal
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" id="--sheet-js-api-show-button">
+            Show
+        </dui-button>
+    </dui-group>
+    <dui-sheet id="--sheet-js-api-sheet">
+        <dui-sheet-header>
+            <dui-sheet-title>JavaScript API</dui-sheet-title>
+            <dui-sheet-description>You can open and close this sheet using the dialog JS API</dui-sheet-description>
+        </dui-sheet-header>
+        <dui-sheet-footer>
+            <dui-button variant="ButtonVariant.Outline" id="--sheet-js-api-close-button">
+                Close via JS
+            </dui-button>
+        </dui-sheet-footer>
+    </dui-sheet>
+    <script>
+        (function() {
+            const sheet = document.getElementById("--sheet-js-api-sheet");
+            const showModalButton = document.getElementById("--sheet-js-api-show-modal-button");
+            const showButton = document.getElementById("--sheet-js-api-show-button");
+            const closeButton = document.getElementById("--sheet-js-api-close-button");
+
+            showModalButton.addEventListener("click", () => {
+                sheet.showModal();
+            });
+
+            showButton.addEventListener("click", () => {
+                sheet.show();
+            });
+
+            closeButton.addEventListener("click", () => {
+                sheet.close();
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

@@ -163,6 +163,20 @@ public static partial class Processors
             return output;
         }
 
+        public Dictionary<string, string> CleanSheetClasses()
+        {
+            var output = new Dictionary<string, string>(input);
+
+            if (output.TryGetValue("dui-sheet-content", out var classes))
+            {
+                classes = classes.Replace("z-50 flex flex-col ", string.Empty);
+
+                output["dui-sheet-content"] = classes;
+            }
+
+            return output;
+        }
+
         /// <summary>
         ///     Shadcn tooltip animations were specified using a number of data classes. Since we are using the native
         ///     popover APIs, animations are declared differently and these are not required anymore.

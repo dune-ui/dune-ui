@@ -1,0 +1,60 @@
+﻿<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center gap-2">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-dismiss-default" command="show-modal">
+            Default Dismiss
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-dismiss-light" command="show-modal">
+            Light Dismiss
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-dismiss-manual" command="show-modal">
+            Manual Dismiss
+        </dui-button>
+    </div>
+    <dui-sheet id="--sheet-dismiss-default">
+        <dui-sheet-header>
+            <dui-sheet-title>Default Dismiss</dui-sheet-title>
+        </dui-sheet-header>
+        <div class="p-4">
+            <p>This sheet can be closed by pressing the
+                <dui-kbd>Esc</dui-kbd>
+                key or clicking the close button below.
+            </p>
+        </div>
+        <dui-sheet-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-dismiss-default" command="close">
+                Close
+            </dui-button>
+        </dui-sheet-footer>
+    </dui-sheet>
+    <dui-sheet id="--sheet-dismiss-light" closedby="any">
+        <dui-sheet-header>
+            <dui-sheet-title>Light Dismiss</dui-sheet-title>
+        </dui-sheet-header>
+        <div class="p-4">
+            <p>This sheet can be closed by pressing the
+                <dui-kbd>Esc</dui-kbd>
+                key, clicking on the backdrop, or clicking the close button below.
+            </p>
+        </div>
+        <dui-sheet-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-dismiss-light" command="close">
+                Close
+            </dui-button>
+        </dui-sheet-footer>
+    </dui-sheet>
+    <dui-sheet id="--sheet-dismiss-manual" closedby="none">
+        <dui-sheet-header>
+            <dui-sheet-title>Manual Dismiss</dui-sheet-title>
+        </dui-sheet-header>
+        <div class="p-4">
+            <p>This sheet can only be closed by clicking the close button below.</p>
+        </div>
+        <dui-sheet-footer>
+            <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-dismiss-manual" command="close">
+                Close
+            </dui-button>
+        </dui-sheet-footer>
+    </dui-sheet>
+    <!-- code end -->
+</div>
