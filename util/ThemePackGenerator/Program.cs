@@ -8,7 +8,20 @@ public partial class Program
 {
     public static async Task Main(string[] args)
     {
-        var themePackFolder = @"C:\development\dune-ui\dune-ui\src\DuneUI\Theming\ThemePacks";
+        var themePackFolder = Path.GetFullPath(
+            Path.Combine(
+                AppContext.BaseDirectory,
+                "..",
+                "..",
+                "..",
+                "..",
+                "..",
+                "src",
+                "DuneUI",
+                "Theming",
+                "ThemePacks"
+            )
+        );
         string[] themeFiles =
         [
             "https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/styles/style-lyra.css",
@@ -18,7 +31,7 @@ public partial class Program
             "https://raw.githubusercontent.com/shadcn-ui/ui/refs/heads/main/apps/v4/registry/styles/style-vega.css",
         ];
 
-        var httpClient = new HttpClient();
+        var httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(10) };
 
         foreach (var themeFile in themeFiles)
         {
