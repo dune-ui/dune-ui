@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sidebar prototype — server-rendered (HTML + Tailwind + JS)</title>
+
+    <!--
+      Tailwind v4 browser build. Lets us use the same v4 arbitrary-value syntax
+      the real project uses, e.g. w-(--sidebar-width).
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!--
+      Minimal theme tokens so bg-sidebar / border-sidebar-border etc. resolve.
+      In the real library these come from the DuneUI theme.
+    -->
+    <style type="text/tailwindcss">
+      @theme {
+        --color-background: oklch(1 0 0);
+        --color-foreground: oklch(0.145 0 0);
+        --color-border: oklch(0.922 0 0);
+
+        --color-sidebar: oklch(0.985 0 0);
+        --color-sidebar-foreground: oklch(0.145 0 0);
+        --color-sidebar-border: oklch(0.922 0 0);
+        --color-sidebar-accent: oklch(0.97 0 0);
+        --color-sidebar-accent-foreground: oklch(0.205 0 0);
+      }
+    </style>
+  </head>
+
+  <body class="bg-background text-foreground">
+    <!--
+      ============================================================================
+      sidebar-wrapper  (= SidebarProvider in shadcn)
+      ----------------------------------------------------------------------------
+      - Holds the CSS custom properties that drive all the widths.
+      - Lays the sidebar + main content out side-by-side with flex.
+      - The whole "state" of the sidebar lives in data-* attributes on the
+        .sidebar element below, and CSS group-data-[...] variants react to them.
+        That is what replaces React's conditional rendering: nothing in the DOM
+        is added/removed, attributes just flip and CSS does the rest.
+      ============================================================================
+    -->
+    <div
+      data-slot="sidebar-wrapper"
+      class="group/wrapper flex min-h-svh w-full"
+      style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem; --sidebar-width-mobile: 18rem"
+    >
+      <!--
+        ------------------------------------------------------------------------
+        sidebar root (the `group peer` element)
+        ------------------------------------------------------------------------
+        Two independent pieces of state live here:
+          data-state  = expanded | collapsed   -> desktop (md+) behaviour
+          data-mobile = open     | closed      -> mobile (<md) drawer behaviour
+        Keeping them separate means resizing the window never leaves the sidebar
+        in a weird half-state: each breakpoint reads its own attribute.
+
+        Unlike shadcn (where the desktop sidebar is `hidden md:block` and a
+        totally separate Sheet is rendered for mobile), this single element
+        serves both modes.
+      -->
+      <div
+        id="sidebar"
+        data-slot="sidebar"
+        data-state="expanded"
+        data-mobile="closed"
+        data-side="left"
+        class="group peer text-sidebar-foreground data-[side=right]:order-last"
+      >
+        <!--
+          1) Backdrop — mobile only. Fades in when the drawer is open and
+             captures clicks to close it. Hidden entirely on desktop (md:hidden).
+        -->
+        <div
+          data-slot="sidebar-backdrop"
+          data-sidebar-close
+          class="fixed inset-0 z-20 bg-black/50 opacity-0 transition-opacity duration-200 ease-linear pointer-events-none md:hidden group-data-[mobile=open]:opacity-100 group-data-[mobile=open]:pointer-events-auto"
+        ></div>
+
+        <!--
+          2) Gap — desktop only. This is the invisible spacer that actually
+             "pushes" the main content. It sits in normal flex flow and shrinks
+             to 0 when collapsed, so the content slides over. The fixed container
+             below is positioned on top of this gap.
+        -->
+        <div
+          data-slot="sidebar-gap"
+          class="relative hidden h-svh w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear md:block md:group-data-[state=collapsed]:w-0"
+        ></div>
+
+        <!--
+          3) Container — the visible panel. Always `fixed`.
+
+             side=left  attaches to left-0  + border-r;  side=right -> right-0 + border-l.
+
+             Mobile  (max-md): off-canvas drawer driven by translateX.
+                       - hidden  : slides out toward its own edge
+                                   (left side -> -100%, right side -> +100%)
+                       - open    : translate-x-0
+                       These rules are scoped to `max-md:` so they literally do
+                       not exist at desktop widths — desktop never sees a transform.
+             Desktop (md+): no transform at all; the panel is shown/hidden by
+                       animating `left`/`right` so it tucks under the gap and the
+                       content reflows instead of being overlaid.
+
+             Because mobile uses `transform` and desktop uses `left`/`right`, and
+             the open/closed rules key off mutually-exclusive data-mobile values,
+             nothing ever fights over the same property.
+        -->
+        <div
+          data-slot="sidebar-container"
+          class="fixed inset-y-0 z-30 flex h-svh w-(--sidebar-width-mobile) border-sidebar-border bg-sidebar transition-[left,right,transform] duration-200 ease-linear md:w-(--sidebar-width)
+                 group-data-[side=left]:left-0 group-data-[side=right]:right-0
+                 group-data-[side=left]:border-r group-data-[side=right]:border-l
+                 max-md:group-data-[mobile=closed]:group-data-[side=left]:-translate-x-full
+                 max-md:group-data-[mobile=closed]:group-data-[side=right]:translate-x-full
+                 max-md:group-data-[mobile=open]:translate-x-0
+                 md:group-data-[state=collapsed]:group-data-[side=left]:left-[calc(var(--sidebar-width)*-1)]
+                 md:group-data-[state=collapsed]:group-data-[side=right]:right-[calc(var(--sidebar-width)*-1)]"
+        >
+          <!-- inner: the scrollable flex column that real content goes into -->
+          <div data-slot="sidebar-inner" class="flex size-full flex-col">
+            <!-- header -->
+            <div class="flex items-center justify-between gap-2 p-3">
+              <span class="text-sm font-semibold">Dune UI</span>
+              <!-- mobile-only close button -->
+              <button
+                type="button"
+                data-sidebar-close
+                class="inline-flex size-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:hidden"
+                aria-label="Close sidebar"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </button>
+            </div>
+
+            <div class="border-t border-sidebar-border"></div>
+
+            <!--
+              content — intentionally just a placeholder panel.
+              No menu items / groups yet, per the brief.
+            -->
+            <div class="flex-1 overflow-auto p-3 text-sm text-sidebar-foreground/70">
+              Sidebar content goes here.
+            </div>
+
+            <div class="border-t border-sidebar-border p-3 text-xs text-sidebar-foreground/60">
+              Footer
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        ------------------------------------------------------------------------
+        sidebar-inset  (= main content area)
+        ------------------------------------------------------------------------
+        Just a flex-1 column. Because the desktop gap above lives in flex flow,
+        this content automatically reflows when the sidebar collapses — no JS
+        needed to resize it.
+      -->
+      <main data-slot="sidebar-inset" class="relative flex w-full flex-1 flex-col">
+        <header class="flex h-14 items-center gap-3 border-b border-border px-4">
+          <!--
+            sidebar-trigger. A single button that toggles whichever state is
+            relevant for the current breakpoint (drawer on mobile, collapse on
+            desktop). The JS controller decides which.
+          -->
+          <button
+            type="button"
+            data-sidebar-trigger
+            aria-controls="sidebar"
+            aria-label="Toggle sidebar"
+            class="inline-flex size-9 items-center justify-center rounded-md border border-border hover:bg-sidebar-accent"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>
+          </button>
+          <button
+            type="button"
+            data-sidebar-side
+            class="inline-flex h-9 items-center rounded-md border border-border px-3 text-sm hover:bg-sidebar-accent"
+          >
+            Side: <span data-sidebar-side-label class="ml-1 font-medium">left</span>
+          </button>
+          <span class="hidden text-sm text-foreground/60 sm:inline">
+            Toggle the sidebar — resize below/above 768px to see both modes.
+          </span>
+        </header>
+
+        <div class="flex-1 p-6">
+          <h1 class="text-lg font-semibold">Main content</h1>
+          <p class="mt-2 max-w-prose text-sm text-foreground/70">
+            On desktop the sidebar collapses off-canvas and this area reflows to fill
+            the space. On mobile (&lt; 768px) the same sidebar markup becomes an
+            overlay drawer with a backdrop. Press <kbd class="rounded border px-1">Ctrl/⌘ + B</kbd>
+            to toggle as well.
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // ----------------------------------------------------------------------
+      // Tiny controller. The entire job of the JS is to flip data-* attributes;
+      // all visual behaviour is handled by the CSS variants above.
+      // ----------------------------------------------------------------------
+      (function () {
+        const sidebar = document.getElementById("sidebar");
+        const MOBILE_QUERY = window.matchMedia("(min-width: 768px)");
+
+        const isDesktop = () => MOBILE_QUERY.matches;
+
+        function toggle() {
+          if (isDesktop()) {
+            sidebar.dataset.state =
+              sidebar.dataset.state === "expanded" ? "collapsed" : "expanded";
+          } else {
+            sidebar.dataset.mobile =
+              sidebar.dataset.mobile === "open" ? "closed" : "open";
+          }
+        }
+
+        function closeMobile() {
+          sidebar.dataset.mobile = "closed";
+        }
+
+        // Trigger button(s)
+        document
+          .querySelectorAll("[data-sidebar-trigger]")
+          .forEach((el) => el.addEventListener("click", toggle));
+
+        // Anything marked data-sidebar-close (backdrop, close button) closes the drawer
+        document
+          .querySelectorAll("[data-sidebar-close]")
+          .forEach((el) => el.addEventListener("click", closeMobile));
+
+        // Flip the sidebar side (left <-> right). Purely flips data-side; every
+        // edge/border/slide-direction is handled by CSS variants.
+        const sideLabel = document.querySelector("[data-sidebar-side-label]");
+        document
+          .querySelectorAll("[data-sidebar-side]")
+          .forEach((el) =>
+            el.addEventListener("click", () => {
+              sidebar.dataset.side =
+                sidebar.dataset.side === "right" ? "left" : "right";
+              if (sideLabel) sideLabel.textContent = sidebar.dataset.side;
+            })
+          );
+
+        // Esc closes the mobile drawer
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeMobile();
+          // Ctrl/Cmd + B toggles, like shadcn
+          if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "b") {
+            e.preventDefault();
+            toggle();
+          }
+        });
+
+        // When crossing the breakpoint, always reset the mobile drawer so we
+        // never land on desktop with a half-open overlay.
+        MOBILE_QUERY.addEventListener("change", closeMobile);
+      })();
+    </script>
+  </body>
+</html>
