@@ -21,11 +21,25 @@ public class SidebarTriggerTagHelper : DuneUITagHelperBase
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        var userClass = output.GetUserSuppliedClass();
-        var childContent = await output.GetChildContentAsync();
+        output.TagName = "button";
+        output.TagMode = TagMode.StartTagAndEndTag;
+
+        output.Attributes.SetAttribute("type", "button");
+        output.Attributes.SetAttribute("data-slot", "sidebar-trigger");
+        output.Attributes.SetAttribute("aria-label", "Toggle Sidebar");
+
+        // Target the parent `del-sidebar` via the native command API. When clicked,
+        // the button dispatches a `command` event on that element, which toggles it.
+        var sidebarId = GetParentTagHelper<SidebarWrapperTagHelper>()?.SidebarId;
+        if (sidebarId != null)
+        {
+            output.Attributes.SetAttribute("command", "--toggle-sidebar");
+            output.Attributes.SetAttribute("commandfor", sidebarId);
+        }
 
         // Default icon, unless the user supplied their own content.
         TagHelperContent iconContent;
+        var childContent = await output.GetChildContentAsync();
         if (!childContent.IsEmptyOrWhiteSpace)
         {
             iconContent = childContent;
@@ -45,37 +59,13 @@ public class SidebarTriggerTagHelper : DuneUITagHelperBase
             iconContent = new DefaultTagHelperContent().AppendHtml(iconOutput);
         }
 
-        var attributes = new TagHelperAttributeList
-        {
-            new TagHelperAttribute("type", "button"),
-            new TagHelperAttribute("data-slot", "sidebar-trigger"),
-            new TagHelperAttribute("aria-label", "Toggle Sidebar"),
-            new TagHelperAttribute("class", userClass),
-        };
-
-        // Target the parent `del-sidebar` via the native command API. When clicked,
-        // the button dispatches a `command` event on that element, which toggles it.
-        var sidebarId = GetParentTagHelper<SidebarWrapperTagHelper>()?.SidebarId;
-        if (sidebarId != null)
-        {
-            attributes.Add(new TagHelperAttribute("command", "--toggle-sidebar"));
-            attributes.Add(new TagHelperAttribute("commandfor", sidebarId));
-        }
-
-        var buttonOutput = new TagHelperOutput(
-            string.Empty,
-            attributes,
-            (_, _) => Task.FromResult(new DefaultTagHelperContent().AppendHtml(iconContent))
+        ButtonRenderingHelper.RenderAttributes(
+            output,
+            ClassMerger,
+            ButtonVariant.Ghost,
+            ButtonSize.IconSmall
         );
 
-        var buttonTagHelper = new ButtonTagHelper(ThemeManager, ClassMerger)
-        {
-            Size = ButtonSize.IconSmall,
-            Variant = ButtonVariant.Ghost,
-        };
-        await buttonTagHelper.ProcessAsync(context, buttonOutput);
-
-        output.TagName = null;
-        output.Content.SetHtmlContent(buttonOutput);
+        output.Content.SetHtmlContent(iconContent);
     }
 }
