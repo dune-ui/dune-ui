@@ -1,0 +1,154 @@
+@*
+    A feature-rich sidebar for the fictitious "Voyager Travel" admin console.
+    Demonstrates most sidebar building blocks together: a branded header, grouped
+    menus with labels, an active item, menu badges, a nested sub-menu, a
+    separator, and a user footer — plus the trigger in the inset header.
+*@
+<dui-sidebar-wrapper>
+    <dui-sidebar>
+        <dui-sidebar-header>
+            <dui-sidebar-menu>
+                <dui-sidebar-menu-item>
+                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
+                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                            <dui-icon name="compass"/>
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Voyager Travel</span>
+                            <span class="truncate text-xs text-muted-foreground">Admin Console</span>
+                        </div>
+                    </dui-sidebar-menu-link>
+                </dui-sidebar-menu-item>
+            </dui-sidebar-menu>
+        </dui-sidebar-header>
+
+        <dui-sidebar-content>
+            <dui-sidebar-group>
+                <dui-sidebar-group-label>Platform</dui-sidebar-group-label>
+                <dui-sidebar-group-content>
+                    <dui-sidebar-menu>
+                        @* Active item — points back at this page so it resolves as the active route. *@
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link asp-page="/WithLayout" asp-route-name="Sidebar/_Intro">
+                                <dui-icon name="layout-dashboard"/>
+                                <span>Dashboard</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="ticket"/>
+                                <span>Bookings</span>
+                            </dui-sidebar-menu-link>
+                            <dui-sidebar-menu-badge>12</dui-sidebar-menu-badge>
+                        </dui-sidebar-menu-item>
+                        @* Menu item with a nested sub-menu. *@
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="map-pinned"/>
+                                <span>Destinations</span>
+                            </dui-sidebar-menu-link>
+                            <dui-sidebar-menu-sub>
+                                <dui-sidebar-menu-sub-item>
+                                    <dui-sidebar-menu-sub-link href="#"><span>Europe</span></dui-sidebar-menu-sub-link>
+                                </dui-sidebar-menu-sub-item>
+                                <dui-sidebar-menu-sub-item>
+                                    <dui-sidebar-menu-sub-link href="#"><span>Asia Pacific</span></dui-sidebar-menu-sub-link>
+                                </dui-sidebar-menu-sub-item>
+                                <dui-sidebar-menu-sub-item>
+                                    <dui-sidebar-menu-sub-link href="#"><span>The Americas</span></dui-sidebar-menu-sub-link>
+                                </dui-sidebar-menu-sub-item>
+                            </dui-sidebar-menu-sub>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="users"/>
+                                <span>Customers</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                    </dui-sidebar-menu>
+                </dui-sidebar-group-content>
+            </dui-sidebar-group>
+
+            <dui-sidebar-group>
+                <dui-sidebar-group-label>Operations</dui-sidebar-group-label>
+                <dui-sidebar-group-content>
+                    <dui-sidebar-menu>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="plane-takeoff"/>
+                                <span>Flights</span>
+                            </dui-sidebar-menu-link>
+                            <dui-sidebar-menu-badge>3</dui-sidebar-menu-badge>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="hotel"/>
+                                <span>Hotels</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="calendar-days"/>
+                                <span>Itineraries</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                    </dui-sidebar-menu>
+                </dui-sidebar-group-content>
+            </dui-sidebar-group>
+
+            <dui-sidebar-separator/>
+
+            <dui-sidebar-group>
+                <dui-sidebar-group-label>Insights</dui-sidebar-group-label>
+                <dui-sidebar-group-content>
+                    <dui-sidebar-menu>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="chart-line"/>
+                                <span>Reports</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="file-text"/>
+                                <span>Invoices</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                    </dui-sidebar-menu>
+                </dui-sidebar-group-content>
+            </dui-sidebar-group>
+        </dui-sidebar-content>
+
+        <dui-sidebar-footer>
+            <dui-sidebar-menu>
+                <dui-sidebar-menu-item>
+                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
+                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-muted text-foreground">
+                            <dui-icon name="user"/>
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Amelia Hart</span>
+                            <span class="truncate text-xs text-muted-foreground">amelia@voyager.travel</span>
+                        </div>
+                        <dui-icon name="chevrons-up-down" class="ml-auto"/>
+                    </dui-sidebar-menu-link>
+                </dui-sidebar-menu-item>
+            </dui-sidebar-menu>
+        </dui-sidebar-footer>
+    </dui-sidebar>
+
+    <dui-sidebar-inset>
+        <header class="flex h-14 items-center gap-2 border-b px-4">
+            <dui-sidebar-trigger></dui-sidebar-trigger>
+            <dui-separator orientation="SeparatorOrientation.Vertical" class="mx-1 h-4"/>
+            <span class="text-sm font-medium">Dashboard</span>
+        </header>
+        <div class="p-4">
+            <p class="text-sm text-muted-foreground">
+                A full-featured sidebar — header, grouped navigation with labels, an active
+                item, badges, a nested sub-menu, a separator, and a user footer. Toggle it
+                with the trigger (Ctrl/⌘ + B).
+            </p>
+        </div>
+    </dui-sidebar-inset>
+</dui-sidebar-wrapper>

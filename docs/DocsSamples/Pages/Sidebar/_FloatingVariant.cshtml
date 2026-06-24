@@ -1,0 +1,90 @@
+@*
+    Demonstrates the floating variant via `variant="SidebarVariant.Floating"`. The
+    sidebar floats as a detached, rounded panel with a border and shadow, for the
+    fictitious "Voyager Travel" admin console.
+*@
+<dui-sidebar-wrapper>
+    <dui-sidebar variant="SidebarVariant.Floating">
+        <dui-sidebar-header>
+            <dui-sidebar-menu>
+                <dui-sidebar-menu-item>
+                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
+                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                            <dui-icon name="compass"/>
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Voyager Travel</span>
+                            <span class="truncate text-xs text-muted-foreground">Admin Console</span>
+                        </div>
+                    </dui-sidebar-menu-link>
+                </dui-sidebar-menu-item>
+            </dui-sidebar-menu>
+        </dui-sidebar-header>
+
+        <dui-sidebar-content>
+            <dui-sidebar-group>
+                <dui-sidebar-group-label>Platform</dui-sidebar-group-label>
+                <dui-sidebar-group-content>
+                    <dui-sidebar-menu>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="layout-dashboard"/>
+                                <span>Dashboard</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="ticket"/>
+                                <span>Bookings</span>
+                            </dui-sidebar-menu-link>
+                            <dui-sidebar-menu-badge>12</dui-sidebar-menu-badge>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="map-pinned"/>
+                                <span>Destinations</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                        <dui-sidebar-menu-item>
+                            <dui-sidebar-menu-link href="#">
+                                <dui-icon name="users"/>
+                                <span>Customers</span>
+                            </dui-sidebar-menu-link>
+                        </dui-sidebar-menu-item>
+                    </dui-sidebar-menu>
+                </dui-sidebar-group-content>
+            </dui-sidebar-group>
+        </dui-sidebar-content>
+
+        <dui-sidebar-footer>
+            <dui-sidebar-menu>
+                <dui-sidebar-menu-item>
+                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
+                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-muted text-foreground">
+                            <dui-icon name="user"/>
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Amelia Hart</span>
+                            <span class="truncate text-xs text-muted-foreground">amelia@voyager.travel</span>
+                        </div>
+                        <dui-icon name="chevrons-up-down" class="ml-auto"/>
+                    </dui-sidebar-menu-link>
+                </dui-sidebar-menu-item>
+            </dui-sidebar-menu>
+        </dui-sidebar-footer>
+    </dui-sidebar>
+
+    <dui-sidebar-inset>
+        <header class="flex h-14 items-center gap-2 border-b px-4">
+            <dui-sidebar-trigger></dui-sidebar-trigger>
+            <dui-separator orientation="SeparatorOrientation.Vertical" class="mx-1 h-4"/>
+            <span class="text-sm font-medium">Dashboard</span>
+        </header>
+        <div class="p-4">
+            <p class="text-sm text-muted-foreground">
+                The <code class="font-mono">floating</code> variant detaches the sidebar into a
+                rounded panel with its own border and shadow.
+            </p>
+        </div>
+    </dui-sidebar-inset>
+</dui-sidebar-wrapper>
