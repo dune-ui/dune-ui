@@ -1,0 +1,130 @@
+<dui-sidebar-wrapper>
+    <dui-sidebar>
+        <dui-sidebar-header>
+            <dui-sidebar-menu>
+                <dui-sidebar-menu-item>
+                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
+                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                            <dui-icon name="compass"/>
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Voyager Travel</span>
+                            <span class="truncate text-xs text-muted-foreground">Admin Console</span>
+                        </div>
+                    </dui-sidebar-menu-link>
+                </dui-sidebar-menu-item>
+            </dui-sidebar-menu>
+        </dui-sidebar-header>
+
+        <dui-sidebar-content>
+            <dui-sidebar-group>
+                <button type="button" command="--toggle" commandfor="group-platform" class="block w-full">
+                    <dui-sidebar-group-label class="cursor-pointer hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                        <span>Platform</span>
+                        <dui-icon name="chevron-right" class="ml-auto in-aria-expanded:hidden"/>
+                        <dui-icon name="chevron-down" class="ml-auto not-in-aria-expanded:hidden"/>
+                    </dui-sidebar-group-label>
+                </button>
+                <dui-collapsible id="group-platform" class="block">
+                    <dui-sidebar-group-content>
+                        <dui-sidebar-menu>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link asp-page="/WithLayout" asp-route-name="Sidebar/_CollapsibleGroups">
+                                    <dui-icon name="layout-dashboard"/>
+                                    <span>Dashboard</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link href="#">
+                                    <dui-icon name="ticket"/>
+                                    <span>Bookings</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link href="#">
+                                    <dui-icon name="map-pinned"/>
+                                    <span>Destinations</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link href="#">
+                                    <dui-icon name="users"/>
+                                    <span>Customers</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                        </dui-sidebar-menu>
+                    </dui-sidebar-group-content>
+                </dui-collapsible>
+            </dui-sidebar-group>
+
+            <dui-sidebar-group>
+                <button type="button" command="--toggle" commandfor="group-resources" class="block w-full">
+                    <dui-sidebar-group-label class="cursor-pointer hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                        <span>Resources</span>
+                        <dui-icon name="chevron-right" class="ml-auto in-aria-expanded:hidden"/>
+                        <dui-icon name="chevron-down" class="ml-auto not-in-aria-expanded:hidden"/>
+                    </dui-sidebar-group-label>
+                </button>
+                <dui-collapsible id="group-resources" hidden="" class="block">
+                    <dui-sidebar-group-content>
+                        <dui-sidebar-menu>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link href="#">
+                                    <dui-icon name="book-open"/>
+                                    <span>Documentation</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link href="#">
+                                    <dui-icon name="life-buoy"/>
+                                    <span>Support</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                            <dui-sidebar-menu-item>
+                                <dui-sidebar-menu-link href="#">
+                                    <dui-icon name="sparkles"/>
+                                    <span>Changelog</span>
+                                </dui-sidebar-menu-link>
+                            </dui-sidebar-menu-item>
+                        </dui-sidebar-menu>
+                    </dui-sidebar-group-content>
+                </dui-collapsible>
+            </dui-sidebar-group>
+        </dui-sidebar-content>
+
+        <dui-sidebar-footer>
+            <dui-sidebar-menu>
+                <dui-sidebar-menu-item>
+                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
+                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-muted text-foreground">
+                            <dui-icon name="user"/>
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Amelia Hart</span>
+                            <span class="truncate text-xs text-muted-foreground">amelia@@voyager.travel</span>
+                        </div>
+                        <dui-icon name="chevrons-up-down" class="ml-auto"/>
+                    </dui-sidebar-menu-link>
+                </dui-sidebar-menu-item>
+            </dui-sidebar-menu>
+        </dui-sidebar-footer>
+    </dui-sidebar>
+
+    <dui-sidebar-inset>
+        <header class="flex h-14 items-center gap-2 border-b px-4">
+            <dui-sidebar-trigger></dui-sidebar-trigger>
+            <dui-separator orientation="SeparatorOrientation.Vertical" class="mx-1 h-4"/>
+            <span class="text-sm font-medium">Dashboard</span>
+        </header>
+        <div class="p-4">
+            <p class="text-sm text-muted-foreground">
+                Whole sidebar groups collapse here. Each <code class="font-mono">dui-sidebar-group-label</code>
+                is wrapped in a <code class="font-mono">&lt;button&gt;</code> that toggles a
+                <code class="font-mono">dui-collapsible</code> around the group's
+                <code class="font-mono">dui-sidebar-group-content</code> via the Invoker Commands API.
+                <strong>Platform</strong> starts open and <strong>Resources</strong> starts collapsed;
+                the chevron flips with the group's <code class="font-mono">aria-expanded</code> state.
+            </p>
+        </div>
+    </dui-sidebar-inset>
+</dui-sidebar-wrapper>
