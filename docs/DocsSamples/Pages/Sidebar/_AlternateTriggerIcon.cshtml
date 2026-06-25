@@ -1,15 +1,3 @@
-@*
-    Demonstrates swapping the trigger icon based on the sidebar's open state.
-
-    The `del-sidebar` web component reflects the current state onto the trigger as
-    `aria-expanded="true|false"`. The two icons below are toggled purely with
-    Tailwind classes via the `in-aria-expanded` / `not-in-aria-expanded` custom
-    variants (defined in the docs site.css), which match against an ancestor
-    `[aria-expanded="true"]` element — here, the trigger button itself.
-
-        expanded  -> show "panel-left-close"  (collapse the sidebar)
-        collapsed -> show "panel-left-open"   (expand the sidebar)
-*@
 <dui-sidebar-wrapper>
     <dui-sidebar>
         <dui-sidebar-header>
