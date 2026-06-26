@@ -1,0 +1,85 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center">
+        <dui-button variant="ButtonVariant.Outline" commandfor="dialog-settings" command="show-modal">
+            Open settings
+        </dui-button>
+    </div>
+
+    @* A native <dialog> defaults to fit-content width, and dui-dialog's default classes
+       cap it at `sm:max-w-sm`. So give it an explicit responsive width (760px, shrinking on
+       narrow viewports) and clear that cap with `sm:max-w-none`. *@
+    <dui-dialog id="dialog-settings" class="w-[min(760px,100vw_-_2rem)] overflow-hidden p-0 sm:max-w-none">
+        <dui-dialog-title class="sr-only">Settings</dui-dialog-title>
+        <dui-dialog-description class="sr-only">Customize your settings here.</dui-dialog-description>
+
+        <dui-sidebar-wrapper class="min-h-0 items-start">
+            @* `collapsible="None"` renders a static, in-flow sidebar (no toggle, no
+               off-canvas drawer) — the variant suited to embedding. *@
+            <dui-sidebar collapsible="SidebarCollapsible.None" class="flex h-[480px] w-48">
+                <dui-sidebar-content>
+                    <dui-sidebar-group>
+                        <dui-sidebar-group-content>
+                            <dui-sidebar-menu>
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link href="#">
+                                        <dui-icon name="bell"/>
+                                        <span>Notifications</span>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link href="#">
+                                        <dui-icon name="navigation"/>
+                                        <span>Navigation</span>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link href="#">
+                                        <dui-icon name="paintbrush"/>
+                                        <span>Appearance</span>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                                <dui-sidebar-menu-item>
+                                    @* Manually marked active for the demo. *@
+                                    <dui-sidebar-menu-link href="#" data-active>
+                                        <dui-icon name="message-circle"/>
+                                        <span>Messages &amp; media</span>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link href="#">
+                                        <dui-icon name="globe"/>
+                                        <span>Language &amp; region</span>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                                <dui-sidebar-menu-item>
+                                    <dui-sidebar-menu-link href="#">
+                                        <dui-icon name="accessibility"/>
+                                        <span>Accessibility</span>
+                                    </dui-sidebar-menu-link>
+                                </dui-sidebar-menu-item>
+                            </dui-sidebar-menu>
+                        </dui-sidebar-group-content>
+                    </dui-sidebar-group>
+                </dui-sidebar-content>
+            </dui-sidebar>
+
+            <main class="flex h-[480px] flex-1 flex-col overflow-hidden">
+                <header class="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+                    <span class="text-base font-medium">Messages &amp; media</span>
+                </header>
+                <div class="flex flex-1 flex-col gap-4 overflow-y-auto p-4">
+                    <p class="text-sm text-muted-foreground">
+                        A static <code class="font-mono">collapsible="None"</code> sidebar lives inside the
+                        dialog. The list below scrolls independently of the sidebar.
+                    </p>
+                    <div class="aspect-video max-w-3xl rounded-lg bg-muted"></div>
+                    <div class="aspect-video max-w-3xl rounded-lg bg-muted"></div>
+                    <div class="aspect-video max-w-3xl rounded-lg bg-muted"></div>
+                    <div class="aspect-video max-w-3xl rounded-lg bg-muted"></div>
+                </div>
+            </main>
+        </dui-sidebar-wrapper>
+    </dui-dialog>
+    <!-- code end -->
+</div>
