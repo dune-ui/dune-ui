@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using DocsSamples;
 using Microsoft.AspNetCore.Mvc.Testing;
 
@@ -7,19 +8,51 @@ namespace DocsSamplesGenerator;
 public partial class CodeSampleGenerator(WebApplicationFactory<Program> factory)
     : IClassFixture<WebApplicationFactory<Program>>
 {
-    private static readonly string PageSourceCodeFolder =
-        @"C:\development\dune-ui\dune-ui\docs\DocsSamples\Pages";
+    private static readonly string RepoRootFolder = GetRepoRootFolder();
 
-    private static readonly string DocsProjectRootFolder = @"C:\development\dune-ui\website";
+    // CodeSampleGenerator.cs lives at <repoRoot>/docs/DocsSamplesGenerator/, so the repo root is
+    // two directories up from this source file. [CallerFilePath] is resolved at compile time, which
+    // keeps this correct regardless of the test runner's working directory or assembly shadow copying.
+    private static string GetRepoRootFolder([CallerFilePath] string sourceFilePath = "") =>
+        Path.GetFullPath(Path.Combine(Path.GetDirectoryName(sourceFilePath)!, "..", ".."));
 
-    private static readonly string RenderedPagesOutputFolder =
-        DocsProjectRootFolder + @"\public\demo\tag-helpers";
+    private static readonly string PageSourceCodeFolder = Path.Combine(
+        RepoRootFolder,
+        "docs",
+        "DocsSamples",
+        "Pages"
+    );
 
-    private static readonly string PagesSourceCodeOutputFolder =
-        DocsProjectRootFolder + @"\content\docs\tag-helpers\components\_include";
+    private static readonly string DocsProjectRootFolder = Environment.GetEnvironmentVariable(
+        "DUNEUI_WEBSITE_DIR"
+    )
+        is { Length: > 0 } websiteDir
+        ? Path.GetFullPath(websiteDir)
+        : Path.GetFullPath(Path.Combine(RepoRootFolder, "..", "website"));
 
-    private static readonly string DownloadedAssetsOutputFolder =
-        DocsProjectRootFolder + @"\public\demo\tag-helpers\assets";
+    private static readonly string RenderedPagesOutputFolder = Path.Combine(
+        DocsProjectRootFolder,
+        "public",
+        "demo",
+        "tag-helpers"
+    );
+
+    private static readonly string PagesSourceCodeOutputFolder = Path.Combine(
+        DocsProjectRootFolder,
+        "content",
+        "docs",
+        "tag-helpers",
+        "components",
+        "_include"
+    );
+
+    private static readonly string DownloadedAssetsOutputFolder = Path.Combine(
+        DocsProjectRootFolder,
+        "public",
+        "demo",
+        "tag-helpers",
+        "assets"
+    );
 
     [Theory]
     [InlineData("/avatars/avatar-1.jpg")]
@@ -83,7 +116,10 @@ public partial class CodeSampleGenerator(WebApplicationFactory<Program> factory)
         if (!Directory.Exists(PagesSourceCodeOutputFolder))
             Directory.CreateDirectory(PagesSourceCodeOutputFolder);
 
-        var sourceFile = PageSourceCodeFolder + @"\" + page.Replace("/", @"\") + ".cshtml";
+        var sourceFile = Path.Combine(
+            PageSourceCodeFolder,
+            page.Replace('/', Path.DirectorySeparatorChar) + ".cshtml"
+        );
 
         var readSourceLines = await File.ReadAllLinesAsync(sourceFile);
 
@@ -148,7 +184,7 @@ public partial class CodeSampleGenerator(WebApplicationFactory<Program> factory)
         cleanedLines.Insert(0, "```razor");
         cleanedLines.Add("```");
 
-        var filename = PagesSourceCodeOutputFolder + @"\" + GenerateFilename(page) + ".mdx";
+        var filename = Path.Combine(PagesSourceCodeOutputFolder, GenerateFilename(page) + ".mdx");
         await File.WriteAllLinesAsync(filename, cleanedLines);
     }
 
