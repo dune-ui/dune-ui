@@ -5,15 +5,18 @@ namespace DocsSamples.Pages;
 
 public class DocsStatic : PageModel
 {
-    public object? Model { get; set; }
+    public string? Layout { get; set; }
+
+    public object? PartialModel { get; set; }
 
     public string PartialName { get; set; }
 
-    public void OnGet(string name)
+    public void OnGet(string name, string? layout)
     {
+        Layout = layout;
         PartialName = name;
 
-        Model = name switch
+        PartialModel = name switch
         {
             "Checkbox/_GroupModelBinding" => new Checkbox.Index.GroupModel(),
             "Checkbox/_ModelBinding" => new Checkbox.Index.ModelBindingModel(),
