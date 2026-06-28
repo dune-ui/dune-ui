@@ -20,10 +20,10 @@ public static class Program
 
             Console.WriteLine($"Generating {Generator.DemoPartials.Length} demo partials...");
             var count = 0;
-            foreach (var page in Generator.DemoPartials)
+            foreach (var partial in Generator.DemoPartials)
             {
-                await generator.GenerateDemoPartialSourceFileAsync(page);
-                await generator.RenderDemoPartialOutputAsync(client, page);
+                await generator.GenerateDemoPartialSourceFileAsync(partial.Name);
+                await generator.RenderDemoPartialOutputAsync(client, partial.Name, partial.Layout);
 
                 count++;
                 if (count % 25 == 0 || count == Generator.DemoPartials.Length)
