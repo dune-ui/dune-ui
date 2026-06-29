@@ -39,7 +39,7 @@ Legend: ✅ done · 🚧 in progress · ☐ todo
 | Toggle Group | ✅ | no | native radio (single) / checkbox (multiple); no JS roving needed |
 | Aspect Ratio | ☐ | no — pure CSS `aspect-ratio` | |
 | Alert Dialog | ☐ | reuse Dialog | styled confirm preset over existing Dialog |
-| Input OTP | ☐ | yes (small) | segmented one-time-code input |
+| Input OTP | ✅ | yes (small) — `del-input-otp` | single real input overlaid on presentational slots |
 
 ### Tier 2 — menu / overlay family (web component + popover positioning)
 
@@ -78,8 +78,8 @@ machinery the rest of this tier reuses.
 ### Already shipped
 
 Accordion, Alert, Avatar, Badge, Breadcrumb, Button, Button Group, Card, Checkbox,
-Collapsible, Dialog, Empty, Field, Icon, Input, Input Group, Item, Kbd, Label, Pagination,
-Popover, Progress, Radio, Select, Separator, Sheet, Sidebar, Skeleton, Slider,
+Collapsible, Dialog, Empty, Field, Icon, Input, Input Group, **Input OTP** ✅, Item, Kbd, Label,
+Pagination, Popover, Progress, Radio, Select, Separator, Sheet, Sidebar, Skeleton, Slider,
 Spinner, Switch, Table, Tabs, Textarea, **Toggle** ✅, **Toggle Group** ✅, Tooltip.
 Plus DuneUI-specific layout helpers
 (Group, Stack) and JS helpers (js-dialog).

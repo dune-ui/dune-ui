@@ -38,6 +38,8 @@ public class DocsStatic : PageModel
             "Input/_ModelBinding" => new Pages.Input.Index.ModelBindingModel(),
             "Input/_InputTypesModelBinding" => new Pages.Input.Index.InputTypesModelBindingModel(),
             "Input/_Validation" => new Input.Index.ValidationModel(),
+            "InputOtp/_ModelBinding" => new Pages.InputOtp.Index.ModelBindingModel(),
+            "InputOtp/_Validation" => new Pages.InputOtp.Index.ValidationModel(),
             "Progress/_FileUploadList" => Pages.Progress.Index.Files,
             "Radio/_ModelBinding" => new Radio.Index.ModelBindingModel(),
             "Radio/_Validation" => new Radio.Index.ValidationModel(),
@@ -52,26 +54,37 @@ public class DocsStatic : PageModel
             _ => null,
         };
 
+        // DocsStatic renders the partial with the "PartialModel" prefix (see DocsStatic.cshtml),
+        // so validation errors must be keyed to the fully-qualified field name to attach to the input.
         switch (name)
         {
             case "Checkbox/_Validation":
                 ModelState.AddModelError(
-                    "Model.AcceptTerms",
+                    "PartialModel.AcceptTerms",
                     "You must accept the terms and conditions"
                 );
                 break;
             case "Input/_Validation":
-                ModelState.AddModelError("Model.Email", "Enter your email address");
+                ModelState.AddModelError("PartialModel.Email", "Enter your email address");
+                break;
+            case "InputOtp/_Validation":
+                ModelState.AddModelError(
+                    "PartialModel.OneTimePassword",
+                    "Enter the complete 6-digit code"
+                );
                 break;
             case "Radio/_Validation":
-                ModelState.AddModelError("Model.BedType", "Please select a bed type");
+                ModelState.AddModelError("PartialModel.BedType", "Please select a bed type");
                 break;
             case "Select/_Validation":
-                ModelState.AddModelError("Model.CabinClass", "Please select a valid cabin class");
+                ModelState.AddModelError(
+                    "PartialModel.CabinClass",
+                    "Please select a valid cabin class"
+                );
                 break;
             case "Textarea/_Validation":
                 ModelState.AddModelError(
-                    "Model.Review",
+                    "PartialModel.Review",
                     "Please leave a review for other travelers"
                 );
                 break;
