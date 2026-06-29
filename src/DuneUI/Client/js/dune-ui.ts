@@ -1,6 +1,7 @@
 ﻿import "./web-components/del-collapsible";
 import "./web-components/del-dialog";
 import "./web-components/del-sidebar";
+import "./web-components/del-slider";
 
 import { dialog } from "./wrappers/dialog";
 

@@ -1,0 +1,31 @@
+@page
+@model ComponentPlayground.Pages.Demo.Slider
+
+<dui-container class="py-6 lg:py-8">
+    <dui-stack>
+        <form method="post" class="flex w-full max-w-md flex-col gap-8">
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Single slider</h2>
+                <dui-slider asp-for="Model.Volume" min="0" max="100"/>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Range slider</h2>
+                <dui-slider asp-for="Model.PriceRange" min="0" max="1000" step="50" min-distance="50"/>
+            </div>
+            <dui-button type="submit">Submit</dui-button>
+        </form>
+
+        @if (Model.Posted)
+        {
+            <div class="w-full max-w-md rounded-md border border-green-600 bg-green-50 p-4 text-sm">
+                <p class="font-bold">Posted values</p>
+                <p>Volume = <code>@Model.Model.Volume</code></p>
+                <p>PriceRange = <code>[@string.Join(", ", Model.Model.PriceRange)]</code></p>
+            </div>
+        }
+    </dui-stack>
+</dui-container>
+
+@section Scripts {
+    <script src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
+}

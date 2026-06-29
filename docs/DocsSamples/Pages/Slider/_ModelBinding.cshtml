@@ -1,0 +1,9 @@
+@model Index.ModelBindingModel
+
+<div class="flex w-full max-w-md flex-col gap-8">
+    <!-- code begin -->
+    <dui-slider asp-for="MaximumDistanceFromCenter" max="100"/>
+    <dui-slider asp-for="PricePerNight" min="0" max="1000" step="50"/>
+    <dui-slider asp-for="GuestRatingBands" min="0" max="100" min-distance="5"/>
+    <!-- code end -->
+</div>
