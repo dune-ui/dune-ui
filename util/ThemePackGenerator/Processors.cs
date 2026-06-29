@@ -19,6 +19,9 @@ public static partial class Processors
     [GeneratedRegex(@"(\w+-)?flex(-\w+)?\s?")]
     public static partial Regex FlexRegex();
 
+    [GeneratedRegex(@"(?<!group-)data-\[size=(?<size>default|sm)\]:")]
+    public static partial Regex SwitchTrackSizeRegex();
+
     [GeneratedRegex(@"grid(\s)?")]
     public static partial Regex GridRegex();
 
@@ -228,6 +231,48 @@ public static partial class Processors
             if (output.TryGetValue("dui-radio-group-item", out var classes))
             {
                 output["dui-radio-group-item"] = classes.Replace("data-checked:", "checked:");
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        ///     dui-switch uses the data-checked/data-unchecked attributes to style the on/off state since that is
+        ///     what is being used by BaseUI. Since we render a native checkbox as the switch track (so the value
+        ///     posts back), we drive the state purely from CSS instead:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             The track (dui-switch) is the &lt;input&gt; itself, so it reacts to its own
+        ///             <c>checked</c> pseudo class. The unchecked styles become the default (the prefix is dropped).
+        ///             It also sizes off the wrapper's <c>data-size</c> (group/switch) since the input does not
+        ///             carry the size attribute.
+        ///         </item>
+        ///         <item>
+        ///             The thumb (dui-switch-thumb) is rendered as a sibling after the peer &lt;input&gt;, so it
+        ///             reacts via <c>peer-checked</c>.
+        ///         </item>
+        ///     </list>
+        /// </summary>
+        public Dictionary<string, string> CleanSwitchClasses()
+        {
+            var output = new Dictionary<string, string>(input);
+
+            if (output.TryGetValue("dui-switch", out var trackClasses))
+            {
+                trackClasses = trackClasses.Replace("data-unchecked:", string.Empty);
+                trackClasses = trackClasses.Replace("data-checked:", "checked:");
+                trackClasses = SwitchTrackSizeRegex()
+                    .Replace(trackClasses, "group-data-[size=${size}]/switch:");
+
+                output["dui-switch"] = trackClasses;
+            }
+
+            if (output.TryGetValue("dui-switch-thumb", out var thumbClasses))
+            {
+                thumbClasses = thumbClasses.Replace("data-unchecked:", string.Empty);
+                thumbClasses = thumbClasses.Replace("data-checked:", "peer-checked:");
+
+                output["dui-switch-thumb"] = thumbClasses;
             }
 
             return output;

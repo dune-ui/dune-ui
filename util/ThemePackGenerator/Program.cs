@@ -49,6 +49,7 @@ public partial class Program
                 .CreateInputValidationErrorClassesFromAriaInvalid()
                 .ReplaceDuiCheckboxDataChecked()
                 .ReplaceDuiRadioGroupItemDataChecked()
+                .CleanSwitchClasses()
                 .CreateRadioButtonStyles()
                 .CleanDialogClasses()
                 .CleanPopoverClasses()
