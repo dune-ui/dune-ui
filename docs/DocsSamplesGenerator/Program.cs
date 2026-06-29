@@ -1,3 +1,5 @@
+using Spectre.Console;
+
 namespace DocsSamplesGenerator;
 
 public static class Program
@@ -8,34 +10,71 @@ public static class Program
         {
             var generator = new Generator();
 
-            Console.WriteLine($"Hosting DocsSamples from: {Generator.DocsSamplesContentRoot}");
+            AnsiConsole.Write(new Rule("[bold]DuneUI docs generator[/]").LeftJustified());
+            AnsiConsole.MarkupLineInterpolated(
+                $"Hosting DocsSamples from: [grey]{Generator.DocsSamplesContentRoot}[/]"
+            );
+
             using var factory = new DocsSamplesApplicationFactory(Generator.DocsSamplesContentRoot);
             using var client = factory.CreateClient();
 
-            Console.WriteLine("Downloading fixed static assets...");
-            await generator.DownloadFixedStaticAssetsAsync(client);
+            await AnsiConsole
+                .Status()
+                .StartAsync(
+                    "Cleaning existing output...",
+                    async ctx =>
+                    {
+                        generator.CleanOutputFolders();
+                        AnsiConsole.MarkupLine("[green]✓[/] Cleaned existing output.");
 
-            Console.WriteLine("Downloading dynamic static assets...");
-            await generator.DownloadDynamicStaticAssetsAsync(client);
+                        ctx.Status("Downloading fixed static assets...");
+                        await generator.DownloadFixedStaticAssetsAsync(client);
+                        AnsiConsole.MarkupLine("[green]✓[/] Downloaded fixed static assets.");
 
-            Console.WriteLine($"Generating {Generator.DemoPartials.Length} demo partials...");
-            var count = 0;
-            foreach (var partial in Generator.DemoPartials)
-            {
-                await generator.GenerateDemoPartialSourceFileAsync(partial.Name);
-                await generator.RenderDemoPartialOutputAsync(client, partial.Name, partial.Layout);
+                        ctx.Status("Downloading dynamic static assets...");
+                        await generator.DownloadDynamicStaticAssetsAsync(client);
+                        AnsiConsole.MarkupLine("[green]✓[/] Downloaded dynamic static assets.");
+                    }
+                );
 
-                count++;
-                if (count % 25 == 0 || count == Generator.DemoPartials.Length)
-                    Console.WriteLine($"  {count}/{Generator.DemoPartials.Length}");
-            }
+            await AnsiConsole
+                .Progress()
+                .Columns(
+                    new TaskDescriptionColumn(),
+                    new ProgressBarColumn(),
+                    new PercentageColumn(),
+                    new RemainingTimeColumn(),
+                    new SpinnerColumn()
+                )
+                .StartAsync(async ctx =>
+                {
+                    var task = ctx.AddTask(
+                        "[green]Generating demos[/]",
+                        maxValue: Generator.DemoPartials.Length
+                    );
 
-            Console.WriteLine("Done.");
+                    foreach (var partial in Generator.DemoPartials)
+                    {
+                        await generator.GenerateDemoPartialSourceFileAsync(partial.Name);
+                        await generator.RenderDemoPartialOutputAsync(
+                            client,
+                            partial.Name,
+                            partial.Layout
+                        );
+
+                        task.Increment(1);
+                    }
+                });
+
+            AnsiConsole.MarkupLineInterpolated(
+                $"[green]✓[/] Generated {Generator.DemoPartials.Length} demo partials."
+            );
             return 0;
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Generation failed: {ex}");
+            AnsiConsole.MarkupLine("[red]Generation failed:[/]");
+            AnsiConsole.WriteException(ex);
             return 1;
         }
     }

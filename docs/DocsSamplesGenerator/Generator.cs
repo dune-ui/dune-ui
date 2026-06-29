@@ -71,6 +71,20 @@ internal sealed partial class Generator
         "/gradients/gradient-1.jpg",
     ];
 
+    /// <summary>
+    /// Deletes previously generated output so renamed/removed demos don't leave orphaned files behind.
+    /// Only the two top-level output trees are cleared; the assets folder is nested inside
+    /// <see cref="RenderedPagesOutputFolder"/> and is removed along with it.
+    /// </summary>
+    public void CleanOutputFolders()
+    {
+        foreach (var folder in new[] { RenderedPagesOutputFolder, PagesSourceCodeOutputFolder })
+        {
+            if (Directory.Exists(folder))
+                Directory.Delete(folder, recursive: true);
+        }
+    }
+
     /// <summary>Downloads the demo assets that live at fixed, known URLs.</summary>
     public async Task DownloadFixedStaticAssetsAsync(HttpClient client)
     {

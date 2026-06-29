@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Logging;
 
 namespace DocsSamplesGenerator;
 
@@ -13,6 +14,16 @@ namespace DocsSamplesGenerator;
 internal sealed class DocsSamplesApplicationFactory(string contentRoot)
     : WebApplicationFactory<DocsSamples.Program>
 {
-    protected override void ConfigureWebHost(IWebHostBuilder builder) =>
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
         builder.UseContentRoot(contentRoot);
+
+        // The host's console logging writes directly to stdout, which corrupts Spectre.Console's
+        // live progress/status rendering. Drop the console provider and raise the floor to Warning.
+        builder.ConfigureLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.SetMinimumLevel(LogLevel.Warning);
+        });
+    }
 }
