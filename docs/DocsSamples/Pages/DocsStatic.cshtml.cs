@@ -47,6 +47,8 @@ public class DocsStatic : PageModel
             "Switch/_ModelBinding" => new Switch.Index.ModelBindingModel(),
             "Textarea/_ModelBinding" => new Textarea.Index.ReviewModel(),
             "Textarea/_Validation" => new Textarea.Index.ReviewValidationModel(),
+            "Toggle/_ModelBinding" => new Toggle.Index.ModelBindingModel(),
+            "ToggleGroup/_ModelBinding" => new ToggleGroup.Index.ModelBindingModel(),
             _ => null,
         };
 

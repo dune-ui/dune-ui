@@ -35,8 +35,8 @@ Legend: ✅ done · 🚧 in progress · ☐ todo
 
 | Component | Status | Web component? | Depends on / notes |
 |---|---|---|---|
-| Toggle | ☐ | no — checkbox-backed (like Switch) | |
-| Toggle Group | ☐ | no | Toggle |
+| Toggle | ✅ | no — checkbox-backed (like Switch) | label wraps `sr-only` checkbox; `has-[:checked]` styling |
+| Toggle Group | ✅ | no | native radio (single) / checkbox (multiple); no JS roving needed |
 | Aspect Ratio | ☐ | no — pure CSS `aspect-ratio` | |
 | Alert Dialog | ☐ | reuse Dialog | styled confirm preset over existing Dialog |
 | Input OTP | ☐ | yes (small) | segmented one-time-code input |
@@ -79,6 +79,7 @@ machinery the rest of this tier reuses.
 
 Accordion, Alert, Avatar, Badge, Breadcrumb, Button, Button Group, Card, Checkbox,
 Collapsible, Dialog, Empty, Field, Icon, Input, Input Group, Item, Kbd, Label, Pagination,
-Popover, Progress, Radio, Select, Separator, Sheet, Sidebar, Skeleton, **Slider** ✅,
-Spinner, Switch, Table, Tabs, Textarea, Tooltip. Plus DuneUI-specific layout helpers
+Popover, Progress, Radio, Select, Separator, Sheet, Sidebar, Skeleton, Slider,
+Spinner, Switch, Table, Tabs, Textarea, **Toggle** ✅, **Toggle Group** ✅, Tooltip.
+Plus DuneUI-specific layout helpers
 (Group, Stack) and JS helpers (js-dialog).

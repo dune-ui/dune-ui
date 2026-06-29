@@ -1,0 +1,95 @@
+@page
+@model ComponentPlayground.Pages.Demo.Toggle
+
+<dui-container class="py-6 lg:py-8">
+    <dui-stack>
+        <form method="post" class="flex w-full max-w-md flex-col gap-8">
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Single toggle (bool)</h2>
+                <dui-toggle asp-for="Model.BreakfastIncluded" variant="ToggleVariant.Outline" render-field="false">
+                    <dui-icon name="coffee"/>
+                    Breakfast included
+                </dui-toggle>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Single-select group (string)</h2>
+                <dui-toggle-group asp-for="Model.ResultsView" type="ToggleGroupType.Single" variant="ToggleVariant.Outline">
+                    <dui-toggle-group-item value="list" aria-label="List view">
+                        <dui-icon name="list"/>
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="grid" aria-label="Grid view">
+                        <dui-icon name="layout-grid"/>
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="map" aria-label="Map view">
+                        <dui-icon name="map"/>
+                    </dui-toggle-group-item>
+                </dui-toggle-group>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Multi-select group (string[])</h2>
+                <dui-toggle-group asp-for="Model.Amenities" type="ToggleGroupType.Multiple" variant="ToggleVariant.Outline">
+                    <dui-toggle-group-item value="wifi" aria-label="Free Wi-Fi">
+                        <dui-icon name="wifi"/>
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="pool" aria-label="Pool">
+                        <dui-icon name="waves"/>
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="parking" aria-label="Parking">
+                        <dui-icon name="square-parking"/>
+                    </dui-toggle-group-item>
+                </dui-toggle-group>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Single-select group (enum)</h2>
+                <dui-toggle-group asp-for="Model.Sort" type="ToggleGroupType.Single" variant="ToggleVariant.Outline">
+                    <dui-toggle-group-item value="Recommended">
+                        <dui-icon name="sparkles"/>
+                        Recommended
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="Price">
+                        <dui-icon name="banknote"/>
+                        Price
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="Rating">
+                        <dui-icon name="star"/>
+                        Rating
+                    </dui-toggle-group-item>
+                </dui-toggle-group>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="bg-gray-100 text-base font-bold">Multi-select group (enum[])</h2>
+                <dui-toggle-group asp-for="Model.TripStyles" type="ToggleGroupType.Multiple" variant="ToggleVariant.Outline">
+                    <dui-toggle-group-item value="Beach">
+                        <dui-icon name="sailboat"/>
+                        Beach
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="City">
+                        <dui-icon name="building"/>
+                        City
+                    </dui-toggle-group-item>
+                    <dui-toggle-group-item value="Camping">
+                        <dui-icon name="tent"/>
+                        Camping
+                    </dui-toggle-group-item>
+                </dui-toggle-group>
+            </div>
+            <dui-button type="submit">Submit</dui-button>
+        </form>
+
+        @if (Model.Posted)
+        {
+            <div class="w-full max-w-md rounded-md border border-green-600 bg-green-50 p-4 text-sm">
+                <p class="font-bold">Posted values</p>
+                <p>BreakfastIncluded = <code>@Model.Model.BreakfastIncluded</code></p>
+                <p>ResultsView = <code>@Model.Model.ResultsView</code></p>
+                <p>Amenities = <code>[@string.Join(", ", Model.Model.Amenities)]</code></p>
+                <p>Sort = <code>@Model.Model.Sort</code></p>
+                <p>TripStyles = <code>[@string.Join(", ", Model.Model.TripStyles)]</code></p>
+            </div>
+        }
+    </dui-stack>
+</dui-container>
+
+@section Scripts {
+    <script src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
+}

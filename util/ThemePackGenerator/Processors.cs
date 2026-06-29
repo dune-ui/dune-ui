@@ -277,5 +277,38 @@ public static partial class Processors
 
             return output;
         }
+
+        /// <summary>
+        ///     Shadcn drives the toggle on/off state from the element itself (<c>aria-pressed</c> for a
+        ///     single toggle, <c>data-[state=on]</c> for a toggle group item) and expects focus/validation
+        ///     styles on that same element. DuneUI renders a toggle as a &lt;label&gt; wrapping an
+        ///     <c>sr-only</c> native &lt;input&gt; (so the value posts back with no JavaScript), which means
+        ///     the checked/focus/validation state lives on a descendant. We rewrite those prefixes to the
+        ///     <c>has-*</c> forms so the wrapping label reacts to its inner input.
+        /// </summary>
+        public Dictionary<string, string> CleanToggleClasses()
+        {
+            var output = new Dictionary<string, string>(input);
+
+            static string Adapt(string classes) =>
+                classes
+                    .Replace("aria-pressed:", "has-[:checked]:")
+                    .Replace("data-[state=on]:", "has-[:checked]:")
+                    .Replace("focus-visible:", "has-[:focus-visible]:")
+                    .Replace("[&.input-validation-error]:", "has-[.input-validation-error]:")
+                    .Replace("aria-invalid:", "has-[[aria-invalid]]:");
+
+            if (output.TryGetValue("dui-toggle", out var toggleClasses))
+            {
+                output["dui-toggle"] = Adapt(toggleClasses);
+            }
+
+            if (output.TryGetValue("dui-toggle-group-item", out var itemClasses))
+            {
+                output["dui-toggle-group-item"] = Adapt(itemClasses);
+            }
+
+            return output;
+        }
     }
 }

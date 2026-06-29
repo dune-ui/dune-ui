@@ -67,6 +67,28 @@ public class DuneUITagHelperBase : TagHelper
         ]);
     }
 
+    /// <summary>
+    ///     Publishes a context object that descendant tag helpers can read with
+    ///     <see cref="GetContext{T}" />. The value is keyed by its type and stored in
+    ///     <see cref="TagHelperContext.Items" />, so it must be set before the parent renders its
+    ///     children (i.e. before <c>GetChildContentAsync</c>).
+    /// </summary>
+    protected void SetContext<T>(TagHelperContext context, T value)
+        where T : class
+    {
+        context.Items[typeof(T)] = value;
+    }
+
+    /// <summary>
+    ///     Reads a context object published by an ancestor tag helper with
+    ///     <see cref="SetContext{T}" />, or <c>null</c> if no ancestor published one.
+    /// </summary>
+    protected T? GetContext<T>(TagHelperContext context)
+        where T : class
+    {
+        return context.Items.TryGetValue(typeof(T), out var value) ? value as T : null;
+    }
+
     protected T? GetParentTagHelper<T>()
         where T : DuneUITagHelperBase
     {

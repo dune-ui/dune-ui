@@ -50,6 +50,7 @@ public partial class Program
                 .ReplaceDuiCheckboxDataChecked()
                 .ReplaceDuiRadioGroupItemDataChecked()
                 .CleanSwitchClasses()
+                .CleanToggleClasses()
                 .CreateRadioButtonStyles()
                 .CleanDialogClasses()
                 .CleanPopoverClasses()
