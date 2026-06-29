@@ -1,0 +1,38 @@
+@page
+@model DocsSamples.Pages.InputOtp.Index
+
+<docs-example-wrapper>
+    <docs-example title="Intro">
+        <partial name="_Intro"/>
+    </docs-example>
+    <docs-example title="Four Digits">
+        <partial name="_FourDigits"/>
+    </docs-example>
+    <docs-example title="Groups">
+        <partial name="_Groups"/>
+    </docs-example>
+    <docs-example title="Separator">
+        <partial name="_Separator"/>
+    </docs-example>
+    <docs-example title="Pattern">
+        <partial name="_Pattern"/>
+    </docs-example>
+    <docs-example title="Composition">
+        <partial name="_Composition"/>
+    </docs-example>
+    <docs-example title="Model Binding">
+        <partial name="_ModelBinding" for="Model.ModelBinding"/>
+    </docs-example>
+    <docs-example title="Validation">
+        <partial name="_Validation" for="Model.Validation"/>
+    </docs-example>
+    <docs-example title="Manual Validation (Explicit)">
+        <partial name="_ManualValidationExplicit"/>
+    </docs-example>
+    <docs-example title="Manual Validation (Implicit)">
+        <partial name="_ManualValidationImplicit"/>
+    </docs-example>
+    <docs-example title="Disabled">
+        <partial name="_Disabled"/>
+    </docs-example>
+</docs-example-wrapper>

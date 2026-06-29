@@ -1,0 +1,46 @@
+@page
+@model ComponentPlayground.Pages.Demo.InputOTP
+
+<dui-container class="py-6 lg:py-8">
+    <dui-stack>
+        <h2 class="bg-gray-100 text-base font-bold">Unbound</h2>
+        <dui-input-otp max-length="6"/>
+
+        <h2 class="bg-gray-100 text-base font-bold">Grouped (3,3)</h2>
+        <dui-input-otp max-length="6" groups="3,3"/>
+
+        <h2 class="bg-gray-100 text-base font-bold">Composition</h2>
+        <dui-input-otp max-length="4">
+            <dui-input-otp-group>
+                <dui-input-otp-slot/>
+                <dui-input-otp-slot/>
+            </dui-input-otp-group>
+            <dui-input-otp-separator/>
+            <dui-input-otp-group>
+                <dui-input-otp-slot/>
+                <dui-input-otp-slot/>
+            </dui-input-otp-group>
+        </dui-input-otp>
+
+        <h2 class="bg-gray-100 text-base font-bold">Disabled</h2>
+        <dui-input-otp max-length="6" value="123" disabled="true"/>
+
+        <h2 class="bg-gray-100 text-base font-bold">Model binding + validation</h2>
+        <form method="post" class="flex w-full max-w-md flex-col gap-6">
+            <dui-input-otp asp-for="Model.VerificationCode" groups="3,3"/>
+            <dui-button type="submit">Submit</dui-button>
+        </form>
+
+        @if (Model.Posted)
+        {
+            <div class="w-full max-w-md rounded-md border border-green-600 bg-green-50 p-4 text-sm">
+                <p class="font-bold">Posted values</p>
+                <p>VerificationCode = <code>@Model.Model.VerificationCode</code></p>
+            </div>
+        }
+    </dui-stack>
+</dui-container>
+
+@section Scripts {
+    <script src="/_content/DuneUI/dune-ui.js" asp-append-version="true"></script>
+}
