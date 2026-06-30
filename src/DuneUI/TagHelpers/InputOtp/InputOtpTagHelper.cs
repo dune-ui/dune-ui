@@ -102,13 +102,20 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
 
         // The single real input: it holds the whole code and posts it as one value. We overlay it
         // transparently over the slots so a click anywhere focuses it.
-        var inputOutput = BuildField(context, fieldName, maxLength, effectiveInputMode, hasError);
+        var inputOutput = RenderUnderlyingInput(
+            context,
+            fieldName,
+            maxLength,
+            effectiveInputMode,
+            hasError
+        );
 
         // The host becomes <del-input-otp>, the flex container. Drop the name the base copied onto
         // the host: the value posts through the real input, not the host element.
         output.Attributes.RemoveAll("name");
         output.TagName = "del-input-otp";
         output.TagMode = TagMode.StartTagAndEndTag;
+
         output.Attributes.SetAttribute("data-slot", "input-otp");
         output.Attributes.SetAttribute(
             "maxlength",
@@ -153,7 +160,7 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
         return new AutoFieldConfiguration(AutoFieldLayout.Vertical);
     }
 
-    private TagHelperOutput BuildField(
+    private TagHelperOutput RenderUnderlyingInput(
         TagHelperContext context,
         string? fieldName,
         int maxLength,

@@ -42,10 +42,10 @@ public class InputOtpSlotTagHelper : DuneUITagHelperBase
         }
 
         var hasError = inputOtpContext?.HasError ?? false;
-        var userClass = output.GetUserSuppliedClass();
 
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
+
         output.Attributes.SetAttribute("data-slot", "input-otp-slot");
         output.Attributes.SetAttribute("data-index", index.ToString(CultureInfo.InvariantCulture));
         output.Attributes.SetAttribute("data-active", "false");
@@ -53,8 +53,12 @@ public class InputOtpSlotTagHelper : DuneUITagHelperBase
         {
             output.Attributes.SetAttribute("aria-invalid", "true");
         }
-        output.Attributes.SetAttribute("class", InputOtpRenderer.SlotClass(ClassMerger, userClass));
+        output.Attributes.SetAttribute(
+            "class",
+            InputOtpRenderer.SlotClass(ClassMerger, output.GetUserSuppliedClass())
+        );
 
+        // Render the character and the specified index
         var character = inputOtpContext?.CharAt(index);
         if (!string.IsNullOrEmpty(character))
         {

@@ -19,6 +19,7 @@ public class InputOtpGroupTagHelper : DuneUITagHelperBase
 
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
+
         output.Attributes.SetAttribute("data-slot", "input-otp-group");
         output.Attributes.SetAttribute(
             "class",
