@@ -4,11 +4,12 @@ import "./web-components/del-input-otp";
 import "./web-components/del-sidebar";
 import "./web-components/del-slider";
 
+import { alertDialog } from "./wrappers/alert-dialog";
 import { dialog } from "./wrappers/dialog";
 
 import "interestfor";
 
-const duneui = { dialog };
+const duneui = { alertDialog, dialog };
 
 // augment the Window type so TS knows about window.duneui
 declare global {

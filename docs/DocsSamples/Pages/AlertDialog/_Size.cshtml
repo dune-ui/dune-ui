@@ -1,0 +1,40 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center gap-2">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--alert-dialog-size-default" command="show-modal">
+            Default
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" commandfor="--alert-dialog-size-sm" command="show-modal">
+            Small
+        </dui-button>
+    </div>
+    <dui-alert-dialog id="--alert-dialog-size-default" size="AlertDialogSize.Default">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-title>Delete this itinerary?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                Your saved itinerary for Bangkok will be permanently deleted. On larger screens the default alert dialog is wider and left-aligns its content.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Cancel</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action variant="ButtonVariant.Destructive">Delete</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <dui-alert-dialog id="--alert-dialog-size-sm" size="AlertDialogSize.Small">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-title>Delete this itinerary?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                Your saved Bangkok itinerary will be permanently deleted. The small alert dialog stays narrow and centers its content.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Cancel</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action variant="ButtonVariant.Destructive">Delete</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <!-- code end -->
+</div>

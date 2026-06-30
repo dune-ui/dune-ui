@@ -1,0 +1,23 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--alert-dialog-intro" command="show-modal">
+            Show Dialog
+        </dui-button>
+    </div>
+    <dui-alert-dialog id="--alert-dialog-intro">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-title>Discard unsaved changes?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                You have unsaved changes to your itinerary for Trip #TRV-987. If you continue, your edits will be lost.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Keep editing</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action>Continue</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <!-- code end -->
+</div>

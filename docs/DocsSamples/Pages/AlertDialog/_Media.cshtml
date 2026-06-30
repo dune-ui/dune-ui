@@ -1,0 +1,26 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--alert-dialog-media" command="show-modal">
+            Share Trip
+        </dui-button>
+    </div>
+    <dui-alert-dialog id="--alert-dialog-media">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-media>
+                <dui-icon name="circle-fading-plus"/>
+            </dui-alert-dialog-media>
+            <dui-alert-dialog-title>Share this trip?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                Anyone with the link will be able to view and edit your itinerary for Trip #TRV-987.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Cancel</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action>Share</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <!-- code end -->
+</div>

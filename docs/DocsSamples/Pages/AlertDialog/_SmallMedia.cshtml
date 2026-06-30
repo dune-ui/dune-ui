@@ -1,0 +1,26 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center">
+        <dui-button variant="ButtonVariant.Outline" commandfor="--alert-dialog-small-media" command="show-modal">
+            Show Dialog
+        </dui-button>
+    </div>
+    <dui-alert-dialog id="--alert-dialog-small-media" size="AlertDialogSize.Small">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-media>
+                <dui-icon name="map-pin"/>
+            </dui-alert-dialog-media>
+            <dui-alert-dialog-title>Enable location services?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                Voyager Travel uses your location to show flights and stays near you.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Not now</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action>Allow</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <!-- code end -->
+</div>

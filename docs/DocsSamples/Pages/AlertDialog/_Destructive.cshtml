@@ -1,0 +1,23 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <div class="flex justify-center">
+        <dui-button variant="ButtonVariant.Destructive" commandfor="--alert-dialog-destructive" command="show-modal">
+            Cancel Booking
+        </dui-button>
+    </div>
+    <dui-alert-dialog id="--alert-dialog-destructive">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-title>Cancel this booking?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                This action cannot be undone. Your reservation for Trip #TRV-987 to Paris will be permanently cancelled and your seats released.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Keep booking</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action variant="ButtonVariant.Destructive">Cancel booking</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <!-- code end -->
+</div>
