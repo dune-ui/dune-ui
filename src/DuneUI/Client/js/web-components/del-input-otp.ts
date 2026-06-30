@@ -13,7 +13,7 @@ function ensureSelectionStyle() {
   const style = document.createElement("style");
   style.id = SELECTION_STYLE_ID;
   style.textContent =
-    'del-input-otp [data-slot="input-otp-field"]::selection{background:transparent;color:transparent;}';
+    'del-input-otp [data-slot="input-otp"]::selection{background:transparent;color:transparent;}';
   document.head.appendChild(style);
 }
 
@@ -22,7 +22,7 @@ function ensureSelectionStyle() {
  * the `dui-input-otp` tag helper.
  *
  * It renders in light DOM and operates on the server-rendered children: a single real
- * <input data-slot="input-otp-field"> that holds the whole code (and posts it with the form),
+ * <input data-slot="input-otp"> that holds the whole code (and posts it with the form),
  * overlaid transparently over the presentational slot cells. Typing, paste, backspace, and
  * caret movement are all handled by the native input; this component keeps the cells in sync
  * with the value, reflects the active cell (and a blinking fake caret) via `data-active`, and
@@ -39,15 +39,32 @@ export class InputOtp extends LitElement {
   #maxLength = 0;
   #pattern: RegExp | null = null;
   #lastValid = "";
+  #caretClass = "pointer-events-none absolute inset-0 flex items-center justify-center";
+  #caretLineClass = "animate-caret-blink bg-foreground h-4 w-px duration-1000";
+  #resizeObserver: ResizeObserver | null = null;
 
   override connectedCallback() {
     super.connectedCallback();
 
     ensureSelectionStyle();
 
-    this.#field = this.querySelector<HTMLInputElement>('[data-slot="input-otp-field"]');
+    this.#field = this.querySelector<HTMLInputElement>('[data-slot="input-otp"]');
     this.#slots = Array.from(this.querySelectorAll<HTMLElement>('[data-slot="input-otp-slot"]'));
     this.#maxLength = Number(this.getAttribute("maxlength")) || this.#slots.length;
+
+    // --root-height drives the field's font-size so the transparent text lines up with the slots.
+    // The server seeds a 32px fallback; measure the real slot height and keep it in sync for themes
+    // that size slots differently (mirrors guilhermerodz/input-otp, which measures the same way).
+    this.#measureRootHeight();
+    if (this.#slots.length > 0 && typeof ResizeObserver !== "undefined") {
+      this.#resizeObserver = new ResizeObserver(() => this.#measureRootHeight());
+      this.#resizeObserver.observe(this.#slots[0]);
+    }
+
+    // The caret classes are resolved server-side (theme token + statics) and handed over here,
+    // since the web component can't resolve themepack tokens itself.
+    this.#caretClass = this.getAttribute("data-caret-class") ?? this.#caretClass;
+    this.#caretLineClass = this.getAttribute("data-caret-line-class") ?? this.#caretLineClass;
 
     const pattern = this.getAttribute("data-pattern");
     if (pattern) {
@@ -72,6 +89,8 @@ export class InputOtp extends LitElement {
 
   override disconnectedCallback() {
     super.disconnectedCallback();
+    this.#resizeObserver?.disconnect();
+    this.#resizeObserver = null;
     if (this.#field) {
       this.#field.removeEventListener("input", this.#onInput);
       this.#field.removeEventListener("focus", this.#onFocus);
@@ -154,12 +173,19 @@ export class InputOtp extends LitElement {
     }
   }
 
+  /** Measure the rendered slot height and publish it as --root-height for the field's font-size. */
+  #measureRootHeight() {
+    const height = this.#slots[0]?.getBoundingClientRect().height;
+    if (height) {
+      this.style.setProperty("--root-height", `${height}px`);
+    }
+  }
+
   #createCaret(): HTMLElement {
     const caret = document.createElement("div");
-    caret.setAttribute("data-slot", "input-otp-caret");
-    caret.className = "pointer-events-none absolute inset-0 flex items-center justify-center";
+    caret.className = this.#caretClass;
     const line = document.createElement("div");
-    line.className = "animate-caret-blink bg-foreground h-4 w-px duration-1000";
+    line.className = this.#caretLineClass;
     caret.appendChild(line);
     return caret;
   }

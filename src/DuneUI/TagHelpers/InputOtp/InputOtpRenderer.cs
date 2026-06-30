@@ -20,7 +20,7 @@ internal static class InputOtpRenderer
     internal static string SlotClass(ICssClassMerger classMerger, string? userClass) =>
         classMerger.Merge(
             new ThemeToken("dui-input-otp-slot"),
-            "relative flex items-center justify-center",
+            "relative flex items-center justify-center data-[active=true]:z-10",
             userClass
         ) ?? string.Empty;
 
