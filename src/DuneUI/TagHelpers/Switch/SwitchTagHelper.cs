@@ -96,7 +96,7 @@ public class SwitchTagHelper : FieldInputBaseTagHelper
         ClassElement[] classNames =
         [
             new ThemeToken("dui-switch"),
-            "peer relative shrink-0 appearance-none outline-none disabled:cursor-not-allowed disabled:opacity-50",
+            "peer relative appearance-none transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50",
         ];
 
         inputOutput.Attributes.SetAttribute(
@@ -127,7 +127,7 @@ public class SwitchTagHelper : FieldInputBaseTagHelper
             "class",
             ClassMerger.Merge(
                 new ThemeToken("dui-switch-thumb"),
-                "pointer-events-none absolute left-px top-1/2 block -translate-y-1/2 transition-transform"
+                "pointer-events-none absolute left-px top-1/2 block ring-0 -translate-y-1/2 transition-transform"
             )
         );
         output.Content.AppendHtml(thumb);
