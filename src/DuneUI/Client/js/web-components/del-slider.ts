@@ -27,6 +27,7 @@ export class Slider extends LitElement {
   #step = 1;
   #minDistance = 0;
   #vertical = false;
+  #edgeAligned = false;
 
   #track: HTMLElement | null = null;
   #range: HTMLElement | null = null;
@@ -44,6 +45,7 @@ export class Slider extends LitElement {
     this.#step = Math.max(this.#numAttr("step", 1), 1);
     this.#minDistance = this.#numAttr("data-min-distance", 0);
     this.#vertical = this.getAttribute("data-orientation") === "vertical";
+    this.#edgeAligned = this.getAttribute("data-thumb-alignment") === "edge";
 
     this.#track = this.querySelector<HTMLElement>('[data-slot="slider-track"]');
     this.#range = this.querySelector<HTMLElement>('[data-slot="slider-range"]');
@@ -211,10 +213,16 @@ export class Slider extends LitElement {
   #renderThumb(index: number) {
     const thumb = this.#thumbs[index];
     const percent = this.#percent(this.#values[index]);
+    // Edge alignment shifts by the value percentage so the thumb edge stays flush with the
+    // track ends; center alignment shifts by a constant 50%. Keep the transform in sync since
+    // the edge shift changes as the value moves.
+    const shift = this.#edgeAligned ? percent : 50;
     if (this.#vertical) {
       thumb.style.bottom = `${percent}%`;
+      thumb.style.transform = `translateY(${shift}%)`;
     } else {
       thumb.style.left = `${percent}%`;
+      thumb.style.transform = `translateX(-${shift}%)`;
     }
     thumb.setAttribute("aria-valuenow", String(this.#values[index]));
     const input = this.#inputs[index];

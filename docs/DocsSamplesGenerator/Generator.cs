@@ -530,6 +530,7 @@ internal sealed partial class Generator
         new("Slider/_MultipleThumbs"),
         new("Slider/_Range"),
         new("Slider/_Steps"),
+        new("Slider/_ThumbAlignment"),
         new("Slider/_Vertical"),
         new("Spinner/_Color"),
         new("Spinner/_InBadges"),

@@ -41,6 +41,17 @@ public class SliderTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("orientation")]
     public SliderOrientation? Orientation { get; set; }
 
+    /// <summary>
+    ///     How the thumb is positioned relative to its value: <see cref="SliderThumbAlignment.Edge" />
+    ///     keeps the thumb fully within the track at the extremes (shadcn default),
+    ///     <see cref="SliderThumbAlignment.Center" /> centers it on the value so it overhangs the ends.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SliderThumbAlignment.Edge" />.
+    /// </remarks>
+    [HtmlAttributeName("thumb-alignment")]
+    public SliderThumbAlignment? ThumbAlignment { get; set; }
+
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -65,6 +76,7 @@ public class SliderTagHelper : FieldInputBaseTagHelper
         var effectiveStep = Step ?? 1;
         var effectiveMinDistance = MinDistance ?? 0;
         var effectiveOrientation = Orientation ?? SliderOrientation.Horizontal;
+        var effectiveThumbAlignment = ThumbAlignment ?? SliderThumbAlignment.Edge;
         var effectiveDisabled = Disabled ?? false;
 
         if (effectiveMin >= effectiveMax)
@@ -105,6 +117,10 @@ public class SliderTagHelper : FieldInputBaseTagHelper
         output.Attributes.SetAttribute(
             "data-min-distance",
             effectiveMinDistance.ToString(CultureInfo.InvariantCulture)
+        );
+        output.Attributes.SetAttribute(
+            "data-thumb-alignment",
+            effectiveThumbAlignment.GetDataAttributeText()
         );
         if (effectiveDisabled)
         {
@@ -188,7 +204,11 @@ public class SliderTagHelper : FieldInputBaseTagHelper
             );
             thumb.Attributes.Add(
                 "style",
-                ThumbStyle(effectiveOrientation, Percent(value, effectiveMin, effectiveMax))
+                ThumbStyle(
+                    effectiveOrientation,
+                    effectiveThumbAlignment,
+                    Percent(value, effectiveMin, effectiveMax)
+                )
             );
             output.Content.AppendHtml(thumb);
 
@@ -283,8 +303,20 @@ public class SliderTagHelper : FieldInputBaseTagHelper
             ? $"bottom: {FormatPercent(low)}%; top: {FormatPercent(100d - high)}%;"
             : $"left: {FormatPercent(low)}%; right: {FormatPercent(100d - high)}%;";
 
-    private static string ThumbStyle(SliderOrientation orientation, double percent) =>
-        orientation == SliderOrientation.Vertical
-            ? $"bottom: {FormatPercent(percent)}%; transform: translateY(50%);"
-            : $"left: {FormatPercent(percent)}%; transform: translateX(-50%);";
+    private static string ThumbStyle(
+        SliderOrientation orientation,
+        SliderThumbAlignment alignment,
+        double percent
+    )
+    {
+        // Edge alignment shifts the thumb by its value percentage (relative to its own width),
+        // so its leading/trailing edge stays flush with the track ends instead of overhanging;
+        // center alignment shifts by a constant 50%. The percentage translate means we never
+        // need to know the thumb's pixel size.
+        var position = FormatPercent(percent);
+        var shift = FormatPercent(alignment == SliderThumbAlignment.Edge ? percent : 50d);
+        return orientation == SliderOrientation.Vertical
+            ? $"bottom: {position}%; transform: translateY({shift}%);"
+            : $"left: {position}%; transform: translateX(-{shift}%);";
+    }
 }
