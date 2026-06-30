@@ -570,6 +570,7 @@ internal sealed partial class Generator
         new("Toggle/_Sizes"),
         new("Toggle/_WithText"),
         new("ToggleGroup/_Intro"),
+        new("ToggleGroup/_Joined"),
         new("ToggleGroup/_ModelBinding"),
         new("ToggleGroup/_Multiple"),
         new("ToggleGroup/_Outline"),

@@ -36,8 +36,8 @@ public class ToggleGroupTagHelper : FieldInputBaseTagHelper
     public ToggleGroupOrientation? Orientation { get; set; }
 
     /// <summary>
-    ///     Spacing between items. <c>0</c> (the default) joins the items into a single
-    ///     segmented control; any other value separates them with a gap.
+    ///     Spacing between items. <c>0</c> joins the items into a single segmented control;
+    ///     any other value separates them with a gap. Defaults to <c>2</c> (matching shadcn).
     /// </summary>
     [HtmlAttributeName("spacing")]
     public int? Spacing { get; set; }
@@ -53,7 +53,7 @@ public class ToggleGroupTagHelper : FieldInputBaseTagHelper
         var effectiveType = Type ?? ToggleGroupType.Single;
         var effectiveVariant = Variant ?? ToggleVariant.Default;
         var effectiveSize = Size ?? ToggleSize.Default;
-        var effectiveSpacing = Spacing ?? 0;
+        var effectiveSpacing = Spacing ?? 2;
         var effectiveOrientation = Orientation ?? ToggleGroupOrientation.Horizontal;
 
         SetContext(
@@ -102,14 +102,26 @@ public class ToggleGroupTagHelper : FieldInputBaseTagHelper
         );
 
         // Layout: dui-toggle-group only carries rounding/shadow, so the flex layout + spacing
-        // live here. When joined (spacing 0) collapse the 1px seam between outline items.
+        // live here. When joined (spacing 0) collapse the 1px seam between outline items;
+        // otherwise honour the numeric spacing as a real gap the way shadcn does, driving
+        // gap-[--spacing(var(--gap))] from a --gap CSS var (so spacing="2" -> 0.5rem, etc.).
         var layout = isHorizontal
             ? "inline-flex w-fit items-center"
             : "inline-flex w-fit flex-col items-stretch";
         var spacingClass =
             effectiveSpacing == 0
                 ? (isHorizontal ? "gap-0 -space-x-px" : "gap-0 -space-y-px")
-                : "gap-1.5";
+                : "gap-[--spacing(var(--gap))]";
+
+        if (effectiveSpacing != 0)
+        {
+            var gapVar = $"--gap: {effectiveSpacing.ToString(CultureInfo.InvariantCulture)}";
+            var existingStyle = output.Attributes["style"]?.Value?.ToString();
+            output.Attributes.SetAttribute(
+                "style",
+                string.IsNullOrEmpty(existingStyle) ? gapVar : $"{gapVar}; {existingStyle}"
+            );
+        }
 
         output.Attributes.SetAttribute(
             "class",

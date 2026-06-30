@@ -30,7 +30,15 @@ internal static class ToggleRenderingHelper
      * checked/focus/validation styles were rewritten to the same has-* forms by the generator).
      */
     private const string BaseLayout =
-        "inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 select-none cursor-pointer outline-none [&_svg]:pointer-events-none [&_svg]:shrink-0 has-[:focus-visible]:ring-3 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-50 has-[:disabled]:cursor-not-allowed";
+        "group/toggle inline-flex items-center justify-center whitespace-nowrap shrink-0 select-none cursor-pointer outline-none hover:bg-muted [&_svg]:pointer-events-none [&_svg]:shrink-0 has-[:focus-visible]:ring-3 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-50 has-[:disabled]:cursor-not-allowed";
+
+    /*
+     * Group-item-only statics. shadcn's ToggleGroupItem raises the focused item above its
+     * neighbours (focus-visible:z-10) so its ring/border isn't clipped by the adjacent item —
+     * doubly needed here because joined groups overlap items with -space-x-px. The focus state
+     * lives on the inner input, so this is the has-[:focus-visible] form (matching the ring).
+     */
+    private const string GroupItemLayout = "has-[:focus-visible]:z-10";
 
     public static string BuildClass(
         ICssClassMerger classMerger,
@@ -50,6 +58,7 @@ internal static class ToggleRenderingHelper
 
         if (includeGroupItemToken)
         {
+            elements.Add(GroupItemLayout);
             elements.Add(new ThemeToken("dui-toggle-group-item"));
         }
 
