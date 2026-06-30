@@ -56,6 +56,8 @@
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
@@ -1045,6 +1047,28 @@
   .data-\[side\=top\]\:h-\[50vh\] {
     &[data-side="top"] {
       height: 50vh;
+    }
+  }
+  .\*\:data-\[slot\=input-otp-slot\]\:h-12 {
+    :is(& > *) {
+      &[data-slot="input-otp-slot"] {
+        height: calc(var(--spacing) * 12);
+      }
+    }
+  }
+  .\*\:data-\[slot\=input-otp-slot\]\:w-11 {
+    :is(& > *) {
+      &[data-slot="input-otp-slot"] {
+        width: calc(var(--spacing) * 11);
+      }
+    }
+  }
+  .\*\:data-\[slot\=input-otp-slot\]\:text-xl {
+    :is(& > *) {
+      &[data-slot="input-otp-slot"] {
+        font-size: var(--text-xl);
+        line-height: var(--tw-leading, var(--text-xl--line-height));
+      }
     }
   }
   .sm\:max-w-none {
