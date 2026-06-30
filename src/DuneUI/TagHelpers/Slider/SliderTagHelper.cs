@@ -114,7 +114,7 @@ public class SliderTagHelper : FieldInputBaseTagHelper
             "class",
             ClassMerger.Merge(
                 new ThemeToken("dui-slider"),
-                "relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-44 data-vertical:w-auto data-vertical:flex-col",
+                "relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col",
                 userClass
             )
         );
@@ -131,7 +131,7 @@ public class SliderTagHelper : FieldInputBaseTagHelper
             "class",
             ClassMerger.Merge(
                 new ThemeToken("dui-slider-track"),
-                "relative grow overflow-hidden rounded-full"
+                "relative grow overflow-hidden select-none"
             )
         );
 
@@ -142,7 +142,7 @@ public class SliderTagHelper : FieldInputBaseTagHelper
             "class",
             ClassMerger.Merge(
                 new ThemeToken("dui-slider-range"),
-                "absolute data-horizontal:h-full data-vertical:w-full"
+                "absolute select-none data-horizontal:h-full data-vertical:w-full"
             )
         );
         range.Attributes.Add("style", RangeStyle(effectiveOrientation, lowPercent, highPercent));
@@ -171,14 +171,19 @@ public class SliderTagHelper : FieldInputBaseTagHelper
             thumb.Attributes.Add("aria-valuenow", value.ToString(CultureInfo.InvariantCulture));
             if (effectiveDisabled)
             {
-                thumb.Attributes.Add("data-disabled", "true");
+                // Mark the thumb for assistive tech, but don't stamp data-disabled here: the
+                // host carries it and applies the single opacity-50 dim for the whole subtree.
+                // A second data-disabled:opacity-50 on the thumb would double-dim it (the white
+                // fill drops to ~25% and the track bleeds through), and data-disabled:pointer-
+                // events-none would kill the token's hover:ring-4. shadcn keeps disabled state on
+                // the Control wrapper only; the thumb's disabled utilities there are inert.
                 thumb.Attributes.Add("aria-disabled", "true");
             }
             thumb.Attributes.Add(
                 "class",
                 ClassMerger.Merge(
                     new ThemeToken("dui-slider-thumb"),
-                    "absolute block shrink-0 cursor-grab focus-visible:outline-hidden data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50"
+                    "absolute block shrink-0 select-none"
                 )
             );
             thumb.Attributes.Add(
