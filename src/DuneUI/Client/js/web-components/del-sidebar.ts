@@ -72,12 +72,12 @@ export class Sidebar extends LitElement {
 
     this.#sidebarEl.dataset.state = this.#open ? "expanded" : "collapsed";
     this.#sidebarEl.dataset.mobile = this.#openMobile ? "open" : "closed";
-    
+
     // data-collapsible carries the collapse mode ONLY while collapsed on desktop.
     // It must be empty when expanded (so icon-rail menu styles don't fire) and on
     // mobile (the drawer always shows the full-width menu).
     this.#sidebarEl.dataset.collapsible = !this.isMobile && collapsed ? mode : "";
-    
+
     this.#syncTriggers();
   }
 
