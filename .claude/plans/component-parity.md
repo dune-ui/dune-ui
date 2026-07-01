@@ -103,7 +103,7 @@ machinery the rest of this tier reuses.
 
 | Component | Status | Web component? | Depends on / notes |
 |---|---|---|---|
-| Dropdown Menu | ☐ | yes | **keystone — unblocks the rest of this tier** |
+| Dropdown Menu | ✅ | yes — `del-dropdown-menu` | **keystone — menu + Invoker-command + positioning machinery now available to reuse** |
 | Context Menu | ☐ | yes | Dropdown Menu |
 | Menubar | ☐ | yes | Dropdown Menu |
 | Navigation Menu | ☐ | yes | Dropdown Menu |
@@ -133,7 +133,7 @@ machinery the rest of this tier reuses.
 ### Already shipped
 
 Accordion, Alert, **Alert Dialog** ✅, Avatar, Badge, Breadcrumb, Button, Button Group, Card, Checkbox,
-Collapsible, Dialog, Empty, Field, Icon, Input, Input Group, **Input OTP** ✅, Item, Kbd, Label,
+Collapsible, Dialog, **Dropdown Menu** ✅, Empty, Field, Icon, Input, Input Group, **Input OTP** ✅, Item, Kbd, Label,
 Pagination, Popover, Progress, Radio, Select, Separator, Sheet, Sidebar, Skeleton, Slider,
 Spinner, Switch, Table, Tabs, Textarea, **Toggle** ✅, **Toggle Group** ✅, Tooltip.
 Plus DuneUI-specific layout helpers
