@@ -1,0 +1,47 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Outline" id="--js-alert-dialog-manual-button">
+            Open Alert Dialog
+        </dui-button>
+        <label class="text-sm font-bold">Result:</label>
+        <div class="font-mono w-full bg-gray-50 p-2" id="--js-alert-dialog-manual-result">-</div>
+    </dui-stack>
+    <dui-alert-dialog id="--js-alert-dialog-manual-dialog">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-title>Manual Result</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                Demonstrates how you can manually resolve the confirmation.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <dui-alert-dialog-footer>
+            <dui-button id="--js-alert-dialog-manual-button-cancel" variant="ButtonVariant.Outline">
+                Cancel
+            </dui-button>
+            <dui-button id="--js-alert-dialog-manual-button-confirm" variant="ButtonVariant.Outline">
+                Confirm
+            </dui-button>
+        </dui-alert-dialog-footer>
+    </dui-alert-dialog>
+    <script type="module">
+        (function () {
+            const alertDialog = window.duneui.alertDialog(document.getElementById("--js-alert-dialog-manual-dialog"));
+            const resultDisplay = document.getElementById("--js-alert-dialog-manual-result");
+            const triggerButton = document.getElementById("--js-alert-dialog-manual-button");
+            const cancelButton = document.getElementById("--js-alert-dialog-manual-button-cancel");
+            const confirmButton = document.getElementById("--js-alert-dialog-manual-button-confirm");
+
+            triggerButton.addEventListener("click", async () => {
+                const confirmed = await alertDialog.confirmAsync();
+                resultDisplay.innerHTML = confirmed ? "Confirmed" : "Cancelled";
+            });
+            cancelButton.addEventListener("click", () => {
+                alertDialog.cancel();
+            });
+            confirmButton.addEventListener("click", () => {
+                alertDialog.confirm();
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

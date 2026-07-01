@@ -1,0 +1,37 @@
+<div class="min-h-[450px]">
+    <!-- code begin -->
+    <dui-stack align="StackAlign.Start" class="min-w-md">
+        <dui-button variant="ButtonVariant.Destructive" id="--js-alert-dialog-intro-button">
+            Cancel Booking
+        </dui-button>
+        <label class="text-sm font-bold">Result:</label>
+        <div class="font-mono w-full bg-gray-50 p-2" id="--js-alert-dialog-intro-result">-</div>
+    </dui-stack>
+    <dui-alert-dialog id="--js-alert-dialog-intro-dialog">
+        <dui-alert-dialog-header>
+            <dui-alert-dialog-title>Cancel this booking?</dui-alert-dialog-title>
+            <dui-alert-dialog-description>
+                Your reservation for the Marrakech Desert Escape will be cancelled. Cancellation fees may apply.
+            </dui-alert-dialog-description>
+        </dui-alert-dialog-header>
+        <form method="dialog">
+            <dui-alert-dialog-footer>
+                <dui-alert-dialog-cancel>Keep Booking</dui-alert-dialog-cancel>
+                <dui-alert-dialog-action variant="ButtonVariant.Destructive">Cancel Booking</dui-alert-dialog-action>
+            </dui-alert-dialog-footer>
+        </form>
+    </dui-alert-dialog>
+    <script type="module">
+        (function () {
+            const alertDialog = window.duneui.alertDialog(document.getElementById("--js-alert-dialog-intro-dialog"));
+            const triggerButton = document.getElementById("--js-alert-dialog-intro-button");
+            const resultDisplay = document.getElementById("--js-alert-dialog-intro-result");
+
+            triggerButton.addEventListener("click", async () => {
+                const confirmed = await alertDialog.confirmAsync();
+                resultDisplay.innerHTML = confirmed ? "Booking cancelled" : "Booking kept";
+            });
+        })();
+    </script>
+    <!-- code end -->
+</div>

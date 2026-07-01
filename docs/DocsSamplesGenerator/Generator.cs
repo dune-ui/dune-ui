@@ -456,6 +456,8 @@ internal sealed partial class Generator
         new("Item/_Separator"),
         new("Item/_Sizes"),
         new("Item/_Variants"),
+        new("Js/AlertDialog/_Intro"),
+        new("Js/AlertDialog/_ManualResult"),
         new("Js/Dialog/_FormValues"),
         new("Js/Dialog/_Intro"),
         new("Js/Dialog/_ManualResult"),
