@@ -1,0 +1,48 @@
+<div class="min-h-[330px]">
+    <!-- code begin -->
+    <dui-stack gap="StackGap.Small" align="StackAlign.Center">
+        <dui-dropdown-menu>
+            <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+                <dui-icon name="ellipsis" class="text-muted-foreground"/>
+                Trip Actions
+            </dui-dropdown-menu-trigger>
+            <dui-dropdown-menu-content class="w-56">
+                <dui-dropdown-menu-label>Trip #TRV-987</dui-dropdown-menu-label>
+                <dui-dropdown-menu-separator/>
+                <!-- A non-link item receives click events on any element: here via an inline onclick -->
+                <dui-dropdown-menu-item onclick="voyagerTripAction('Trip link copied to clipboard')">
+                    <dui-icon name="link"/>
+                    Copy Trip Link
+                </dui-dropdown-menu-item>
+                <!-- ...or wired up in script with addEventListener (see below) -->
+                <dui-dropdown-menu-item id="--duplicate-trip-item">
+                    <dui-icon name="copy"/>
+                    Duplicate Trip
+                </dui-dropdown-menu-item>
+                <dui-dropdown-menu-item id="--print-itinerary-item">
+                    <dui-icon name="printer"/>
+                    Print Itinerary
+                </dui-dropdown-menu-item>
+            </dui-dropdown-menu-content>
+        </dui-dropdown-menu>
+        <p class="text-muted-foreground text-sm" id="--trip-action-output">
+            Choose an action from the menu.
+        </p>
+    </dui-stack>
+    <script>
+        // The del-dropdown-menu web component dispatches a real click on the focused item for
+        // both mouse clicks and keyboard activation (Enter / Space), so a plain click listener
+        // works for either. The menu closes on select after your handler runs.
+        function voyagerTripAction(message) {
+            document.getElementById('--trip-action-output').textContent = message;
+        }
+
+        document
+            .getElementById('--duplicate-trip-item')
+            .addEventListener('click', () => voyagerTripAction('Trip duplicated'));
+        document
+            .getElementById('--print-itinerary-item')
+            .addEventListener('click', () => voyagerTripAction('Sending itinerary to the printer…'));
+    </script>
+    <!-- code end -->
+</div>

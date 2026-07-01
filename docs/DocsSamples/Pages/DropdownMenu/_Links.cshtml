@@ -1,0 +1,39 @@
+<div class="min-h-[330px]">
+    <dui-group justify="GroupJustify.Center">
+        <!-- code begin -->
+        <dui-dropdown-menu>
+            <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+                <dui-icon name="compass" class="text-muted-foreground"/>
+                Quick Links
+            </dui-dropdown-menu-trigger>
+            <dui-dropdown-menu-content class="w-56">
+                <dui-dropdown-menu-label>Navigate</dui-dropdown-menu-label>
+                <dui-dropdown-menu-separator/>
+                <dui-dropdown-menu-group>
+                    <!-- Link to a Razor Page with a route value -->
+                    <dui-dropdown-menu-item asp-page="/Booking/Details" asp-route-id="TRP-4821">
+                        <dui-icon name="luggage"/>
+                        View Booking
+                    </dui-dropdown-menu-item>
+                    <!-- Link to an MVC controller action -->
+                    <dui-dropdown-menu-item asp-controller="Search" asp-action="Index">
+                        <dui-icon name="search"/>
+                        Search Trips
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item asp-controller="User" asp-action="Profile">
+                        <dui-icon name="circle-user-round"/>
+                        My Profile
+                    </dui-dropdown-menu-item>
+                </dui-dropdown-menu-group>
+                <dui-dropdown-menu-separator/>
+                <!-- External link via a raw href -->
+                <dui-dropdown-menu-item href="https://help.voyager.travel" target="_blank" rel="noopener noreferrer">
+                    <dui-icon name="life-buoy"/>
+                    Help Center
+                    <dui-icon name="external-link" class="ml-auto size-4"/>
+                </dui-dropdown-menu-item>
+            </dui-dropdown-menu-content>
+        </dui-dropdown-menu>
+        <!-- code end -->
+    </dui-group>
+</div>

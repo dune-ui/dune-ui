@@ -1,16 +1,33 @@
 using DuneUI.Theming;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper;
 
 namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     A selectable menu item (shadcn <c>DropdownMenuItem</c>). Renders as a
-///     <c>&lt;div role="menuitem"&gt;</c>, or as an <c>&lt;a&gt;</c> when <c>href</c> is supplied.
+///     <c>&lt;div role="menuitem"&gt;</c>, or as an <c>&lt;a role="menuitem"&gt;</c> when the author
+///     supplies a URL — either a raw <c>href</c> or ASP.NET routing attributes (<c>asp-page</c>,
+///     <c>asp-action</c>/<c>asp-controller</c>, <c>asp-route-*</c>, …), mirroring Base UI's
+///     <c>Menu.Item</c> / <c>Menu.LinkItem</c> primitives. The <c>del-dropdown-menu</c> web component
+///     activates items by <c>role</c>, so both elements behave identically.
 /// </summary>
 [HtmlTargetElement("dui-dropdown-menu-item")]
-public class DropdownMenuItemTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-    : DuneUITagHelperBase(themeManager, classMerger)
+public class DropdownMenuItemTagHelper : DuneUIAnchorTagHelperBase
 {
+    private readonly IHtmlGenerator _htmlGenerator;
+
+    public DropdownMenuItemTagHelper(
+        ThemeManager themeManager,
+        ICssClassMerger classMerger,
+        IHtmlGenerator htmlGenerator
+    )
+        : base(themeManager, classMerger)
+    {
+        _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
+    }
+
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -23,14 +40,45 @@ public class DropdownMenuItemTagHelper(ThemeManager themeManager, ICssClassMerge
     [HtmlAttributeName("variant")]
     public DropdownMenuItemVariant? Variant { get; set; }
 
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         var effectiveVariant = Variant ?? DropdownMenuItemVariant.Default;
 
-        output.TagName = Href != null ? "a" : "div";
+        // A routing target (asp-page / asp-action / asp-controller / asp-route / asp-area /
+        // asp-page-handler / asp-route-*) makes the item a link the framework resolves; a raw href
+        // does too. asp-fragment/host/protocol are modifiers and only apply alongside a target.
+        var hasRouteTarget =
+            Page != null
+            || Action != null
+            || Controller != null
+            || Route != null
+            || Area != null
+            || PageHandler != null
+            || RouteValues.Count > 0;
+        var isLink = Href != null || hasRouteTarget;
+
+        output.TagName = isLink ? "a" : "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        if (Href != null)
+        if (hasRouteTarget)
+        {
+            // Let the framework anchor helper emit the href from the routing attributes.
+            await new FrameworkAnchorTagHelper(_htmlGenerator)
+            {
+                ViewContext = ViewContext,
+                Action = Action,
+                Area = Area,
+                Controller = Controller,
+                Fragment = Fragment,
+                Host = Host,
+                Page = Page,
+                PageHandler = PageHandler,
+                Protocol = Protocol,
+                Route = Route,
+                RouteValues = RouteValues,
+            }.ProcessAsync(context, output);
+        }
+        else if (Href != null)
         {
             output.Attributes.SetAttribute("href", Href);
         }
@@ -58,7 +106,5 @@ public class DropdownMenuItemTagHelper(ThemeManager themeManager, ICssClassMerge
                 output.GetUserSuppliedClass()
             )
         );
-
-        return Task.CompletedTask;
     }
 }
