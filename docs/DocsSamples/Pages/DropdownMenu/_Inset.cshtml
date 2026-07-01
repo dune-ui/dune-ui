@@ -1,0 +1,37 @@
+<div class="min-h-[330px]">
+    <dui-group justify="GroupJustify.Center">
+        <!-- code begin -->
+        <dui-dropdown-menu>
+            <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+                <dui-icon name="eye" class="text-muted-foreground"/>
+                Trip View
+            </dui-dropdown-menu-trigger>
+            <dui-dropdown-menu-content class="w-56">
+                <!-- These items have a leading icon, so their label starts past the icon column -->
+                <dui-dropdown-menu-group>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="map"/>
+                        Map
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="list"/>
+                        List
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="calendar"/>
+                        Calendar
+                    </dui-dropdown-menu-item>
+                </dui-dropdown-menu-group>
+                <dui-dropdown-menu-separator/>
+                <!-- inset="true" indents the label and items so their text lines up with the icon'd items above -->
+                <dui-dropdown-menu-label inset="true">Sort by</dui-dropdown-menu-label>
+                <dui-dropdown-menu-group>
+                    <dui-dropdown-menu-item inset="true">Price</dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item inset="true">Rating</dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item inset="true">Duration</dui-dropdown-menu-item>
+                </dui-dropdown-menu-group>
+            </dui-dropdown-menu-content>
+        </dui-dropdown-menu>
+        <!-- code end -->
+    </dui-group>
+</div>
