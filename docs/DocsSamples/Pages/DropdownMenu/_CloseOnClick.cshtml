@@ -1,0 +1,39 @@
+<div class="min-h-[360px]">
+    <!-- code begin -->
+    <dui-stack gap="StackGap.Small" align="StackAlign.Center">
+        <dui-dropdown-menu>
+            <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+                <dui-icon name="settings-2" class="text-muted-foreground"/>
+                Booking Options
+            </dui-dropdown-menu-trigger>
+            <dui-dropdown-menu-content class="w-64">
+                <dui-dropdown-menu-label>Availability</dui-dropdown-menu-label>
+                <dui-dropdown-menu-separator/>
+                <!-- A plain item closes the menu by default; close-on-click="false" keeps it
+                     open so you can click it repeatedly. -->
+                <dui-dropdown-menu-item close-on-click="false" onclick="voyagerRefresh()">
+                    <dui-icon name="refresh-cw"/>
+                    Refresh availability
+                </dui-dropdown-menu-item>
+                <dui-dropdown-menu-separator/>
+                <dui-dropdown-menu-label>Preferences</dui-dropdown-menu-label>
+                <!-- Checkbox items stay open by default... -->
+                <dui-dropdown-menu-checkbox-item checked="true">Include breakfast</dui-dropdown-menu-checkbox-item>
+                <!-- ...while close-on-click="true" applies the choice and dismisses the menu. -->
+                <dui-dropdown-menu-checkbox-item close-on-click="true">Flexible dates (apply &amp; close)</dui-dropdown-menu-checkbox-item>
+            </dui-dropdown-menu-content>
+        </dui-dropdown-menu>
+        <p class="text-muted-foreground text-sm" id="--booking-options-output">Refreshed 0 times.</p>
+    </dui-stack>
+    <script>
+        (() => {
+            let count = 0;
+            window.voyagerRefresh = () => {
+                count++;
+                document.getElementById('--booking-options-output').textContent =
+                    'Refreshed ' + count + ' time' + (count === 1 ? '' : 's') + ' — the menu stayed open.';
+            };
+        })();
+    </script>
+    <!-- code end -->
+</div>

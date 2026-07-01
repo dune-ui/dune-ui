@@ -10,6 +10,9 @@ public class DropdownMenuRadioItemTagHelper : DuneUITagHelperBase
 {
     private readonly IIconManager _iconManager;
 
+    [HtmlAttributeName("close-on-click")]
+    public bool? CloseOnClick { get; set; }
+
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -47,6 +50,15 @@ public class DropdownMenuRadioItemTagHelper : DuneUITagHelperBase
         if (group != null)
         {
             output.Attributes.SetAttribute("data-radio-group", group.GroupName);
+        }
+
+        // Only emit when the author overrides the default (radio items stay open on click).
+        if (CloseOnClick.HasValue)
+        {
+            output.Attributes.SetAttribute(
+                "data-close-on-click",
+                CloseOnClick.Value ? "true" : "false"
+            );
         }
 
         if (Disabled == true)

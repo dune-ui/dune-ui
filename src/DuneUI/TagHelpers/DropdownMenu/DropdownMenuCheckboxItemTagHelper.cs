@@ -13,6 +13,9 @@ public class DropdownMenuCheckboxItemTagHelper : DuneUITagHelperBase
     [HtmlAttributeName("checked")]
     public bool? Checked { get; set; }
 
+    [HtmlAttributeName("close-on-click")]
+    public bool? CloseOnClick { get; set; }
+
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -44,6 +47,15 @@ public class DropdownMenuCheckboxItemTagHelper : DuneUITagHelperBase
         if (Inset == true)
         {
             output.Attributes.SetAttribute("data-inset", "true");
+        }
+
+        // Only emit when the author overrides the default (checkbox items stay open on click).
+        if (CloseOnClick.HasValue)
+        {
+            output.Attributes.SetAttribute(
+                "data-close-on-click",
+                CloseOnClick.Value ? "true" : "false"
+            );
         }
 
         if (Disabled == true)

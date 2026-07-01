@@ -376,6 +376,7 @@ internal sealed partial class Generator
         new("DropdownMenu/_CheckboxEvents"),
         new("DropdownMenu/_CheckboxItems"),
         new("DropdownMenu/_ClickEvents"),
+        new("DropdownMenu/_CloseOnClick"),
         new("DropdownMenu/_Inset"),
         new("DropdownMenu/_Intro"),
         new("DropdownMenu/_Links"),

@@ -28,6 +28,9 @@ public class DropdownMenuItemTagHelper : DuneUIAnchorTagHelperBase
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
     }
 
+    [HtmlAttributeName("close-on-click")]
+    public bool? CloseOnClick { get; set; }
+
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -90,6 +93,15 @@ public class DropdownMenuItemTagHelper : DuneUIAnchorTagHelperBase
         if (Inset == true)
         {
             output.Attributes.SetAttribute("data-inset", "true");
+        }
+
+        // Only emit when the author overrides the default (plain items close on click).
+        if (CloseOnClick.HasValue)
+        {
+            output.Attributes.SetAttribute(
+                "data-close-on-click",
+                CloseOnClick.Value ? "true" : "false"
+            );
         }
 
         if (Disabled == true)

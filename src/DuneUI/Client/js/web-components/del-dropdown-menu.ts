@@ -192,17 +192,29 @@ export class DropdownMenu extends LitElement {
       return;
     }
 
+    // `data-close-on-click` (Base UI's closeOnClick) overrides the per-role default:
+    // plain items close unless "false"; checkbox/radio stay open unless "true".
+    const closeOverride = item.getAttribute("data-close-on-click");
+
     const role = item.getAttribute("role");
     if (role === "menuitemcheckbox") {
       this.#toggleCheckbox(item);
+      if (closeOverride === "true") {
+        this.#closeChain();
+      }
       return;
     }
     if (role === "menuitemradio") {
       this.#selectRadio(item);
+      if (closeOverride === "true") {
+        this.#closeChain();
+      }
       return;
     }
 
-    this.#closeChain();
+    if (closeOverride !== "false") {
+      this.#closeChain();
+    }
   };
 
   // Highlight follows the pointer (matching Radix/shadcn): moving the mouse over an item
