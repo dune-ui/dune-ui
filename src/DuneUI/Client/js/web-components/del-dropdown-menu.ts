@@ -26,9 +26,16 @@ export class DropdownMenu extends LitElement {
 
   override connectedCallback() {
     super.connectedCallback();
+    // Made focusable so we can park focus here (clearing the item highlight) when the
+    // pointer leaves the menu, without dropping focus to <body> and losing keyboard control.
+    if (!this.hasAttribute("tabindex")) {
+      this.tabIndex = -1;
+    }
     this.addEventListener("toggle", this.#onToggle as EventListener);
     this.addEventListener("keydown", this.#onKeydown);
     this.addEventListener("click", this.#onClick);
+    this.addEventListener("pointermove", this.#onPointerMove);
+    this.addEventListener("pointerleave", this.#onPointerLeave);
   }
 
   override disconnectedCallback() {
@@ -36,6 +43,8 @@ export class DropdownMenu extends LitElement {
     this.removeEventListener("toggle", this.#onToggle as EventListener);
     this.removeEventListener("keydown", this.#onKeydown);
     this.removeEventListener("click", this.#onClick);
+    this.removeEventListener("pointermove", this.#onPointerMove);
+    this.removeEventListener("pointerleave", this.#onPointerLeave);
   }
 
   /** Focus the first enabled item — used on open and when entering a submenu. */
@@ -194,6 +203,45 @@ export class DropdownMenu extends LitElement {
     }
 
     this.#closeChain();
+  };
+
+  // Highlight follows the pointer (matching Radix/shadcn): moving the mouse over an item
+  // focuses it so the `focus:bg-accent` styling applies, unifying mouse and keyboard on a
+  // single "highlighted = focused" model.
+  #onPointerMove = (event: PointerEvent) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const target = event.target as Element | null;
+    // A submenu's pointer events bubble through here; let that level handle its own items.
+    if (target?.closest("del-dropdown-menu") !== this) {
+      return;
+    }
+
+    const item = target.closest<HTMLElement>(
+      '[role="menuitem"],[role="menuitemcheckbox"],[role="menuitemradio"]',
+    );
+    if (item && item.getAttribute("aria-disabled") !== "true") {
+      if (document.activeElement !== item) {
+        item.focus();
+      }
+    } else if (
+      (document.activeElement as HTMLElement | null)?.closest("del-dropdown-menu") === this
+    ) {
+      // Hovering a non-item region (label, separator, padding) clears the highlight.
+      this.focus();
+    }
+  };
+
+  #onPointerLeave = (event: PointerEvent) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    // Leaving the menu clears the highlight — but keep the parent sub-trigger's state when
+    // the pointer moves into an open submenu (that submenu drives its own highlight).
+    if ((document.activeElement as HTMLElement | null)?.closest("del-dropdown-menu") === this) {
+      this.focus();
+    }
   };
 
   #focusAt(index: number) {
