@@ -1,0 +1,48 @@
+<div class="min-h-[300px]">
+    <!-- code begin -->
+    <dui-stack gap="StackGap.Small" align="StackAlign.Center">
+        <dui-dropdown-menu>
+            <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+                <dui-icon name="sliders-horizontal" class="text-muted-foreground"/>
+                Trip Filters
+            </dui-dropdown-menu-trigger>
+            <dui-dropdown-menu-content class="w-56">
+                <dui-dropdown-menu-label>Show Categories</dui-dropdown-menu-label>
+                <dui-dropdown-menu-separator/>
+                <!-- One "checkedchange" listener on the group catches every item (the event bubbles) -->
+                <dui-dropdown-menu-group id="--trip-filters">
+                    <dui-dropdown-menu-checkbox-item checked="true">Flights</dui-dropdown-menu-checkbox-item>
+                    <dui-dropdown-menu-checkbox-item checked="true">Accommodation</dui-dropdown-menu-checkbox-item>
+                    <dui-dropdown-menu-checkbox-item>Car Rental</dui-dropdown-menu-checkbox-item>
+                </dui-dropdown-menu-group>
+            </dui-dropdown-menu-content>
+        </dui-dropdown-menu>
+        <p class="text-muted-foreground text-sm" id="--trip-filters-output"></p>
+    </dui-stack>
+    <script>
+        (() => {
+            const group = document.getElementById('--trip-filters');
+            const output = document.getElementById('--trip-filters-output');
+
+            // Checkbox items carry no value, so identify the toggled item via event.target.
+            // Seed the active set from whatever is checked on load.
+            const active = new Set(
+                [...group.querySelectorAll('[aria-checked="true"]')].map((el) => el.textContent.trim()),
+            );
+
+            const render = () => {
+                output.textContent = active.size ? 'Showing: ' + [...active].join(', ') : 'No categories selected';
+            };
+
+            // The menu stays open while toggling; the event fires for mouse and keyboard alike.
+            group.addEventListener('checkedchange', (event) => {
+                const label = event.target.textContent.trim();
+                event.detail.checked ? active.add(label) : active.delete(label);
+                render();
+            });
+
+            render();
+        })();
+    </script>
+    <!-- code end -->
+</div>
