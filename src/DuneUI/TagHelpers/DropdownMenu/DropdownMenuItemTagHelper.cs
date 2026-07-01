@@ -6,12 +6,11 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 namespace DuneUI.TagHelpers;
 
 /// <summary>
-///     A selectable menu item (shadcn <c>DropdownMenuItem</c>). Renders as a
+///     A selectable menu item. Renders as a
 ///     <c>&lt;div role="menuitem"&gt;</c>, or as an <c>&lt;a role="menuitem"&gt;</c> when the author
 ///     supplies a URL — either a raw <c>href</c> or ASP.NET routing attributes (<c>asp-page</c>,
-///     <c>asp-action</c>/<c>asp-controller</c>, <c>asp-route-*</c>, …), mirroring Base UI's
-///     <c>Menu.Item</c> / <c>Menu.LinkItem</c> primitives. The <c>del-dropdown-menu</c> web component
-///     activates items by <c>role</c>, so both elements behave identically.
+///     <c>asp-action</c>/<c>asp-controller</c>, <c>asp-route-*</c>, …). The <c>del-dropdown-menu</c>
+///     web component activates items by <c>role</c>, so both elements behave identically.
 /// </summary>
 [HtmlTargetElement("dui-dropdown-menu-item")]
 public class DropdownMenuItemTagHelper : DuneUIAnchorTagHelperBase

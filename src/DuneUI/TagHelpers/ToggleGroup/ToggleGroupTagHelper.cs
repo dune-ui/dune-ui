@@ -37,7 +37,7 @@ public class ToggleGroupTagHelper : FieldInputBaseTagHelper
 
     /// <summary>
     ///     Spacing between items. <c>0</c> joins the items into a single segmented control;
-    ///     any other value separates them with a gap. Defaults to <c>2</c> (matching shadcn).
+    ///     any other value separates them with a gap. Defaults to <c>2</c>.
     /// </summary>
     [HtmlAttributeName("spacing")]
     public int? Spacing { get; set; }
@@ -103,7 +103,7 @@ public class ToggleGroupTagHelper : FieldInputBaseTagHelper
 
         // Layout: dui-toggle-group only carries rounding/shadow, so the flex layout + spacing
         // live here. When joined (spacing 0) collapse the 1px seam between outline items;
-        // otherwise honour the numeric spacing as a real gap the way shadcn does, driving
+        // otherwise honour the numeric spacing as a real gap, driving
         // gap-[--spacing(var(--gap))] from a --gap CSS var (so spacing="2" -> 0.5rem, etc.).
         var layout = isHorizontal
             ? "inline-flex w-fit items-center"

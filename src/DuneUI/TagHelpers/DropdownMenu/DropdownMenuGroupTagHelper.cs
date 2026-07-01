@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
-/// <summary>Groups a set of related menu items (shadcn <c>DropdownMenuGroup</c>).</summary>
 [HtmlTargetElement("dui-dropdown-menu-group")]
 public class DropdownMenuGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

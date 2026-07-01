@@ -2,8 +2,7 @@ import { LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
 /**
- * Slider web component (the server-rendered equivalent of shadcn's <Slider>, a Radix
- * primitive). Rendered by the `dui-slider` tag helper.
+ * Slider web component. Rendered by the `dui-slider` tag helper.
  *
  * It renders in light DOM and operates directly on the server-rendered children: the
  * track, the filled range, one thumb per value, and one hidden <input> per value (so the

@@ -2,8 +2,7 @@ import { LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
 /**
- * Sidebar provider web component (the server-rendered equivalent of shadcn's
- * <SidebarProvider>). Rendered by the `dui-sidebar-wrapper` tag helper.
+ * Sidebar provider web component. Rendered by the `dui-sidebar-wrapper` tag helper.
  *
  * It owns two independent pieces of state and syncs them onto the nested
  * `[data-slot="sidebar"]` element as data attributes, which the Tailwind

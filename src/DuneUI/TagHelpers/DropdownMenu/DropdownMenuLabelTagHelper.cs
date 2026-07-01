@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
-/// <summary>A non-interactive heading inside the menu (shadcn <c>DropdownMenuLabel</c>).</summary>
 [HtmlTargetElement("dui-dropdown-menu-label")]
 public class DropdownMenuLabelTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

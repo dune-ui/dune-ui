@@ -9,7 +9,7 @@
             <dui-dropdown-menu-content class="w-56">
                 <dui-dropdown-menu-label>Filter by Status</dui-dropdown-menu-label>
                 <dui-dropdown-menu-separator/>
-                <!-- Listen on the group (like Base UI's RadioGroup.onValueChange) -->
+                <!-- Listen once on the group; the event bubbles up from the selected radio item -->
                 <dui-dropdown-menu-radio-group id="--booking-status" value="confirmed">
                     <dui-dropdown-menu-radio-item value="confirmed">Confirmed</dui-dropdown-menu-radio-item>
                     <dui-dropdown-menu-radio-item value="pending">Pending</dui-dropdown-menu-radio-item>

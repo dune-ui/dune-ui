@@ -41,7 +41,7 @@ public class SheetTagHelper : DuneUITagHelperBase
             ClassMerger.Merge(
                 // "m-0 max-h-full max-w-full p-0 border-0", // UA style resets for dialog element
                 new ThemeToken("dui-sheet-content"),
-                // Do not add any styles from shadcn's sheet.tsx. We add all the necessary ones below
+                // We define all the necessary styles below
                 "transition ease-in-out data-open:animate-in data-closed:animate-out data-closed:duration-300 data-open:duration-500",
                 effectiveSide switch
                 {

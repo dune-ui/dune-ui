@@ -43,7 +43,7 @@ public class SliderTagHelper : FieldInputBaseTagHelper
 
     /// <summary>
     ///     How the thumb is positioned relative to its value: <see cref="SliderThumbAlignment.Edge" />
-    ///     keeps the thumb fully within the track at the extremes (shadcn default),
+    ///     keeps the thumb fully within the track at the extremes (the default),
     ///     <see cref="SliderThumbAlignment.Center" /> centers it on the value so it overhangs the ends.
     /// </summary>
     /// <remarks>
@@ -100,7 +100,7 @@ public class SliderTagHelper : FieldInputBaseTagHelper
         var inputName = ResolveName();
         var userClass = output.GetUserSuppliedClass();
 
-        // The host becomes <del-slider>, which is itself the shadcn "slider" root. Drop the
+        // The host becomes <del-slider>, which is itself the "slider" root. Drop the
         // name attribute the base copied onto the host: the value posts through the hidden
         // inputs we render per thumb, not through the host element.
         output.Attributes.RemoveAll("name");
@@ -191,8 +191,8 @@ public class SliderTagHelper : FieldInputBaseTagHelper
                 // host carries it and applies the single opacity-50 dim for the whole subtree.
                 // A second data-disabled:opacity-50 on the thumb would double-dim it (the white
                 // fill drops to ~25% and the track bleeds through), and data-disabled:pointer-
-                // events-none would kill the token's hover:ring-4. shadcn keeps disabled state on
-                // the Control wrapper only; the thumb's disabled utilities there are inert.
+                // events-none would kill the token's hover:ring-4. Disabled state is kept on the
+                // host wrapper only, so per-thumb disabled utilities are left inert here.
                 thumb.Attributes.Add("aria-disabled", "true");
             }
             thumb.Attributes.Add(

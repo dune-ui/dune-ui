@@ -18,8 +18,7 @@ function ensureSelectionStyle() {
 }
 
 /**
- * Input OTP web component (the server-rendered equivalent of shadcn's Input OTP). Rendered by
- * the `dui-input-otp` tag helper.
+ * Input OTP web component. Rendered by the `dui-input-otp` tag helper.
  *
  * It renders in light DOM and operates on the server-rendered children: a single real
  * <input data-slot="input-otp"> that holds the whole code (and posts it with the form),
@@ -54,7 +53,7 @@ export class InputOtp extends LitElement {
 
     // --root-height drives the field's font-size so the transparent text lines up with the slots.
     // The server seeds a 32px fallback; measure the real slot height and keep it in sync for themes
-    // that size slots differently (mirrors guilhermerodz/input-otp, which measures the same way).
+    // that size slots differently.
     this.#measureRootHeight();
     if (this.#slots.length > 0 && typeof ResizeObserver !== "undefined") {
       this.#resizeObserver = new ResizeObserver(() => this.#measureRootHeight());

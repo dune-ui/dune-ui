@@ -9,8 +9,8 @@ using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelp
 namespace DuneUI.TagHelpers;
 
 /// <summary>
-///     A segmented one-time-code input (the server-rendered equivalent of shadcn's Input OTP).
-///     A single real <c>&lt;input&gt;</c> holds the whole code and posts it as one form value;
+///     A segmented one-time-code input. A single real <c>&lt;input&gt;</c> holds the whole code
+///     and posts it as one form value;
 ///     the presentational slot cells (one per character) display the value and the active caret.
 ///     The <c>del-input-otp</c> web component distributes the value into the cells and drives the
 ///     active / caret state once hydrated.
@@ -116,8 +116,8 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
         output.TagName = "del-input-otp";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        // shadcn (via guilhermerodz/input-otp) marks the container with data-input-otp-container and
-        // puts data-slot="input-otp" on the real input instead — match that placement.
+        // Mark the container with data-input-otp-container and put data-slot="input-otp" on the
+        // real input instead.
         output.Attributes.SetAttribute("data-input-otp-container", "true");
         output.Attributes.SetAttribute(
             "maxlength",
@@ -132,7 +132,7 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
                 userClass
             )
         );
-        // Inline container styles mirror guilhermerodz/input-otp (what shadcn renders): the
+        // Inline container styles: the
         // positioning context for the absolutely-overlaid input, the text-field affordances, and
         // --root-height, which the input's font-size keys off so the transparent text lines up with
         // the slots. The 32px fallback matches the universal size-8 slot; the del-input-otp web
@@ -145,7 +145,7 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
 
         // Resolve the fake-caret classes server-side (theme token + cross-theme statics) and hand
         // them to the web component, which builds the caret element on hydration and can't resolve
-        // themepack tokens itself. Mirrors shadcn's cn-input-otp-caret / cn-input-otp-caret-line.
+        // themepack tokens itself.
         output.Attributes.SetAttribute(
             "data-caret-class",
             ClassMerger.Merge(

@@ -192,7 +192,7 @@ export class DropdownMenu extends LitElement {
       return;
     }
 
-    // `data-close-on-click` (Base UI's closeOnClick) overrides the per-role default:
+    // `data-close-on-click` overrides the per-role default:
     // plain items close unless "false"; checkbox/radio stay open unless "true".
     const closeOverride = item.getAttribute("data-close-on-click");
 
@@ -217,7 +217,7 @@ export class DropdownMenu extends LitElement {
     }
   };
 
-  // Highlight follows the pointer (matching Radix/shadcn): moving the mouse over an item
+  // Highlight follows the pointer: moving the mouse over an item
   // focuses it so the `focus:bg-accent` styling applies, unifying mouse and keyboard on a
   // single "highlighted = focused" model.
   #onPointerMove = (event: PointerEvent) => {

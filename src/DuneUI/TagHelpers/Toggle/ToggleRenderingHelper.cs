@@ -33,7 +33,7 @@ internal static class ToggleRenderingHelper
         "group/toggle inline-flex items-center justify-center whitespace-nowrap shrink-0 select-none cursor-pointer outline-none hover:bg-muted [&_svg]:pointer-events-none [&_svg]:shrink-0 has-[:focus-visible]:ring-3 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-50 has-[:disabled]:cursor-not-allowed";
 
     /*
-     * Group-item-only statics. shadcn's ToggleGroupItem raises the focused item above its
+     * Group-item-only statics. A grouped toggle item raises the focused item above its
      * neighbours (focus-visible:z-10) so its ring/border isn't clipped by the adjacent item —
      * doubly needed here because joined groups overlap items with -space-x-px. The focus state
      * lives on the inner input, so this is the has-[:focus-visible] form (matching the ring).

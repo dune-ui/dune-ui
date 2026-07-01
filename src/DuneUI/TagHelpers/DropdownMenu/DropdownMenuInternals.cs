@@ -13,10 +13,10 @@ namespace DuneUI.TagHelpers;
 internal static class DropdownMenuInternals
 {
     /// <summary>
-    ///     Static (cross-theme) utility classes for a menu content popup. The Base UI
-    ///     anchor vars (<c>max-h-(--available-height)</c> etc.) are dropped — DuneUI uses
-    ///     the native <c>popover</c> + CSS anchor positioning instead (justified divergence,
-    ///     same as <see cref="PopoverTagHelper" />).
+    ///     Static (cross-theme) utility classes for a menu content popup. Anchor-positioning
+    ///     vars (<c>max-h-(--available-height)</c> etc.) are dropped — DuneUI uses the native
+    ///     <c>popover</c> + CSS anchor positioning instead (justified divergence, same as
+    ///     <see cref="PopoverTagHelper" />).
     /// </summary>
     public const string ContentStaticClasses =
         "z-50 overflow-x-hidden overflow-y-auto outline-hidden try-flip-all";

@@ -22,8 +22,7 @@ public class SidebarWrapperTagHelper(ThemeManager themeManager, ICssClassMerger 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         // The wrapper renders the `del-sidebar` web component, which acts as the
-        // state provider (the server-rendered equivalent of shadcn's
-        // <SidebarProvider>). Nested triggers toggle it via the native command API.
+        // state provider. Nested triggers toggle it via the native command API.
         output.TagName = "del-sidebar";
         output.TagMode = TagMode.StartTagAndEndTag;
 

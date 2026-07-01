@@ -31,7 +31,7 @@ public class AlertDialogCancelTagHelper : DuneUITagHelperBase
             output.Attributes.SetAttribute("value", "cancel");
         }
 
-        // Match shadcn: override Button's data-slot and fold in the alert-dialog-cancel token
+        // Override Button's data-slot and fold in the alert-dialog-cancel token
         // *after* the button classes (RenderAttributes folds GetUserSuppliedClass last).
         output.Attributes.SetAttribute("data-slot", "alert-dialog-cancel");
         output.Attributes.SetAttribute(

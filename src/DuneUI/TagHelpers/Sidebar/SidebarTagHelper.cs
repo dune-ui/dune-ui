@@ -35,7 +35,7 @@ public class SidebarTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-side", effectiveSide.GetDataAttributeText());
 
         // collapsible="none": a static, always-visible sidebar with no toggle and
-        // no mobile drawer (mirrors shadcn's `collapsible="none"` branch).
+        // no mobile drawer.
         if (effectiveCollapsible == SidebarCollapsible.None)
         {
             output.Attributes.SetAttribute(
