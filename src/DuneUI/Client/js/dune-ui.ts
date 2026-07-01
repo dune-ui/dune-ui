@@ -1,5 +1,6 @@
 ﻿import "./web-components/del-collapsible";
 import "./web-components/del-dialog";
+import "./web-components/del-dropdown-menu";
 import "./web-components/del-input-otp";
 import "./web-components/del-sidebar";
 import "./web-components/del-slider";

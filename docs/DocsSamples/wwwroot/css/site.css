@@ -425,6 +425,9 @@
   .min-h-\[300px\] {
     min-height: 300px;
   }
+  .min-h-\[330px\] {
+    min-height: 330px;
+  }
   .min-h-\[450px\] {
     min-height: 450px;
   }
@@ -455,8 +458,14 @@
   .w-40 {
     width: calc(var(--spacing) * 40);
   }
+  .w-44 {
+    width: calc(var(--spacing) * 44);
+  }
   .w-48 {
     width: calc(var(--spacing) * 48);
+  }
+  .w-56 {
+    width: calc(var(--spacing) * 56);
   }
   .w-100 {
     width: calc(var(--spacing) * 100);
@@ -958,6 +967,9 @@
   }
   .grayscale {
     --tw-grayscale: grayscale(100%);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .transition {

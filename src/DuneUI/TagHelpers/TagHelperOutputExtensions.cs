@@ -16,4 +16,22 @@ public static class TagHelperOutputExtensions
 
         return string.Empty;
     }
+
+    /// <summary>
+    ///     Appends a declaration to the element's <c>style</c> attribute, preserving any
+    ///     existing (e.g. user-supplied) value.
+    /// </summary>
+    public static void AppendStyle(this TagHelperOutput output, string declaration)
+    {
+        var existing =
+            output.Attributes.ContainsName("style")
+            && output.Attributes["style"].Value?.ToString() is { } value
+                ? value.TrimEnd().TrimEnd(';')
+                : null;
+
+        output.Attributes.SetAttribute(
+            "style",
+            string.IsNullOrEmpty(existing) ? declaration : $"{existing}; {declaration}"
+        );
+    }
 }
