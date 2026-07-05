@@ -5,10 +5,36 @@
             Transcript from the meeting with the client.
         </dui-card-description>
         <dui-card-action>
-            <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Small">
-                <dui-icon name="captions"/>
-                Transcribe
-            </dui-button>
+            <dui-dropdown-menu>
+                <dui-dropdown-menu-trigger variant="ButtonVariant.Ghost" size="ButtonSize.Icon">
+                    <dui-icon name="ellipsis" class="text-muted-foreground"/>
+                    <span class="sr-only">More options</span>
+                </dui-dropdown-menu-trigger>
+                <dui-dropdown-menu-content class="w-44">
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="captions"/>
+                        Transcribe
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-separator/>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="copy"/>
+                        Copy transcript
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="share"/>
+                        Share notes
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="download"/>
+                        Export as PDF
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-separator/>
+                    <dui-dropdown-menu-item variant="DropdownMenuItemVariant.Destructive">
+                        <dui-icon name="trash-2"/>
+                        Delete
+                    </dui-dropdown-menu-item>
+                </dui-dropdown-menu-content>
+            </dui-dropdown-menu>
         </dui-card-action>
     </dui-card-header>
     <dui-card-content>

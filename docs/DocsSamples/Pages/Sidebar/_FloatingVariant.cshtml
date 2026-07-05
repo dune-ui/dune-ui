@@ -54,16 +54,51 @@
         <dui-sidebar-footer>
             <dui-sidebar-menu>
                 <dui-sidebar-menu-item>
-                    <dui-sidebar-menu-link href="#" size="SidebarMenuLinkSize.Large">
-                        <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-muted text-foreground">
-                            <dui-icon name="user"/>
-                        </div>
-                        <div class="grid flex-1 text-left text-sm leading-tight">
-                            <span class="truncate font-semibold">Amelia Hart</span>
-                            <span class="truncate text-xs text-muted-foreground">amelia@voyager.travel</span>
-                        </div>
-                        <dui-icon name="chevrons-up-down" class="ml-auto"/>
-                    </dui-sidebar-menu-link>
+                    <dui-dropdown-menu id="nav-user-menu">
+                        <dui-sidebar-menu-button size="SidebarMenuButtonSize.Large" popovertarget="nav-user-menu" aria-haspopup="menu">
+                            <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-muted text-foreground">
+                                <dui-icon name="user"/>
+                            </div>
+                            <div class="grid flex-1 text-left text-sm leading-tight">
+                                <span class="truncate font-semibold">Amelia Hart</span>
+                                <span class="truncate text-xs text-muted-foreground">amelia@voyager.travel</span>
+                            </div>
+                            <dui-icon name="chevrons-up-down" class="ml-auto"/>
+                        </dui-sidebar-menu-button>
+                        <dui-dropdown-menu-content class="w-56" position="PositionArea.RightSpanTop">
+                            <dui-dropdown-menu-label class="p-0 font-normal">
+                                <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                                    <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-muted text-foreground">
+                                        <dui-icon name="user"/>
+                                    </div>
+                                    <div class="grid flex-1 text-left text-sm leading-tight">
+                                        <span class="truncate font-semibold">Amelia Hart</span>
+                                        <span class="truncate text-xs text-muted-foreground">amelia@voyager.travel</span>
+                                    </div>
+                                </div>
+                            </dui-dropdown-menu-label>
+                            <dui-dropdown-menu-separator/>
+                            <dui-dropdown-menu-group>
+                                <dui-dropdown-menu-item>
+                                    <dui-icon name="badge-check"/>
+                                    Account
+                                </dui-dropdown-menu-item>
+                                <dui-dropdown-menu-item>
+                                    <dui-icon name="credit-card"/>
+                                    Billing
+                                </dui-dropdown-menu-item>
+                                <dui-dropdown-menu-item>
+                                    <dui-icon name="bell"/>
+                                    Notifications
+                                </dui-dropdown-menu-item>
+                            </dui-dropdown-menu-group>
+                            <dui-dropdown-menu-separator/>
+                            <dui-dropdown-menu-item variant="DropdownMenuItemVariant.Destructive">
+                                <dui-icon name="log-out"/>
+                                Log out
+                            </dui-dropdown-menu-item>
+                        </dui-dropdown-menu-content>
+                    </dui-dropdown-menu>
                 </dui-sidebar-menu-item>
             </dui-sidebar-menu>
         </dui-sidebar-footer>
