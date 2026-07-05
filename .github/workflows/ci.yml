@@ -40,6 +40,9 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
+    - name: Verify skills reference docs are up to date
+      run: dotnet run --project docs/SkillsGenerator --configuration Release --no-build -- --check
+
     - name: Pack NuGet package
       if: env.IS_RELEASE == 'true'
       run: |
