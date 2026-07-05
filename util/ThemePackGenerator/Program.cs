@@ -52,6 +52,7 @@ public partial class Program
                 .CleanSwitchClasses()
                 .CleanToggleClasses()
                 .CreateRadioButtonStyles()
+                .CreateMenuSurfaceStyles()
                 .CleanDialogClasses()
                 .CleanPopoverClasses()
                 .CleanSheetClasses()

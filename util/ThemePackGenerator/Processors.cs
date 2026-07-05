@@ -130,6 +130,37 @@ public static partial class Processors
             return output;
         }
 
+        /// <summary>
+        ///     Emits the tokens that back DuneUI's per-instance menu color / appearance / accent
+        ///     settings. Only <c>dui-menu-translucent</c> exists as a <c>.cn-*</c> block upstream
+        ///     (extracted verbatim); the inverted and bold-accent treatments are TS transforms in
+        ///     the shadcn CLI, so we synthesise them here:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <c>dui-menu-inverted</c> — shadcn rewrites its <c>cn-menu-target</c> marker
+        ///             to the <c>dark</c> class; putting <c>dark</c> on the surface makes it (and
+        ///             its items) resolve dark color variables.
+        ///         </item>
+        ///         <item>
+        ///             <c>dui-menu-accent-bold</c> — shadcn remaps <c>--accent</c> to
+        ///             <c>--primary</c> for the whole theme; we scope the same var override to the
+        ///             menu surface so <c>focus:bg-accent</c> items highlight in the primary color.
+        ///         </item>
+        ///     </list>
+        ///     The Default / Solid / Subtle states need no token (they are the absence of one).
+        /// </summary>
+        public Dictionary<string, string> CreateMenuSurfaceStyles()
+        {
+            var output = new Dictionary<string, string>(input)
+            {
+                ["dui-menu-inverted"] = "dark",
+                ["dui-menu-accent-bold"] =
+                    "[--accent:var(--primary)] [--accent-foreground:var(--primary-foreground)]",
+            };
+
+            return output;
+        }
+
         public Dictionary<string, string> CleanDialogClasses()
         {
             var output = new Dictionary<string, string>(input);

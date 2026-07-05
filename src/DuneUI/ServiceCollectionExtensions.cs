@@ -19,6 +19,8 @@ public static class ServiceCollectionExtensions
     /// <returns>The <see cref="DuneUIBuilder" /> instances that allows you to register and configure DuneUI services.</returns>
     public static DuneUIBuilder AddDuneUI(this IServiceCollection services)
     {
+        services.AddOptions<DuneUIOptions>();
+
         services
             .AddSingleton<TwMerge>()
             .AddSingleton<ICssClassMerger, DefaultCssClassMerger>()

@@ -1,17 +1,22 @@
 using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Options;
 
 namespace DuneUI.TagHelpers;
 
 [HtmlTargetElement("dui-dropdown-menu-sub-content")]
-public class DropdownMenuSubContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
-    : DuneUITagHelperBase(themeManager, classMerger)
+public class DropdownMenuSubContentTagHelper(
+    ThemeManager themeManager,
+    ICssClassMerger classMerger,
+    IOptions<DuneUIOptions> options
+) : DuneUITagHelperBase(themeManager, classMerger)
 {
     [HtmlAttributeName("position")]
     public PositionArea? Position { get; set; }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var menuOptions = options.Value.Menu;
         var effectivePosition = Position ?? PositionArea.RightSpanBottom;
 
         output.TagName = "del-dropdown-menu";
@@ -47,7 +52,9 @@ public class DropdownMenuSubContentTagHelper(ThemeManager themeManager, ICssClas
             ClassMerger.Merge(
                 new ThemeToken("dui-dropdown-menu-sub-content"),
                 new ThemeToken("dui-dropdown-menu-subcontent"),
-                new ThemeToken("dui-menu-translucent"),
+                MenuSurfaceInternals.ColorToken(menuOptions.Color),
+                MenuSurfaceInternals.AppearanceToken(menuOptions.Appearance),
+                MenuSurfaceInternals.AccentToken(menuOptions.Accent),
                 DropdownMenuInternals.ContentStaticClasses,
                 "w-auto",
                 effectivePosition.GetTailwindClassName(),

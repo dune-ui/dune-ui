@@ -64,4 +64,20 @@ public class DuneUIBuilder
 
         return this;
     }
+
+    /// <summary>
+    ///     Configures the application-wide defaults for floating menu surfaces (color,
+    ///     appearance and accent).
+    /// </summary>
+    /// <param name="configure">A callback for configuring <see cref="DuneUIMenuOptions" />.</param>
+    /// <returns>The <see cref="DuneUIBuilder" /> instance.</returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public DuneUIBuilder ConfigureMenu(Action<DuneUIMenuOptions> configure)
+    {
+        ArgumentNullException.ThrowIfNull(configure);
+
+        Services.Configure<DuneUIOptions>(options => configure(options.Menu));
+
+        return this;
+    }
 }
