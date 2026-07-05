@@ -1,0 +1,11 @@
+{
+  "name": "duneui",
+  "description": "Build ASP.NET Core MVC / Razor Pages UIs with DuneUI tag helpers. Bundles the component catalog and conventions plus task skills for forms, layout, and theming.",
+  "author": {
+    "name": "Jerrie Pelser"
+  },
+  "homepage": "https://github.com/dune-ui/dune-ui",
+  "repository": "https://github.com/dune-ui/dune-ui",
+  "license": "MIT",
+  "keywords": ["duneui", "tag-helper", "aspnetcore", "razor", "mvc", "shadcn", "ui"]
+}

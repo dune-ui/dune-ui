@@ -79,3 +79,16 @@ Start using the DuneUI Tag Helpers inside your Razor Pages or MVC Views. For exa
 ## Documentation
 
 Documentation and code examples for all the Tag Helpers [can be found online](https://www.duneui.com/docs/tag-helpers/components/avatar).
+
+## Using DuneUI with AI agents (Claude Code)
+
+DuneUI ships a set of [Claude Code](https://claude.com/claude-code) skills that teach an AI agent how to build UIs with DuneUI — the component catalog, the library's conventions, and task workflows for forms, layout, and theming.
+
+Install them from this repository, which doubles as a plugin marketplace:
+
+```bash
+/plugin marketplace add dune-ui/dune-ui
+/plugin install duneui@dune-ui
+```
+
+This adds the `duneui` skill (auto-activates when you edit `.cshtml` / `.razor` files) along with `duneui-forms`, `duneui-layout`, and `duneui-theming`.

@@ -1,0 +1,14 @@
+{
+  "name": "dune-ui",
+  "description": "The DuneUI plugin marketplace.",
+  "owner": {
+    "name": "Jerrie Pelser"
+  },
+  "plugins": [
+    {
+      "name": "duneui",
+      "source": "./",
+      "description": "DuneUI agent skills — the component catalog and conventions, plus task skills for building forms, layouts, and theming with DuneUI tag helpers in ASP.NET Core."
+    }
+  ]
+}
