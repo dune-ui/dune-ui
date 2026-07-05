@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A region within an alert dialog for media such as an icon or illustration.
+/// </summary>
 [HtmlTargetElement("dui-alert-dialog-media")]
 public class AlertDialogMediaTagHelper : DuneUITagHelperBase
 {

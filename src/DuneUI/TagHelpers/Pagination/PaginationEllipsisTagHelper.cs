@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A non-interactive item that indicates omitted pages within the pagination.
+/// </summary>
 [HtmlTargetElement("dui-pagination-ellipsis")]
 public class PaginationEllipsisTagHelper : DuneUITagHelperBase
 {

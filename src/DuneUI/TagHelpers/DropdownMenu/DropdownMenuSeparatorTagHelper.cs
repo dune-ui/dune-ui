@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A horizontal divider that visually separates groups of menu items.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-separator")]
 public class DropdownMenuSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

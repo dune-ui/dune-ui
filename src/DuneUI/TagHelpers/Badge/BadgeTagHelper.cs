@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A small label used to highlight status, counts, or categories.
+/// </summary>
 [HtmlTargetElement("dui-badge")]
 public class BadgeTagHelper : DuneUITagHelperBase
 {
@@ -19,6 +22,12 @@ public class BadgeTagHelper : DuneUITagHelperBase
         [BadgeVariant.Link] = new ThemeToken("dui-badge-variant-link"),
     };
 
+    /// <summary>
+    ///     The visual style of the badge.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="BadgeVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public BadgeVariant? Variant { get; set; }
 

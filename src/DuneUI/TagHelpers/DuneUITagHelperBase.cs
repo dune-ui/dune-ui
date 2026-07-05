@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Base class for all DuneUI tag helpers. Provides the theme manager and CSS class
+///     merger, named-slot support, and tracks the ancestor tag-helper stack so children can
+///     locate their parents.
+/// </summary>
 public class DuneUITagHelperBase : TagHelper
 {
     private const string ParentTagHelperStackKey = "duneui-parent-tag-helper-stack";
@@ -10,12 +15,21 @@ public class DuneUITagHelperBase : TagHelper
     private readonly Dictionary<string, TagHelperContent> _namedSlots =
         new Dictionary<string, TagHelperContent>();
 
+    /// <summary>
+    ///     The CSS class merger used to compose and de-duplicate Tailwind utility classes.
+    /// </summary>
     [HtmlAttributeNotBound]
     public ICssClassMerger ClassMerger { get; }
 
+    /// <summary>
+    ///     The immediate ancestor DuneUI tag helper, or <c>null</c> when this is a root.
+    /// </summary>
     [HtmlAttributeNotBound]
     protected internal DuneUITagHelperBase? ParentTagHelper { get; private set; }
 
+    /// <summary>
+    ///     The theme manager that resolves component classes from the active theme pack.
+    /// </summary>
     [HtmlAttributeNotBound]
     protected ThemeManager ThemeManager { get; }
 

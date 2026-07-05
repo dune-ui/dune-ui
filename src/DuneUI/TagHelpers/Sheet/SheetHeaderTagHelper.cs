@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers.Sheet;
 
+/// <summary>
+///     The header region of a sheet; typically contains the title and description.
+/// </summary>
 [HtmlTargetElement("dui-sheet-header")]
 public class SheetHeaderTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The header region of a popover; typically contains the title and description.
+/// </summary>
 [HtmlTargetElement("dui-popover-header")]
 public class PopoverHeaderTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

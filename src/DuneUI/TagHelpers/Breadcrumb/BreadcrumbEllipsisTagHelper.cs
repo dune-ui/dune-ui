@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An ellipsis that stands in for collapsed breadcrumb items, rendered as a
+///     presentational <c>&lt;span&gt;</c> with an icon and screen-reader text.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb-ellipsis")]
 public class BreadcrumbEllipsisTagHelper : DuneUITagHelperBase
 {

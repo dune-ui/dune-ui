@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A single collapsible item within an accordion, rendered as a native
+///     <c>&lt;details&gt;</c> element with a title and content region.
+/// </summary>
 [HtmlTargetElement("dui-accordion-item")]
 public class AccordionItemTagHelper : DuneUITagHelperBase
 {

@@ -4,18 +4,40 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A progress bar that visualizes the completion of a task as a filled track. Compose
+///     it with the label and value subcomponents.
+/// </summary>
 [HtmlTargetElement("dui-progress")]
 public class ProgressTagHelper : DuneUITagHelperBase
 {
     public ProgressTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     The value representing full completion.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>100</c>.
+    /// </remarks>
     [HtmlAttributeName("maximum")]
     public int? Maximum { get; set; }
 
+    /// <summary>
+    ///     The value representing no completion.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>0</c>.
+    /// </remarks>
     [HtmlAttributeName("minimum")]
     public int? Minimum { get; set; }
 
+    /// <summary>
+    ///     The current progress value, between the minimum and maximum.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>0</c>.
+    /// </remarks>
     [HtmlAttributeName("value")]
     public int? Value { get; set; }
 

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The header section of a table, rendered as a <c>&lt;thead&gt;</c>; contains the header row.
+/// </summary>
 [HtmlTargetElement("dui-table-header")]
 public class TableHeaderTagHelper : DuneUITagHelperBase
 {

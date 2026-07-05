@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A run of text or an icon displayed inside an input group, typically within an add-on.
+/// </summary>
 [HtmlTargetElement("dui-input-group-text")]
 public class InputGroupTextTagHelper : DuneUITagHelperBase
 {

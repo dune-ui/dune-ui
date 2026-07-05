@@ -4,18 +4,40 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The sidebar panel itself, hosting its header, content, and footer. On desktop it renders
+///     as a fixed panel that can collapse; on mobile it becomes an off-canvas drawer.
+/// </summary>
 [HtmlTargetElement("dui-sidebar")]
 public class SidebarTagHelper : DuneUITagHelperBase
 {
     public SidebarTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     The visual style of the sidebar.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarVariant.Sidebar" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public SidebarVariant? Variant { get; set; }
 
+    /// <summary>
+    ///     The edge of the screen the sidebar is anchored to.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarSide.Left" />.
+    /// </remarks>
     [HtmlAttributeName("side")]
     public SidebarSide? Side { get; set; }
 
+    /// <summary>
+    ///     How the sidebar behaves when it is collapsed.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarCollapsible.Offcanvas" />.
+    /// </remarks>
     [HtmlAttributeName("collapsible")]
     public SidebarCollapsible? Collapsible { get; set; }
 

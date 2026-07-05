@@ -4,21 +4,41 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Displays a user's image, falling back to initials or a name-derived monogram when no
+///     image is available.
+/// </summary>
 [HtmlTargetElement("dui-avatar")]
 public class AvatarTagHelper : DuneUITagHelperBase
 {
     public AvatarTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     Explicit initials to display when no image is available. Takes precedence over
+    ///     initials derived from <see cref="Name" />.
+    /// </summary>
     [HtmlAttributeName("initials")]
     public string? Initials { get; set; }
 
+    /// <summary>
+    ///     The user's name, used as the image's alt text and to derive fallback initials.
+    /// </summary>
     [HtmlAttributeName("name")]
     public string? Name { get; set; }
 
+    /// <summary>
+    ///     The size of the avatar.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="AvatarSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public AvatarSize? Size { get; set; }
 
+    /// <summary>
+    ///     The URL of the avatar image. When omitted, a fallback with initials is rendered.
+    /// </summary>
     [HtmlAttributeName("src")]
     public string? Source { get; set; }
 

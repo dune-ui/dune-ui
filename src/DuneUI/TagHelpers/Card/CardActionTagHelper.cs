@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An action region within a card header, aligned to the top-right corner; typically
+///     contains a button or other interactive control.
+/// </summary>
 [HtmlTargetElement("dui-card-action")]
 public class CardActionTagHelper : DuneUITagHelperBase
 {

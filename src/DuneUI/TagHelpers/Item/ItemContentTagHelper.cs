@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The main content region of an item; typically wraps the title and description.
+/// </summary>
 [HtmlTargetElement("dui-item-content")]
 public class ItemContentTagHelper : DuneUITagHelperBase
 {

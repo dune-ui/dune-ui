@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The footer region of a card; typically contains actions or supplementary information.
+/// </summary>
 [HtmlTargetElement("dui-card-footer")]
 public class CardFooterTagHelper : DuneUITagHelperBase
 {

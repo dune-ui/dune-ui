@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Displays a keyboard shortcut hint, aligned to the trailing edge of a menu item.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-shortcut")]
 public class DropdownMenuShortcutTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

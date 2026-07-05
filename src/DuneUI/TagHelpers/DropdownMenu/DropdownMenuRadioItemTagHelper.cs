@@ -5,17 +5,32 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A single option within a <c>dui-dropdown-menu-radio-group</c>, rendered as a
+///     <c>&lt;div role="menuitemradio"&gt;</c> with a selection indicator.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-radio-item")]
 public class DropdownMenuRadioItemTagHelper : DuneUITagHelperBase
 {
     private readonly IIconManager _iconManager;
 
+    /// <summary>
+    ///     Whether clicking the item closes the menu. Radio items stay open on click unless this is
+    ///     set.
+    /// </summary>
     [HtmlAttributeName("close-on-click")]
     public bool? CloseOnClick { get; set; }
 
+    /// <summary>
+    ///     Whether the item is disabled.
+    /// </summary>
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
+    /// <summary>
+    ///     The value this item contributes to its radio group; used to match the group's selected
+    ///     value.
+    /// </summary>
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 

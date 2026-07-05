@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A multi-line text input rendered inside an input group, styled to blend into the group.
+/// </summary>
 [HtmlTargetElement("dui-input-group-textarea")]
 public class InputGroupTextAreaTagHelper : DuneUITagHelperBase
 {

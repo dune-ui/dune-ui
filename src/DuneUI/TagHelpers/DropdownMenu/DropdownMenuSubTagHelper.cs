@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Wraps a submenu, pairing a <c>dui-dropdown-menu-sub-trigger</c> with its
+///     <c>dui-dropdown-menu-sub-content</c> and generating the shared id that links them.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-sub")]
 public class DropdownMenuSubTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

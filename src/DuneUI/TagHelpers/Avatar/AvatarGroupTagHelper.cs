@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A container that displays a set of avatars as an overlapping stack.
+/// </summary>
 [HtmlTargetElement("dui-avatar-group")]
 public class AvatarGroupTagHelper : DuneUITagHelperBase
 {

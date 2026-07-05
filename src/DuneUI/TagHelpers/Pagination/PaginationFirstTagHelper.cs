@@ -6,12 +6,18 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A pagination link that navigates to the first page.
+/// </summary>
 [HtmlTargetElement("dui-pagination-first")]
 public class PaginationFirstTagHelper : DuneUIAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
     private readonly IIconManager _iconManager;
 
+    /// <summary>
+    ///     The size of the rendered pagination button.
+    /// </summary>
     [HtmlAttributeName("size")]
     public ButtonSize? Size { get; set; }
 

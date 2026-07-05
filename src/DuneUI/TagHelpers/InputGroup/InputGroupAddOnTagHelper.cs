@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A decoration attached to an input group, such as an icon, text, or button, aligned to one of
+///     the input's edges. Clicking the add-on focuses the group's input.
+/// </summary>
 [HtmlTargetElement("dui-input-group-addon")]
 public class InputGroupAddOnTagHelper : DuneUITagHelperBase
 {
@@ -33,6 +37,12 @@ public class InputGroupAddOnTagHelper : DuneUITagHelperBase
         ],
     };
 
+    /// <summary>
+    ///     Where the add-on is positioned relative to the input.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="InputGroupAddOnVariantAlignment.InlineStart" />.
+    /// </remarks>
     [HtmlAttributeName("align")]
     public InputGroupAddOnVariantAlignment? Alignment { get; set; }
 

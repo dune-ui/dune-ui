@@ -12,6 +12,12 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-alert-dialog-cancel")]
 public class AlertDialogCancelTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The visual style of the cancel button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonVariant.Outline" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ButtonVariant? Variant { get; set; }
 

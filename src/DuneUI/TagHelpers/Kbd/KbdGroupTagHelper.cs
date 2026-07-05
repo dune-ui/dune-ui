@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Groups several <c>&lt;dui-kbd&gt;</c> elements to represent a keyboard shortcut or key sequence.
+/// </summary>
 [HtmlTargetElement("dui-kbd-group")]
 public class KbdGroupTagHelper : DuneUITagHelperBase
 {

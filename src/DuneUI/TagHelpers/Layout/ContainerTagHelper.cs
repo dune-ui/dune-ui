@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A centered, width-constrained wrapper that horizontally centers page content and
+///     applies responsive horizontal padding.
+/// </summary>
 [HtmlTargetElement("dui-container")]
 public class ContainerTagHelper : DuneUITagHelperBase
 {

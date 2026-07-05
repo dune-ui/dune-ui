@@ -5,20 +5,40 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A menu item with a checkable state, rendered as a
+///     <c>&lt;div role="menuitemcheckbox"&gt;</c> with a check indicator.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-checkbox-item")]
 public class DropdownMenuCheckboxItemTagHelper : DuneUITagHelperBase
 {
     private readonly IIconManager _iconManager;
 
+    /// <summary>
+    ///     Whether the item is checked.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>false</c>.
+    /// </remarks>
     [HtmlAttributeName("checked")]
     public bool? Checked { get; set; }
 
+    /// <summary>
+    ///     Whether clicking the item closes the menu. Checkbox items stay open on click unless this
+    ///     is set.
+    /// </summary>
     [HtmlAttributeName("close-on-click")]
     public bool? CloseOnClick { get; set; }
 
+    /// <summary>
+    ///     Whether the item is disabled.
+    /// </summary>
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
+    /// <summary>
+    ///     Whether the item is inset, aligning its text with items that have a leading icon.
+    /// </summary>
     [HtmlAttributeName("inset")]
     public bool? Inset { get; set; }
 

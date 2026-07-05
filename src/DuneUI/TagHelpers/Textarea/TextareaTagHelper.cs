@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A styled multi-line text input that grows with its content. Supports model binding via
+///     <c>asp-for</c>.
+/// </summary>
 [HtmlTargetElement("dui-textarea")]
 public class TextareaTagHelper : FieldInputBaseTagHelper
 {

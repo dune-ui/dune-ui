@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The footer region of an alert dialog; typically contains the cancel and action buttons.
+/// </summary>
 [HtmlTargetElement("dui-alert-dialog-footer")]
 public class AlertDialogFooterTagHelper : DuneUITagHelperBase
 {

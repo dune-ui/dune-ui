@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A title for a field or field set that is styled like a label but is not associated with a control.
+/// </summary>
 [HtmlTargetElement("dui-field-title")]
 public class FieldTitleTagHelper : DuneUITagHelperBase
 {

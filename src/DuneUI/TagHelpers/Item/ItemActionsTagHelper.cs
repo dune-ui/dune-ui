@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The region of an item that holds action controls such as buttons, aligned to its trailing edge.
+/// </summary>
 [HtmlTargetElement("dui-item-actions")]
 public class ItemActionsTagHelper : DuneUITagHelperBase
 {

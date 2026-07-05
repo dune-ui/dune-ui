@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A button styled to sit inside an input group, typically within an add-on.
+/// </summary>
 [HtmlTargetElement("dui-input-group-button")]
 public class InputGroupButtonTagHelper : DuneUITagHelperBase
 {
@@ -19,9 +22,21 @@ public class InputGroupButtonTagHelper : DuneUITagHelperBase
             ),
         };
 
+    /// <summary>
+    ///     The size of the button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="InputGroupButtonSize.ExtraSmall" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public InputGroupButtonSize? Size { get; set; }
 
+    /// <summary>
+    ///     The visual style of the button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonVariant.Ghost" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ButtonVariant? Variant { get; set; }
 

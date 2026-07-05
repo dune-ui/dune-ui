@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A button rendered as an entry within a sidebar menu item.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-menu-button")]
 public class SidebarMenuButtonTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
@@ -24,10 +27,29 @@ public class SidebarMenuButtonTagHelper(ThemeManager themeManager, ICssClassMerg
         ),
     };
 
+    /// <summary>
+    ///     The size of the menu button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarMenuButtonSize.Default" />.
+    /// </remarks>
     public SidebarMenuButtonSize? Size { get; set; }
 
+    /// <summary>
+    ///     The visual variant of the menu button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarMenuButtonVariant.Default" />.
+    /// </remarks>
     public SidebarMenuButtonVariant? Variant { get; set; }
 
+    /// <summary>
+    ///     Whether this button represents the active item; when <c>true</c> the button is
+    ///     marked with a <c>data-active</c> attribute for styling.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>false</c>.
+    /// </remarks>
     public bool? IsActive { get; set; }
 
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

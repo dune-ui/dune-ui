@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The outermost sidebar container that provides layout and shared state for the sidebar and its inset content.
+///     Renders the <c>del-sidebar</c> web component that nested triggers and the backdrop toggle.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-wrapper")]
 public class SidebarWrapperTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

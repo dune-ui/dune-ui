@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The descriptive body text of an alert dialog, shown beneath the title.
+/// </summary>
 [HtmlTargetElement("dui-alert-dialog-description")]
 public class AlertDialogDescriptionTagHelper : DuneUITagHelperBase
 {

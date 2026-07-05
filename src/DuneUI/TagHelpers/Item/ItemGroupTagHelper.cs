@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A vertical list container that groups related items together.
+/// </summary>
 [HtmlTargetElement("dui-item-group")]
 public class ItemGroupTagHelper : DuneUITagHelperBase
 {

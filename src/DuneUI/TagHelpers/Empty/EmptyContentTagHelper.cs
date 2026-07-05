@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The content region of an empty state; typically contains actions or supplementary
+///     elements below the header.
+/// </summary>
 [HtmlTargetElement("dui-empty-content")]
 public class EmptyContentTagHelper : DuneUITagHelperBase
 {

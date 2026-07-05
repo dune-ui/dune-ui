@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The ordered list of breadcrumb items, rendered as an <c>&lt;ol&gt;</c>.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb-list")]
 public class BreadcrumbListTagHelper : DuneUITagHelperBase
 {

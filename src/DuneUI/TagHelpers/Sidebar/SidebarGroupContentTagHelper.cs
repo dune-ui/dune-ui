@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The content region of a sidebar group, wrapping the group's menu.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-group-content")]
 public class SidebarGroupContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

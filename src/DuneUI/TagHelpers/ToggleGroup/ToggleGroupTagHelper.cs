@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Groups a set of toggle items into a single-select or multi-select control.
+/// </summary>
 [HtmlTargetElement("dui-toggle-group")]
 public class ToggleGroupTagHelper : FieldInputBaseTagHelper
 {
@@ -26,12 +29,30 @@ public class ToggleGroupTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("type")]
     public ToggleGroupType? Type { get; set; }
 
+    /// <summary>
+    ///     The visual style applied to every item in the group.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ToggleVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ToggleVariant? Variant { get; set; }
 
+    /// <summary>
+    ///     The size applied to every item in the group.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ToggleSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public ToggleSize? Size { get; set; }
 
+    /// <summary>
+    ///     The direction in which the group lays out its items.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ToggleGroupOrientation.Horizontal" />.
+    /// </remarks>
     [HtmlAttributeName("orientation")]
     public ToggleGroupOrientation? Orientation { get; set; }
 

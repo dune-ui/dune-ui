@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A breadcrumb navigation trail, rendered as a <c>&lt;nav&gt;</c>; shows the path to the
+///     current page. Compose it with the list, item, link, page, separator, and ellipsis
+///     subcomponents.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb")]
 public class BreadcrumbTagHelper : DuneUITagHelperBase
 {

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The label for a field's control, rendered as a <c>&lt;label&gt;</c> element.
+/// </summary>
 [HtmlTargetElement("dui-field-label")]
 public class FieldLabelTagHelper : DuneUITagHelperBase
 {

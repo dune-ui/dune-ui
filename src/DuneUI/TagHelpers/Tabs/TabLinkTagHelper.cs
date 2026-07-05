@@ -5,14 +5,27 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A single tab within a <c>&lt;dui-tab-list&gt;</c>, rendered as a link to its target view.
+/// </summary>
 [HtmlTargetElement("dui-tab-link")]
 public class TabLinkTagHelper : DuneUIAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
 
+    /// <summary>
+    ///     Whether the tab is disabled and cannot be selected.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>false</c>.
+    /// </remarks>
     [HtmlAttributeName("disabled")]
     public bool? IsDisabled { get; set; }
 
+    /// <summary>
+    ///     Whether this tab is the currently selected one. When not set, it is inferred from whether
+    ///     the tab's route matches the current request.
+    /// </summary>
     [HtmlAttributeName("is-active")]
     public bool? IsActive { get; set; }
 

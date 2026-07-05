@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The content region of an accordion item, revealed when the item is expanded.
+/// </summary>
 [HtmlTargetElement("dui-accordion-item-content")]
 public class AccordionItemContentTagHelper : DuneUITagHelperBase
 {

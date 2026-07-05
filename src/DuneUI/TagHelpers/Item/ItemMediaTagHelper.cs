@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The leading media region of an item, holding an icon, image, or avatar.
+/// </summary>
 [HtmlTargetElement("dui-item-media")]
 public class ItemMediaTagHelper : DuneUITagHelperBase
 {
@@ -14,6 +17,12 @@ public class ItemMediaTagHelper : DuneUITagHelperBase
             [ItemMediaVariant.Image] = "dui-item-media-variant-image",
         };
 
+    /// <summary>
+    ///     The kind of media the region contains, which controls its sizing and styling.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ItemMediaVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ItemMediaVariant? Variant { get; set; }
 

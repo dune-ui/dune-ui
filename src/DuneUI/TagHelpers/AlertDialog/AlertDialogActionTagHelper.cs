@@ -12,6 +12,12 @@ namespace DuneUI.TagHelpers;
 [HtmlTargetElement("dui-alert-dialog-action")]
 public class AlertDialogActionTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The visual style of the action button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ButtonVariant? Variant { get; set; }
 

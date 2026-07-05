@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A small badge overlaid on the corner of an avatar, such as a status indicator or icon.
+/// </summary>
 [HtmlTargetElement("dui-avatar-badge")]
 public class AvatarBadge : DuneUITagHelperBase
 {

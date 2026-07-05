@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A single selectable item within a toggle group.
+/// </summary>
 [HtmlTargetElement("dui-toggle-group-item")]
 public class ToggleGroupItemTagHelper : DuneUITagHelperBase
 {
@@ -35,6 +38,9 @@ public class ToggleGroupItemTagHelper : DuneUITagHelperBase
     [HtmlAttributeName("selected")]
     public bool? Selected { get; set; }
 
+    /// <summary>
+    ///     Whether the item is disabled and cannot be selected.
+    /// </summary>
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 

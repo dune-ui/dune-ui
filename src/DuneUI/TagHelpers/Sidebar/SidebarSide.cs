@@ -1,8 +1,14 @@
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The edge of the screen a sidebar is anchored to.
+/// </summary>
 public enum SidebarSide
 {
+    /// <summary>Anchored to the left edge.</summary>
     Left,
+
+    /// <summary>Anchored to the right edge.</summary>
     Right,
 }
 
@@ -15,7 +21,7 @@ public static class SidebarSideExtensions
             {
                 SidebarSide.Left => "left",
                 SidebarSide.Right => "right",
-                _ => string.Empty
+                _ => string.Empty,
             };
     }
 }

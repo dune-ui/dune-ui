@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A single item within the breadcrumb trail, rendered as a <c>&lt;li&gt;</c>; wraps a
+///     link, page, or separator.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb-item")]
 public class BreadcrumbItemTagHelper : DuneUITagHelperBase
 {

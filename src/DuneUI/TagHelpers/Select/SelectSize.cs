@@ -1,8 +1,14 @@
 ﻿namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The size of a <c>&lt;dui-select&gt;</c>.
+/// </summary>
 public enum SelectSize
 {
+    /// <summary>The default select size.</summary>
     Default,
+
+    /// <summary>A smaller, more compact select.</summary>
     Small,
 }
 
@@ -10,11 +16,12 @@ public static class SelectSizeExtensions
 {
     extension(SelectSize size)
     {
-        public string GetDataAttributeText() => size switch
-        {
-            SelectSize.Default => "default",
-            SelectSize.Small => "sm",
-            _ => ""
-        };
+        public string GetDataAttributeText() =>
+            size switch
+            {
+                SelectSize.Default => "default",
+                SelectSize.Small => "sm",
+                _ => "",
+            };
     }
 }

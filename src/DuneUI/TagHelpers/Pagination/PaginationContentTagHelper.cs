@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The list that holds the individual pagination items.
+/// </summary>
 [HtmlTargetElement("dui-pagination-content")]
 public class PaginationContentTagHelper : DuneUITagHelperBase
 {

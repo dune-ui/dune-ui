@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An animated spinning icon that indicates a loading or busy state.
+/// </summary>
 [HtmlTargetElement("dui-spinner")]
 public class SpinnerTagHelper : DuneUITagHelperBase
 {

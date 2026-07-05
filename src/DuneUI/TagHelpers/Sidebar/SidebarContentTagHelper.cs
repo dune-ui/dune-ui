@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The main scrollable content region of the sidebar; holds the sidebar's groups and menus.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-content")]
 public class SidebarContentTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

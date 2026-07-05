@@ -16,9 +16,19 @@ namespace DuneUI.TagHelpers;
  * - https://github.com/mfreed7/interestfor/tree/main?tab=readme-ov-file
  */
 
+/// <summary>
+///     A small floating label that appears when the user hovers or focuses a trigger element,
+///     rendered as a native hint popover.
+/// </summary>
 [HtmlTargetElement("dui-tooltip")]
 public class TooltipTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The position of the tooltip relative to its anchor.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="PositionArea.Top" />.
+    /// </remarks>
     [HtmlAttributeName("position")]
     public PositionArea? Position { get; set; }
 

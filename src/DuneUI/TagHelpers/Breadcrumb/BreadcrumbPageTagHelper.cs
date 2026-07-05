@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The current page in the breadcrumb trail, rendered as a non-interactive
+///     <c>&lt;span&gt;</c> marked with <c>aria-current="page"</c>.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb-page")]
 public class BreadcrumbPageTagHelper : DuneUITagHelperBase
 {
@@ -20,10 +24,7 @@ public class BreadcrumbPageTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("aria-current", "page");
         output.Attributes.SetAttribute(
             "class",
-            BuildClassString(
-                new ThemeToken("dui-breadcrumb-page"),
-                output.GetUserSuppliedClass()
-            )
+            BuildClassString(new ThemeToken("dui-breadcrumb-page"), output.GetUserSuppliedClass())
         );
 
         return Task.CompletedTask;

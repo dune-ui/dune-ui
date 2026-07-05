@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The body of a table, rendered as a <c>&lt;tbody&gt;</c>; contains the data rows.
+/// </summary>
 [HtmlTargetElement("dui-table-body")]
 public class TableBodyTagHelper : DuneUITagHelperBase
 {

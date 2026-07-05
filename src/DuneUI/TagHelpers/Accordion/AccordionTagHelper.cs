@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A vertically stacked set of collapsible items, each of which can be expanded to reveal its content.
+/// </summary>
 [HtmlTargetElement("dui-accordion")]
 public class AccordionTagHelper : DuneUITagHelperBase
 {

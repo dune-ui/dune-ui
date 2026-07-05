@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A horizontal separator used to divide sections of the sidebar.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-separator")]
 public class SidebarSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

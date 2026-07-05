@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Displays a progress bar's value, rendered as a <c>&lt;span&gt;</c>; falls back to the
+///     computed completion percentage when no content is supplied.
+/// </summary>
 [HtmlTargetElement("dui-progress-value")]
 public class ProgressValueTagHelper : DuneUITagHelperBase
 {
@@ -17,10 +21,7 @@ public class ProgressValueTagHelper : DuneUITagHelperBase
         output.Attributes.Add("data-slot", "progress-value");
         output.Attributes.Add(
             "class",
-            ClassMerger.Merge(
-                new ThemeToken("dui-progress-value"),
-                output.GetUserSuppliedClass()
-            )
+            ClassMerger.Merge(new ThemeToken("dui-progress-value"), output.GetUserSuppliedClass())
         );
 
         var content = await output.GetChildContentAsync();

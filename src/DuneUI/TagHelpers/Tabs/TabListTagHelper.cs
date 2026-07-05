@@ -4,12 +4,27 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A list of tabs, each linking to a different view or page.
+/// </summary>
 [HtmlTargetElement("dui-tab-list")]
 public class TabListTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The orientation in which the tabs are arranged.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="TabListOrientation.Horizontal" />.
+    /// </remarks>
     [HtmlAttributeName("orientation")]
     public TabListOrientation? Orientation { get; set; }
 
+    /// <summary>
+    ///     The visual style of the tab list.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="TabListVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public TabListVariant? Variant { get; set; }
 

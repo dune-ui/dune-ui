@@ -5,6 +5,10 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A navigable link within a breadcrumb item, rendered as an <c>&lt;a&gt;</c>; supports
+///     the standard anchor routing attributes.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb-link")]
 public class BreadcrumbLinkTagHelper : DuneUIAnchorTagHelperBase
 {
@@ -44,10 +48,7 @@ public class BreadcrumbLinkTagHelper : DuneUIAnchorTagHelperBase
         output.Attributes.SetAttribute("data-slot", "breadcrumb-link");
         output.Attributes.SetAttribute(
             "class",
-            BuildClassString(
-                new ThemeToken("dui-breadcrumb-link"),
-                output.GetUserSuppliedClass()
-            )
+            BuildClassString(new ThemeToken("dui-breadcrumb-link"), output.GetUserSuppliedClass())
         );
     }
 }

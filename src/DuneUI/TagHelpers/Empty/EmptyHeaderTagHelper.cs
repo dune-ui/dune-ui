@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The header region of an empty state; typically contains the media, title, and description.
+/// </summary>
 [HtmlTargetElement("dui-empty-header")]
 public class EmptyHeaderTagHelper : DuneUITagHelperBase
 {

@@ -4,11 +4,18 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The menu item that opens a submenu, rendered with a trailing chevron and wired to its
+///     sub-content panel.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-sub-trigger")]
 public class DropdownMenuSubTriggerTagHelper : DuneUITagHelperBase
 {
     private readonly IIconManager _iconManager;
 
+    /// <summary>
+    ///     Whether the trigger is inset, aligning its text with items that have a leading icon.
+    /// </summary>
     [HtmlAttributeName("inset")]
     public bool? Inset { get; set; }
 

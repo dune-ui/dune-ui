@@ -3,18 +3,40 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A vertical flex layout that arranges its children in a column, with configurable
+///     alignment, spacing, and justification.
+/// </summary>
 [HtmlTargetElement("dui-stack")]
 public class StackTagHelper : DuneUITagHelperBase
 {
     public StackTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     How the children are aligned along the cross axis (horizontally).
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="StackAlign.Stretch" />.
+    /// </remarks>
     [HtmlAttributeName("align")]
     public StackAlign? Align { get; set; }
 
+    /// <summary>
+    ///     The vertical spacing between children.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="StackGap.Default" />.
+    /// </remarks>
     [HtmlAttributeName("gap")]
     public StackGap? Gap { get; set; }
 
+    /// <summary>
+    ///     How the children are distributed along the main axis (vertically).
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="StackJustify.Start" />.
+    /// </remarks>
     [HtmlAttributeName("justify")]
     public StackJustify? Justify { get; set; }
 

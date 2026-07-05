@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The descriptive body text of a popover, shown beneath the title.
+/// </summary>
 [HtmlTargetElement("dui-popover-description")]
 public class PopoverDescriptionTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

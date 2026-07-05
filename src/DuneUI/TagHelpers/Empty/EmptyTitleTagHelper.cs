@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The title text within an empty state header.
+/// </summary>
 [HtmlTargetElement("dui-empty-title")]
 public class EmptyTitleTagHelper : DuneUITagHelperBase
 {

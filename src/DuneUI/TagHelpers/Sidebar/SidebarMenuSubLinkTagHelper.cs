@@ -5,11 +5,20 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An anchor rendered as an entry within a nested sidebar submenu, with routing support; marks itself active when it matches the current route.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-menu-sub-link")]
 public class SidebarMenuSubLinkTagHelper : DuneUIAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
 
+    /// <summary>
+    ///     The size of the submenu link.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarMenuSubLinkSize.Medium" />.
+    /// </remarks>
     public SidebarMenuSubLinkSize? Size { get; set; }
 
     public SidebarMenuSubLinkTagHelper(

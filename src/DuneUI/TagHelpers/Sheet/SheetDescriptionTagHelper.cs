@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers.Sheet;
 
+/// <summary>
+///     Supporting description text for a sheet, shown beneath the title.
+/// </summary>
 [HtmlTargetElement("dui-sheet-description")]
 public class SheetDescriptionTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

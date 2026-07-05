@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The footer region of a dialog; typically contains action buttons.
+/// </summary>
 [HtmlTargetElement("dui-dialog-footer")]
 public class DialogFooterTagHelper : DuneUITagHelperBase
 {

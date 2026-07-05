@@ -2,7 +2,6 @@ namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     The focus/highlight intensity of menu items (Dropdown Menu, and future menu families).
-///     Mirrors shadcn's <c>menuAccent</c> setting.
 /// </summary>
 public enum MenuAccent
 {

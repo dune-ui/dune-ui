@@ -4,12 +4,22 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Wraps a form control together with its label, description, and error message, arranging them
+///     according to the chosen orientation.
+/// </summary>
 [HtmlTargetElement("dui-field")]
 public class FieldTagHelper : DuneUITagHelperBase
 {
     public FieldTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     How the field arranges its label, control, and supporting text.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="FieldOrientation.Vertical" />.
+    /// </remarks>
     [HtmlAttributeName("orientation")]
     public FieldOrientation? Orientation { get; set; }
 

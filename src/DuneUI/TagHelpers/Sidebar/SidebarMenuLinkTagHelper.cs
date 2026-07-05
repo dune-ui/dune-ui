@@ -5,6 +5,9 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An anchor rendered as an entry within a sidebar menu item, with routing support; marks itself active when it matches the current route.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-menu-link")]
 public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
 {
@@ -27,8 +30,20 @@ public class SidebarMenuLinkTagHelper : DuneUIAnchorTagHelperBase
 
     private readonly IHtmlGenerator _htmlGenerator;
 
+    /// <summary>
+    ///     The size of the menu link.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarMenuLinkSize.Default" />.
+    /// </remarks>
     public SidebarMenuLinkSize? Size { get; set; }
 
+    /// <summary>
+    ///     The visual variant of the menu link.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SidebarMenuLinkVariant.Default" />.
+    /// </remarks>
     public SidebarMenuLinkVariant? Variant { get; set; }
 
     public SidebarMenuLinkTagHelper(

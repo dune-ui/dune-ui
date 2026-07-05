@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The header region of the sidebar, pinned above its content; typically holds branding or a workspace switcher.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-header")]
 public class SidebarHeaderTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

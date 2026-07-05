@@ -5,6 +5,9 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A link to a specific page within the pagination.
+/// </summary>
 [HtmlTargetElement("dui-pagination-link")]
 public class PaginationLinkTagHelper : DuneUIAnchorTagHelperBase
 {
@@ -20,9 +23,21 @@ public class PaginationLinkTagHelper : DuneUIAnchorTagHelperBase
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
     }
 
+    /// <summary>
+    ///     Whether this link represents the current page.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>false</c>.
+    /// </remarks>
     [HtmlAttributeName("is-active")]
     public bool? IsActive { get; set; }
 
+    /// <summary>
+    ///     The size of the rendered pagination button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public ButtonSize? Size { get; set; }
 
@@ -58,10 +73,7 @@ public class PaginationLinkTagHelper : DuneUIAnchorTagHelperBase
         output.Attributes.SetAttribute("data-active", effectiveIsActive ? "true" : "false");
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge(
-                new ThemeToken("dui-pagination-link"),
-                output.GetUserSuppliedClass()
-            )
+            ClassMerger.Merge(new ThemeToken("dui-pagination-link"), output.GetUserSuppliedClass())
         );
 
         ButtonRenderingHelper.RenderAttributes(

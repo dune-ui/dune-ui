@@ -3,10 +3,16 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A non-interactive label used to caption a section of menu items.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-label")]
 public class DropdownMenuLabelTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
 {
+    /// <summary>
+    ///     Whether the label is inset, aligning its text with items that have a leading icon.
+    /// </summary>
     [HtmlAttributeName("inset")]
     public bool? Inset { get; set; }
 

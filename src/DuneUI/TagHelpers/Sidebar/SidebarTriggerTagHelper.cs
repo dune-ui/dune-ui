@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A button that toggles the open or collapsed state of its parent sidebar.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-trigger")]
 public class SidebarTriggerTagHelper : DuneUITagHelperBase
 {

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A text label for a progress bar, rendered as a <c>&lt;span&gt;</c>.
+/// </summary>
 [HtmlTargetElement("dui-progress-label")]
 public class ProgressLabelTagHelper : DuneUITagHelperBase
 {
@@ -17,10 +20,7 @@ public class ProgressLabelTagHelper : DuneUITagHelperBase
         output.Attributes.Add("data-slot", "progress-label");
         output.Attributes.Add(
             "class",
-            ClassMerger.Merge(
-                new ThemeToken("dui-progress-label"),
-                output.GetUserSuppliedClass()
-            )
+            ClassMerger.Merge(new ThemeToken("dui-progress-label"), output.GetUserSuppliedClass())
         );
 
         return Task.CompletedTask;

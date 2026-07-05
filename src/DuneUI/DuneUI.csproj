@@ -6,12 +6,20 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <RootNamespace>DuneUI</RootNamespace>
     <Description>A collection of beautifully designed components you can use to create CRUD screens in ASP.NET Core MVC and Razor Pages applications</Description>
+    <!-- Ship XML documentation so consumers get IntelliSense on the tag helpers.
+         The SDK packs the generated .xml alongside the assembly automatically. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>$(NoWarn);CA2264</NoWarn>
+    <!-- CS1591 (missing XML comment) also fires on DI constructors and ProcessAsync
+         overrides, which never appear in Razor IntelliSense. The consumer-facing surface
+         (tag-helper classes, [HtmlAttributeName] properties, enums) is documented; the rest
+         is intentionally suppressed rather than filled with boilerplate. -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="TailwindMerge.NET" />

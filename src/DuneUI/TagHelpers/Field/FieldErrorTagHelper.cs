@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Displays the validation error message for a field. When bound with <c>asp-for</c>, it shows
+///     the model's validation message and appears only when that field is invalid.
+/// </summary>
 [HtmlTargetElement("dui-field-error")]
 public class FieldErrorTagHelper : DuneUITagHelperBase
 {

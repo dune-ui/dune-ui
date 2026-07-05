@@ -3,12 +3,21 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Renders a divider between items within a button group.
+/// </summary>
 [HtmlTargetElement("dui-button-group-separator")]
 public class ButtonGroupSeparatorTagHelper : DuneUITagHelperBase
 {
     public ButtonGroupSeparatorTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     The orientation of the separator.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SeparatorOrientation.Vertical" />.
+    /// </remarks>
     [HtmlAttributeName("orientation")]
     public SeparatorOrientation? Orientation { get; set; }
 

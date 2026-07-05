@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Navigation for moving between pages of content.
+/// </summary>
 [HtmlTargetElement("dui-pagination")]
 public class PaginationTagHelper : DuneUITagHelperBase
 {

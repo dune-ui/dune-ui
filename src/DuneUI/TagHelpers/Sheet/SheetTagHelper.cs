@@ -5,6 +5,12 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers.Sheet;
 
+/// <summary>
+///     A panel that slides in from an edge of the screen, rendered over a native
+///     <c>&lt;dialog&gt;</c> element. Open and close it with the Invoker Commands API — a
+///     trigger button carrying <c>commandfor</c> and <c>command="show-modal"</c> or
+///     <c>command="close"</c>.
+/// </summary>
 [HtmlTargetElement("dui-sheet")]
 public class SheetTagHelper : DuneUITagHelperBase
 {
@@ -20,9 +26,21 @@ public class SheetTagHelper : DuneUITagHelperBase
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
+    /// <summary>
+    ///     Whether to render the built-in close button in the corner of the sheet.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>true</c>.
+    /// </remarks>
     [HtmlAttributeName("show-close-button")]
     public bool? ShowCloseButton { get; set; }
 
+    /// <summary>
+    ///     The edge of the screen the sheet slides in from.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SheetSide.Right" />.
+    /// </remarks>
     [HtmlAttributeName("side")]
     public SheetSide? Side { get; set; }
 

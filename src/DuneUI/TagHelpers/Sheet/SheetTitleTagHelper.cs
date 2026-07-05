@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers.Sheet;
 
+/// <summary>
+///     The accessible title of a sheet, rendered as a heading in the sheet header.
+/// </summary>
 [HtmlTargetElement("dui-sheet-title")]
 public class SheetTitleTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

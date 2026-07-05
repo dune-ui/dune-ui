@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The clickable header of an accordion item that toggles the item open and closed.
+/// </summary>
 [HtmlTargetElement("dui-accordion-item-title")]
 public class AccordionItemTitleTagHelper : DuneUITagHelperBase
 {

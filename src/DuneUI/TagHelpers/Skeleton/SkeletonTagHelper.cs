@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A placeholder that shows an animated pulsing shape while content is loading.
+/// </summary>
 [HtmlTargetElement("dui-skeleton")]
 public class SkeletonTagHelper : DuneUITagHelperBase
 {

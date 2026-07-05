@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Base class for DuneUI form-input tag helpers. Wires up <c>asp-for</c> model binding and
+///     the shared field attributes (label, description, error) that wrap an input control.
+/// </summary>
 public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
@@ -22,9 +26,15 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
 
     private const string ForAttributeName = "asp-for";
 
+    /// <summary>
+    ///     Supporting help text rendered as the field's description.
+    /// </summary>
     [HtmlAttributeName("description")]
     public string? Description { get; set; }
 
+    /// <summary>
+    ///     An error message rendered for the field.
+    /// </summary>
     [HtmlAttributeName("error")]
     public string? Error { get; set; }
 
@@ -34,6 +44,9 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
     [HtmlAttributeName(ForAttributeName)]
     public ModelExpression? For { get; set; }
 
+    /// <summary>
+    ///     The text rendered as the field's label.
+    /// </summary>
     [HtmlAttributeName("label")]
     public string? Label { get; set; }
 
@@ -46,6 +59,11 @@ public abstract class FieldInputBaseTagHelper : DuneUITagHelperBase
     /// </remarks>
     public string? Name { get; set; }
 
+    /// <summary>
+    ///     Whether to wrap the input in a field along with its label, description, and error. When not set,
+    ///     a field is rendered automatically if a label, description, error, or <see cref="For" /> is supplied
+    ///     and the input is not already nested inside a field.
+    /// </summary>
     [HtmlAttributeName("render-field")]
     public bool? ShouldRenderField { get; set; }
 

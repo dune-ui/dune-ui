@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The main content region of a card.
+/// </summary>
 [HtmlTargetElement("dui-card-content")]
 public class CardContentTagHelper : DuneUITagHelperBase
 {

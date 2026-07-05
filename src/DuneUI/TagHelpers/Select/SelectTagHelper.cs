@@ -7,6 +7,10 @@ using FrameworkSelectTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHe
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A styled dropdown for choosing a single option, wrapping a native
+///     <c>&lt;select&gt;</c> element with a custom chevron icon.
+/// </summary>
 [HtmlTargetElement("dui-select")]
 public class SelectTagHelper : FieldInputBaseTagHelper
 {
@@ -26,9 +30,19 @@ public class SelectTagHelper : FieldInputBaseTagHelper
         _iconManager = iconManager;
     }
 
+    /// <summary>
+    ///     The list of options to render, in the same form used by the framework
+    ///     <c>&lt;select&gt;</c> tag helper.
+    /// </summary>
     [HtmlAttributeName("asp-items")]
     public IEnumerable<SelectListItem>? Items { get; set; }
 
+    /// <summary>
+    ///     The size of the select.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="SelectSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public SelectSize? Size { get; set; }
 
@@ -68,22 +82,17 @@ public class SelectTagHelper : FieldInputBaseTagHelper
                     .Attributes.Where(a =>
                         !a.Name.Equals("class", StringComparison.OrdinalIgnoreCase)
                     )
-                    .Union(
-                        [
-                            new TagHelperAttribute("data-slot", "native-select"),
-                            new TagHelperAttribute(
-                                "data-size",
-                                effectiveSize.GetDataAttributeText()
-                            ),
-                            new TagHelperAttribute(
-                                "class",
-                                ClassMerger.Merge(
-                                    new ThemeToken("dui-native-select"),
-                                    "outline-none disabled:pointer-events-none disabled:cursor-not-allowed"
-                                )
-                            ),
-                        ]
-                    )
+                    .Union([
+                        new TagHelperAttribute("data-slot", "native-select"),
+                        new TagHelperAttribute("data-size", effectiveSize.GetDataAttributeText()),
+                        new TagHelperAttribute(
+                            "class",
+                            ClassMerger.Merge(
+                                new ThemeToken("dui-native-select"),
+                                "outline-none disabled:pointer-events-none disabled:cursor-not-allowed"
+                            )
+                        ),
+                    ])
             ),
             (_, _) => Task.FromResult<TagHelperContent>(new DefaultTagHelperContent())
         );

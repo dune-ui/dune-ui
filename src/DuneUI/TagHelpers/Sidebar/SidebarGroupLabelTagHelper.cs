@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The label heading for a sidebar group.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-group-label")]
 public class SidebarGroupLabelTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

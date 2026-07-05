@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A horizontal divider between fields, optionally with content (such as a label) centered on the line.
+/// </summary>
 [HtmlTargetElement("dui-field-separator")]
 public class FieldSeparatorTagHelper : DuneUITagHelperBase
 {

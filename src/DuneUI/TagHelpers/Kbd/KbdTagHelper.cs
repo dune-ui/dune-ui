@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Displays a single keyboard key or keystroke.
+/// </summary>
 [HtmlTargetElement("dui-kbd")]
 public class KbdTagHelper : DuneUITagHelperBase
 {

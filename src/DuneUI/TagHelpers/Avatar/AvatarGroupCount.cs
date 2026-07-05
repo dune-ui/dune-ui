@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A trailing element within an avatar group that displays the count of additional,
+///     unshown avatars.
+/// </summary>
 [HtmlTargetElement("dui-avatar-group-count")]
 public class AvatarGroupCount : DuneUITagHelperBase
 {

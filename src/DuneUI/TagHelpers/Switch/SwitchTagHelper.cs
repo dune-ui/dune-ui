@@ -7,6 +7,11 @@ using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelp
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A toggle control that switches between on and off states. Backed by a native
+///     checkbox so its value model-binds and posts back like any other checkbox, with the
+///     visuals driven entirely by CSS.
+/// </summary>
 [HtmlTargetElement("dui-switch", TagStructure = TagStructure.WithoutEndTag)]
 public class SwitchTagHelper : FieldInputBaseTagHelper
 {
@@ -22,6 +27,9 @@ public class SwitchTagHelper : FieldInputBaseTagHelper
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
     }
 
+    /// <summary>
+    ///     The id of the form the switch belongs to, mapped to the <c>form</c> attribute.
+    /// </summary>
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 
@@ -34,6 +42,9 @@ public class SwitchTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("size")]
     public SwitchSize? Size { get; set; }
 
+    /// <summary>
+    ///     The value submitted when the switch is on.
+    /// </summary>
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 

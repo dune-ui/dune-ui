@@ -5,14 +5,29 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An item rendered as an anchor, making the entire row a clickable link.
+/// </summary>
 [HtmlTargetElement("dui-link-item")]
 public class LinkItemTagHelper : DuneUIAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
 
+    /// <summary>
+    ///     The size of the item, controlling its padding and spacing.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ItemSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public ItemSize? Size { get; set; }
 
+    /// <summary>
+    ///     The visual style of the item.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ItemVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ItemVariant? Variant { get; set; }
 

@@ -1,5 +1,8 @@
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     How a sidebar behaves when it is collapsed.
+/// </summary>
 public enum SidebarCollapsible
 {
     /// <summary>
@@ -28,7 +31,7 @@ public static class SidebarCollapsibleExtensions
                 SidebarCollapsible.Offcanvas => "offcanvas",
                 SidebarCollapsible.Icon => "icon",
                 SidebarCollapsible.None => "none",
-                _ => string.Empty
+                _ => string.Empty,
             };
     }
 }

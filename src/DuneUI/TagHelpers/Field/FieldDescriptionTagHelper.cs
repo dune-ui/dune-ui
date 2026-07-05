@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Supporting help text for a field. Renders its own content, or falls back to the
+///     description from the model metadata when bound with <c>asp-for</c>.
+/// </summary>
 [HtmlTargetElement("dui-field-description")]
 public class FieldDescriptionTagHelper : DuneUITagHelperBase
 {

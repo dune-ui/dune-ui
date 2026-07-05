@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A callout that displays a short, important message to the user, optionally with an
+///     icon, title, and description.
+/// </summary>
 [HtmlTargetElement("dui-alert")]
 public class AlertTagHelper : DuneUITagHelperBase
 {
@@ -29,15 +33,33 @@ public class AlertTagHelper : DuneUITagHelperBase
         [AlertVariant.Destructive] = new ThemeToken("dui-alert-variant-destructive"),
     };
 
+    /// <summary>
+    ///     The descriptive body text of the alert. When set, the alert renders its description
+    ///     automatically and child content is not allowed.
+    /// </summary>
     [HtmlAttributeName(DescriptionAttributeName)]
     public string? Description { get; set; }
 
+    /// <summary>
+    ///     The name of the icon to display in the alert. When set, the alert renders the icon
+    ///     automatically and child content is not allowed.
+    /// </summary>
     [HtmlAttributeName(IconAttributeName)]
     public string? Icon { get; set; }
 
+    /// <summary>
+    ///     The title text of the alert. When set, the alert renders its title automatically and
+    ///     child content is not allowed.
+    /// </summary>
     [HtmlAttributeName(TitleAttributeName)]
     public string? Title { get; set; }
 
+    /// <summary>
+    ///     The visual style of the alert.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="AlertVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public AlertVariant? Variant { get; set; }
 

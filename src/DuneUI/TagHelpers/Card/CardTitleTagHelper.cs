@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The title text within a card header.
+/// </summary>
 [HtmlTargetElement("dui-card-title")]
 public class CardTitleTagHelper : DuneUITagHelperBase
 {

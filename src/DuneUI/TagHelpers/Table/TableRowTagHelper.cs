@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A row within a table, rendered as a <c>&lt;tr&gt;</c>.
+/// </summary>
 [HtmlTargetElement("dui-table-row")]
 public class TableRowTagHelper : DuneUITagHelperBase
 {

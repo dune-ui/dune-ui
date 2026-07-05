@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The main content area shown alongside the sidebar, rendered as a <c>&lt;main&gt;</c> element.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-inset")]
 public class SidebarInsetTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

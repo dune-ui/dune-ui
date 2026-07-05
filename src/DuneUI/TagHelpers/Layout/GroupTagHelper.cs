@@ -3,18 +3,40 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A horizontal flex layout that arranges its children in a row, with configurable
+///     alignment, spacing, and justification.
+/// </summary>
 [HtmlTargetElement("dui-group")]
 public class GroupTagHelper : DuneUITagHelperBase
 {
     public GroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
         : base(themeManager, classMerger) { }
 
+    /// <summary>
+    ///     How the children are aligned along the cross axis (vertically).
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="GroupAlign.Start" />.
+    /// </remarks>
     [HtmlAttributeName("align")]
     public GroupAlign? Align { get; set; }
 
+    /// <summary>
+    ///     The horizontal spacing between children.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="GroupGap.Default" />.
+    /// </remarks>
     [HtmlAttributeName("gap")]
     public GroupGap? Gap { get; set; }
 
+    /// <summary>
+    ///     How the children are distributed along the main axis (horizontally).
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="GroupJustify.Start" />.
+    /// </remarks>
     [HtmlAttributeName("justify")]
     public GroupJustify? Justify { get; set; }
 

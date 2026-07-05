@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Groups related fields under a common legend, rendered as a <c>&lt;fieldset&gt;</c> element.
+/// </summary>
 [HtmlTargetElement("dui-field-set")]
 public class FieldSetTagHelper : DuneUITagHelperBase
 {

@@ -5,6 +5,9 @@ using FrameworkAnchorTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHe
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Renders an anchor element styled as a button, with routing support.
+/// </summary>
 [HtmlTargetElement("dui-linkbutton")]
 public class LinkButtonTagHelper : DuneUIAnchorTagHelperBase
 {

@@ -27,18 +27,37 @@ public class DropdownMenuItemTagHelper : DuneUIAnchorTagHelperBase
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
     }
 
+    /// <summary>
+    ///     Whether clicking the item closes the menu. Plain items close on click unless this is set.
+    /// </summary>
     [HtmlAttributeName("close-on-click")]
     public bool? CloseOnClick { get; set; }
 
+    /// <summary>
+    ///     Whether the item is disabled.
+    /// </summary>
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
+    /// <summary>
+    ///     A URL that turns the item into a link. Ignored when ASP.NET routing attributes are
+    ///     supplied instead.
+    /// </summary>
     [HtmlAttributeName("href")]
     public string? Href { get; set; }
 
+    /// <summary>
+    ///     Whether the item is inset, aligning its text with items that have a leading icon.
+    /// </summary>
     [HtmlAttributeName("inset")]
     public bool? Inset { get; set; }
 
+    /// <summary>
+    ///     The visual style of the item.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="DropdownMenuItemVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public DropdownMenuItemVariant? Variant { get; set; }
 

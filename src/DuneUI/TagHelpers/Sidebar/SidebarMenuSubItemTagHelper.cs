@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A single item within a nested sidebar submenu, rendered as a list item.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-menu-sub-item")]
 public class SidebarMenuSubItemTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

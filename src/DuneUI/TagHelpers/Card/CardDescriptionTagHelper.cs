@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A secondary line of muted text within a card header, describing the card's contents.
+/// </summary>
 [HtmlTargetElement("dui-card-description")]
 public class CardDescriptionTagHelper : DuneUITagHelperBase
 {
@@ -17,10 +20,7 @@ public class CardDescriptionTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-slot", "card-description");
         output.Attributes.SetAttribute(
             "class",
-            BuildClassString(
-                new ThemeToken("dui-card-description"),
-                output.GetUserSuppliedClass()
-            )
+            BuildClassString(new ThemeToken("dui-card-description"), output.GetUserSuppliedClass())
         );
 
         return Task.CompletedTask;

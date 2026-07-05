@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A line of muted descriptive text within an empty state header.
+/// </summary>
 [HtmlTargetElement("dui-empty-description")]
 public class EmptyDescriptionTagHelper : DuneUITagHelperBase
 {

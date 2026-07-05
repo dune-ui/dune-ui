@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The secondary descriptive text of an item, rendered beneath its title.
+/// </summary>
 [HtmlTargetElement("dui-item-description")]
 public class ItemDescriptionTagHelper : DuneUITagHelperBase
 {

@@ -3,9 +3,19 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A floating panel of rich content anchored to a trigger element, rendered as a native
+///     popover.
+/// </summary>
 [HtmlTargetElement("dui-popover")]
 public class PopoverTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The position of the popover relative to its anchor.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="PositionArea.Bottom" />.
+    /// </remarks>
     [HtmlAttributeName("position")]
     public PositionArea? Position { get; set; }
 

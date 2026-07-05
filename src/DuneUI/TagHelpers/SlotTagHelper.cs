@@ -3,9 +3,16 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Assigns its child content to a named slot on the parent DuneUI tag helper, letting a
+///     parent render caller-supplied content in a specific location.
+/// </summary>
 [HtmlTargetElement("dui-slot", TagStructure = TagStructure.NormalOrSelfClosing)]
 public class SlotTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The name of the slot to populate on the parent tag helper.
+    /// </summary>
     [HtmlAttributeName("name")]
     public required string Name { get; set; }
 

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A small badge, typically a count, shown at the end of a sidebar menu item; hidden while the sidebar is collapsed to icons.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-menu-badge")]
 public class SidebarMenuBadge(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

@@ -1,9 +1,17 @@
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The size of a toggle.
+/// </summary>
 public enum ToggleSize
 {
+    /// <summary>The default toggle size.</summary>
     Default,
+
+    /// <summary>A small toggle.</summary>
     Small,
+
+    /// <summary>A large toggle.</summary>
     Large,
 }
 

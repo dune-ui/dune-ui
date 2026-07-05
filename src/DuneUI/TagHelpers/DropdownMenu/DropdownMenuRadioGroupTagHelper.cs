@@ -3,10 +3,17 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Groups <c>dui-dropdown-menu-radio-item</c> children into a single-selection set and tracks
+///     which value is selected.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-radio-group")]
 public class DropdownMenuRadioGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
 {
+    /// <summary>
+    ///     The value of the currently selected item in the group.
+    /// </summary>
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 

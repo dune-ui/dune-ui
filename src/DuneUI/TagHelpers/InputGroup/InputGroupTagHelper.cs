@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A container that groups an input with add-ons, buttons, or text so they render as a single
+///     combined field.
+/// </summary>
 [HtmlTargetElement("dui-input-group")]
 public class InputGroupTagHelper : DuneUITagHelperBase
 {

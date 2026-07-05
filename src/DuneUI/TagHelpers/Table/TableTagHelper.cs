@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A responsive data table, rendered as a <c>&lt;table&gt;</c> inside a scrollable
+///     container. Compose it with the header, body, footer, row, head, cell, and caption
+///     subcomponents.
+/// </summary>
 [HtmlTargetElement("dui-table")]
 public class TableTagHelper : DuneUITagHelperBase
 {

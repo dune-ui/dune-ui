@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The media region of an empty state, displaying an icon or illustration above the title.
+/// </summary>
 [HtmlTargetElement("dui-empty-media")]
 public class EmptyMediaTagHelper : DuneUITagHelperBase
 {
@@ -13,6 +16,12 @@ public class EmptyMediaTagHelper : DuneUITagHelperBase
             [EmptyMediaVariant.Icon] = new ThemeToken("dui-empty-media-icon"),
         };
 
+    /// <summary>
+    ///     The visual style of the media region.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="EmptyMediaVariant.Default" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public EmptyMediaVariant? Variant { get; set; }
 

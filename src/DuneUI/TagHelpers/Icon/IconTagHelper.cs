@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Renders an SVG icon from the active icon pack by name.
+/// </summary>
 [HtmlTargetElement("dui-icon", TagStructure = TagStructure.WithoutEndTag)]
 [OutputElementHint("svg")]
 public class IconTagHelper : DuneUITagHelperBase
@@ -54,6 +57,10 @@ public class IconTagHelper : DuneUITagHelperBase
         _iconManager = iconManager ?? throw new ArgumentNullException(nameof(iconManager));
     }
 
+    /// <summary>
+    ///     The name of the icon to render, looked up in the active icon pack. If no icon
+    ///     matches the name, a fallback "not found" icon is rendered.
+    /// </summary>
     [HtmlAttributeName("name")]
     public string? Name { get; set; }
 

@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A container whose content can be expanded or collapsed. Toggle it with the Invoker
+///     Commands API — a trigger button carrying <c>commandfor</c> and a custom command.
+/// </summary>
 [HtmlTargetElement("dui-collapsible")]
 public class CollapsibleTagHelper : DuneUITagHelperBase
 {

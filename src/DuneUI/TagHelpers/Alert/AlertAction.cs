@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A region within an alert for interactive elements such as buttons or links.
+/// </summary>
 [HtmlTargetElement("dui-alert-action")]
 public class AlertAction : DuneUITagHelperBase
 {

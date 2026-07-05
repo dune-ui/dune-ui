@@ -4,6 +4,9 @@ using Microsoft.Extensions.Options;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The popover panel that holds a dropdown menu's items, positioned relative to its trigger.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-content")]
 public class DropdownMenuContentTagHelper(
     ThemeManager themeManager,
@@ -11,6 +14,12 @@ public class DropdownMenuContentTagHelper(
     IOptions<DuneUIOptions> options
 ) : DuneUITagHelperBase(themeManager, classMerger)
 {
+    /// <summary>
+    ///     Where the panel is placed relative to its trigger.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="PositionArea.BottomSpanRight" />.
+    /// </remarks>
     [HtmlAttributeName("position")]
     public PositionArea? Position { get; set; }
 

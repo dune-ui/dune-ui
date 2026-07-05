@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A visual separator between breadcrumb items, rendered as a presentational
+///     <c>&lt;li&gt;</c>; defaults to a chevron icon when no content is supplied.
+/// </summary>
 [HtmlTargetElement("dui-breadcrumb-separator")]
 public class BreadcrumbSeparatorTagHelper : DuneUITagHelperBase
 {

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Groups related buttons together as a single visual unit.
+/// </summary>
 [HtmlTargetElement("dui-button-group")]
 public class ButtonGroupTagHelper : DuneUITagHelperBase
 {
@@ -24,6 +27,12 @@ public class ButtonGroupTagHelper : DuneUITagHelperBase
             ],
         };
 
+    /// <summary>
+    ///     The direction in which the group lays out its items.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonGroupOrientation.Horizontal" />.
+    /// </remarks>
     [HtmlAttributeName("orientation")]
     public ButtonGroupOrientation? Orientation { get; set; }
 

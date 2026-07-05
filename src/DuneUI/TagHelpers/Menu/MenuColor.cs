@@ -2,7 +2,7 @@ namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     The color scheme of a floating menu surface (Dropdown Menu content, and future menu
-///     families). Mirrors the color axis of shadcn's <c>menuColor</c> setting.
+///     families).
 /// </summary>
 public enum MenuColor
 {

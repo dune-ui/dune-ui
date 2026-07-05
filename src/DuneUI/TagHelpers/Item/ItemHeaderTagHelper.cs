@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The header region of an item, spanning its full width above the main content.
+/// </summary>
 [HtmlTargetElement("dui-item-header")]
 public class ItemHeaderTagHelper : DuneUITagHelperBase
 {

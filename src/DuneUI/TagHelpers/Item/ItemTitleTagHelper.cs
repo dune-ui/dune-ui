@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The primary title text of an item.
+/// </summary>
 [HtmlTargetElement("dui-item-title")]
 public class ItemTitleTagHelper : DuneUITagHelperBase
 {

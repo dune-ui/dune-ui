@@ -7,6 +7,9 @@ using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelp
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Renders a two-state button that can be toggled on or off.
+/// </summary>
 [HtmlTargetElement("dui-toggle")]
 public class ToggleTagHelper : FieldInputBaseTagHelper
 {
@@ -22,6 +25,9 @@ public class ToggleTagHelper : FieldInputBaseTagHelper
         _htmlGenerator = htmlGenerator ?? throw new ArgumentNullException(nameof(htmlGenerator));
     }
 
+    /// <summary>
+    ///     The id of the form this toggle's input belongs to.
+    /// </summary>
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 
@@ -43,6 +49,9 @@ public class ToggleTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("size")]
     public ToggleSize? Size { get; set; }
 
+    /// <summary>
+    ///     The value the toggle's input posts when pressed.
+    /// </summary>
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 

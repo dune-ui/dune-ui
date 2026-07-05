@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A modal window overlaid on the page, rendered over a native <c>&lt;dialog&gt;</c> element.
+///     Open and close it with the Invoker Commands API — a trigger button carrying
+///     <c>commandfor</c> and <c>command="show-modal"</c> or <c>command="close"</c>.
+/// </summary>
 [HtmlTargetElement("dui-dialog")]
 public class DialogTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

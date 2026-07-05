@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A text input rendered inside an input group, styled to blend into the group so add-ons appear
+///     within a single field.
+/// </summary>
 [HtmlTargetElement("dui-input-group-input")]
 public class InputGroupInputTagHelper : DuneUITagHelperBase
 {
@@ -18,15 +22,27 @@ public class InputGroupInputTagHelper : DuneUITagHelperBase
     [HtmlAttributeName("asp-for")]
     public ModelExpression? For { get; set; }
 
+    /// <summary>
+    ///     A composite format string used to format the bound model value.
+    /// </summary>
     [HtmlAttributeName("asp-format")]
     public string? Format { get; set; }
 
+    /// <summary>
+    ///     The id of the form the input is associated with.
+    /// </summary>
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 
+    /// <summary>
+    ///     The <c>type</c> of the underlying HTML input (for example <c>text</c> or <c>email</c>).
+    /// </summary>
     [HtmlAttributeName("type")]
     public string? InputTypeName { get; set; }
 
+    /// <summary>
+    ///     The value of the input.
+    /// </summary>
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 

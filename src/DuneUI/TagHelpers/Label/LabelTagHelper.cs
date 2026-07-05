@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A caption for a form control, optionally bound to a model expression via <c>asp-for</c>.
+/// </summary>
 [HtmlTargetElement("dui-label")]
 public class LabelTagHelper : DuneUITagHelperBase
 {

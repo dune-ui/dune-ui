@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An empty-state container that communicates the absence of content, composed of a
+///     header, media, title, description, and content subcomponents.
+/// </summary>
 [HtmlTargetElement("dui-empty")]
 public class EmptyTagHelper : DuneUITagHelperBase
 {

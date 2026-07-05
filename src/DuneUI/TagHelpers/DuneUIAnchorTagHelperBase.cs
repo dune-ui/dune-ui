@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Base class for DuneUI tag helpers that render an anchor (<c>&lt;a&gt;</c>) with ASP.NET
+///     Core routing support (<c>asp-action</c>, <c>asp-controller</c>, <c>asp-page</c>, etc.).
+/// </summary>
 public class DuneUIAnchorTagHelperBase : DuneUITagHelperBase
 {
     public DuneUIAnchorTagHelperBase(ThemeManager themeManager, ICssClassMerger classMerger)

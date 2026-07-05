@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The footer region of the sidebar, pinned below its content; typically holds a user menu or secondary actions.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-footer")]
 public class SidebarFooterTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

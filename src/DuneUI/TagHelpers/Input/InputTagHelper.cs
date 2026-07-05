@@ -8,6 +8,11 @@ using FrameworkInputTagHelper = Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelp
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A form input. Renders a styled <c>&lt;input&gt;</c> for text-like types, and a styled
+///     checkbox or radio button (with its indicator) when the type is <c>checkbox</c> or
+///     <c>radio</c>. Supports model binding via <c>asp-for</c>.
+/// </summary>
 [HtmlTargetElement("dui-input", TagStructure = TagStructure.WithoutEndTag)]
 public class InputTagHelper : FieldInputBaseTagHelper
 {
@@ -26,15 +31,28 @@ public class InputTagHelper : FieldInputBaseTagHelper
         _iconManager = iconManager;
     }
 
+    /// <summary>
+    ///     The id of the form the input is associated with.
+    /// </summary>
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 
+    /// <summary>
+    ///     A composite format string used to format the bound model value.
+    /// </summary>
     [HtmlAttributeName("asp-format")]
     public string? Format { get; set; }
 
+    /// <summary>
+    ///     The <c>type</c> of the HTML input (for example <c>text</c>, <c>email</c>, <c>checkbox</c>,
+    ///     or <c>radio</c>).
+    /// </summary>
     [HtmlAttributeName("type")]
     public string? InputTypeName { get; set; }
 
+    /// <summary>
+    ///     The value of the input.
+    /// </summary>
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 

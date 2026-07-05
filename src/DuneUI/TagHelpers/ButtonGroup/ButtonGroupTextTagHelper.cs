@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Renders a non-interactive text label within a button group.
+/// </summary>
 [HtmlTargetElement("dui-button-group-text")]
 public class ButtonGroupTextTagHelper : DuneUITagHelperBase
 {

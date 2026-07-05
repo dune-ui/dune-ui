@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The header region of a card; typically contains the title, description, and action.
+/// </summary>
 [HtmlTargetElement("dui-card-header")]
 public class CardHeaderTagHelper : DuneUITagHelperBase
 {

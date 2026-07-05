@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A horizontal divider used to separate items within a group.
+/// </summary>
 [HtmlTargetElement("dui-item-separator")]
 public class ItemSeparatorTagHelper : DuneUITagHelperBase
 {
@@ -14,10 +17,7 @@ public class ItemSeparatorTagHelper : DuneUITagHelperBase
         output.Attributes.SetAttribute("data-slot", "item-separator");
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge(
-                new ThemeToken("dui-item-separator"),
-                GetUserSpecifiedClass(output)
-            )
+            ClassMerger.Merge(new ThemeToken("dui-item-separator"), GetUserSpecifiedClass(output))
         );
 
         var separatorTagHelper = new SeparatorTagHelper(ThemeManager, ClassMerger)

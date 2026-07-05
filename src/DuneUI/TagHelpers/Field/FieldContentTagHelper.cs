@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A container that holds a field's label and description, keeping them stacked together
+///     when the field is laid out horizontally alongside its control.
+/// </summary>
 [HtmlTargetElement("dui-field-content")]
 public class FieldContentTagHelper : DuneUITagHelperBase
 {

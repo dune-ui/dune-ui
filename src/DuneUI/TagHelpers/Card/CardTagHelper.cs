@@ -3,9 +3,19 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A flexible container that groups related content, composed of a header, title,
+///     description, content, footer, and action subcomponents.
+/// </summary>
 [HtmlTargetElement("dui-card")]
 public class CardTagHelper : DuneUITagHelperBase
 {
+    /// <summary>
+    ///     The size of the card, which controls its padding and spacing.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="CardSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public CardSize? Size { get; set; }
 

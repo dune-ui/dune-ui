@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The footer of a table, rendered as a <c>&lt;tfoot&gt;</c>; typically holds summary rows.
+/// </summary>
 [HtmlTargetElement("dui-table-footer")]
 public class TableFooterTagHelper : DuneUITagHelperBase
 {

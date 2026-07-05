@@ -3,10 +3,23 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A modal dialog that interrupts the user to confirm an important action, rendered over a
+///     native <c>&lt;dialog&gt;</c> element. Open and close it with the Invoker Commands API — a
+///     trigger button carrying <c>commandfor</c> and <c>command="show-modal"</c> or
+///     <c>command="close"</c>. Unlike a regular dialog, it is not dismissed by clicking the
+///     backdrop.
+/// </summary>
 [HtmlTargetElement("dui-alert-dialog")]
 public class AlertDialogTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
 {
+    /// <summary>
+    ///     The size of the alert dialog.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="AlertDialogSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public AlertDialogSize? Size { get; set; }
 

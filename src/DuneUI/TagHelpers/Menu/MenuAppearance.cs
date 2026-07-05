@@ -2,7 +2,7 @@ namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     The surface treatment of a floating menu (Dropdown Menu content, and future menu
-///     families). Mirrors the translucency axis of shadcn's <c>menuColor</c> setting.
+///     families).
 /// </summary>
 public enum MenuAppearance
 {

@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     An input for selecting a numeric value, or a range of values, by dragging one or more
+///     thumbs along a track.
+/// </summary>
 [HtmlTargetElement("dui-slider", TagStructure = TagStructure.WithoutEndTag)]
 public class SliderTagHelper : FieldInputBaseTagHelper
 {
@@ -17,12 +21,21 @@ public class SliderTagHelper : FieldInputBaseTagHelper
     )
         : base(themeManager, htmlGenerator, classMerger) { }
 
+    /// <summary>
+    ///     The minimum value the slider can take.
+    /// </summary>
     [HtmlAttributeName("min")]
     public int? Min { get; set; }
 
+    /// <summary>
+    ///     The maximum value the slider can take.
+    /// </summary>
     [HtmlAttributeName("max")]
     public int? Max { get; set; }
 
+    /// <summary>
+    ///     The increment between selectable values.
+    /// </summary>
     [HtmlAttributeName("step")]
     public int? Step { get; set; }
 
@@ -52,6 +65,12 @@ public class SliderTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("thumb-alignment")]
     public SliderThumbAlignment? ThumbAlignment { get; set; }
 
+    /// <summary>
+    ///     Whether the slider is disabled and cannot be interacted with.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>false</c>.
+    /// </remarks>
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -62,6 +81,10 @@ public class SliderTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 
+    /// <summary>
+    ///     The <c>id</c> of the form the slider's posted value belongs to, for associating it with a
+    ///     form it is not nested within.
+    /// </summary>
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 

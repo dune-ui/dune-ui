@@ -6,12 +6,18 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A pagination link that navigates to the next page.
+/// </summary>
 [HtmlTargetElement("dui-pagination-next")]
 public class PaginationNextTagHelper : DuneUIAnchorTagHelperBase
 {
     private readonly IHtmlGenerator _htmlGenerator;
     private readonly IIconManager _iconManager;
 
+    /// <summary>
+    ///     The size of the rendered pagination button.
+    /// </summary>
     [HtmlAttributeName("size")]
     public ButtonSize? Size { get; set; }
 
@@ -31,10 +37,7 @@ public class PaginationNextTagHelper : DuneUIAnchorTagHelperBase
     {
         output.Attributes.SetAttribute(
             "class",
-            ClassMerger.Merge(
-                new ThemeToken("dui-pagination-next"),
-                output.GetUserSuppliedClass()
-            )
+            ClassMerger.Merge(new ThemeToken("dui-pagination-next"), output.GetUserSuppliedClass())
         );
         var linkTagHelper = new PaginationLinkTagHelper(ThemeManager, _htmlGenerator, ClassMerger)
         {

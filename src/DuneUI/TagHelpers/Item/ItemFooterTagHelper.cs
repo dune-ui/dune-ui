@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The footer region of an item, spanning its full width beneath the main content.
+/// </summary>
 [HtmlTargetElement("dui-item-footer")]
 public class ItemFooterTagHelper : DuneUITagHelperBase
 {

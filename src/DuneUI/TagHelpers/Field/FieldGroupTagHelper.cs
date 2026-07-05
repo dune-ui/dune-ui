@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Groups a set of related fields together, arranging them in a column with consistent spacing.
+/// </summary>
 [HtmlTargetElement("dui-field-group")]
 public class FieldGroupTagHelper : DuneUITagHelperBase
 {

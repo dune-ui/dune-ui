@@ -65,6 +65,12 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("inputmode")]
     public string? InputMode { get; set; }
 
+    /// <summary>
+    ///     Whether the input is disabled.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <c>false</c>.
+    /// </remarks>
     [HtmlAttributeName("disabled")]
     public bool? Disabled { get; set; }
 
@@ -81,6 +87,9 @@ public class InputOtpTagHelper : FieldInputBaseTagHelper
     [HtmlAttributeName("value")]
     public string? Value { get; set; }
 
+    /// <summary>
+    ///     The id of the form the input is associated with.
+    /// </summary>
     [HtmlAttributeName("form")]
     public string? FormName { get; set; }
 

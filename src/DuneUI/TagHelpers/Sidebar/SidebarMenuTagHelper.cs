@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A list of menu items within a sidebar group, rendered as a list.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-menu")]
 public class SidebarMenuTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)

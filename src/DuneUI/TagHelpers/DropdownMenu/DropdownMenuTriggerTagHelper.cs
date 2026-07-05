@@ -3,13 +3,29 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The button that toggles a dropdown menu and anchors its content, styled with button variant
+///     and size options.
+/// </summary>
 [HtmlTargetElement("dui-dropdown-menu-trigger")]
 public class DropdownMenuTriggerTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
 {
+    /// <summary>
+    ///     The size of the trigger button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonSize.Default" />.
+    /// </remarks>
     [HtmlAttributeName("size")]
     public ButtonSize? Size { get; set; }
 
+    /// <summary>
+    ///     The visual style of the trigger button.
+    /// </summary>
+    /// <remarks>
+    ///     Defaults to <see cref="ButtonVariant.Outline" />.
+    /// </remarks>
     [HtmlAttributeName("variant")]
     public ButtonVariant? Variant { get; set; }
 

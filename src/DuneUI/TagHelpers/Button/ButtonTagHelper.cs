@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     Renders a button element for triggering actions.
+/// </summary>
 [HtmlTargetElement("dui-button")]
 public class ButtonTagHelper : DuneUITagHelperBase
 {

@@ -1,9 +1,17 @@
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     The size of a sidebar menu button.
+/// </summary>
 public enum SidebarMenuButtonSize
 {
+    /// <summary>The standard button height.</summary>
     Default,
+
+    /// <summary>A more compact button.</summary>
     Small,
+
+    /// <summary>A taller button, useful for prominent entries.</summary>
     Large,
 }
 

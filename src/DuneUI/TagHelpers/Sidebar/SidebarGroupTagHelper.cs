@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace DuneUI.TagHelpers;
 
+/// <summary>
+///     A titled section within the sidebar that groups related menu items together.
+/// </summary>
 [HtmlTargetElement("dui-sidebar-group")]
 public class SidebarGroupTagHelper(ThemeManager themeManager, ICssClassMerger classMerger)
     : DuneUITagHelperBase(themeManager, classMerger)
