@@ -365,6 +365,8 @@ internal sealed partial class Generator
         new("Checkbox/_Validation"),
         new("Collapsible/_Intro"),
         new("Collapsible/_Settings"),
+        new("Container/_Intro"),
+        new("Container/_PageLayout"),
         new("Dialog/_Dismissing"),
         new("Dialog/_Intro"),
         new("Dialog/_JsApi"),
