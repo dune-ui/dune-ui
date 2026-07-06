@@ -3,7 +3,7 @@ using DuneUI.Theming;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace DuneUI.TagHelpers.Sheet;
+namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     A panel that slides in from an edge of the screen, rendered over a native

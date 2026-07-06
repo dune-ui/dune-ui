@@ -1,7 +1,7 @@
 ﻿using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace DuneUI.TagHelpers.Sheet;
+namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     The accessible title of a sheet, rendered as a heading in the sheet header.

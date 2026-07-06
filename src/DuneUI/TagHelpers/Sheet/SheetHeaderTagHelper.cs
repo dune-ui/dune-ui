@@ -1,7 +1,7 @@
 ﻿using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace DuneUI.TagHelpers.Sheet;
+namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     The header region of a sheet; typically contains the title and description.

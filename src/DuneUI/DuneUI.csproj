@@ -69,4 +69,9 @@
     <Content Update="Theming/ThemePacks/**/*.*" Pack="false" />
     <AdditionalFiles Include="Theming\ThemePacks\*.themepack" />
   </ItemGroup>
+  <!-- Configure namespace provider for TagHelpers -->
+  <ItemGroup>
+    <Folder Include="TagHelpers\**\" NamespaceProvider="False" />
+    <Folder Remove="TagHelpers\" />
+  </ItemGroup>
 </Project>

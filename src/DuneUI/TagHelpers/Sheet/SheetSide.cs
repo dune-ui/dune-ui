@@ -1,4 +1,4 @@
-﻿namespace DuneUI.TagHelpers.Sheet;
+﻿namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     The edge of the screen a <c>&lt;dui-sheet&gt;</c> slides in from.

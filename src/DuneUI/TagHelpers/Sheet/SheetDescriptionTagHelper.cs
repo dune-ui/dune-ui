@@ -1,7 +1,7 @@
 ﻿using DuneUI.Theming;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace DuneUI.TagHelpers.Sheet;
+namespace DuneUI.TagHelpers;
 
 /// <summary>
 ///     Supporting description text for a sheet, shown beneath the title.
