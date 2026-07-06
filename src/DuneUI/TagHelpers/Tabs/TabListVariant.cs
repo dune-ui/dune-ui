@@ -12,7 +12,7 @@ public enum TabListVariant
     Line,
 }
 
-public static class TabListVariantExtensions
+internal static class TabListVariantExtensions
 {
     extension(TabListVariant variant)
     {

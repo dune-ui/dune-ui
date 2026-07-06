@@ -18,7 +18,7 @@ public enum InputGroupButtonSize
     IconSmall,
 }
 
-public static class InputGroupButtonSizeExtensions
+internal static class InputGroupButtonSizeExtensions
 {
     extension(InputGroupButtonSize size)
     {

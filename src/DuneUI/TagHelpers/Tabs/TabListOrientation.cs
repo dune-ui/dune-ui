@@ -12,7 +12,7 @@ public enum TabListOrientation
     Vertical,
 }
 
-public static class TabListOrientationExtensions
+internal static class TabListOrientationExtensions
 {
     extension(TabListOrientation orientation)
     {

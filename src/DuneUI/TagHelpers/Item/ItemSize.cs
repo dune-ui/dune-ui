@@ -15,7 +15,7 @@ public enum ItemSize
     ExtraSmall,
 }
 
-public static class ItemSizeExtensions
+internal static class ItemSizeExtensions
 {
     extension(ItemSize size)
     {

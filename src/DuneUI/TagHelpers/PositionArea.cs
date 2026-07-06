@@ -66,7 +66,7 @@ public enum PositionArea
     BottomRight,
 }
 
-public static class PositionAreaExtensions
+internal static class PositionAreaExtensions
 {
     extension(PositionArea area)
     {

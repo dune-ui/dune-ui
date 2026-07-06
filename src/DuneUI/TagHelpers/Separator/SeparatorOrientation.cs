@@ -12,7 +12,7 @@ public enum SeparatorOrientation
     Vertical,
 }
 
-public static class SeparatorOrientationExtensions
+internal static class SeparatorOrientationExtensions
 {
     extension(SeparatorOrientation orientation)
     {

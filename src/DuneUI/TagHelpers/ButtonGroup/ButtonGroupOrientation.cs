@@ -12,7 +12,7 @@ public enum ButtonGroupOrientation
     Vertical,
 }
 
-public static class ButtonGroupOrientationExtensions
+internal static class ButtonGroupOrientationExtensions
 {
     extension(ButtonGroupOrientation orientation)
     {

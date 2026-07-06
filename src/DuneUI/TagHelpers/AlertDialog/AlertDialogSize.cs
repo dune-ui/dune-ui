@@ -12,7 +12,7 @@ public enum AlertDialogSize
     Small,
 }
 
-public static class AlertDialogSizeExtensions
+internal static class AlertDialogSizeExtensions
 {
     extension(AlertDialogSize size)
     {

@@ -15,7 +15,7 @@ public enum ItemVariant
     Muted,
 }
 
-public static class ItemVariantExtensions
+internal static class ItemVariantExtensions
 {
     extension(ItemVariant variant)
     {

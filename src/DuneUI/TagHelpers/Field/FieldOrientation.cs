@@ -15,7 +15,7 @@ public enum FieldOrientation
     Responsive,
 }
 
-public static class FieldOrientationExtensions
+internal static class FieldOrientationExtensions
 {
     extension(FieldOrientation orientation)
     {

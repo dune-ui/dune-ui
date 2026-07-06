@@ -12,7 +12,7 @@ public enum SwitchSize
     Small,
 }
 
-public static class SwitchSizeExtensions
+internal static class SwitchSizeExtensions
 {
     extension(SwitchSize size)
     {

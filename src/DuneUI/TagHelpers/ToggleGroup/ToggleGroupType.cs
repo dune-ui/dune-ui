@@ -12,7 +12,7 @@ public enum ToggleGroupType
     Multiple,
 }
 
-public static class ToggleGroupTypeExtensions
+internal static class ToggleGroupTypeExtensions
 {
     extension(ToggleGroupType type)
     {

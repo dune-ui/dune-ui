@@ -12,7 +12,7 @@ public enum SliderOrientation
     Vertical,
 }
 
-public static class SliderOrientationExtensions
+internal static class SliderOrientationExtensions
 {
     extension(SliderOrientation orientation)
     {

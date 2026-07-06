@@ -18,7 +18,7 @@ public enum SheetSide
     Left,
 }
 
-public static class SheetSideExtensions
+internal static class SheetSideExtensions
 {
     extension(SheetSide side)
     {

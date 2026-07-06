@@ -12,7 +12,7 @@ public enum DropdownMenuItemVariant
     Destructive,
 }
 
-public static class DropdownMenuItemVariantExtensions
+internal static class DropdownMenuItemVariantExtensions
 {
     extension(DropdownMenuItemVariant variant)
     {

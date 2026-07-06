@@ -13,7 +13,7 @@ public enum MenuColor
     Inverted,
 }
 
-public static class MenuColorExtensions
+internal static class MenuColorExtensions
 {
     extension(MenuColor color)
     {

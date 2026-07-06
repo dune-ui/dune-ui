@@ -12,7 +12,7 @@ public enum SidebarMenuSubLinkSize
     Medium,
 }
 
-public static class SidebarMenuSubLinkSizeExtensions
+internal static class SidebarMenuSubLinkSizeExtensions
 {
     extension(SidebarMenuSubLinkSize size)
     {

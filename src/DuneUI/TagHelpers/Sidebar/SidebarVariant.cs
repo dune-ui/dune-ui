@@ -15,7 +15,7 @@ public enum SidebarVariant
     Inset,
 }
 
-public static class SidebarVariantExtensions
+internal static class SidebarVariantExtensions
 {
     extension(SidebarVariant variant)
     {

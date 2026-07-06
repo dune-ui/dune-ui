@@ -12,7 +12,7 @@ public enum FieldLegendVariant
     Label,
 }
 
-public static class FieldLegendVariantExtensions
+internal static class FieldLegendVariantExtensions
 {
     extension(FieldLegendVariant variant)
     {

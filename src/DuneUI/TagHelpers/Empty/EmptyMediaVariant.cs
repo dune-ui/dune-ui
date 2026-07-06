@@ -12,7 +12,7 @@ public enum EmptyMediaVariant
     Icon,
 }
 
-public static class EmptyMediaVariantExtensions
+internal static class EmptyMediaVariantExtensions
 {
     extension(EmptyMediaVariant variant)
     {

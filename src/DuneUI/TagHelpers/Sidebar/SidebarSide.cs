@@ -12,7 +12,7 @@ public enum SidebarSide
     Right,
 }
 
-public static class SidebarSideExtensions
+internal static class SidebarSideExtensions
 {
     extension(SidebarSide side)
     {

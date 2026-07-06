@@ -22,7 +22,7 @@ public enum AutoFieldElement
     All = Label | Description | Error,
 }
 
-public static class AutoFieldElementExtensions
+internal static class AutoFieldElementExtensions
 {
     public static bool HasFlagFast(this AutoFieldElement value, AutoFieldElement flag)
     {

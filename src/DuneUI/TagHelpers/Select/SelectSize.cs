@@ -12,7 +12,7 @@ public enum SelectSize
     Small,
 }
 
-public static class SelectSizeExtensions
+internal static class SelectSizeExtensions
 {
     extension(SelectSize size)
     {

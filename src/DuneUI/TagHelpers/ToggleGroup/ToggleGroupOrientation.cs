@@ -12,7 +12,7 @@ public enum ToggleGroupOrientation
     Vertical,
 }
 
-public static class ToggleGroupOrientationExtensions
+internal static class ToggleGroupOrientationExtensions
 {
     extension(ToggleGroupOrientation orientation)
     {

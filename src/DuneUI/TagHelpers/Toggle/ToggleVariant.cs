@@ -12,7 +12,7 @@ public enum ToggleVariant
     Outline,
 }
 
-public static class ToggleVariantExtensions
+internal static class ToggleVariantExtensions
 {
     extension(ToggleVariant variant)
     {

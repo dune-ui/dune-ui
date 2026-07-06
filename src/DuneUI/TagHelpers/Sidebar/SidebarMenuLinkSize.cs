@@ -15,7 +15,7 @@ public enum SidebarMenuLinkSize
     Large,
 }
 
-public static class SidebarMenuLinkSizeExtensions
+internal static class SidebarMenuLinkSizeExtensions
 {
     extension(SidebarMenuLinkSize size)
     {

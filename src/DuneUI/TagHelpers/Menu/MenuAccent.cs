@@ -12,7 +12,7 @@ public enum MenuAccent
     Bold,
 }
 
-public static class MenuAccentExtensions
+internal static class MenuAccentExtensions
 {
     extension(MenuAccent accent)
     {

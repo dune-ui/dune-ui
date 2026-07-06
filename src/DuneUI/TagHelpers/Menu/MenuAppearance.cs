@@ -13,7 +13,7 @@ public enum MenuAppearance
     Translucent,
 }
 
-public static class MenuAppearanceExtensions
+internal static class MenuAppearanceExtensions
 {
     extension(MenuAppearance appearance)
     {

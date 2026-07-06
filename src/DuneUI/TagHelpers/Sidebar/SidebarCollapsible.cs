@@ -21,7 +21,7 @@ public enum SidebarCollapsible
     None,
 }
 
-public static class SidebarCollapsibleExtensions
+internal static class SidebarCollapsibleExtensions
 {
     extension(SidebarCollapsible collapsible)
     {

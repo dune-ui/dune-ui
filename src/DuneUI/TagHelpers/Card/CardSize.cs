@@ -12,7 +12,7 @@ public enum CardSize
     Small,
 }
 
-public static class CardSizeExtensions
+internal static class CardSizeExtensions
 {
     extension(CardSize size)
     {

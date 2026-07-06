@@ -15,7 +15,7 @@ public enum ToggleSize
     Large,
 }
 
-public static class ToggleSizeExtensions
+internal static class ToggleSizeExtensions
 {
     extension(ToggleSize size)
     {

@@ -12,7 +12,7 @@ public enum SliderThumbAlignment
     Edge,
 }
 
-public static class SliderThumbAlignmentExtensions
+internal static class SliderThumbAlignmentExtensions
 {
     extension(SliderThumbAlignment alignment)
     {

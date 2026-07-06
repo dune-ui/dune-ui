@@ -15,7 +15,7 @@ public enum ItemMediaVariant
     Image,
 }
 
-public static class ItemMediaVariantExtensions
+internal static class ItemMediaVariantExtensions
 {
     extension(ItemMediaVariant variant)
     {
