@@ -18,10 +18,16 @@ A form input. Renders a styled `<input>` for text-like types, and a styled check
 | `value` | `string` | — | — |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Input/_Intro.cshtml`*
 
 ```razor
 <dui-input placeholder="Enter your email address" type="email"/>
+```
+
+*From `Pages/Input/_ModelBinding.cshtml`*
+
+```razor
+<dui-input asp-for="Email"/>
 ```

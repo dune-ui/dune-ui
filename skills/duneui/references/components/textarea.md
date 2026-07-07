@@ -14,7 +14,7 @@ A styled multi-line text input that grows with its content. Supports model bindi
 |-----------|------|---------|--------|
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Textarea/_Intro.cshtml`*
 
@@ -27,4 +27,10 @@ A styled multi-line text input that grows with its content. Supports model bindi
         Your feedback helps other travelers make better choices. Be as descriptive as possible!
     </dui-field-description>
 </dui-field>
+```
+
+*From `Pages/Textarea/_ModelBinding.cshtml`*
+
+```razor
+<dui-textarea asp-for="Review"/>
 ```

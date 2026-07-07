@@ -31,7 +31,7 @@ A callout that displays a short, important message to the user, optionally with 
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
 *From `Pages/Alert/_Intro.cshtml`*
 
@@ -49,4 +49,29 @@ A callout that displays a short, important message to the user, optionally with 
         </dui-button>
     </dui-alert-action>
 </dui-alert>
+```
+
+*From `Pages/Alert/_Actions.cshtml`*
+
+```razor
+<div class="mx-auto flex w-full max-w-lg flex-col gap-4">
+    <dui-alert>
+        <dui-icon name="circle-alert"/>
+        <dui-alert-title>The selected emails have been marked as spam.</dui-alert-title>
+        <dui-alert-action>
+            <dui-button size="ButtonSize.ExtraSmall">Undo</dui-button>
+        </dui-alert-action>
+    </dui-alert>
+    <dui-alert>
+        <dui-icon name="circle-alert"/>
+        <dui-alert-title>The selected emails have been marked as spam.</dui-alert-title>
+        <dui-alert-description>
+            This is a very long alert title that demonstrates how the component
+            handles extended text content.
+        </dui-alert-description>
+        <dui-alert-action>
+            <dui-badge variant="BadgeVariant.Secondary">Badge</dui-badge>
+        </dui-alert-action>
+    </dui-alert>
+</div>
 ```

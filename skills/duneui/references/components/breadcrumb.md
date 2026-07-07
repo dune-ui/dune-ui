@@ -20,7 +20,7 @@ A breadcrumb navigation trail, rendered as a `<nav>`; shows the path to the curr
 | `<dui-breadcrumb-page>` | The current page in the breadcrumb trail, rendered as a non-interactive `<span>` marked with `aria-current="page"`. |
 | `<dui-breadcrumb-separator>` | A visual separator between breadcrumb items, rendered as a presentational `<li>`; defaults to a chevron icon when no content is supplied. |
 
-## Example
+## Examples
 
 *From `Pages/Breadcrumb/_Intro.cshtml`*
 
@@ -40,6 +40,28 @@ A breadcrumb navigation trail, rendered as a `<nav>`; shows the path to the curr
         </dui-breadcrumb-item>
         <dui-breadcrumb-separator/>
         <dui-breadcrumb-page>Grand Hotel Venice</dui-breadcrumb-page>
+    </dui-breadcrumb-list>
+</dui-breadcrumb>
+```
+
+*From `Pages/Breadcrumb/_Collapsed.cshtml`*
+
+```razor
+<dui-breadcrumb>
+    <dui-breadcrumb-list>
+        <dui-breadcrumb-item>
+            <dui-breadcrumb-link href="#">Home</dui-breadcrumb-link>
+        </dui-breadcrumb-item>
+        <dui-breadcrumb-separator/>
+        <dui-breadcrumb-item>
+            <dui-breadcrumb-ellipsis />
+        </dui-breadcrumb-item>
+        <dui-breadcrumb-separator/>
+        <dui-breadcrumb-item>
+            <dui-breadcrumb-link href="#">Trip #TRV-987</dui-breadcrumb-link>
+        </dui-breadcrumb-item>
+        <dui-breadcrumb-separator/>
+        <dui-breadcrumb-page>Add Traveler Details</dui-breadcrumb-page>
     </dui-breadcrumb-list>
 </dui-breadcrumb>
 ```

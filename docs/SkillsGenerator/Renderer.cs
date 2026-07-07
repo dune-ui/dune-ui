@@ -41,8 +41,8 @@ internal sealed class Renderer(Dictionary<string, EnumInfo> enums)
         if (attributes is not null)
             parts.Add(attributes);
 
-        if (component.Snippet is not null)
-            parts.Add(ExampleSection(component));
+        if (component.Examples.Count > 0)
+            parts.Add(ExamplesSection(component.Examples));
 
         return string.Join("\n\n", parts) + "\n";
     }
@@ -166,15 +166,20 @@ internal sealed class Renderer(Dictionary<string, EnumInfo> enums)
         return ($"`{stripped}`", "—");
     }
 
-    private static string ExampleSection(ComponentInfo component)
+    private static string ExamplesSection(IReadOnlyList<ExampleInfo> examples)
     {
         var builder = new StringBuilder();
-        builder.Append("## Example\n\n");
-        builder.Append($"*From `{component.SnippetSource}`*\n\n");
-        builder.Append("```razor\n");
-        builder.Append(component.Snippet);
-        builder.Append("\n```");
-        return builder.ToString();
+        builder.Append(examples.Count == 1 ? "## Example\n" : "## Examples\n");
+
+        foreach (var example in examples)
+        {
+            builder.Append($"\n*From `{example.Source}`*\n\n");
+            builder.Append("```razor\n");
+            builder.Append(example.Snippet);
+            builder.Append("\n```\n");
+        }
+
+        return builder.ToString().TrimEnd('\n');
     }
 
     /// <summary>Renders the component catalog index.</summary>

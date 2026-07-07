@@ -46,7 +46,7 @@ A modal dialog that interrupts the user to confirm an important action, rendered
 | `variant` | `ButtonVariant` | `Outline` | `Default`, `Destructive`, `Outline`, `Secondary`, `Ghost`, `Link` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/AlertDialog/_Intro.cshtml`*
 
@@ -70,4 +70,42 @@ A modal dialog that interrupts the user to confirm an important action, rendered
         </dui-alert-dialog-footer>
     </form>
 </dui-alert-dialog>
+```
+
+*From `Pages/AlertDialog/_JsApi.cshtml`*
+
+```razor
+<dui-stack align="StackAlign.Start" class="min-w-md">
+    <dui-button variant="ButtonVariant.Destructive" id="--alert-dialog-js-button">
+        Remove from Wishlist
+    </dui-button>
+    <label class="text-sm font-bold">Result:</label>
+    <div class="font-mono w-full bg-gray-50 p-2" id="--alert-dialog-js-result">-</div>
+</dui-stack>
+<dui-alert-dialog id="--alert-dialog-js">
+    <dui-alert-dialog-header>
+        <dui-alert-dialog-title>Remove from your wishlist?</dui-alert-dialog-title>
+        <dui-alert-dialog-description>
+            Kyoto will be removed from your saved destinations. You can add it back anytime.
+        </dui-alert-dialog-description>
+    </dui-alert-dialog-header>
+    <form method="dialog">
+        <dui-alert-dialog-footer>
+            <dui-alert-dialog-cancel>Keep it</dui-alert-dialog-cancel>
+            <dui-alert-dialog-action variant="ButtonVariant.Destructive">Remove</dui-alert-dialog-action>
+        </dui-alert-dialog-footer>
+    </form>
+</dui-alert-dialog>
+<script type="module">
+    (function () {
+        const alertDialog = window.duneui.alertDialog(document.getElementById("--alert-dialog-js"));
+        const triggerButton = document.getElementById("--alert-dialog-js-button");
+        const resultDisplay = document.getElementById("--alert-dialog-js-result");
+
+        triggerButton.addEventListener("click", async () => {
+            const confirmed = await alertDialog.confirmAsync();
+            resultDisplay.innerHTML = confirmed ? "Removed from wishlist" : "Cancelled";
+        });
+    })();
+</script>
 ```

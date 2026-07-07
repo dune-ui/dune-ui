@@ -47,7 +47,7 @@ internal static partial class Extractor
     public static List<ComponentInfo> ExtractComponents(
         string tagHelpersRoot,
         Dictionary<string, EnumInfo> enums,
-        Func<string, (string? Snippet, string? Source)> snippetLookup
+        Func<string, IReadOnlyList<ExampleInfo>> exampleLookup
     )
     {
         var components = new List<ComponentInfo>();
@@ -64,9 +64,9 @@ internal static partial class Extractor
                 continue; // No [HtmlTargetElement] -> not a component (e.g. Menu/).
 
             var ordered = OrderTags(tags, out var primary);
-            var (snippet, source) = snippetLookup(folderName);
+            var examples = exampleLookup(folderName);
 
-            components.Add(new ComponentInfo(folderName, ordered, primary, snippet, source));
+            components.Add(new ComponentInfo(folderName, ordered, primary, examples));
         }
 
         return components;

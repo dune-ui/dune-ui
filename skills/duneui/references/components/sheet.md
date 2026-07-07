@@ -51,7 +51,7 @@ dui-sheet
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
 *From `Pages/Sheet/_Intro.cshtml`*
 
@@ -85,5 +85,44 @@ dui-sheet
             Save Changes
         </dui-button>
     </dui-sheet-footer>
+</dui-sheet>
+```
+
+*From `Pages/Sheet/_Sides.cshtml`*
+
+```razor
+<div class="flex justify-center gap-2">
+    <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-sides-top" command="show-modal">
+        Top
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-sides-right" command="show-modal">
+        Right
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-sides-bottom" command="show-modal">
+        Bottom
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline" commandfor="--sheet-sides-left" command="show-modal">
+        Left
+    </dui-button>
+</div>
+<dui-sheet id="--sheet-sides-top" side="SheetSide.Top" class="data-[side=top]:h-[50vh]">
+    <div class="p-4">
+        Open on the top
+    </div>
+</dui-sheet>
+<dui-sheet id="--sheet-sides-right" side="SheetSide.Right">
+    <div class="p-4">
+        Open on the right
+    </div>
+</dui-sheet>
+<dui-sheet id="--sheet-sides-bottom" side="SheetSide.Bottom" class="data-[side=bottom]:h-[50vh]">
+    <div class="p-4">
+        Open on the bottom
+    </div>
+</dui-sheet>
+<dui-sheet id="--sheet-sides-left" side="SheetSide.Left">
+    <div class="p-4">
+        Open on the left
+    </div>
 </dui-sheet>
 ```

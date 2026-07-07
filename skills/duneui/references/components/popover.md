@@ -28,7 +28,7 @@ A floating panel of rich content anchored to a trigger element, rendered as a na
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
 *From `Pages/Popover/_Intro.cshtml`*
 
@@ -76,4 +76,50 @@ A floating panel of rich content anchored to a trigger element, rendered as a na
         </dui-field-set>
     </div>
 </dui-popover>
+```
+
+*From `Pages/Popover/_JsApi.cshtml`*
+
+```razor
+<dui-stack align="StackAlign.Center">
+    <dui-group>
+        <dui-button variant="ButtonVariant.Outline" id="--popover-js-api-button-open">
+            Open
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" id="--popover-js-api-button-close">
+            Close
+        </dui-button>
+        <dui-button variant="ButtonVariant.Outline" id="--popover-js-api-button-toggle">
+            Toggle
+        </dui-button>
+    </dui-group>
+    <dui-avatar src="/avatars/avatar-1.jpg" id="--popover-js-api-avatar"/>
+</dui-stack>
+<dui-popover id="--popover-js-api" popover="manual">
+    <dui-stack>
+        <dui-skeleton class="h-4 w-[250px]"/>
+        <dui-skeleton class="h-4 w-[250px]"/>
+    </dui-stack>
+</dui-popover>
+<script>
+    const apiPopover = document.getElementById('--popover-js-api');
+    const apiPopoverAvatar = document.getElementById('--popover-js-api-avatar');
+    const apiPopoverButtonOpen = document.getElementById('--popover-js-api-button-open');
+    const apiPopoverButtonClose = document.getElementById('--popover-js-api-button-close');
+    const apiTooltipButtonToggle = document.getElementById('--popover-js-api-button-toggle');
+
+    apiPopoverButtonOpen.addEventListener('click', () => {
+        apiPopover.showPopover({
+            source: apiPopoverAvatar
+        });
+    });
+    apiPopoverButtonClose.addEventListener('click', () => {
+        apiPopover.hidePopover();
+    });
+    apiTooltipButtonToggle.addEventListener('click', () => {
+        apiPopover.togglePopover({
+            source: apiPopoverAvatar
+        });
+    });
+</script>
 ```

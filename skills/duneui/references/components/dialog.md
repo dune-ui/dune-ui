@@ -18,7 +18,7 @@ A modal window overlaid on the page, rendered over a native `<dialog>` element. 
 | `<dui-dialog-header>` | The header region of a dialog; typically contains the title and description. |
 | `<dui-dialog-title>` | The title heading of a dialog. |
 
-## Example
+## Examples
 
 *From `Pages/Dialog/_Intro.cshtml`*
 
@@ -52,4 +52,54 @@ A modal window overlaid on the page, rendered over a native `<dialog>` element. 
         </dui-button>
     </dui-dialog-footer>
 </dui-dialog>
+```
+
+*From `Pages/Dialog/_ReturnValue.cshtml`*
+
+```razor
+<div class="flex justify-center">
+    <dui-button variant="ButtonVariant.Outline" commandfor="--dialog-return-value" command="show-modal">
+        Open Alert Dialog
+    </dui-button>
+</div>
+<dui-dialog id="--dialog-return-value">
+    <dui-dialog-header>
+        <dui-dialog-title>Are you absolutely sure?</dui-dialog-title>
+        <dui-dialog-description>
+            This action cannot be undone. This will permanently delete your account from our servers.
+        </dui-dialog-description>
+    </dui-dialog-header>
+    <form method="dialog">
+        <dui-dialog-footer>
+            <dui-button variant="ButtonVariant.Outline" type="submit" value="cancel">
+                Cancel
+            </dui-button>
+            <dui-button type="submit" value="confirm" autofocus>
+                Continue
+            </dui-button>
+        </dui-dialog-footer>
+    </form>
+</dui-dialog>
+<script>
+    (function() {
+        const dialog = document.getElementById("--dialog-return-value");
+
+        dialog.addEventListener("close", () => {
+            const cancelled = dialog.returnValue === "" || dialog.returnValue === "cancel";
+            if (cancelled) {
+                alert("The action has been cancelled");
+                return;
+            }
+
+            alert("The action has been confirmed");
+        });
+        dialog.addEventListener("toggle", (e) => {
+            // Reset the return value every time the dialog opens to prevent a previous
+            // returnValue from being returned when pressing the Esc key
+            if (e.newState === "open") {
+                dialog.returnValue = "";
+            }
+        });
+    })();
+</script>
 ```

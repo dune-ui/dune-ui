@@ -20,12 +20,21 @@ Renders a two-state button that can be toggled on or off.
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
 *From `Pages/Toggle/_Intro.cshtml`*
 
 ```razor
 <dui-toggle aria-label="Save to wishlist">
     <dui-icon name="heart"/>
+</dui-toggle>
+```
+
+*From `Pages/Toggle/_WithText.cshtml`*
+
+```razor
+<dui-toggle variant="ToggleVariant.Outline" aria-label="Free Wi-Fi">
+    <dui-icon name="wifi"/>
+    Free Wi-Fi
 </dui-toggle>
 ```

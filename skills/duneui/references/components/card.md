@@ -31,7 +31,7 @@ A flexible container that groups related content, composed of a header, title, d
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
 *From `Pages/Card/_Intro.cshtml`*
 
@@ -56,6 +56,72 @@ A flexible container that groups related content, composed of a header, title, d
             <dui-icon name="bookmark"/>
             Bookmark
         </dui-button>
+    </dui-card-footer>
+</dui-card>
+```
+
+*From `Pages/Card/_MeetingNotes.cshtml`*
+
+```razor
+<dui-card class="mx-auto w-full max-w-sm">
+    <dui-card-header>
+        <dui-card-title>Meeting Notes</dui-card-title>
+        <dui-card-description>
+            Transcript from the meeting with the client.
+        </dui-card-description>
+        <dui-card-action>
+            <dui-dropdown-menu>
+                <dui-dropdown-menu-trigger variant="ButtonVariant.Ghost" size="ButtonSize.Icon">
+                    <dui-icon name="ellipsis" class="text-muted-foreground"/>
+                    <span class="sr-only">More options</span>
+                </dui-dropdown-menu-trigger>
+                <dui-dropdown-menu-content class="w-44">
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="captions"/>
+                        Transcribe
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-separator/>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="copy"/>
+                        Copy transcript
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="share"/>
+                        Share notes
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-item>
+                        <dui-icon name="download"/>
+                        Export as PDF
+                    </dui-dropdown-menu-item>
+                    <dui-dropdown-menu-separator/>
+                    <dui-dropdown-menu-item variant="DropdownMenuItemVariant.Destructive">
+                        <dui-icon name="trash-2"/>
+                        Delete
+                    </dui-dropdown-menu-item>
+                </dui-dropdown-menu-content>
+            </dui-dropdown-menu>
+        </dui-card-action>
+    </dui-card-header>
+    <dui-card-content>
+        <p>
+            Client requested dashboard redesign with focus on mobile
+            responsiveness.
+        </p>
+        <ol class="mt-4 flex list-decimal flex-col gap-2 pl-6">
+            <li>New analytics widgets for daily/weekly metrics</li>
+            <li>Simplified navigation menu</li>
+            <li>Dark mode support</li>
+            <li>Timeline: 6 weeks</li>
+            <li>Follow-up meeting scheduled for next Tuesday</li>
+        </ol>
+    </dui-card-content>
+    <dui-card-footer>
+        <dui-avatar-group>
+            <dui-avatar src="/avatars/avatar-3.jpg" />
+            <dui-avatar src="/avatars/avatar-2.jpg" />
+            <dui-avatar src="/avatars/avatar-1.jpg" />
+            <dui-avatar-group-count>+8</dui-avatar-group-count>
+        </dui-avatar-group>
     </dui-card-footer>
 </dui-card>
 ```

@@ -51,7 +51,7 @@ A flexible row for presenting content, combining media, a title, description, an
 | `variant` | `ItemVariant` | `Default` | `Default`, `Outline`, `Muted` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Item/_Intro.cshtml`*
 
@@ -78,6 +78,33 @@ A flexible row for presenting content, combining media, a title, description, an
     </dui-item-content>
     <dui-item-actions>
         <dui-icon name="chevron-right" class="size-4"/>
+    </dui-item-actions>
+</dui-link-item>
+```
+
+*From `Pages/Item/_Link.cshtml`*
+
+```razor
+<dui-link-item asp-controller="Booking" asp-action="Manage" asp-route-id="123">
+    <dui-item-content>
+        <dui-item-title>Manage My Booking</dui-item-title>
+        <dui-item-description>
+            View, change, or cancel your existing reservations.
+        </dui-item-description>
+    </dui-item-content>
+    <dui-item-actions>
+        <dui-icon name="chevron-right" class="size-4"/>
+    </dui-item-actions>
+</dui-link-item>
+<dui-link-item variant="ItemVariant.Outline" href="#" target="_blank" rel="noopener noreferrer">
+    <dui-item-content>
+        <dui-item-title>View Current Visa Requirements</dui-item-title>
+        <dui-item-description>
+            Opens the official government travel site in a new tab.
+        </dui-item-description>
+    </dui-item-content>
+    <dui-item-actions>
+        <dui-icon name="external-link" class="size-4"/>
     </dui-item-actions>
 </dui-link-item>
 ```

@@ -35,7 +35,7 @@ A single tab within a `<dui-tab-list>`, rendered as a link to its target view.
 | `variant` | `TabListVariant` | `Default` | `Default`, `Line` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Tabs/_Intro.cshtml`*
 
@@ -44,5 +44,40 @@ A single tab within a `<dui-tab-list>`, rendered as a link to its target view.
     <dui-tab-link href="#">Flights</dui-tab-link>
     <dui-tab-link href="#">Accommodation</dui-tab-link>
     <dui-tab-link href="#">Car Rental</dui-tab-link>
+</dui-tab-list>
+```
+
+*From `Pages/Tabs/_Icons.cshtml`*
+
+```razor
+<dui-tab-list>
+    <dui-tab-link href="#">
+        <dui-icon name="plane"/>
+        Flights
+    </dui-tab-link>
+    <dui-tab-link href="#">
+        <dui-icon name="bed-double"/>
+        Accommodation
+    </dui-tab-link>
+    <dui-tab-link href="#">
+        <dui-icon name="car-front"/>
+        Car Rental
+    </dui-tab-link>
+</dui-tab-list>
+```
+
+*From `Pages/Tabs/_Url.cshtml`*
+
+```razor
+<dui-tab-list>
+    <dui-tab-link asp-controller="Search" asp-route-category="flights">
+        Flights
+    </dui-tab-link>
+    <dui-tab-link asp-controller="Search" asp-route-category="accommodation">
+        Accommodation
+    </dui-tab-link>
+    <dui-tab-link asp-controller="Search" asp-route-category="carrental">
+        Car Rental
+    </dui-tab-link>
 </dui-tab-list>
 ```

@@ -15,11 +15,14 @@ var indexPath = Path.Combine(repoRoot, "skills", "duneui", "references", "compon
 
 var checkMode = args.Contains("--check");
 
+var manifestPath = Path.Combine(repoRoot, "docs", "SkillsGenerator", "skills.examples.json");
+var exampleManifest = Snippets.LoadManifest(manifestPath);
+
 var enums = Extractor.BuildEnumIndex(tagHelpersRoot);
 var components = Extractor.ExtractComponents(
     tagHelpersRoot,
     enums,
-    folder => Snippets.ForComponent(pagesRoot, folder)
+    folder => Snippets.ForComponent(pagesRoot, folder, exampleManifest)
 );
 
 var renderer = new Renderer(enums);
@@ -66,7 +69,7 @@ AnsiConsole.MarkupLine(
 );
 
 var withoutExample = components
-    .Where(c => c.Snippet is null)
+    .Where(c => c.Examples.Count == 0)
     .Select(c => c.FolderName)
     .OrderBy(name => name, StringComparer.Ordinal)
     .ToList();

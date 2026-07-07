@@ -16,20 +16,25 @@ An animated spinning icon that indicates a loading or busy state.
 
 ## Example
 
-*From `Pages/Spinner/_Intro.cshtml`*
+*From `Pages/Spinner/_InButtons.cshtml`*
 
 ```razor
-<div class="w-md">
-    <dui-item variant="ItemVariant.Muted">
-        <dui-item-media>
-            <dui-spinner/>
-        </dui-item-media>
-        <dui-item-content>
-            <dui-item-title class="line-clamp-1">Processing payment...</dui-item-title>
-        </dui-item-content>
-        <dui-item-content class="flex-none justify-end">
-            <span class="text-sm tabular-nums">$100.00</span>
-        </dui-item-content>
-    </dui-item>
+<div class="flex flex-wrap items-center gap-4">
+    <dui-button>
+        <dui-spinner/>
+        Submit
+    </dui-button>
+    <dui-button disabled>
+        <dui-spinner/>
+        Disabled
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline" disabled>
+        <dui-spinner/>
+        Outline
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Icon" disabled>
+        <dui-spinner/>
+        <span class="sr-only">Loading...</span>
+    </dui-button>
 </div>
 ```

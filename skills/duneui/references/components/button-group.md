@@ -34,26 +34,32 @@ Groups related buttons together as a single visual unit.
 | `orientation` | `SeparatorOrientation` | `Vertical` | `Horizontal`, `Vertical` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
-*From `Pages/ButtonGroup/_Intro.cshtml`*
+*From `Pages/ButtonGroup/_Basic.cshtml`*
 
 ```razor
 <dui-button-group>
-    <dui-button-group>
-        <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Icon">
-            <dui-icon name="arrow-left"/>
-        </dui-button>
-    </dui-button-group>
-    <dui-button-group>
-        <dui-button variant="ButtonVariant.Outline">Review</dui-button>
-        <dui-button variant="ButtonVariant.Outline">Book Again</dui-button>
-    </dui-button-group>
-    <dui-button-group>
-        <dui-button variant="ButtonVariant.Outline">
-            <dui-icon name="mail"/>
-            Email Hotel
-        </dui-button>
-    </dui-button-group>
+    <dui-button variant="ButtonVariant.Outline">
+        Button
+    </dui-button>
+    <dui-button variant="ButtonVariant.Outline">
+        Another Button
+    </dui-button>
 </dui-button-group>
+```
+
+*From `Pages/ButtonGroup/_WithInput.cshtml`*
+
+```razor
+<div class="flex flex-col gap-4">
+    <dui-button-group>
+        <dui-button variant="ButtonVariant.Outline">Button</dui-button>
+        <dui-input placeholder="Type something here..." />
+    </dui-button-group>
+    <dui-button-group>
+        <dui-input placeholder="Type something here..." />
+        <dui-button variant="ButtonVariant.Outline">Button</dui-button>
+    </dui-button-group>
+</div>
 ```

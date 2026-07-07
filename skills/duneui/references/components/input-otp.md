@@ -40,10 +40,34 @@ A segmented one-time-code input. A single real `<input>` holds the whole code an
 | `index` | `int` | — | — |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/InputOtp/_Intro.cshtml`*
 
 ```razor
 <dui-input-otp max-length="6"/>
+```
+
+*From `Pages/InputOtp/_Composition.cshtml`*
+
+```razor
+<dui-input-otp max-length="6">
+    <dui-input-otp-group>
+        <dui-input-otp-slot/>
+        <dui-input-otp-slot/>
+        <dui-input-otp-slot/>
+    </dui-input-otp-group>
+    <dui-input-otp-separator/>
+    <dui-input-otp-group>
+        <dui-input-otp-slot/>
+        <dui-input-otp-slot/>
+        <dui-input-otp-slot/>
+    </dui-input-otp-group>
+</dui-input-otp>
+```
+
+*From `Pages/InputOtp/_ModelBinding.cshtml`*
+
+```razor
+<dui-input-otp asp-for="OneTimePassword" groups="3,3"/>
 ```

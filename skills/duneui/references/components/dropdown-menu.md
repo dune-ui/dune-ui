@@ -104,7 +104,7 @@ The root of a dropdown menu, pairing a trigger with its content and generating t
 | `variant` | `ButtonVariant` | `Outline` | `Default`, `Destructive`, `Outline`, `Secondary`, `Ghost`, `Link` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/DropdownMenu/_Intro.cshtml`*
 
@@ -139,6 +139,63 @@ The root of a dropdown menu, pairing a trigger with its content and generating t
             <dui-icon name="log-out"/>
             Log out
             <dui-dropdown-menu-shortcut>⇧⌘Q</dui-dropdown-menu-shortcut>
+        </dui-dropdown-menu-item>
+    </dui-dropdown-menu-content>
+</dui-dropdown-menu>
+```
+
+*From `Pages/DropdownMenu/_CheckboxItems.cshtml`*
+
+```razor
+<dui-dropdown-menu>
+    <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+        <dui-icon name="sliders-horizontal" class="text-muted-foreground"/>
+        Trip Filters
+    </dui-dropdown-menu-trigger>
+    <dui-dropdown-menu-content class="w-56">
+        <dui-dropdown-menu-label>Show Categories</dui-dropdown-menu-label>
+        <dui-dropdown-menu-separator/>
+        <dui-dropdown-menu-checkbox-item checked="true">Flights</dui-dropdown-menu-checkbox-item>
+        <dui-dropdown-menu-checkbox-item checked="true">Accommodation</dui-dropdown-menu-checkbox-item>
+        <dui-dropdown-menu-checkbox-item>Car Rental</dui-dropdown-menu-checkbox-item>
+    </dui-dropdown-menu-content>
+</dui-dropdown-menu>
+```
+
+*From `Pages/DropdownMenu/_Submenu.cshtml`*
+
+```razor
+<dui-dropdown-menu>
+    <dui-dropdown-menu-trigger variant="ButtonVariant.Outline">
+        <dui-icon name="ellipsis" class="text-muted-foreground"/>
+        Trip Actions
+    </dui-dropdown-menu-trigger>
+    <dui-dropdown-menu-content class="w-56">
+        <dui-dropdown-menu-item>
+            <dui-icon name="ticket"/>
+            View Tickets
+        </dui-dropdown-menu-item>
+        <dui-dropdown-menu-item>
+            <dui-icon name="calendar-plus"/>
+            Add to Calendar
+        </dui-dropdown-menu-item>
+        <dui-dropdown-menu-separator/>
+        <dui-dropdown-menu-sub>
+            <dui-dropdown-menu-sub-trigger>
+                <dui-icon name="map-pin"/>
+                Add Destination
+            </dui-dropdown-menu-sub-trigger>
+            <dui-dropdown-menu-sub-content class="w-44">
+                <dui-dropdown-menu-item>Paris</dui-dropdown-menu-item>
+                <dui-dropdown-menu-item>Bangkok</dui-dropdown-menu-item>
+                <dui-dropdown-menu-item>Kyoto</dui-dropdown-menu-item>
+                <dui-dropdown-menu-item>Cape Town</dui-dropdown-menu-item>
+            </dui-dropdown-menu-sub-content>
+        </dui-dropdown-menu-sub>
+        <dui-dropdown-menu-separator/>
+        <dui-dropdown-menu-item variant="DropdownMenuItemVariant.Destructive">
+            <dui-icon name="trash-2"/>
+            Cancel Trip
         </dui-dropdown-menu-item>
     </dui-dropdown-menu-content>
 </dui-dropdown-menu>

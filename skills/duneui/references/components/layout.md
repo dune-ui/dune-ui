@@ -38,39 +38,36 @@ A horizontal flex layout that arranges its children in a row, with configurable 
 | `justify` | `StackJustify` | `Start` | `Center`, `Start`, `End`, `SpaceBetween`, `SpaceAround` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
-*From `Pages/Group/_Align.cshtml`*
+*From `Pages/Container/_Intro.cshtml`*
 
 ```razor
-<p>Stretch</p>
-<dui-group align="GroupAlign.Stretch" class="font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-</dui-group>
-<p>Start</p>
-<dui-group align="GroupAlign.Start" class="font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-</dui-group>
-<p>Center</p>
-<dui-group align="GroupAlign.Center" class="font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-</dui-group>
-<p>End</p>
-<dui-group align="GroupAlign.End" class="font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-4">01</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-12">02</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 py-8">03</div>
-</dui-group>
-<p>Baseline</p>
-<dui-group align="GroupAlign.Baseline" class="font-mono text-sm leading-6 font-bold text-white bg-indigo-100 rounded">
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 pt-2 pb-6">01</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 pt-8 pb-12">02</div>
-    <div class="flex flex-1 items-center justify-center rounded-lg bg-indigo-500 pt-12 pb-4">03</div>
-</dui-group>
+<dui-container class="rounded-lg border bg-muted py-8 text-center">
+    <h2 class="text-lg font-semibold">Plan your next journey</h2>
+    <p class="text-sm text-muted-foreground">
+        This content sits inside a container — horizontally centered, width-constrained, with
+        responsive horizontal padding.
+    </p>
+</dui-container>
+```
+
+*From `Pages/Container/_PageLayout.cshtml`*
+
+```razor
+<dui-container>
+    <dui-stack gap="StackGap.Large">
+        <dui-group justify="GroupJustify.SpaceBetween" align="GroupAlign.Center">
+            <h1 class="text-xl font-semibold">Destinations</h1>
+            <dui-button>
+                <dui-icon name="plus"/>
+                Add destination
+            </dui-button>
+        </dui-group>
+        <p class="text-sm text-muted-foreground">
+            Use a container to center and constrain your page, then Stack and Group handle the
+            vertical and horizontal rhythm of the content inside it.
+        </p>
+    </dui-stack>
+</dui-container>
 ```

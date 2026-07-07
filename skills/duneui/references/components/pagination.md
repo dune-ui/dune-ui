@@ -62,7 +62,7 @@ Navigation for moving between pages of content.
 | `size` | `ButtonSize` | — | `Default`, `ExtraSmall`, `Small`, `Large`, `Icon`, `IconExtraSmall`, `IconSmall`, `IconLarge` |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Pagination/_Intro.cshtml`*
 
@@ -98,6 +98,65 @@ Navigation for moving between pages of content.
         </dui-pagination-item>
         <dui-pagination-item>
             <dui-pagination-last href="#"/>
+        </dui-pagination-item>
+    </dui-pagination-content>
+</dui-pagination>
+```
+
+*From `Pages/Pagination/_Url.cshtml`*
+
+```razor
+<dui-pagination>
+    <dui-pagination-content>
+        <dui-pagination-item>
+            <dui-pagination-previous
+                asp-controller="Booking"
+                asp-action="List"
+                asp-route-page="1"/>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-link asp-controller="Booking"
+                                 asp-action="List"
+                                 asp-route-page="1">
+                1
+            </dui-pagination-link>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-link asp-controller="Booking"
+                                 asp-action="List"
+                                 asp-route-page="2"
+                                 is-active="true">
+                2
+            </dui-pagination-link>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-link asp-controller="Booking"
+                                 asp-action="List"
+                                 asp-route-page="3">
+                3
+            </dui-pagination-link>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-ellipsis/>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-link asp-controller="Booking"
+                                 asp-action="List"
+                                 asp-route-page="10">
+                10
+            </dui-pagination-link>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-link asp-controller="Booking"
+                                 asp-action="List"
+                                 asp-route-page="11">
+                11
+            </dui-pagination-link>
+        </dui-pagination-item>
+        <dui-pagination-item>
+            <dui-pagination-next asp-controller="Booking"
+                                 asp-action="List"
+                                 asp-route-page="3"/>
         </dui-pagination-item>
     </dui-pagination-content>
 </dui-pagination>

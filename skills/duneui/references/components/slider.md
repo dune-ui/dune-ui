@@ -25,10 +25,18 @@ An input for selecting a numeric value, or a range of values, by dragging one or
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
-*From `Pages/Slider/_Intro.cshtml`*
+*From `Pages/Slider/_Range.cshtml`*
 
 ```razor
-<dui-slider value="50" max="100"/>
+<dui-slider value="20,80" min="0" max="100" min-distance="10"/>
+```
+
+*From `Pages/Slider/_ModelBinding.cshtml`*
+
+```razor
+<dui-slider asp-for="MaximumDistanceFromCenter" max="100"/>
+<dui-slider asp-for="PricePerNight" min="0" max="1000" step="50"/>
+<dui-slider asp-for="GuestRatingBands" min="0" max="100" min-distance="5"/>
 ```

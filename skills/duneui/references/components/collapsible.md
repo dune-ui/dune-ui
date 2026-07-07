@@ -14,7 +14,7 @@ A container whose content can be expanded or collapsed. Toggle it with the Invok
 |-----------|------|---------|--------|
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Collapsible/_Intro.cshtml`*
 
@@ -66,4 +66,53 @@ A container whose content can be expanded or collapsed. Toggle it with the Invok
         </dui-item>
     </dui-collapsible>
 </div>
+```
+
+*From `Pages/Collapsible/_Settings.cshtml`*
+
+```razor
+<dui-card class="mx-auto w-[350px]" size="CardSize.Small">
+  <dui-card-header>
+    <dui-card-title>Radius</dui-card-title>
+    <dui-card-description>
+      Set the corner radius of the element.
+    </dui-card-description>
+  </dui-card-header>
+  <dui-card-content>
+    <div class="flex items-start gap-2 group/collapsible">
+      <dui-field-group class="grid w-full grid-cols-2 gap-2">
+        <dui-field>
+          <dui-field-label for="radius-x-1" class="sr-only">
+            Radius X
+          </dui-field-label>
+          <dui-input id="radius-x-1" placeholder="0"/>
+        </dui-field>
+        <dui-field>
+          <dui-field-label for="radius-y-1" class="sr-only">
+            Radius Y
+          </dui-field-label>
+          <dui-input id="radius-y-1" placeholder="0"/>
+        </dui-field>
+        <dui-collapsible id="collapsible-settings" hidden="" class="col-span-full grid grid-cols-subgrid gap-2">
+          <dui-field>
+            <dui-field-label for="radius-x-2" class="sr-only">
+              Radius X
+            </dui-field-label>
+            <dui-input id="radius-x-2" placeholder="0"/>
+          </dui-field>
+          <dui-field>
+            <dui-field-label for="radius-y-2" class="sr-only">
+              Radius Y
+            </dui-field-label>
+            <dui-input id="radius-y-2" placeholder="0"/>
+          </dui-field>
+        </dui-collapsible>
+      </dui-field-group>
+      <dui-button variant="ButtonVariant.Outline" size="ButtonSize.Icon" commandfor="collapsible-settings" command="--toggle">
+        <dui-icon name="minimize" class="not-in-aria-expanded:hidden"/>
+        <dui-icon name="maximize" class="in-aria-expanded:hidden"/>
+      </dui-button>
+    </div>
+  </dui-card-content>
+</dui-card>
 ```

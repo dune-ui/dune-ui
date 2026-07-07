@@ -27,7 +27,7 @@ A progress bar that visualizes the completion of a task as a filled track. Compo
 | `value` | `int` | `0` | — |
 | `class` | `string` | — | Extra Tailwind utilities; merged last, so it overrides defaults. |
 
-## Example
+## Examples
 
 *From `Pages/Progress/_Intro.cshtml`*
 
@@ -39,4 +39,13 @@ A progress bar that visualizes the completion of a task as a filled track. Compo
     <dui-progress value="75"/>
     <dui-progress value="100"/>
 </div>
+```
+
+*From `Pages/Progress/_WithLabel.cshtml`*
+
+```razor
+<dui-progress value="56">
+    <dui-progress-label>Upload progress</dui-progress-label>
+    <dui-progress-value/>
+</dui-progress>
 ```

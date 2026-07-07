@@ -16,11 +16,13 @@ internal sealed record TagInfo(
     IReadOnlyList<AttributeInfo> Attributes
 );
 
+/// <summary>A usage snippet surfaced in a component's reference file, with its source label.</summary>
+internal sealed record ExampleInfo(string Snippet, string Source);
+
 /// <summary>A component = one folder under <c>TagHelpers/</c> exposing one or more tags.</summary>
 internal sealed record ComponentInfo(
     string FolderName,
     IReadOnlyList<TagInfo> Tags,
     TagInfo Primary,
-    string? Snippet,
-    string? SnippetSource
+    IReadOnlyList<ExampleInfo> Examples
 );

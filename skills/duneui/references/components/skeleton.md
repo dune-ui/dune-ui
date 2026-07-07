@@ -16,16 +16,18 @@ A placeholder that shows an animated pulsing shape while content is loading.
 
 ## Example
 
-*From `Pages/Skeleton/_Intro.cshtml`*
+*From `Pages/Skeleton/_Form.cshtml`*
 
 ```razor
-<dui-card class="w-full">
-    <dui-card-header>
-        <dui-skeleton class="h-4 w-2/3"/>
-        <dui-skeleton class="h-4 w-1/2"/>
-    </dui-card-header>
-    <dui-card-content>
-        <dui-skeleton class="aspect-square w-full"/>
-    </dui-card-content>
-</dui-card>
+<div class="flex w-full flex-col gap-7">
+    <div class="flex flex-col gap-3">
+        <dui-skeleton class="h-4 w-20"/>
+        <dui-skeleton class="h-10 w-full"/>
+    </div>
+    <div class="flex flex-col gap-3">
+        <dui-skeleton class="h-4 w-24"/>
+        <dui-skeleton class="h-10 w-full"/>
+    </div>
+    <dui-skeleton class="h-9 w-24"/>
+</div>
 ```

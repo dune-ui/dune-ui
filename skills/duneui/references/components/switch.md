@@ -19,7 +19,7 @@ A toggle control that switches between on and off states. Backed by a native che
 
 > In Razor, enum values are written fully-qualified, e.g. `variant="ButtonVariant.Outline"`.
 
-## Example
+## Examples
 
 *From `Pages/Switch/_Intro.cshtml`*
 
@@ -33,4 +33,10 @@ A toggle control that switches between on and off states. Backed by a native che
         </dui-field-description>
     </dui-field-content>
 </dui-field>
+```
+
+*From `Pages/Switch/_ModelBinding.cshtml`*
+
+```razor
+<dui-switch asp-for="EmailNotifications"/>
 ```
